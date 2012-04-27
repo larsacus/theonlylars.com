@@ -4,8 +4,6 @@ require 'sinatra/base'
 # The project root directory
 $root = ::File.dirname(__FILE__)
 
-enable :sessions
-
 class SinatraStaticServer < Sinatra::Base  
 
   get '/apps/combine/auth' do
