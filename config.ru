@@ -4,10 +4,12 @@ require 'sinatra/base'
 # The project root directory
 $root = ::File.dirname(__FILE__)
 
+enable :sessions
+
 class SinatraStaticServer < Sinatra::Base  
 
   get '/apps/combine/auth' do
-    redirect "combine://auth/success"
+    redirect "combine://auth/success/?#{session}", 303
   end
 
   get(/.+/) do
