@@ -3,8 +3,8 @@
 # ----------------------- #
 
 url: http://theonlylars.com
-title: i'm theonlylars
-subtitle: you may never meet another
+title: hello. i'm theonlylars.
+subtitle: you may never meet another.
 author: Lars Anderson
 simple_search: http://google.com/search
 description:
@@ -93,7 +93,7 @@ disqus_short_name:
 disqus_show_comment_count: false
 
 # Google Analytics
-google_analytics_tracking_id:
+google_analytics_tracking_id: UA-29343433-1
 
 # Facebook Like
 facebook_like: false
