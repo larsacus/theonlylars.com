@@ -6,8 +6,8 @@ $root = ::File.dirname(__FILE__)
 
 class SinatraStaticServer < Sinatra::Base  
 
-  get(/apps/combine/auth) do
-    redirect_to("combine://auth/success/?#{params}")
+  get '/apps/combine/auth' do
+    redirect "combine://auth/success"
   end
 
   get(/.+/) do
