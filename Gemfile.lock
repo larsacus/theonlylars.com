@@ -31,7 +31,6 @@ GEM
     posix-spawn (0.3.6)
     pygments.rb (0.2.12)
       rubypython (~> 0.5.3)
-    queryparams (0.0.3)
     rack (1.4.1)
     rake (0.9.2.2)
     rb-fsevent (0.9.1)
@@ -58,7 +57,6 @@ DEPENDENCIES
   jekyll
   liquid (= 2.2.2)
   pygments.rb
-  queryparams
   rack
   rake
   rb-fsevent
