@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[hello. i'm theonlylars.]]></title>
+  <link href="http://theonlylars.com//atom.xml" rel="self"/>
+  <link href="http://theonlylars.com//"/>
+  <updated>2012-04-26T20:20:03-05:00</updated>
+  <id>http://theonlylars.com//</id>
+  <author>
+    <name><![CDATA[Lars Anderson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[check out my new crib]]></title>
+    <link href="http://theonlylars.com//blog/2012/04/26/check-out-my-new-crib/"/>
+    <updated>2012-04-26T19:51:00-05:00</updated>
+    <id>http://theonlylars.com//blog/2012/04/26/check-out-my-new-crib</id>
+    <content type="html"><![CDATA[<p>I&#8217;ve had this domain for awhile, but haven&#8217;t had the time to build a website the way I like.  I wanted a blog that accepted markdown as text input, as well as some other social-media integration features, so imagine how intrigued I was to find <a href="https://github.com/imathis/octopress">Octopress</a> which supported exactly this.  And since it&#8217;s basically just a rack app, it should be pretty easy for me to change it if I want to.</p>
+
+<p>More to come.</p>
+]]></content>
+  </entry>
+  
+</feed>
