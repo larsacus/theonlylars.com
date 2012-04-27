@@ -9,7 +9,7 @@ enable :sessions
 class SinatraStaticServer < Sinatra::Base  
 
   get '/apps/combine/auth' do
-    redirect "combine://auth/success/?#{session}", 303
+    redirect "combine://auth/success/?#{session}"
   end
 
   get(/.+/) do
