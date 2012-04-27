@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>check out my new crib - hello. i'm theonlylars.</title>
+  <title>check out my new crib - hello. i'm @theonlylars</title>
   <meta name="author" content="Lars Anderson">
 
   
@@ -18,13 +18,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://theonlylars.com//blog/2012/04/26/check-out-my-new-crib">
+  <link rel="canonical" href="http://theonlylars.com/blog/2012/04/26/check-out-my-new-crib">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="hello. i'm theonlylars." type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="hello. i'm @theonlylars" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -47,9 +47,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">hello. i'm theonlylars.</a></h1>
+  <h1><a href="/">hello. i'm @theonlylars</a></h1>
   
-    <h2>you may never meet another.</h2>
+    <h2>have you ever met another?</h2>
   
 </hgroup>
 
@@ -61,7 +61,7 @@
   
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:theonlylars.com/" />
+    <input type="hidden" name="q" value="site:theonlylars.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -102,7 +102,7 @@
   </header>
 
 
-<div class="entry-content"><p>I&#8217;ve had this domain for awhile, but haven&#8217;t had the time to build a website the way I like.  I wanted a blog that accepted markdown as text input, as well as some other social-media integration features, so imagine how intrigued I was to find <a href="https://github.com/imathis/octopress">Octopress</a> which supported exactly this.  And since it&#8217;s basically just a rack app, it should be pretty easy for me to change it if I want to.</p>
+<div class="entry-content"><p>I&#8217;ve had this domain for awhile, but haven&#8217;t had the time to build a website the way I like.  I wanted a blog that accepted markdown as text input, as well as some other social-media integration features, so imagine how intrigued I was to find <a href="http://octopress.org">Octopress</a>, which supported exactly this.  And since it&#8217;s basically just a rack/sinatra app, it should be pretty easy for me to modify it how I want.</p>
 
 <p>More to come.</p>
 </div>
@@ -135,9 +135,11 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://theonlylars.com//blog/2012/04/26/check-out-my-new-crib/" data-via="theonlylars" data-counturl="http://theonlylars.com//blog/2012/04/26/check-out-my-new-crib/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://theonlylars.com/blog/2012/04/26/check-out-my-new-crib/" data-via="theonlylars" data-counturl="http://theonlylars.com/blog/2012/04/26/check-out-my-new-crib/" >Tweet</a>
   
   
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
   
 </div>
 
@@ -153,7 +155,10 @@
 
 <aside class="sidebar">
   
-    <section>
+    <section class="well">
+  <h1>About me</h1>
+  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of stuff.</p>
+</section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
@@ -163,6 +168,23 @@
     
   </ul>
 </section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("theonlylars", 7, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/theonlylars" class="twitter-follow-button" data-show-count="false">Follow @theonlylars</a>
+  
+</section>
+
 
 <section>
   <h1>GitHub Repos</h1>
@@ -184,30 +206,13 @@
 
         github.showRepos({
             user: 'larsacus',
-            count: 0,
+            count: 3,
             skip_forks: true,
             target: '#gh_repos'
         });
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("theonlylars", 7, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/theonlylars" class="twitter-follow-button" data-show-count="false">Follow @theonlylars</a>
-  
 </section>
 
 
@@ -229,6 +234,15 @@
   
 
 
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 
