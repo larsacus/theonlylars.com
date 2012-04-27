@@ -1,5 +1,6 @@
 require 'bundler/setup'
 require 'sinatra/base'
+require 'queryparams'
 
 # The project root directory
 $root = ::File.dirname(__FILE__)
@@ -7,7 +8,7 @@ $root = ::File.dirname(__FILE__)
 class SinatraStaticServer < Sinatra::Base  
 
   get '/apps/combine/auth' do
-    redirect "combine://auth/success/?#{params}"
+    redirect URI.encode("combine://auth/success/?#{params}")
   end
 
   get(/.+/) do
