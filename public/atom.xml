@@ -4,7 +4,7 @@
   <title><![CDATA[hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-04-27T23:14:04-05:00</updated>
+  <updated>2012-04-28T13:16:54-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[integrate your iOS app with iAd and AdMob]]></title>
+    <title type="html"><![CDATA[easily integrate your iOS app with iAd and AdMob]]></title>
     <link href="http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad/"/>
     <updated>2012-04-27T21:30:00-05:00</updated>
     <id>http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad</id>
