@@ -9,6 +9,10 @@ class SinatraStaticServer < Sinatra::Base
   get '/apps/combine/auth' do
     redirect URI.encode("combine://auth/success/?#{params}")
   end
+  
+  get '/apps/pachuview/auth' do
+    redirect URI.encode("pachuview://auth/success?code=#{params[:code]}")
+  end
 
   get(/.+/) do
     send_sinatra_file(request.path) {404}
