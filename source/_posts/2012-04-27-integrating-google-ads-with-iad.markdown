@@ -4,6 +4,8 @@ title: "easily integrate your iOS app with iAd and AdMob"
 date: 2012-04-27 21:30
 comments: true
 categories: iOS,development,iAd,AdMob,ads,open-source,ARC
+description: "Easily integrate iAds into your apps with just two lines of code and back them with Google's AdMob ads."
+keywords: "iAd,iOS,iOS development,AdMob,iAd Integration,easy,tutorial,iAd tutorial,iOS iAd tutorial,LARSAdController"
 ---
 I think Apple's iAds had great potential.  But let's face it.  They really aren't pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google's AdMob service as a backup.
 
