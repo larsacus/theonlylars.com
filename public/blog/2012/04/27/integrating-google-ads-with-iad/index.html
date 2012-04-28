@@ -146,38 +146,34 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span>
 </span><span class='line'>      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController:</span><span class="n">self</span><span class="p">];</span>
 </span><span class='line'>      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId:</span><span class="n">myPublisherId</span><span class="p">];</span>
-</span><span class='line'>      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">layoutBannerViewsForCurrentOrientation:</span><span class="n">self</span><span class="p">.</span><span class="n">interfaceOrientation</span><span class="p">];</span>
 </span><span class='line'>  <span class="p">}</span>
 </span><span class='line'>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>  If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you&#8217;re basically done.  Just add these two lines of code to any view controller that you want to host ads in.  They ads will automatically be added to the bottom of the view and appear/hide whenever they have ads.</p>
+<p>  If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you&#8217;re basically done.  Just add the first single line of code to any view controller that you want to host ads in. Just be sure to call <code>setGoogleAdPublisherId:</code> the first time you add LARSAdController to a view. The ads will automatically be added to the bottom of the view and appear/hide whenever they have inventory available.</p>
 
 <h2>Multiple Orientations</h2>
 
-<p>If you would like to support multiple orientations, you will need to add the following line to your <code>willAnimateRotationToInterfaceOrientation:duration:</code> view controller method:</p>
+<p>If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">willAnimateRotationToInterfaceOrientation:</span><span class="p">(</span><span class="n">UIInterfaceOrientation</span><span class="p">)</span><span class="nv">toInterfaceOrientation</span> <span class="nf">duration:</span><span class="p">(</span><span class="n">NSTimeInterval</span><span class="p">)</span><span class="nv">duration</span><span class="p">{</span>
-</span><span class='line'>    <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">layoutBannerViewsForCurrentOrientation:</span><span class="n">toInterfaceOrientation</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setShouldHandleOrientationChanges:</span><span class="n">YES</span><span class="p">];</span>
 </span></code></pre></td></tr></table></div></figure>
 
+
+<p>This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.</p>
 
 <p>Simply call the code in step 7 in any view you need the ad banner to be in, and it will automatically remove it from the old view and add it to the bottom of the new view.</p>
 
 <h2>In Conclusion</h2>
 
-<p>I think this is an extremely easy, proper way just to implement iAds into your app, even if I wasn&#8217;t using AdMob ads.  If you&#8217;re registered to use AdMob ads, then it&#8217;s an even <em>more</em> efficient method, as it&#8217;s only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
+<p>I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren&#8217;t using AdMob ads.  If you&#8217;re registered to use AdMob ads, then it&#8217;s an even <em>more</em> efficient method, as it&#8217;s only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
 
-<p>If you&#8217;re using <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> in your app, I&#8217;d love to know. You can send me an email if you can find it, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a>.</p>
+<p>If you&#8217;re using <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> in your app, I&#8217;d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I&#8217;ll add it to the README file.</p>
 </div>
 
 

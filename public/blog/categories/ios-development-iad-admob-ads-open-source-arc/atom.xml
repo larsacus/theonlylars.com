@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS,development,iAd,AdMob,ads,open-source,ARC | hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/ios-development-iad-admob-ads-open-source-arc/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-04-28T16:07:59-05:00</updated>
+  <updated>2012-04-28T16:41:34-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -65,39 +65,37 @@
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
-<span class='line-number'>9</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>  <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController:</span><span class="n">self</span><span class="p">];</span>
 </span><span class='line'>  <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId:</span><span class="n">myPublisherId</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">layoutBannerViewsForCurrentOrientation:</span><span class="n">self</span><span class="p">.</span><span class="n">interfaceOrientation</span><span class="p">];</span>
 </span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="p">}</span>
 </span><span class='line'>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>  If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you're basically done.  Just add these two lines of code to any view controller that you want to host ads in.  They ads will automatically be added to the bottom of the view and appear/hide whenever they have ads.</p>
+<p>  If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you're basically done.  Just add the first single line of code to any view controller that you want to host ads in. Just be sure to call <code>setGoogleAdPublisherId:</code> the first time you add LARSAdController to a view. The ads will automatically be added to the bottom of the view and appear/hide whenever they have inventory available.</p>
 
 <h2>Multiple Orientations</h2>
 
-<p>If you would like to support multiple orientations, you will need to add the following line to your <code>willAnimateRotationToInterfaceOrientation:duration:</code> view controller method:
-``` objc
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{</p>
+<p>If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
+``` objc</p>
 
-<pre><code>[[LARSAdController sharedManager] layoutBannerViewsForCurrentOrientation:toInterfaceOrientation];
+<pre><code>[[LARSAdController sharedManager] setShouldHandleOrientationChanges:YES];
 </code></pre>
 
-<p>}
-```</p>
+<p>```</p>
+
+<p>This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.</p>
 
 <p>Simply call the code in step 7 in any view you need the ad banner to be in, and it will automatically remove it from the old view and add it to the bottom of the new view.</p>
 
 <h2>In Conclusion</h2>
 
-<p>I think this is an extremely easy, proper way just to implement iAds into your app, even if I wasn't using AdMob ads.  If you're registered to use AdMob ads, then it's an even <em>more</em> efficient method, as it's only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
+<p>I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren't using AdMob ads.  If you're registered to use AdMob ads, then it's an even <em>more</em> efficient method, as it's only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
 
-<p>If you're using <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> in your app, I'd love to know. You can send me an email if you can find it, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a>.</p>
+<p>If you're using <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> in your app, I'd love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I'll add it to the README file.</p>
 ]]></content>
   </entry>
   

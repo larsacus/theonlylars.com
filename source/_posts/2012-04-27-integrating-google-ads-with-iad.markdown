@@ -43,26 +43,25 @@ I built [LARSAdController](https://github.com/larsacus/LARSAdController) in orde
   - (void)viewWillAppear:(BOOL)animated{
       [[LARSAdController sharedManager] addAdContainerToView:self.view withParentViewController:self];
       [[LARSAdController sharedManager] setGoogleAdPublisherId:myPublisherId];
-      [[LARSAdController sharedManager] layoutBannerViewsForCurrentOrientation:self.interfaceOrientation];
   }
   {% endcodeblock %}
   
   
-  If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you're basically done.  Just add these two lines of code to any view controller that you want to host ads in.  They ads will automatically be added to the bottom of the view and appear/hide whenever they have ads.
+  If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you're basically done.  Just add the first single line of code to any view controller that you want to host ads in. Just be sure to call `setGoogleAdPublisherId:` the first time you add LARSAdController to a view. The ads will automatically be added to the bottom of the view and appear/hide whenever they have inventory available.
 
 ##Multiple Orientations
   
-If you would like to support multiple orientations, you will need to add the following line to your `willAnimateRotationToInterfaceOrientation:duration:` view controller method:
+If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
 ``` objc
--(void)willAnimateRotationToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
-    [[LARSAdController sharedManager] layoutBannerViewsForCurrentOrientation:toInterfaceOrientation];
-}
+    [[LARSAdController sharedManager] setShouldHandleOrientationChanges:YES];
 ```
+
+This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.
 
 Simply call the code in step 7 in any view you need the ad banner to be in, and it will automatically remove it from the old view and add it to the bottom of the new view.
 
 ## In Conclusion
-I think this is an extremely easy, proper way just to implement iAds into your app, even if I wasn't using AdMob ads.  If you're registered to use AdMob ads, then it's an even *more* efficient method, as it's only one line of code more in order to integrate and you will *always* have an ad displaying in your app.
+I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren't using AdMob ads.  If you're registered to use AdMob ads, then it's an even *more* efficient method, as it's only one line of code more in order to integrate and you will *always* have an ad displaying in your app.
 
-If you're using [LARSAdController](https://github.com/larsacus/LARSAdController) in your app, I'd love to know. You can send me an email if you can find it, or even better, just send me a quick note at [@theonlylars](http://twitter.com/theonlylars).
+If you're using [LARSAdController](https://github.com/larsacus/LARSAdController) in your app, I'd love to know. You can send me an email if you can find it, [fork the repo](http://github.com/larsacus/LARSAdController) and change the readme on GitHub, or even better, just send me a quick note at [@theonlylars](http://twitter.com/theonlylars) and I'll add it to the README file.
     
