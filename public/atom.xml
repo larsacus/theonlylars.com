@@ -4,7 +4,7 @@
   <title><![CDATA[hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-05-17T22:29:28-05:00</updated>
+  <updated>2012-05-29T22:50:32-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -12,6 +12,34 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Dub Dub]]></title>
+    <link href="http://theonlylars.com/blog/2012/05/29/wwdc/"/>
+    <updated>2012-05-29T22:19:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/05/29/wwdc</id>
+    <content type="html"><![CDATA[<p>Gettin&#8217; ready for <a href="http://www.apple.com/wwdc">dub dub</a> in less than two weeks! By my count, there are 42 &#8220;To be announced&#8221; sessions on the schedule released today. You will find me at as many Core Animation, Core Graphics, and GCD sessions as I can attend, as well as all of the cool new API sessions.  To make the most of it all, I&#8217;ve been trying to think of some good questions for the framework engineers at the labs.  I&#8217;ll probably get some feedback on my <a href="https://github.com/larsacus/LARSAdController">ad controller</a>, as well as a new MBProgressHUD/SVProgressHUD-inspired HUD I&#8217;ve been working on at work, in addition to some other various work-related stuff.</p>
+
+<p>Some new API&#8217;s stuffs I&#8217;m thinking/hoping we may see fill in the &#8216;to be announced&#8217; blanks during the keynote:</p>
+
+<ol>
+<li>Easier iCloud integration (don&#8217;t tell me you haven&#8217;t tried to integrate iCloud without issue)</li>
+<li>Notification Center widgets (I would even settle for a useful Notification Center)</li>
+<li>New maps APIs (<a href="http://www.macrumors.com/2012/05/29/composite-mockup-of-ios-6-maps-app-based-on-purported-leaked-screenshots/">Exhibit A</a>)</li>
+<li>More Core Image filters for iOS</li>
+<li>Fully-baked Siri (I don&#8217;t necessarily think we&#8217;ll see app-level Siri integration, just yet)</li>
+<li>Airplay<->Mac integration</li>
+<li>Heck, I&#8217;m thinking there will be more generic OS-level mac-integration (think Airdrop)</li>
+<li>More twitter-like account integrations</li>
+<li>A new system-wide visual overhaul (not likely, but it&#8217;s been since iOS 4 that the look has changed in any way, and even that was minor)</li>
+</ol>
+
+
+<p>We&#8217;ll see how it all plays out.  I&#8217;ll be tweeting about it the whole time, NDA permitting, if you care to <a href="https://twitter.com/theonlylars">follow along</a>.</p>
+
+<p>If you&#8217;re fortunate enough to be joining us all, then I&#8217;ll see you there!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Career Day @ Lorena High]]></title>
