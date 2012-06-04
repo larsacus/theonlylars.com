@@ -3,7 +3,8 @@ layout: page
 title: "Welcome to My Place - It's Hot in Here"
 date: 2012-06-03 21:42
 comments: true
-categories: home sensor data sensor-data arduino temperature a/c air-conditioning cosm pachube ladera-vista austin apartment
+categories: home sensor data sensor-data arduino temperature a/c air-conditioning cosm pachube
+keywords: "ladera-vista,reviews,home,apartment,austin,apartments,a/c,air-conditioning,repairs"
 ---
 
 This page will summarize the status of all systems in my apartment. Server status, a/c status, whatever. More stuff seems to be added every week.  For now, it's just home comfort status as I get my other systems up and monitored. I'm currently monitoring temperature and humidity in two different places (bedroom ambient and bedroom HVAC exhaust) that I relay up to [Cosm](https://cosm.com/feeds/47043).  I initially did this because our apartment's ([Ladera Vista](http://www.laderavista.net/), for the curious - also so I can bump this page up in search results) air has never really been able to keep our apartment at a temperature we were comfortable with but could never prove it. So now we can:
