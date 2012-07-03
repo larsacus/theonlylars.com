@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "easily integrate your iOS app with iAd and AdMob"
+title: "Easily Integrate Your iOS App with iAd and AdMob"
 date: 2012-04-27 21:30
 comments: true
 categories: iOS development iAd AdMob ads open-source ARC

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: NSLog | hello. i'm @theonlylars]]></title>
+  <link href="http://theonlylars.com/blog/categories/nslog/atom.xml" rel="self"/>
+  <link href="http://theonlylars.com/"/>
+  <updated>2012-07-02T23:48:53-05:00</updated>
+  <id>http://theonlylars.com/</id>
+  <author>
+    <name><![CDATA[Lars Anderson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ditching NSLog Part II: Good Tools Make Work Easy]]></title>
+    <link href="http://theonlylars.com/blog/2012/07/05/ditching-nslog-advanced-ios-logging-part-2/"/>
+    <updated>2012-07-05T21:49:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/07/05/ditching-nslog-advanced-ios-logging-part-2</id>
+    <content type="html"><![CDATA[<h1>In Review</h1>
+
+<p>In <a href="">Part 1</a> of this post, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code> cannot satisfy these requirements.</p>
+
+<p>In this post, we'll go over some of the options you have available in your developer tool-belt to make your life easier. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain the right tools, and you'll be more likely to produce a solid product.</p>
+
+<h2>Logging Libraries</h2>
+
+<h3>Macro Replacement</h3>
+
+<p>http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog</p>
+
+<h3>Cocoa Lumberjack</h3>
+
+<h3>NSLogger</h3>
+
+<h3><a href="https://github.com/rentzsch/JRLog">JRLog</a></h3>
+
+<h3><a href="https://github.com/holtwick/HOLog">HOLog</a></h3>
+
+<h3><a href="https://github.com/shadowphoenix/OCLog">OCLog</a></h3>
+
+<h3><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a></h3>
+
+<h2>Logging Enhancements for Debugging</h2>
+
+<h3>AFHTTPRequestOperationLogger</h3>
+
+<h3><a href="https://github.com/TouchCode/TouchLogging">TouchLogging</a></h3>
+
+<h3><a href="https://github.com/Maxwin-z/XLog">XLog</a></h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ditching NSLog Part I: You Deserve Better]]></title>
+    <link href="http://theonlylars.com/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/"/>
+    <updated>2012-07-02T21:35:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1</id>
+    <content type="html"><![CDATA[<p>Every iOS developer has used <code>NSLog</code>. We use it as a debugging tool to see the what data the system sees at a particular time while the application is running, or even the path our data takes when moving through our applications. But <code>NSLog</code> is not the be-all, end-all logging mechanism many of you think it is.</p>
+
+<h2>I Use NSLog and I think it's awesome. Isn't that enough?</h2>
+
+<p>Not really. Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he's the slow guy in line paying for that Xbox with small coins and wadded singles when you just want to pay with plastic and <em>not</em> be standing in line.</p>
+
+<h3>Speed</h3>
+
+<p><code>NSLog</code> is slow. This wouldn't be so bad if it were asynchronous - but it is most definitely very synchronous. This is why you can set a breakpoint, step through your code and instantly see your <code>NSLog</code> statements show up in the console after you step over them. Make enough calls with <code>NSLog</code> in highly-iterative, performance-oriented or <code>drawRect:</code> code and the performance-penalty begins to add up.</p>
+
+<!-- more -->
+
+
+<h3>Conditional Logic</h3>
+
+<p><code>NSLog</code> is dumb. There is only one type of <code>NSLog</code> - the type that will display in your console. Yet, we will use our logging statements for many different purposes. Sometimes we log an error, a UI event, maybe a networking call, other times we are simply keeping track of a view controller's view lifecycle. These are all very different types of logs that you may or may not want to show up all the time.</p>
+
+<h3>Beyond Debugging</h3>
+
+<p><code>NSLog</code> will show up even in production code regardless of release setting unless you deliberately do something about it. It will rear it's ugly head all up in your production code, even on-device when disconnected with the same performance-penalties as before, but now nobody can even see the logs unless they can connect to their device's console. This is serving zero purpose to aid the user's experience in your application.</p>
+
+<p>I'm sure we've all done the genius find/replace <code>NSLog</code> with <code>//NSLog</code>. Yes, this gets rid of the NSLogs in production, but it is a huge pain to keep up with and looks ugly to boot. Then after you do this, the reverse action isn't always as straight-forward. There may be <code>NSLog</code>s that you intentionally wanted commented out that are now uncommented as a result of you trying to undo your previous strike of genius.</p>
+
+<p>There is a time and place for production logging, but chances are pretty good that you aren't doing it right if you're still using <code>NSLog</code>. Next we'll go over the different types of logging, then discuss their role in debugging in both development <em>and</em> production after you ship your application to your users.</p>
+
+<h2>Types of Logging</h2>
+
+<h3>Console Logging</h3>
+
+<p>This is the most basic type of logging, and one which you're probably most familiar with. The console log simply logs all of your statements to the debug log (if you're in Xcode or in the organizer) or to Console.app if you're running a mac app or running an app in the iPhone simulator detached from the debugger.</p>
+
+<p><em>Practicality: <em>Production</em> (used correctly) or <em>development</em> debugging</em></p>
+
+<h3>File Logging</h3>
+
+<p>File logging is just like it sounds. Instead of logging to the debug console, you simply log to a file. This is best demonstrated by simply having you look in the <code>/var/log/</code> folder on your Mac or Linux box.  You'll see a plethora of file logs chock full of information about what is happening on your system.  For iOS, this really doesn't make sense for your sandboxed application unless we as the developers know that we need to monitor that information.</p>
+
+<p>One example of this necessity is that a particular user is having an issue you've never even heard of before and you would like to capture the log output to see what is going on. Simply activate file logging by some super-secret menu (see Tweetbot screenshot below) and make an easy mechanism for the user to send you that log in an email. Just be responsible and don't log personal information and always remember to bound the length of your logs - nobody likes 100MB log files.</p>
+
+<p><em>Practicality: <em>Production</em> debugging</em></p>
+
+<h3>Remote Logging</h3>
+
+<p>This is a little more difficult to accomplish and requires either some knowhow about client/server networking on a lower level than simply API consumption, or some help from a third party library.  The benefit to remote logging is that it combines all the best traits of console logging (real-time information) with file logging's ability to not have to be physically connected to the device in order to capture the logs. This would require some participation on the user's end, but if they're having extreme issues, they may be more than happy to let you remotely log their device while they demonstrate the bug for you.</p>
+
+<p><em>Practicality: <em>Production</em> debugging (with a little more user participation)</em></p>
+
+<h2>To Log, or Not to Log?</h2>
+
+<p>So how often should include a log statement in their code?  When using the "right" logging techniques, you should log as much as possible. Some examples include:</p>
+
+<ul>
+<li>View/view controller life-cycles - calls to <code>viewDidLoad</code>, <code>dealloc</code>, etc.</li>
+<li>Errors</li>
+<li>Warnings</li>
+<li>Unexpected user input</li>
+<li>Whatevs</li>
+</ul>
+
+
+<p><span class='pullquote-right' data-pullquote='In not so many words: dynamic runtime logging'>The "right" logging techniques depends highly on who you are as a programmer and even moreso on where you work. I know we have very specific coding standards at <a href="http://mutualmobile.com">Mutual Mobile</a> so as to increase uniformity between codebases on disparate projects.  So the "right" logging techniques and practices I discuss here are those in which I believe most developers and users would benefit from. These practices are those in which you can dynamically choose which types of logs you would like to see depending on what you are working on.  In not so many words: dynamic runtime logging.</span></p>
+
+<p>Dynamic means that it involves conditional logic, and mucking with the logging mechanism at runtime means preprocessor macros are pretty much out of the picture.  In Part 2, we'll look at some techniques as well as full-blown open source libraries that will make our job of logging much easier, more dynamic, and eliminate logs in production for all but the cases we specifically care about.</p>
+]]></content>
+  </entry>
+  
+</feed>
