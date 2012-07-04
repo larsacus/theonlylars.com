@@ -9,7 +9,7 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="In Review In Part 1 of this post, we introduced our good friend NSLog and why there is a time and a place for him, but those are few and far between &hellip;">
+  <meta name="description" content="Every iOS developer has used NSLog. We use it as a debugging tool to see the what data the system sees at a particular time while the application is &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,7 +83,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/07/05/ditching-nslog-advanced-ios-logging-part-2/">Ditching NSLog Part II: Good Tools Make Work Easy</a></h1>
+      <h1 class="entry-title"><a href="/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/">Ditching NSLog, Part I: You Deserve Better</a></h1>
     
     
       <p class="meta">
@@ -99,94 +99,32 @@
   
 
 
-<time datetime="2012-07-05T21:49:00-05:00" pubdate data-updated="true">Jul 5<span>th</span>, 2012</time>
+<time datetime="2012-07-03T21:33:00-05:00" pubdate data-updated="true">Jul 3<span>rd</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h1>In Review</h1>
+  <div class="entry-content"><p>Every iOS developer has used <code>NSLog</code>. We use it as a debugging tool to see the what data the system sees at a particular time while the application is running, or even to track the path our data takes when moving through our applications. But <code>NSLog</code> is not the be-all, end-all logging mechanism many of you think it is.</p>
 
-<p>In <a href="">Part 1</a> of this post, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code> cannot satisfy these requirements.</p>
-
-<p>In this post, we&#8217;ll go over some of the options you have available in your developer tool-belt to make your life easier. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain the right tools, and you&#8217;ll be more likely to produce a solid product.</p>
-
-<h2>Logging Libraries</h2>
-
-<h3>Macro Replacement</h3>
-
-<p>http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog</p>
-
-<h3>Cocoa Lumberjack</h3>
-
-<h3>NSLogger</h3>
-
-<h3><a href="https://github.com/rentzsch/JRLog">JRLog</a></h3>
-
-<h3><a href="https://github.com/holtwick/HOLog">HOLog</a></h3>
-
-<h3><a href="https://github.com/shadowphoenix/OCLog">OCLog</a></h3>
-
-<h3><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a></h3>
-
-<h2>Logging Enhancements for Debugging</h2>
-
-<h3>AFHTTPRequestOperationLogger</h3>
-
-<h3><a href="https://github.com/TouchCode/TouchLogging">TouchLogging</a></h3>
-
-<h3><a href="https://github.com/Maxwin-z/XLog">XLog</a></h3>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Ditching NSLog Part I: You Deserve Better</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-02T21:35:00-05:00" pubdate data-updated="true">Jul 2<span>nd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Every iOS developer has used <code>NSLog</code>. We use it as a debugging tool to see the what data the system sees at a particular time while the application is running, or even the path our data takes when moving through our applications. But <code>NSLog</code> is not the be-all, end-all logging mechanism many of you think it is.</p>
+<p>If you&#8217;re new to iOS, you may want to sit this one out until you get annoyed by <code>NSLog</code> - then come back here and read this.</p>
 
 <h2>I Use NSLog and I think it&#8217;s awesome. Isn&#8217;t that enough?</h2>
 
-<p>Not really. Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he&#8217;s the slow guy in line paying for that Xbox with small coins and wadded singles when you just want to pay with plastic and <em>not</em> be standing in line.</p>
+<p>Umm&#8230; Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he&#8217;s that guy on a Friday afternoon at the bank who&#8217;s exchanging three years worth of saved coins and asking about the interest rates on free checking accounts. I hate that guy.</p>
 
-<h3>Speed</h3>
+<p>There are more forces at work than you might think operating behind the scenes in order to get your log messages to both the console and into Xcode console log. Let&#8217;s go over some of the issues I have with <code>NSLog</code>:</p>
 
-<p><code>NSLog</code> is slow. This wouldn&#8217;t be so bad if it were asynchronous - but it is most definitely very synchronous. This is why you can set a breakpoint, step through your code and instantly see your <code>NSLog</code> statements show up in the console after you step over them. Make enough calls with <code>NSLog</code> in highly-iterative, performance-oriented or <code>drawRect:</code> code and the performance-penalty begins to add up.</p>
+<h3>Performance</h3>
+
+<p><code>NSLog</code> is slow. This wouldn&#8217;t be so bad if it were asynchronous - but it is most definitely very synchronous. This is why you can set a breakpoint, step through your code and instantly see your <code>NSLog</code> statements show up in the console after you step over them. Make enough calls with <code>NSLog</code> in highly-iterative, performance-oriented or <code>drawRect:</code> code and the performance-penalty begins to add up. This is also not to say that we don&#8217;t sometimes need a synchronous logging mechanism. After all - if your code is in an unstable state, wouldn&#8217;t you want to know about both synchronously and immediately?</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Read on &rarr;</a>
+      <a rel="full-article" href="/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/">Read on &rarr;</a>
     </footer>
   
 
@@ -322,6 +260,61 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/05/29/wwdc/">Dub Dub</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-29T22:19:00-05:00" pubdate data-updated="true">May 29<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Gettin&#8217; ready for <a href="http://www.apple.com/wwdc">dub dub</a> in less than two weeks! By my count, there are 42 &#8220;To be announced&#8221; sessions on the schedule released today. You will find me at as many Core Animation, Core Graphics, and GCD sessions as I can attend, as well as all of the cool new API sessions.  To make the most of it all, I&#8217;ve been trying to think of some good questions for the framework engineers at the labs.  I&#8217;ll probably get some feedback on my <a href="https://github.com/larsacus/LARSAdController">ad controller</a>, as well as a new MBProgressHUD/SVProgressHUD-inspired HUD I&#8217;ve been working on at work, in addition to some other various work-related stuff.</p>
+
+<p>Some new API&#8217;s stuffs I&#8217;m thinking/hoping we may see fill in the &#8216;to be announced&#8217; blanks during the keynote:</p>
+
+<ol>
+<li>Easier iCloud integration (don&#8217;t tell me you haven&#8217;t tried to integrate iCloud without issue)</li>
+<li>Notification Center widgets (I would even settle for a useful Notification Center)</li>
+<li>New maps APIs (<a href="http://www.macrumors.com/2012/05/29/composite-mockup-of-ios-6-maps-app-based-on-purported-leaked-screenshots/">Exhibit A</a>)</li>
+<li>More Core Image filters for iOS</li>
+<li>Fully-baked Siri (I don&#8217;t necessarily think we&#8217;ll see app-level Siri integration, just yet)</li>
+<li>Airplay<->Mac integration</li>
+<li>Heck, I&#8217;m thinking there will be more generic OS-level mac-integration (think Airdrop)</li>
+<li>More twitter-like account integrations</li>
+<li>A new system-wide visual overhaul (not likely, but it&#8217;s been since iOS 4 that the look has changed in any way, and even that was minor)</li>
+</ol>
+
+
+<p>We&#8217;ll see how it all plays out.  I&#8217;ll be tweeting about it the whole time, NDA permitting, if you care to <a href="https://twitter.com/theonlylars">follow along</a>.</p>
+
+<p>If you&#8217;re fortunate enough to be joining us all, then I&#8217;ll see you there!</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -340,11 +333,7 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/07/05/ditching-nslog-advanced-ios-logging-part-2/">Ditching NSLog Part II: Good Tools Make Work Easy</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Ditching NSLog Part I: You Deserve Better</a>
+        <a href="/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/">Ditching NSLog, Part I: You Deserve Better</a>
       </li>
     
       <li class="post">
@@ -357,6 +346,10 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
     
       <li class="post">
         <a href="/blog/2012/06/03/house-status/">House Status</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/05/29/wwdc/">Dub Dub</a>
       </li>
     
   </ul>
