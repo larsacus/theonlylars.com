@@ -4,7 +4,7 @@
   <title><![CDATA[Category: NSLog | hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/nslog/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-07-03T21:39:57-05:00</updated>
+  <updated>2012-07-26T23:15:57-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -12,6 +12,142 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ditching NSLog, Part II: Good Tools Make Work Easy]]></title>
+    <link href="http://theonlylars.com/blog/2012/07/05/ditching-nslog-advanced-ios-logging-part-2/"/>
+    <updated>2012-07-05T21:49:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/07/05/ditching-nslog-advanced-ios-logging-part-2</id>
+    <content type="html"><![CDATA[<h1>In Review</h1>
+
+<p>In <a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
+
+<p>In this post, we'll go over some of the options you have available in your developer tool-belt to make your life easier. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you'll be more likely to produce a solid product.</p>
+
+<h1>Logging Libraries</h1>
+
+<h2>Macro Replacement</h2>
+
+<p>Not really a "library" per se, this method is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally "comment out" your log statements when you switch to a non-debug mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don't take any credit for this.  I have successfully used this in a largish project before and it has done it's job, but it is not optimal and can get messy:</p>
+
+<p>{% codeblock Conditionally Replacing NSLog lang:c %}</p>
+
+<h1>ifdef DEBUG</h1>
+
+<p>  #define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), <strong>PRETTY_FUNCTION</strong>, <strong>LINE</strong>, ##<strong>VA_ARGS</strong>);</p>
+
+<h1>else</h1>
+
+<p>  #define DLog(...)</p>
+
+<h1>endif</h1>
+
+<p>{% endcodeblock %}</p>
+
+<p>For those of you who don't regularly use preprocessor macros, here's what's happening in this block of code in pseudocode:
+<code>
+if the variable `DEBUG` has been previously defined
+  define a new function named `DLog` that takes parameters in `NSLog` form and write write them into NSLog
+else define `DLog` to do nothing (non-op)
+</code></p>
+
+<p>The complex, angry-sounding capital-lettered arguments at the end of the NSLog definition are essentially helpers to output the function name and line number respectively that the command was called from.  This looks like the following when output in the console using the command <code>DLog(@"Logging like a boss");</code>:</p>
+
+<p><code>-[MyAppDelegate application:didFinishLaunchingWithOptions:] [Line 40] Logging like a boss</code></p>
+
+<p>Pretty helpful, I'd say.</p>
+
+<p><strong>Helpfulness</strong>: 3/10</p>
+
+<p><strong>Performance</strong>: 1/10 (In that it's basically <code>NSLog</code>)</p>
+
+<p><strong>Ease of Use</strong>: 9/10</p>
+
+<h2>Cocoa Lumberjack</h2>
+
+<p>The first time I found <a href="https://github.com/robbiehanson/CocoaLumberjack/">Cocoa Lumberjack</a>, I almost didn't know what to do with myself.  I had never been presented with so many options for logging in all my time with iOS or even prior, nor had I seen such logging practices actually put to use in any projects I have worked on. One thing was for sure: my console logs have always ended up <em>really</em> messy by the end of a project. I could basically write an entire blog post solely on Cocoa Lumberjack, but the developer seems to have done a pretty good job of that on his own with the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki">Cocoa Lumberjack wiki</a> and the readme.</p>
+
+<p><strong>Helpfulness</strong>: 10/10 (Extremely flexible)
+<strong>Performance</strong>: 9/10</p>
+
+<p><strong>Ease of Use</strong>: 8/10</p>
+
+<h2>NSLogger</h2>
+
+<p><a href="https://github.com/fpillet/NSLogger">NSLogger</a> is the Rolls Royce of logging frameworks. Just as not everyone would choose a Rolls over, say, a Maserati, NSLogger may also be overkill or simply inappropriate for a lot of developers. That being said - NSLogger does <em>everything</em>.  Tired of having to be physically connected to your machine to get console logs?  Tired of even having to be on the same <em>network</em> as your device for logging?  NSLogger can help.  NSLogger comes with a standalone Mac app that can accept connections via bonjour, https, https, ssl, telegraph, etc.  It does it all.  You can even log binary data.</p>
+
+<h3>So what about performance?</h3>
+
+<p>NSLogger appears to try it's darndest to use a few CPU cycles as possible, even to the point of not sending logging info over the wire and caching logging info to memory or even disk until the desktop client is found.</p>
+
+<p>The developer suggests creating a preprocessor macro to call the <code>NSLogger</code> methods in order to have them sequestered in release mode, so this doesn't really help for production debugging. For beta and other development activities, especially among distributed groups of test or QA persons, this one takes the cake.</p>
+
+<p><strong>Helpfulness</strong>: 6/10 (Depending on what you need help with)</p>
+
+<p><strong>Performance</strong>: 5/10</p>
+
+<p><strong>Ease of Use</strong>: 7/10</p>
+
+<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
+
+
+<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
+
+
+<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
+
+
+<h2>ECLogging</h2>
+
+<p><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack. The basis behind ECLogging are "channels", "handling", and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
+
+<h3>Channels</h3>
+
+<p>"Channels" allow you to create "debug", "info", or "networking" channels (as an example).  Two types of channels exist - <code>debug</code> and <code>log</code> channels. The difference between the two being that debug channel statements are completely compiled out at compile-time in release mode (much like our dear friend <code>DLog</code> above), and log channel statements are not and will appear in the console even in release mode. Create your own channel with a single-line of code, and start using it on the next line using either <code>ECLog(channel, @"log");</code> or <code>ECDebug(debugChannel, @"debug log")</code>.</p>
+
+<h3>Handling</h3>
+
+<p>You also have the ability to change how the log "handles" objects. The default implementation will simply call <code>-description</code> on your object and output the response. Some examples on <a href="https://github.com/elegantchaos/ECLogging/wiki">ECLogging's Github Wiki</a> show passing a UIImage into the log and handling that in a custom way.</p>
+
+<h3>Boilerplate Settings UI</h3>
+
+<p>The single-coolest part of ECLogging is the drop-in view controller it gives you to change the logging settings on the fly without having to manually write in any conditional logging code paths of your own.  Want to log to a file? Check it! Don't want to log to ASL anymore? Uncheck it! You can even choose which channels to switch on and off on-the-fly.</p>
+
+<p><strong>Helpfulness</strong>: 8/10</p>
+
+<p><strong>Performance</strong>: x/10 (No mention of performance, and I haven't test anything yet)</p>
+
+<p><strong>Ease of Use</strong>: 8/10</p>
+
+<h1>Logging Enhancements for Debugging</h1>
+
+<p>I don't consider logging "enhancements" to be logging mechanisms in and of themselves, but more of helpful loggers for debugging that may or may not originate from you.</p>
+
+<h2>AFHTTPRequestOperationLogger</h2>
+
+<p><a href="https://github.com/AFNetworking/AFHTTPRequestOperationLogger">AFHTTPRequestOperationLogger</a> is a logging enhancer for the ubiquitous <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> library. It won't really help you unless you are using AFNetworking, but it can tremendously help out debugging networking issues you may be having with complex APIs.  It can be a bit verbose at times, even to the point of being straight up noisy, but the advantage of open source is that you can go change it if you don't like it.</p>
+
+<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
+
+
+<h2>XLog</h2>
+
+<p><a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I've actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
+
+<h3>XcodeColors</h3>
+
+<p><a href="https://github.com/robbiehanson/XcodeColors">XcodeColors</a> is a similar-looking Xcode plugin to XLog in that it colors your console output. The original was created by <a href="https://github.com/DeepIT">DeepIT on Github</a>, but now appears to be mostly maintained by <a href="https://github.com/robbiehanson">Robbie Hanson</a>, who created Cocoa Lumberjack (above).</p>
+
+<h1>Conclusion</h1>
+
+<p>YOU NEED A CONCLUSION</p>
+
+<hr />
+
+<p><em>Disclaimer:</em>
+<em>I don't pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I'll either correct it or simply agree to disagree.</em></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ditching NSLog, Part I: You Deserve Better]]></title>
@@ -75,7 +211,7 @@
 
 <p>File logging is just like it sounds. Instead of logging to the debug console, you simply log to a file. This is best demonstrated by simply having you look in the <code>/var/log/</code> folder on your Mac or Linux box.  You'll see a plethora of file logs chock full of information about what is happening on your system.  For iOS, this really doesn't make sense for your sandboxed application unless we as the developers know that we need to monitor that information.</p>
 
-<p><img class="left" src="/images/posts/nslog/part1/tweetbot_super_secret.png" width="300" title="Tweetbot's super-secret settings menu" ></p>
+<p>{% img left /images/posts/nslog/part1/tweetbot_super_secret.png 300 Tweetbot's super-secret settings menu %}</p>
 
 <p>One example of this necessity is that a particular user is having an issue you've never even heard of before and you would like to capture the log output to see what is going on. Simply activate file logging by some super-secret menu and make an easy mechanism for the user to send you that log in an email. Just be responsible and don't log personal information and always remember to bound the length of your logs - nobody likes 100MB log files.</p>
 
@@ -100,7 +236,7 @@
 </ul>
 
 
-<p><span class='pullquote-right' data-pullquote='In not so many words: dynamic runtime logging'>The "right" logging techniques depends highly on who you are as a programmer and even moreso on where you work. I know we have very specific coding standards at <a href="http://mutualmobile.com">Mutual Mobile</a> so as to increase uniformity between codebases on disparate projects.  So the "right" logging techniques and practices I discuss here are those in which I believe most developers and users would benefit from. These practices are those in which you can dynamically choose which types of logs you would like to see depending on what you are working on.  In not so many words: dynamic runtime logging.</span></p>
+<p>{% pullquote %}The "right" logging techniques depends highly on who you are as a programmer and even moreso on where you work. I know we have very specific coding standards at <a href="http://mutualmobile.com">Mutual Mobile</a> so as to increase uniformity between codebases on disparate projects.  So the "right" logging techniques and practices I discuss here are those in which I believe most developers and users would benefit from. These practices are those in which you can dynamically choose which types of logs you would like to see depending on what you are working on.  {"In not so many words: dynamic runtime logging"}.{% endpullquote %}</p>
 
 <p>Dynamic means that it involves conditional logic, and mucking with the logging mechanism at runtime means preprocessor macros are pretty much out of the picture.  In Part 2, we'll look at some techniques as well as full-blown open source libraries that will make our job of logging much easier, more dynamic, and eliminate logs in production for all but the cases we specifically care about.</p>
 

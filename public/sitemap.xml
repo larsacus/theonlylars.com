@@ -35,12 +35,18 @@
         <lastmod>2012-07-03T21:38:24-05:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://theonlylars.com/blog/2012/07/05/ditching-nslog-advanced-ios-logging-part-2/
+        </loc>
+        <lastmod>2012-07-26T23:15:56-05:00</lastmod>
+    </url>
+    <url>
         <loc>http://theonlylars.com/404.html</loc>
         <lastmod>2012-06-26T23:02:32-05:00</lastmod>
     </url>
     <url>
         <loc>http://theonlylars.com/blog/archives/</loc>
-        <lastmod>2012-07-03T21:38:24-05:00</lastmod>
+        <lastmod>2012-07-26T23:15:56-05:00</lastmod>
     </url>
     <url>
         <loc>http://theonlylars.com/homedata/</loc>
@@ -48,6 +54,6 @@
     </url>
     <url>
         <loc>http://theonlylars.com/</loc>
-        <lastmod>2012-07-03T21:38:24-05:00</lastmod>
+        <lastmod>2012-07-26T23:15:56-05:00</lastmod>
     </url>
 </urlset>
