@@ -2,7 +2,7 @@
 layout: post
 title: "Ditching NSLog, Part II: Good Tools Make Work Easy"
 date: 2012-07-29 22:09
-published: false
+published: true
 comments: true
 categories: [Advanced iOS,iOS,Development,Third-Party,NSLog,Debugging,Logging]
 keywords: "NSLog,logging,iOS,development"
