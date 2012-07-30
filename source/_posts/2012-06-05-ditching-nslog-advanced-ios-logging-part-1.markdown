@@ -5,6 +5,7 @@ date: 2012-07-03 21:33
 published: true
 comments: true
 categories: [Advanced iOS,iOS,Development,Third-Party,NSLog,Debugging,Logging]
+keywords: "NSLog,logging,iOS,development"
 ---
 Every iOS developer has used `NSLog`. We use it as a debugging tool to see the what data the system sees at a particular time while the application is running, or even to track the path our data takes when moving through our applications. But `NSLog` is not the be-all, end-all logging mechanism many of you think it is.
 

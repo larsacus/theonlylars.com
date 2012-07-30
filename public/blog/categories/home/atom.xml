@@ -4,7 +4,7 @@
   <title><![CDATA[Category: home | hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/home/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-07-26T23:15:57-05:00</updated>
+  <updated>2012-07-29T22:13:00-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -18,7 +18,7 @@
     <link href="http://theonlylars.com/blog/2012/06/03/house-status/"/>
     <updated>2012-06-03T23:12:00-05:00</updated>
     <id>http://theonlylars.com/blog/2012/06/03/house-status</id>
-    <content type="html"><![CDATA[<p>Just put up a new page that will be home to the status of all house gadgets that can have a status. Some things I'd eventually like to have in it are things like NAS status, A/C temperatures, ambient temperatures, light levels, computer status, electrical power consumption, etc. For now, all you're gonna get is a rant about <a href="{{%20root_url}}/homedata">how hot my apartment is</a>.</p>
+    <content type="html"><![CDATA[<p>Just put up a new page that will be home to the status of all house gadgets that can have a status. Some things I'd eventually like to have in it are things like NAS status, A/C temperatures, ambient temperatures, light levels, computer status, electrical power consumption, etc. For now, all you're gonna get is a rant about <a href="/homedata">how hot my apartment is</a>.</p>
 ]]></content>
   </entry>
   
