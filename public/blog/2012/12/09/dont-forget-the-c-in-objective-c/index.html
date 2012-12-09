@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>hello. i'm @theonlylars</title>
+  <title>Don't Forget the "C" in Objective-C - hello. i'm @theonlylars</title>
   <meta name="author" content="Lars Anderson">
 
   
@@ -19,7 +19,7 @@
   <meta name="apple-itunes-app" content="app-id=379660205"/>
 
   
-  <link rel="canonical" href="http://theonlylars.com">
+  <link rel="canonical" href="http://theonlylars.com/blog/2012/12/09/dont-forget-the-c-in-objective-c">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -76,15 +76,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2012/12/09/dont-forget-the-c-in-objective-c/">Don&#8217;t Forget the &#8220;C&#8221; in Objective-C</a></h1>
+      <h1 class="entry-title">Don't Forget the "C" in Objective-C</h1>
     
     
       <p class="meta">
@@ -107,7 +104,7 @@
   </header>
 
 
-  <div class="entry-content"><p>It&#8217;s been awhile. I blame my bike and the Thanksgiving Steam sale. You probably did, too.</p>
+<div class="entry-content"><p>It&#8217;s been awhile. I blame my bike and the Thanksgiving Steam sale. You probably did, too.</p>
 
 <p>This post is going to primarily serve for my personal purposes to bookmark some articles and blog posts I&#8217;ve been referencing to remind myself some of the basics of C while working in Objective-C. This is going to be one of those posts that I&#8217;m probably going to add to as time goes on. This is also kind of a prelude to a future similarly-themed bookmarking post for myself on ARC.</p>
 
@@ -215,79 +212,16 @@ http://www.eskimo.com/~scs/cclass/int/sx4ga.html
 http://www.9wy.net/onlinebook/CPrimerPlus5/ch12lev1sec7.html
 http://www.idryman.org/blog/2012/10/29/type-qualifiers/</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 &#8220;Smart&#8221; App Banners</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Lars Anderson</span></span>
 
-<time datetime="2012-09-29T21:34:00-05:00" pubdate data-updated="true">Sep 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When iOS 6 was announced, one of the lesser features was a &#8220;Smart&#8221; App Banner that displayed unobtrusively over your webpage and displayed an app that users could directly download on the app store from your webpage.  After the keynote, I forgot to investigate the documentation about it all through the iOS 6 Beta and never really heard much about it until the GM release of iOS 6.  So I went to check out how to do this thinking it was going to be super-involved, at least html-wise.</p>
-
-<p>Are you ready?</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>That&#8217;s it.  Add this meta tag to the <code>&lt;head&gt;</code> section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.</p>
-
-<p>If you&#8217;re on an iOS 6 device, then you will see this at the top of this webpage:</p>
-
-<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png"></p>
-
-<p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner&#8217;s action will launch the app.</p>
-
-<p>You can even go one or two steps further and pass in affiliate link information when your app gets downloaded or have information passed to your app on first launch in the app&#8217;s url handling delegate method.  More detail can be found in the documentation on <a href="http://developer.apple.com/library/ios/#Documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html">Apple&#8217;s website</a>.</p>
-
-<p>If you&#8217;re running an <a href="http://octopress.org">Octopress</a> blog and aren&#8217;t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags.</p>
-
-<p>I&#8217;ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that&#8217;s the only personal app I have that actually moves any units on the app store.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/12/the-perception-of-old/">The Perception of Old</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -299,124 +233,34 @@ http://www.idryman.org/blog/2012/10/29/type-qualifiers/</p>
   
 
 
-<time datetime="2012-09-12T18:39:00-05:00" pubdate data-updated="true">Sep 12<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Today I turn 27. I am a software engineer at a growing mobile consultancy shop, and I often feel like I&#8217;m getting too &#8220;old&#8221; to have not accomplished something amazing already in my life. I see others who are my age or younger who seemed to have already accomplished so much either professionally or socially (in contributions).</p>
-
-<p>Just go out and build. Really old mountain bikers.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
+<time datetime="2012-12-09T15:15:00-06:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
       
-  <header>
+
+
+    </p>
     
-      <h1 class="entry-title"><a href="/blog/2012/09/03/go-forth-and-build/">Go Forth and Build</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
+      <div class="sharing">
   
-
-
-<time datetime="2012-09-03T16:13:00-05:00" pubdate data-updated="true">Sep 3<span>rd</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>In the US today, it is what our government has deemed &#8220;Labor Day&#8221;.  This holiday is marked (at least from what I see here in Texas) by beer, boats, and barbecue. If you live here in Austin - it also means you better not expect to get in your car and get anywhere anytime soon. If you work at any retail establishment, it means you&#8217;re being paid 1.5x today and will have the busiest day second only to black friday (according to <a href="http://en.wikipedia.org/wiki/Labor_Day#Retail_Sale_Day">Wikipedia</a>).</p>
-
-<p>I, however, simply enjoyed family, food, and taking my bike to the park to get dirty on the trails. Still really out of shape, but that&#8217;s kind of to be expected when you spend 8-12 hours a day hunched in front of a computer 5-6 days out of the week.</p>
-
-<p>So now that I&#8217;ve had my rest, I&#8217;m going to get back to doing what I do best - building.</p>
-
-<p>Now go forth and build - I don&#8217;t care what it is. Bonus points for being the one who broke it to begin with.</p>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://theonlylars.com/blog/2012/12/09/dont-forget-the-c-in-objective-c/" data-via="theonlylars" data-counturl="http://theonlylars.com/blog/2012/12/09/dont-forget-the-c-in-objective-c/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
+    
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/">Ditching NSLog, Part II: Good Tools Make Work Easy</a></h1>
-    
-    
-      <p class="meta">
-        
+        <a class="basic-alignment left" href="/blog/2012/09/29/ios-6-app-banners/" title="Previous Post: iOS 6 "Smart" App Banners">&laquo; iOS 6 "Smart" App Banners</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-29T22:09:00-05:00" pubdate data-updated="true">Jul 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h1>In Review</h1>
-
-<p>In <a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
-
-<p>In this post, we&#8217;ll go over some of the options you have available in your developer tool-belt to make your tasks easier to tackle. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you&#8217;ll be more likely to produce a solid product.</p>
-
-<p><em>Pre-Disclaimer: My original intent for the second part of this post was to actually <strong>use</strong> every library before writing about them.  I found so many different libraries, that this never actually ended up happening.  I present here a synopsis of each logging library on the basis that I have used some of them, but I have not used them all.  Blame my day job and Battlefield 3. Yes, I am weak.</em></p>
-
-<h1>Logging Libraries</h1>
-
-<h2>Simple Macro Replacement</h2>
-
-<p>While not really a &#8220;library&#8221; per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/blog/page/2/">&larr; Older</a>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section class="well">
@@ -427,11 +271,11 @@ http://www.idryman.org/blog/2012/10/29/type-qualifiers/</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2012/12/09/dont-forget-the-c-in-objective-c/">Don&#8217;t Forget the &#8220;C&#8221; in Objective-C</a>
+        <a href="/blog/2012/12/09/dont-forget-the-c-in-objective-c/">Don't Forget the "C" in Objective-C</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 &#8220;Smart&#8221; App Banners</a>
+        <a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 "Smart" App Banners</a>
       </li>
     
       <li class="post">
@@ -452,7 +296,7 @@ http://www.idryman.org/blog/2012/10/29/type-qualifiers/</p>
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -469,7 +313,7 @@ http://www.idryman.org/blog/2012/10/29/type-qualifiers/</p>
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating&#8230;</li>
+    <li class="loading">Status updating...</li>
   </ul>
   
   <a href="https://github.com/larsacus">@larsacus</a> on GitHub
@@ -501,6 +345,7 @@ http://www.idryman.org/blog/2012/10/29/type-qualifiers/</p>
 
   
 </aside>
+
 
     </div>
   </div>

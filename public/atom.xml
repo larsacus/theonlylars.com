@@ -4,7 +4,7 @@
   <title><![CDATA[hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-09-29T22:09:41-05:00</updated>
+  <updated>2012-12-09T17:26:45-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -12,6 +12,121 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Don't Forget the "C" in Objective-C]]></title>
+    <link href="http://theonlylars.com/blog/2012/12/09/dont-forget-the-c-in-objective-c/"/>
+    <updated>2012-12-09T15:15:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2012/12/09/dont-forget-the-c-in-objective-c</id>
+    <content type="html"><![CDATA[<p>It&#8217;s been awhile. I blame my bike and the Thanksgiving Steam sale. You probably did, too.</p>
+
+<p>This post is going to primarily serve for my personal purposes to bookmark some articles and blog posts I&#8217;ve been referencing to remind myself some of the basics of C while working in Objective-C. This is going to be one of those posts that I&#8217;m probably going to add to as time goes on. This is also kind of a prelude to a future similarly-themed bookmarking post for myself on ARC.</p>
+
+<p>Note also that while using very specific type and storage qualifiers can be unnecessary for most Objective-C development, Apple pretty much threw everyone into the fray when they introduced such common identifiers such as <code>__block</code> with Grand Central Dispatch. It got even better when ARC was introduced. You&#8217;ll see.</p>
+
+<h1>Variable Declaration</h1>
+
+<h2>The Problem</h2>
+
+<p>This is something that was either not immediately obvious to me when writing software, or I simply was never formally shown this. I&#8217;m not entirely sure how I never picked up on this in all my years of writing software (even informally), but here it is:</p>
+
+<p>This: <code>const NSString * myString</code> is totally not the same as this: <code>NSString * const myString</code>.</p>
+
+<p>Mind blown, right? If you asked either &#8220;Why are they not the same?&#8221; or &#8220;I don&#8217;t see a difference&#8221;, we&#8217;ll get to that in a sec. It all has to do with how the compiler interprets your variable declaration. The whole process is actually a lot more sophisticated and complicated than I&#8217;m about to explain it, but it&#8217;s essentially looking for variable declaration modifiers in the following format:</p>
+
+<h2>Type Qualifiers vs Storage Classes</h2>
+
+<p><code>[storage class] [type specifier] [type qualifier] [type] [*] [type qualifier] [*] [type qualifier] [...] &lt;variable name&gt;</code></p>
+
+<p><strong>Type qualifiers</strong> in C99 include <code>const</code>, <code>volatile</code> and <code>restrict</code>.<br/>
+<strong>Type specifiers</strong> include <code>unsigned</code>, <code>signed</code>, <code>long</code>, <code>double</code>, etc. You get the idea.<br/>
+<strong>Storage classes</strong> include <code>static</code>, <code>extern</code>, <code>auto</code> and <code>register</code>.</p>
+
+<p><em>Note: Certain pairs of storage classes are mutually exclusive with one another and cannot be used together. The same is true for type qualifiers. However, this is beyond the scope of this discussion - it&#8217;s just something to keep in mind.</em></p>
+
+<p>Based on this new-found information, we can dissect our example above and explain why they are not the same, as well as introduce some deliberately complicated examples to show how to figure out how to interpret them.</p>
+
+<h2>Interpreting/Constructing Variable Declarations</h2>
+
+<p>Let&#8217;s look at the previous example to dissect how they are different. If I were reading an English sentence describing each variable declaration, it would go like this for each:</p>
+
+<ul>
+<li><code>const NSString * myString</code> - The variable &#8221;<code>myString</code>&#8221; is a pointer to a constant <code>NSString</code></li>
+<li><code>NSString * const myString</code> - The variable &#8221;<code>myString</code>&#8221; is a constant pointer to an <code>NSString</code></li>
+</ul>
+
+
+<p>After reading the above, you can&#8217;t tell me you still think both of those variable declarations are the same. In fact, based on the above information, we could even construct a third similar-but-different variable declaration:</p>
+
+<ul>
+<li><code>const NSString * const myString</code> - The variable &#8221;<code>myString</code>&#8221; is a constant pointer to a constant <code>NSString</code></li>
+</ul>
+
+
+<p>So how did I perform this black magic? Simply read the variable declaration from the right to left. <a href="http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations">Code Project has an excellent writeup</a> on reading complicated C declarations. There are <a href="http://lmgtfy.com/?q=complicated+C+variable+declarations">tons of guides out there</a>. There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.</p>
+
+<p>Let&#8217;s try this example from gbdirect&#8217;s &#8221;<a href="http://publications.gbdirect.co.uk/c_book/chapter8/const_and_volatile.html">The C Book</a>&#8221;:</p>
+
+<p><code>extern const volatile unsigned long int rt_clk</code></p>
+
+<h2>A Small Dash of Cocoa</h2>
+
+<p>You may be thinking: &#8220;This is great and all, so why is this so important in Objective-C? I&#8217;ve never seen an <code>auto register const long float</code> before in my life, and I&#8217;ve been writing in iOS since it began!&#8221;. While all of that may be true (I don&#8217;t know many real-time systems that require volatile pointers running in Objective-C), things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
+
+<h3>Blocks &amp; GCD</h3>
+
+<p>When Apple gave us blocks in iOS 4, it was a secret curse in disguise in terms of memory-management. <em>Everyone</em> loves blocks. <em>Everyone</em> tries to use blocks <em>everywhere</em>, but we&#8217;ll save that for another topic (hint: don&#8217;t forget about delegation and notifications).</p>
+
+<p>Because of this, the dreaded retain cycle would rear it&#8217;s ugly head and developers would end up scratching their heads. &#8220;Why is my view controller not being released when nothing else has a reference to it!&#8221; So you go and watch the WWDC videos on the introduction to blocks and GCD, and you discover the solution: <code>__block</code>. Simply declaring your variables as <code>__block</code> will magically make &#8220;weak&#8221; references to your objects to use inside your blocks. We&#8217;ve all done this:</p>
+
+<p><code>__block typeof(self) myself = self</code></p>
+
+<p>This is a fundamentally flawed view of <code>__block</code> and this isn&#8217;t it&#8217;s intent. <code>__block</code> is designed for variables that are going to be &#8220;created&#8221; inside the block so that memory can be allocated appropriately like so:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In iOS 5, Apple gave us <a href="http://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4">auto-nil&#8217;ing weak references</a> under ARC. This means that when you have a <em>weak</em> reference to a variable, it will allow you to use that variable and will set that variable to <code>nil</code> when no other object has a strong reference to it. This is a perfect place to replace the <code>__block</code> storage class with one of ARC&#8217;s new <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#ownership">ownership qualifiers</a>. Ownership qualifiers in ARC include <code>__autoreleasing</code>, <code>__strong</code>, <code>__unsafe_unretained</code> and <code>__weak</code>. Let&#8217;s use <code>__weak</code>:</p>
+
+<p><code>typeof(self) __weak myself = self</code></p>
+
+<p>Viola! We now have an auto-nil&#8217;ing weak reference to ourself that we can use in a block that <code>self</code> has a strong reference to without modifying where the object lives in memory:</p>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">__weak</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">myself</span> <span class="n">play</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>http://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/CONCEPT/storage_class.html</p>
+
+<p>http://developer.apple.com/library/ios/documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW3
+http://www.eskimo.com/~scs/cclass/int/sx4ga.html
+http://www.9wy.net/onlinebook/CPrimerPlus5/ch12lev1sec7.html
+http://www.idryman.org/blog/2012/10/29/type-qualifiers/</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[iOS 6 "Smart" App Banners]]></title>
@@ -40,6 +155,17 @@
 <p>If you&#8217;re running an <a href="http://octopress.org">Octopress</a> blog and aren&#8217;t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags.</p>
 
 <p>I&#8217;ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that&#8217;s the only personal app I have that actually moves any units on the app store.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[The Perception of Old]]></title>
+    <link href="http://theonlylars.com/blog/2012/09/12/the-perception-of-old/"/>
+    <updated>2012-09-12T18:39:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/09/12/the-perception-of-old</id>
+    <content type="html"><![CDATA[<p>Today I turn 27. I am a software engineer at a growing mobile consultancy shop, and I often feel like I&#8217;m getting too &#8220;old&#8221; to have not accomplished something amazing already in my life. I see others who are my age or younger who seemed to have already accomplished so much either professionally or socially (in contributions).</p>
+
+<p>Just go out and build. Really old mountain bikers.</p>
 ]]></content>
   </entry>
   
