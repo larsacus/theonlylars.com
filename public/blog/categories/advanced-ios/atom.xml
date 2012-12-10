@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Advanced iOS | hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/advanced-ios/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-12-09T17:26:45-06:00</updated>
+  <updated>2012-12-09T23:11:47-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -14,23 +14,215 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Don't Forget the "C" in Objective-C: C Declarations]]></title>
+    <link href="http://theonlylars.com/blog/2012/12/10/dont-forget-the-c-in-objective-c/"/>
+    <updated>2012-12-10T08:00:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2012/12/10/dont-forget-the-c-in-objective-c</id>
+    <content type="html"><![CDATA[<p>It’s been awhile. I blame my bike and the Thanksgiving Steam sale. If you’re seriously reading this, then it is statistically likely your productivity was at some point affected by Steam’s Thanksgiving sale.</p>
+
+<p>This post is going to primarily serve for my personal purposes to bookmark some articles and blog posts I’ve been referencing to remind myself some of the basics of C declarations while working in, as well as how they relate to Objective-C. This is going to be one of those posts that I’m probably going to add to as time goes on. This is also kind of a prelude to a future similarly-themed bookmarking post for myself on ARC.</p>
+
+<p>Note also that while using very specific type and storage qualifiers can be unnecessary for most Objective-C development, Apple pretty much threw everyone into the fray when they introduced such common identifiers such as <code>__block</code> with Grand Central Dispatch. It got even better when ARC was introduced. You’ll see…</p>
+
+<h1 id="variable-declaration">Variable Declaration</h1>
+
+<h2 id="the-problem">The Problem</h2>
+<p>This is something that was either not immediately obvious to me when writing software, or I simply was never formally shown this. I’m not entirely sure how I never picked up on this in all my years of writing software (even informally), but here it is:</p>
+
+<p>This: <code>const NSString * myString</code> is totally not the same as this: <code>NSString * const myString</code>.</p>
+
+<!--more-->
+
+<p>Mind blown, right? If you asked either “Why are they not the same?” or “I don’t see a difference”, we’ll get to that in a sec. It all has to do with how the compiler interprets your variable declaration. The whole process is actually a lot more sophisticated and complicated than I’m about to explain it, but it’s essentially looking for variable declaration modifiers in the following format:</p>
+
+<p><code>[storage class] [type specifier] [type qualifier] [type] [*] [type qualifier] [*] [type qualifier] [...] &lt;variable name&gt;</code></p>
+
+<p>“Umm…” Yeah, I’ll get to it. Read on:</p>
+
+<h2 id="declaration-modifiers">Declaration Modifiers</h2>
+
+<p>There are two primary types of declaration modifiers: type qualifiers and storage classes, as well as a third. The third is a kind of “decorator” that in my words “details how <em>much</em> memory is being allocated for a given variable declaration” - it’s called a type <em>specifier</em>.</p>
+
+<h3 id="type-qualifiers">Type Qualifiers</h3>
+<p>Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see<sup id="fnref:2"><a href="#fn:2" rel="footnote">1</a></sup>. You can add type qualifiers to both types and pointers. More on <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/">type qualifiers here</a> and <a href="http://www.eskimo.com/~scs/cclass/int/sx4ga.html">here</a>.</p>
+
+<p><strong>Type qualifiers</strong> in C99 include:</p>
+
+<ul>
+  <li><code>const</code></li>
+  <li><code>volatile</code></li>
+  <li><code>restrict</code></li>
+</ul>
+
+<h3 id="type-specifiers">Type Specifiers</h3>
+<p>Type specifiers are different in that they are basically just telling the compiler how many buckets of data to chunk out for a given variable to use. You can also use type specifiers as types themselves, such as <code>long int</code>, or <code>unsigned long double</code>.</p>
+
+<p><strong>Type <em>specifiers</em></strong> include:</p>
+
+<ul>
+  <li><code>void</code></li>
+  <li><code>char</code></li>
+  <li><code>int</code></li>
+  <li><code>unsigned</code></li>
+  <li><code>signed</code></li>
+  <li><code>long</code></li>
+  <li><code>double</code></li>
+  <li>etc. You get the idea.</li>
+</ul>
+
+<p>I know the least about type specifiers.</p>
+
+<h3 id="storage-classes">Storage Classes</h3>
+<p>Storage classes are special in that they tell the system <em>how</em> to allocate a given chunk of memory, in what scope that chunk of memory can be accessed, and the lifetime of those variables. More on <a href="http://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/CONCEPT/storage_class.html">C storage classes here</a>.</p>
+
+<p><strong>Storage classes</strong> include</p>
+
+<ul>
+  <li><code>static</code></li>
+  <li><code>extern</code></li>
+  <li><code>auto</code></li>
+  <li><code>register</code></li>
+</ul>
+
+<p><em>Note: Certain pairs of storage classes are mutually exclusive with one another and cannot be used together. The same is true for type qualifiers. However, this is beyond the scope of this discussion - it’s just something to keep in mind.</em></p>
+
+<p>Based on this new-found information, we can dissect our example above and explain why they are not the same, as well as introduce some deliberately complicated examples to show how to figure out how to interpret them.</p>
+
+<h2 id="interpretingconstructing-variable-declarations">Interpreting/Constructing Variable Declarations</h2>
+<p>Let’s look at the previous example to dissect how they are different. If I were reading an English sentence describing each variable declaration, it would go like this for each:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a pointer to a constant NSString</span>
+</span><span class='line'><span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a constant pointer to an NSString</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>After reading the above, you can’t tell me you still think both of those variable declarations are the same. In fact, based on the above information, we could even construct a third similar-but-different variable declaration:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span> <span class="c1">//The variable myString is a constant pointer to a constant NSString</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>So how did I perform this black magic? Simply read the variable declaration from the right to left, and when you get to the type, start reading left to right until you get back to the type. <a href="http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations">Code Project has an excellent writeup</a> on reading complicated C declarations and <a href="http://ridiculousfish.com">ridiculous_fish</a> has an excellent conversion tool that will even <a href="http://cdecl.org">convert the declarations into English statements</a> right before your eyes. There are <a href="http://lmgtfy.com/?q=complicated+C+variable+declarations">tons of guides out there</a>. There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.</p>
+
+<h2 id="a-small-dash-of-cocoa">A Small Dash of Cocoa</h2>
+<p>You may be thinking: “This is great and all, so why is this so important in Objective-C? I’ve never seen an <code>volatile unsigned long int * const</code> before in my life, and I’ve been writing in iOS since it began!”. While all of that may be true<sup id="fnref:3"><a href="#fn:3" rel="footnote">2</a></sup>, things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
+
+<h3 id="block-retain-cycles">Block Retain Cycles</h3>
+<p>When Apple gave us blocks in iOS 4, it was a curse in disguise in terms of memory-management. <em>Everyone</em> loves blocks. <em>Everyone</em> tries to use blocks <em>everywhere</em>, but we’ll save that for another topic (hint: don’t forget about delegation and notifications).</p>
+
+<p>Because of this, the dreaded retain cycle would rear it’s ugly head and engineers would end up scratching their heads if they even noticed it was happening. “Why is my view controller not being released when nothing else has a reference to it!” So you go and watch the WWDC videos on the introduction to blocks and GCD, and you discover the solution: <a href="http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW6"><code>__block</code></a>. Simply declaring your variables as <code>__block</code> will magically make “weak” references to your objects to use inside your blocks.</p>
+
+<p>So we’d end up with this: </p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>In this example, we’re creating a block variable outside of our block that is going to be modified inside said block. This is the correct way to use <code>__block</code>. To break our retain cycle, the more appropriate solution is to use some specific tools given to us in ARC that we’ll get to in just a second. First, an aside on new hotness in ARC to look out for:</p>
+
+<h3 id="ownership-qualifiers">Ownership Qualifiers</h3>
+<p>When using ARC, we now have even <em>more</em> qualifiers to look out for and use in our code. These ARC-specific qualifiers are called ownership qualifiers. Fitting, given that the primary function of ARC is to manage object lifetimes and ownership.</p>
+
+<p>Ownership qualifiers in ARC include:</p>
+
+<ul>
+  <li><code>__autoreleasing</code></li>
+  <li><code>__strong</code></li>
+  <li><code>__unsafe_unretained</code></li>
+  <li><code>__weak</code></li>
+</ul>
+
+<p>It’s important that your ownership qualifiers <a href="http://developer.apple.com/library/mac/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%23//apple_ref/doc/uid/TP40011226-CH1-SW7">decorate your declarations properly</a>. ARC ownership qualifiers should decorate object pointers, not the object types (<code>MyVC * __weak weakVC = newVC</code>, NOT <code>MyVC __weak * weakVC = newVC</code>).</p>
+
+<p>@idryman has a really <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/#arc-ownership-qualifiers-1">concise writeup</a> on ARC ownership qualifiers, as well as explaining the improper use of them.</p>
+
+<p><a href="http://developer.apple.com/library/mac/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%23//apple_ref/doc/uid/TP40011226-CH1-SW7">From the documentation</a>:
+<blockquote><p>You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p></p><p><p>ClassName * qualifier variableName;</p></p><p><p>for example:</p></p><p><p>MyClass * __weak myWeakReference;<br/>MyClass * __unsafe_unretained myUnsafeReference;</p></blockquote></p>
+
+<h4 id="auto-niling-weak-references">Auto-Nil’ing Weak References</h4>
+<p>In iOS 5, Apple gave us <a href="http://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4">auto-nil’ing weak references</a> under ARC. This means that when you have a <em>weak</em> reference to a variable, it will allow you to use that variable and will set that variable to <code>nil</code> when no other object has a strong reference to it. This is a perfect place to replace the <code>__block</code> storage class with one of ARC’s new <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#ownership">ownership qualifiers</a>.  Let’s use <code>__weak</code>:</p>
+
+<p><code>typeof(self) __weak myself = self</code></p>
+
+<p>Viola! We now have an auto-nil’ing (auto-zeroing) weak reference to <code>self</code> that we can use in a block that <code>self</code> has a strong reference to without modifying where the object lives in memory:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">__weak</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">myself</span> <span class="nl">playWithObject:</span><span class="n">myself</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2 id="ok-cool">Ok, Cool</h2>
+<p>I think it’s important to understand the guts of a C declaration because of the small nuances that are present when you introduce things like ARC ownership qualifiers.  If you don’t know what a storage qualifier is, then you’re surely not going to know what an ownership qualifier is or how to properly use it. While it’s true for the most part that the compiler will generally let you know when something is awry, isn’t it nice to know that you know a little bit more about what the compiler is actually thinking when it tells you that retaining an object strongly in this context could result in a retain cycle?</p>
+
+<hr />
+
+<p>Misc Non-Inline References:</p>
+
+<ol>
+  <li><a href="http://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/CONCEPT/storage_class.html">C Storage Classes</a></li>
+  <li><a href="http://developer.apple.com/library/ios/documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW3">Blocks and Variables - Apple Docs</a></li>
+  <li><a href="http://www.9wy.net/onlinebook/CPrimerPlus5/ch12lev1sec7.html">ANSI C Type Qualifiers - C Primer</a></li>
+  <li><a href="http://www.mikeash.com/pyblog/friday-qa-2009-06-26-type-qualifiers-in-c-part-1.html">Friday Q&amp;A 2009-06-26: Type Qualifiers in C, Part 1 - Mike Ash</a></li>
+</ol>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:2">
+      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C<a href="#fnref:2" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C<a href="#fnref:3" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:1">
+      <p>This is my opinion<a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Ditching NSLog, Part II: Good Tools Make Work Easy]]></title>
     <link href="http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/"/>
     <updated>2012-07-29T22:09:00-05:00</updated>
     <id>http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2</id>
-    <content type="html"><![CDATA[<h1>In Review</h1>
-
+    <content type="html"><![CDATA[<h1 id="in-review">In Review</h1>
 <p>In <a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
 
-<p>In this post, we'll go over some of the options you have available in your developer tool-belt to make your tasks easier to tackle. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you'll be more likely to produce a solid product.</p>
+<p>In this post, we’ll go over some of the options you have available in your developer tool-belt to make your tasks easier to tackle. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you’ll be more likely to produce a solid product.</p>
 
 <p><em>Pre-Disclaimer: My original intent for the second part of this post was to actually <strong>use</strong> every library before writing about them.  I found so many different libraries, that this never actually ended up happening.  I present here a synopsis of each logging library on the basis that I have used some of them, but I have not used them all.  Blame my day job and Battlefield 3. Yes, I am weak.</em></p>
 
-<h1>Logging Libraries</h1>
-
-<h2>Simple Macro Replacement</h2>
-
-<p>While not really a "library" per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally "comment out" your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don't take any credit for this.  I have successfully used this in a largish project before and it has done it's job, but it is not optimal and can get messy due to it's "all or nothing" approach:</p>
+<h1 id="logging-libraries">Logging Libraries</h1>
+<p>##Simple Macro Replacement
+While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Conditionally Replacing NSLog  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -38,30 +230,14 @@
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">ifdef</span> <span class="n">DEBUG</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="err">#</span><span class="n">define</span> <span class="n">DLog</span><span class="p">(</span><span class="n">fmt</span><span class="p">,</span> <span class="p">...)</span> <span class="n">NSLog</span><span class="p">((</span><span class="err">@</span><span class="s">&quot;%s [Line %d] &quot;</span> <span class="n">fmt</span><span class="p">),</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">PRETTY_FUNCTION</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">LINE</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span><span class="p">,</span> <span class="err">##</span><span class="o">&lt;</span><span class="n">strong</span><span class="o">&gt;</span><span class="n">VA_ARGS</span><span class="o">&lt;/</span><span class="n">strong</span><span class="o">&gt;</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="k">else</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="err">#</span><span class="n">define</span> <span class="n">DLog</span><span class="p">(...)</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">endif</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#ifdef DEBUG</span>
+</span><span class='line'>  <span class="cp">#define DLog(fmt, …) NSLog((@”%s [Line %d] “ fmt), &lt;strong&gt;PRETTY_FUNCTION&lt;/strong&gt;, &lt;strong&gt;LINE&lt;/strong&gt;, ##&lt;strong&gt;VA_ARGS&lt;/strong&gt;);</span>
+</span><span class='line'><span class="cp">#else</span>
+</span><span class='line'>  <span class="cp">#define DLog(…)</span>
+</span><span class='line'><span class="cp">#endif</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
-<p>For those of you who don't regularly use preprocessor macros, here's what's happening in this block of code in pseudocode:
+<p>For those of you who don’t regularly use preprocessor macros, here’s what’s happening in this block of code in pseudocode:
 <code>
 if the macro `DEBUG` has been previously defined
   define a new function named `DLog` that takes parameters in `NSLog` form and write write them into NSLog
@@ -69,79 +245,63 @@ else
   define `DLog` to do nothing (non-op)
 </code></p>
 
-<p>There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it's use is acceptable.</p>
+<p>There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it’s use is acceptable.</p>
 
 <p>The complex, angry-sounding capital-lettered arguments at the end of the <code>NSLog</code> definition are essentially helpers to output the function name and line number respectively that the command was called from.  This looks like the following when output in the console using the command <code>DLog(@"Logging like a boss");</code>:</p>
 
 <p><code>-[MyAppDelegate application:didFinishLaunchingWithOptions:] [Line 40] Logging like a boss</code></p>
 
-<p>Pretty helpful, I'd say.</p>
+<p>Pretty helpful, I’d say.</p>
 
-<p><strong>Helpfulness</strong>: 3/10<br/>
-<strong>Performance</strong>: 1/10 - It's basically <code>NSLog</code><br/>
+<p><strong>Helpfulness</strong>: 3/10<br />
+<strong>Performance</strong>: 1/10 - It’s basically <code>NSLog</code><br />
 <strong>Ease of Use</strong>: 9/10</p>
 
-<h2>NSLogger</h2>
-
+<h2 id="nslogger">NSLogger</h2>
 <p><a href="https://github.com/fpillet/NSLogger">NSLogger</a> is the Rolls Royce of logging frameworks. Just as not everyone would choose a Rolls over, say, a Maserati, NSLogger may also be overkill or simply inappropriate for a lot of developers. That being said - NSLogger does <em>everything</em>.  Tired of having to be physically connected to your machine to get console logs?  Tired of even having to be on the same <em>network</em> as your device for logging?  NSLogger can help.  NSLogger comes with a standalone Mac app that can accept connections via bonjour, https, https, ssl, telegraph, etc.  It does it all.  You can even log binary data blobs.</p>
 
-<h3>So what about performance?</h3>
+<h3 id="so-what-about-performance">So what about performance?</h3>
+<p>NSLogger appears to try it’s darndest to use a few CPU cycles as possible, even to the point of not sending logging info over the wire and caching logging info to memory and possibly even to disk until the desktop client is found.</p>
 
-<p>NSLogger appears to try it's darndest to use a few CPU cycles as possible, even to the point of not sending logging info over the wire and caching logging info to memory and possibly even to disk until the desktop client is found.</p>
+<p>The developer suggests creating a preprocessor macro to call the <code>NSLogger</code> methods in order to have them sequestered in release mode, so this doesn’t really help for production debugging. For beta and other development activities, especially among distributed groups of test or QA persons, this one takes the cake.</p>
 
-<p>The developer suggests creating a preprocessor macro to call the <code>NSLogger</code> methods in order to have them sequestered in release mode, so this doesn't really help for production debugging. For beta and other development activities, especially among distributed groups of test or QA persons, this one takes the cake.</p>
-
-<p><strong>Helpfulness</strong>: 6/10 - Really depends on what you need help with<br/>
-<strong>Performance</strong>: 5/10<br/>
+<p><strong>Helpfulness</strong>: 6/10 - Really depends on what you need help with<br />
+<strong>Performance</strong>: 5/10<br />
 <strong>Ease of Use</strong>: 6/10</p>
 
 <!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
-
-
 <!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
-
-
 <!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
+<p>##ECLogging
+<a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
 
+<h3 id="channels">Channels</h3>
+<p>“Channels” allow you to create “debug”, “info”, or “networking” channels (as an example) and are very similar to Cocoa Lumberjack’s methodology on logging.  Two types of channels exist - <code>debug</code> and <code>log</code> channels. The difference between the two being that debug channel statements are completely compiled out at compile-time in release mode (much like our dear friend <code>DLog</code> above), and log channel statements are not and will appear in the console even in release mode. Create your own channel with a single-line of code, and start using it on the next line using either <code>ECLog(channel, @"log");</code> or <code>ECDebug(debugChannel, @"debug log")</code>.</p>
 
-<h2>ECLogging</h2>
+<h3 id="handling">Handling</h3>
+<p>You also have the ability to change how the log “handles” objects. The default implementation will simply call <code>-description</code> on your object and output the response, just as <code>NSLog</code> does. Some examples on <a href="https://github.com/elegantchaos/ECLogging/wiki">ECLogging’s Github Wiki</a> show passing a <code>UIImage</code> into the log and handling that in a custom way.</p>
 
-<p><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are "channels", "handling", and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
+<h3 id="boilerplate-settings-ui">Boilerplate Settings UI</h3>
+<p>The single-coolest part of ECLogging is the drop-in view controller it gives you, which enables the ability to change the logging settings on the fly without having to manually write in any conditional logging code paths of your own.  Want to log to a file? Check it! Don’t want to log to ASL anymore? Uncheck it! <em>In</em> the UI, no less! You can even choose which channels to switch on and off on-the-fly. Very neat.</p>
 
-<h3>Channels</h3>
-
-<p>"Channels" allow you to create "debug", "info", or "networking" channels (as an example) and are very similar to Cocoa Lumberjack's methodology on logging.  Two types of channels exist - <code>debug</code> and <code>log</code> channels. The difference between the two being that debug channel statements are completely compiled out at compile-time in release mode (much like our dear friend <code>DLog</code> above), and log channel statements are not and will appear in the console even in release mode. Create your own channel with a single-line of code, and start using it on the next line using either <code>ECLog(channel, @"log");</code> or <code>ECDebug(debugChannel, @"debug log")</code>.</p>
-
-<h3>Handling</h3>
-
-<p>You also have the ability to change how the log "handles" objects. The default implementation will simply call <code>-description</code> on your object and output the response, just as <code>NSLog</code> does. Some examples on <a href="https://github.com/elegantchaos/ECLogging/wiki">ECLogging's Github Wiki</a> show passing a <code>UIImage</code> into the log and handling that in a custom way.</p>
-
-<h3>Boilerplate Settings UI</h3>
-
-<p>The single-coolest part of ECLogging is the drop-in view controller it gives you, which enables the ability to change the logging settings on the fly without having to manually write in any conditional logging code paths of your own.  Want to log to a file? Check it! Don't want to log to ASL anymore? Uncheck it! <em>In</em> the UI, no less! You can even choose which channels to switch on and off on-the-fly. Very neat.</p>
-
-<p><strong>Helpfulness</strong>: 8/10<br/>
-<strong>Performance</strong>: x/10 - No mention of performance, and I haven't tested anything yet<br/>
+<p><strong>Helpfulness</strong>: 8/10<br />
+<strong>Performance</strong>: x/10 - No mention of performance, and I haven’t tested anything yet<br />
 <strong>Ease of Use</strong>: 8/10</p>
 
-<h2>Cocoa Lumberjack</h2>
+<h2 id="cocoa-lumberjack">Cocoa Lumberjack</h2>
+<p>The first time I found <a href="https://github.com/robbiehanson/CocoaLumberjack/">Cocoa Lumberjack</a>, I almost didn’t know what to do with myself.  I had never been presented with so many options for logging in all my time with iOS or even prior, nor had I seen such logging practices actually put to use in any projects I have worked on. One thing was for sure: my console logs have always ended up <em>really</em> messy by the end of a project. I could basically write an entire blog post solely on Cocoa Lumberjack, but the developer seems to have done a pretty good job of that on his own with the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki">Cocoa Lumberjack wiki</a> and the readme. The developer touts that Cocoa Lumberjack is simple, fast, powerful, and flexible.  Let’s see how true this is:</p>
 
-<p>The first time I found <a href="https://github.com/robbiehanson/CocoaLumberjack/">Cocoa Lumberjack</a>, I almost didn't know what to do with myself.  I had never been presented with so many options for logging in all my time with iOS or even prior, nor had I seen such logging practices actually put to use in any projects I have worked on. One thing was for sure: my console logs have always ended up <em>really</em> messy by the end of a project. I could basically write an entire blog post solely on Cocoa Lumberjack, but the developer seems to have done a pretty good job of that on his own with the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki">Cocoa Lumberjack wiki</a> and the readme. The developer touts that Cocoa Lumberjack is simple, fast, powerful, and flexible.  Let's see how true this is:</p>
+<h3 id="fast">Fast</h3>
+<p>The developer claims that Cocoa Lumberjack is (in most cases) an order of magnitude faster than NSLog.  He achieves this reusing a single ASL connection and posting messages to this connection asynchronously. Asynchronous logging is optional, as (for example) you obviously want an error to log immediately as the system may be in an unstable state. It’s a little different using asynchronous logging for the first time, as you typically expect to step through your code and immediately see your log statements show up in the console.  You’ll have to use the synchronous logs in order for this to work. The developer has spent a great deal of time architecting Cocoa Lumberjack from the ground-up with performance in mind. Check out the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/Performance">Cocoa Lumberjack performance</a> page for all the nitty-gritty behind all the benchmarks.</p>
 
-<h3>Fast</h3>
-
-<p>The developer claims that Cocoa Lumberjack is (in most cases) an order of magnitude faster than NSLog.  He achieves this reusing a single ASL connection and posting messages to this connection asynchronously. Asynchronous logging is optional, as (for example) you obviously want an error to log immediately as the system may be in an unstable state. It's a little different using asynchronous logging for the first time, as you typically expect to step through your code and immediately see your log statements show up in the console.  You'll have to use the synchronous logs in order for this to work. The developer has spent a great deal of time architecting Cocoa Lumberjack from the ground-up with performance in mind. Check out the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/Performance">Cocoa Lumberjack performance</a> page for all the nitty-gritty behind all the benchmarks.</p>
-
-<h3>Simple</h3>
-
+<h3 id="simple">Simple</h3>
 <p>The Cocoa Lumberjack framework is dead-simple to use:</p>
 
 <ol>
-<li>Setup a logging destination</li>
-<li>Log using a log-level logger</li>
-<li>Profit?</li>
+  <li>Setup a logging destination</li>
+  <li>Log using a log-level logger</li>
+  <li>Profit?</li>
 </ol>
-
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Setting up and using Cocoa Lumberjack  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -156,59 +316,50 @@ else
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">[</span><span class="n">DDLog</span> <span class="n">addLogger</span><span class="o">:</span><span class="p">[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">DDLogError</span><span class="p">(</span><span class="s">&quot;Image is nil!&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="n">DDLogVerbose</span><span class="p">(</span><span class="s">&quot;newViewController viewDidLoad&quot;</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">DDLogError</span><span class="p">(</span><span class="err">“</span><span class="n">Image</span> <span class="n">is</span> <span class="n">nil</span><span class="o">!</span><span class="err">”</span><span class="p">);</span>
+</span><span class='line'><span class="n">DDLogVerbose</span><span class="p">(</span><span class="err">“</span><span class="n">newViewController</span> <span class="n">viewDidLoad</span><span class="err">”</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>You have access to four default levels of logging: <code>DDLogError</code>, <code>DDLogWarn</code>, <code>DDLogInfo</code>, <code>DDLogVerbose</code>. In addition to these, you can both <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/CustomLogLevels">customize the names</a> of the default levels as well <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/FineGrainedLogging">as define your additional custom levels</a>.</p>
 
-<p>And since the <code>DDLog</code> syntax is the same as <code>NSLog</code>, converting/using <code>DDLog</code> shouldn't even fire off any new neurons.</p>
+<p>And since the <code>DDLog</code> syntax is the same as <code>NSLog</code>, converting/using <code>DDLog</code> shouldn’t even fire off any new neurons.</p>
 
-<h3>Powerful</h3>
+<h3 id="powerful">Powerful</h3>
+<p>Much of Cocoa Lumberjack’s power comes from it’s simplicity. With the ability to create highly-tuned logging paths and mechanisms, Cocoa Lumberjack gives you, the developer, the ability to hone-in on issues that you’re working with and trying to identify. With single log statements, you can deliver log messages to multiple destinations (file, ASL, network, etc.), as well as add custom destinations of your own. You choose the info and method of delivery for how you need to get things debugged.</p>
 
-<p>Much of Cocoa Lumberjack's power comes from it's simplicity. With the ability to create highly-tuned logging paths and mechanisms, Cocoa Lumberjack gives you, the developer, the ability to hone-in on issues that you're working with and trying to identify. With single log statements, you can deliver log messages to multiple destinations (file, ASL, network, etc.), as well as add custom destinations of your own. You choose the info and method of delivery for how you need to get things debugged.</p>
+<h3 id="flexible">Flexible</h3>
+<p>The power doesn’t end after you switch your build mode to release mode, either. Dynamically giving you the ability to change the log level at runtime can allow you to leave all of your logging architecture compiled-in but inactive until an issue arises in the field. Have your users log to a file when they’re having a specific issue, then send the log file to your server for analysis. Your mother’s <code>NSLog</code> can’t do that.</p>
 
-<h3>Flexible</h3>
-
-<p>The power doesn't end after you switch your build mode to release mode, either. Dynamically giving you the ability to change the log level at runtime can allow you to leave all of your logging architecture compiled-in but inactive until an issue arises in the field. Have your users log to a file when they're having a specific issue, then send the log file to your server for analysis. Your mother's <code>NSLog</code> can't do that.</p>
-
-<p><strong>Helpfulness</strong>: 10/10 - Extremely flexible<br/>
-<strong>Performance</strong>: 9/10<br/>
+<p><strong>Helpfulness</strong>: 10/10 - Extremely flexible<br />
+<strong>Performance</strong>: 9/10<br />
 <strong>Ease of Use</strong>: 8/10</p>
 
-<h1>Logging <em>Enhancements</em> for Debugging</h1>
+<h1 id="logging-enhancements-for-debugging">Logging <em>Enhancements</em> for Debugging</h1>
+<p>I don’t consider logging “enhancements” to be logging mechanisms in and of themselves, but more of an augment or helpful loggers for debugging that may or may not originate from you.</p>
 
-<p>I don't consider logging "enhancements" to be logging mechanisms in and of themselves, but more of an augment or helpful loggers for debugging that may or may not originate from you.</p>
-
-<h2>AFHTTPRequestOperationLogger</h2>
-
-<p><a href="https://github.com/AFNetworking/AFHTTPRequestOperationLogger">AFHTTPRequestOperationLogger</a> is a logging enhancer for the ubiquitous <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> library. It won't really help you unless you are using AFNetworking, but it can tremendously help out debugging networking issues you may be having with complex APIs.  It can be a bit verbose at times, even to the point of being straight up noisy, but the advantage of open source is that you can go change it if you don't like it.</p>
+<h2 id="afhttprequestoperationlogger">AFHTTPRequestOperationLogger</h2>
+<p><a href="https://github.com/AFNetworking/AFHTTPRequestOperationLogger">AFHTTPRequestOperationLogger</a> is a logging enhancer for the ubiquitous <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> library. It won’t really help you unless you are using AFNetworking, but it can tremendously help out debugging networking issues you may be having with complex APIs.  It can be a bit verbose at times, even to the point of being straight up noisy, but the advantage of open source is that you can go change it if you don’t like it.</p>
 
 <!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
+<p>##XLog
+<a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I’ve actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
 
-
-<h2>XLog</h2>
-
-<p><a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I've actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
-
-<h2>XcodeColors</h2>
-
+<h2 id="xcodecolors">XcodeColors</h2>
 <p><a href="https://github.com/robbiehanson/XcodeColors">XcodeColors</a> is a similar-looking Xcode plugin to XLog that colors your console output. The original was created by <a href="https://github.com/DeepIT">DeepIT on Github</a>, but now appears to be mostly maintained by <a href="https://github.com/robbiehanson">Robbie Hanson</a>, who created Cocoa Lumberjack (above). If you use Cocoa Lumberjack, I would use this.</p>
 
-<h1>Conclusion</h1>
-
+<h1 id="conclusion">Conclusion</h1>
 <p>Logging is an important yet often overlooked practice that can make development and debugging much easier. Finding the right tool for a job can be a task in itself, but once the correct tool (either for you, or for the job) is found, your task becomes much easier or in some cases - possible.</p>
 
-<p>Extensible logging enables you to customize your logging workflow to best suit your app, team, or QA environment. Performant logging means that you don't have to worry as much about production logging throwing a wrench in your highly-tuned scroll-view code. Just as performance and extensibility are important, if logging isn't simple - developer's just aren't going to want to utilize it. Logging must be as simple as <code>NSLog</code> or developers won't adopt it in their daily workflow.</p>
+<p>Extensible logging enables you to customize your logging workflow to best suit your app, team, or QA environment. Performant logging means that you don’t have to worry as much about production logging throwing a wrench in your highly-tuned scroll-view code. Just as performance and extensibility are important, if logging isn’t simple - developer’s just aren’t going to want to utilize it. Logging must be as simple as <code>NSLog</code> or developers won’t adopt it in their daily workflow.</p>
 
-<p>It is my opinion that highly extensible, non-<code>NSLog</code> logging should be just as much an architectural consideration as coding standards, unit test coverage, and class prefix names on a project. Most developers may not know advanced logging techniques even exist, much less employ one in a large project in order to get more debugging done in less time. Don't spend more time debugging your code - equip yourself with the proper tools to spend more time making your app the best experience possible for your users, while also making your future-self love you (which we all know doesn't happen that often).</p>
+<p>It is my opinion that highly extensible, non-<code>NSLog</code> logging should be just as much an architectural consideration as coding standards, unit test coverage, and class prefix names on a project. Most developers may not know advanced logging techniques even exist, much less employ one in a large project in order to get more debugging done in less time. Don’t spend more time debugging your code - equip yourself with the proper tools to spend more time making your app the best experience possible for your users, while also making your future-self love you (which we all know doesn’t happen that often).</p>
 
 <hr />
 
 <p><em>Disclaimer:</em>
-<em>I don't pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I'll either correct it or simply agree to disagree.</em></p>
+<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em></p>
 ]]></content>
   </entry>
   
@@ -219,100 +370,84 @@ else
     <id>http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1</id>
     <content type="html"><![CDATA[<p>Every iOS developer has used <code>NSLog</code>. We use it as a debugging tool to see the what data the system sees at a particular time while the application is running, or even to track the path our data takes when moving through our applications. But <code>NSLog</code> is not the be-all, end-all logging mechanism many of you think it is.</p>
 
-<p>If you're new to iOS, you may want to sit this one out until you get annoyed by <code>NSLog</code> - then come back here and read this.</p>
+<p>If you’re new to iOS, you may want to sit this one out until you get annoyed by <code>NSLog</code> - then come back here and read this.</p>
 
-<h2>I Use NSLog and I think it's awesome. Isn't that enough?</h2>
+<h2 id="i-use-nslog-and-i-think-its-awesome-isnt-that-enough">I Use NSLog and I think it’s awesome. Isn’t that enough?</h2>
+<p>Umm… Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he’s that guy on a Friday afternoon at the bank who’s exchanging three years worth of saved coins and asking about the interest rates on free checking accounts. I hate that guy. </p>
 
-<p>Umm... Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he's that guy on a Friday afternoon at the bank who's exchanging three years worth of saved coins and asking about the interest rates on free checking accounts. I hate that guy.</p>
+<p>There are more forces at work than you might think operating behind the scenes in order to get your log messages to both the console and into Xcode console log. Let’s go over some of the issues I have with <code>NSLog</code>:</p>
 
-<p>There are more forces at work than you might think operating behind the scenes in order to get your log messages to both the console and into Xcode console log. Let's go over some of the issues I have with <code>NSLog</code>:</p>
-
-<h3>Performance</h3>
-
-<p><code>NSLog</code> is slow. This wouldn't be so bad if it were asynchronous - but it is most definitely very synchronous. This is why you can set a breakpoint, step through your code and instantly see your <code>NSLog</code> statements show up in the console after you step over them. Make enough calls with <code>NSLog</code> in highly-iterative, performance-oriented or <code>drawRect:</code> code and the performance-penalty begins to add up. This is also not to say that we don't sometimes need a synchronous logging mechanism. After all - if your code is in an unstable state, wouldn't you want to know about both synchronously and immediately?</p>
-
+<h3 id="performance">Performance</h3>
+<p><code>NSLog</code> is slow. This wouldn’t be so bad if it were asynchronous - but it is most definitely very synchronous. This is why you can set a breakpoint, step through your code and instantly see your <code>NSLog</code> statements show up in the console after you step over them. Make enough calls with <code>NSLog</code> in highly-iterative, performance-oriented or <code>drawRect:</code> code and the performance-penalty begins to add up. This is also not to say that we don’t sometimes need a synchronous logging mechanism. After all - if your code is in an unstable state, wouldn’t you want to know about both synchronously and immediately?
 <!-- more -->
-
-
-<h4>Yeah? Prove it</h4>
-
-<p><a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/Performance"><code>NSLog</code>'s poor performance</a> is a result of a combination of a few different things. The gist of which is as follows:</p>
+####Yeah? Prove it
+<a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/Performance"><code>NSLog</code>’s poor performance</a> is a result of a combination of a few different things. The gist of which is as follows:</p>
 
 <ol>
-<li>Open a new connection to ASL (Apple System Logger) daemon</li>
-<li>Close that connection</li>
-<li>Write that same message to STDERR</li>
-<li>Do all of the above synchronously for each call to <code>NSLog</code></li>
+  <li>Open a new connection to ASL (Apple System Logger) daemon</li>
+  <li>Close that connection</li>
+  <li>Write that same message to STDERR</li>
+  <li>Do all of the above synchronously for each call to <code>NSLog</code></li>
 </ol>
-
 
 <p>As you will see in Part II of Ditching NSLog, some of the logging alternatives <a href="https://github.com/robbiehanson/CocoaLumberjack">can be faster than <code>NSLog</code> by an entire order of magnitude</a>!</p>
 
-<h3>Conditional Logic</h3>
+<h3 id="conditional-logic">Conditional Logic</h3>
+<p><code>NSLog</code> is dumb. There is only one type of <code>NSLog</code> - the type that will display in your console. Yet, we will use our logging statements for many different purposes. Sometimes we log an error, a UI event, maybe a networking call, other times we are simply keeping track of a view controller’s view lifecycle. These are all very different types of logs that you may or may not want to show up all the time.</p>
 
-<p><code>NSLog</code> is dumb. There is only one type of <code>NSLog</code> - the type that will display in your console. Yet, we will use our logging statements for many different purposes. Sometimes we log an error, a UI event, maybe a networking call, other times we are simply keeping track of a view controller's view lifecycle. These are all very different types of logs that you may or may not want to show up all the time.</p>
+<p>Wouldn’t it be nice if we could simply set a flag and <em>only</em> see our view lifecycle log statements? Think about that.</p>
 
-<p>Wouldn't it be nice if we could simply set a flag and <em>only</em> see our view lifecycle log statements? Think about that.</p>
+<h3 id="beyond-development">Beyond Development</h3>
+<p><code>NSLog</code> will show up even in your production code regardless of release setting unless you deliberately do something about it. It’s not like <code>NSAssert</code>, which will simply get stripped out in release mode. It will rear it’s ugly head all up on your user’s devices with the same performance-penalties as before, but now nobody can even see the logs unless they can connect to their device’s console. This is serving zero purpose to aid the user’s experience in your application.</p>
 
-<h3>Beyond Development</h3>
+<p>To resolve this, I’m sure we’ve all done the genius find/replace <code>NSLog</code> with <code>//NSLog</code> at least once in our careers. Yes, this technically gets rid of the <code>NSLog</code>s in production, but it is a huge pain to keep up with and looks ugly to boot. Then after you do this, the reverse action isn’t always as straight-forward. There may be <code>NSLog</code>s that you intentionally wanted commented out that are now uncommented as a result of you trying to undo your previous strike of genius. Just don’t do it.  <a href="http://stackoverflow.com/a/969291">Use a conditional macro</a> if you want some basic control over compile-time removal of <code>NSLog</code> in production.</p>
 
-<p><code>NSLog</code> will show up even in your production code regardless of release setting unless you deliberately do something about it. It's not like <code>NSAssert</code>, which will simply get stripped out in release mode. It will rear it's ugly head all up on your user's devices with the same performance-penalties as before, but now nobody can even see the logs unless they can connect to their device's console. This is serving zero purpose to aid the user's experience in your application.</p>
+<p>There is a time and place for production logging, but chances are pretty good that you aren’t doing it right if you’re still using <code>NSLog</code>. Next we’ll go over the different types of logging methodologies, then discuss their role in debugging in both development <em>and</em> production after you ship your application to your users. That’s right - <em>production</em> logging!</p>
 
-<p>To resolve this, I'm sure we've all done the genius find/replace <code>NSLog</code> with <code>//NSLog</code> at least once in our careers. Yes, this technically gets rid of the <code>NSLog</code>s in production, but it is a huge pain to keep up with and looks ugly to boot. Then after you do this, the reverse action isn't always as straight-forward. There may be <code>NSLog</code>s that you intentionally wanted commented out that are now uncommented as a result of you trying to undo your previous strike of genius. Just don't do it.  <a href="http://stackoverflow.com/a/969291">Use a conditional macro</a> if you want some basic control over compile-time removal of <code>NSLog</code> in production.</p>
+<h2 id="types-of-logging">Types of Logging</h2>
+<p>###Console Logging
+This is the most basic type of logging, and one which you’re probably most familiar with. The console log simply logs all of your statements to the debug log (if you’re in Xcode or in the organizer) or to Console.app if you’re running a mac app or running an app in the iPhone simulator detached from the debugger.</p>
 
-<p>There is a time and place for production logging, but chances are pretty good that you aren't doing it right if you're still using <code>NSLog</code>. Next we'll go over the different types of logging methodologies, then discuss their role in debugging in both development <em>and</em> production after you ship your application to your users. That's right - <em>production</em> logging!</p>
+<p><em><strong>Practicality</strong>: *Production* (used correctly) or *development* debugging</em></p>
 
-<h2>Types of Logging</h2>
+<h3 id="file-logging">File Logging</h3>
+<p>File logging is just like it sounds. Instead of logging to the debug console, you simply log to a file. This is best demonstrated by simply having you look in the <code>/var/log/</code> folder on your Mac or Linux box.  You’ll see a plethora of file logs chock full of information about what is happening on your system.  For iOS, this really doesn’t make sense for your sandboxed application unless we as the developers know that we need to monitor that information.</p>
 
-<h3>Console Logging</h3>
+<p><img class="left" src="/images/posts/nslog/part1/tweetbot_super_secret.png" width="300" title="Tweetbot’s super-secret settings menu" ></p>
 
-<p>This is the most basic type of logging, and one which you're probably most familiar with. The console log simply logs all of your statements to the debug log (if you're in Xcode or in the organizer) or to Console.app if you're running a mac app or running an app in the iPhone simulator detached from the debugger.</p>
+<p>One example of this necessity is that a particular user is having an issue you’ve never even heard of before and you would like to capture the log output to see what is going on. Simply activate file logging by some super-secret menu and make an easy mechanism for the user to send you that log in an email. Just be responsible and don’t log personal information and always remember to bound the length of your logs - nobody likes 100MB log files.</p>
 
-<p><em><strong>Practicality</strong>: <em>Production</em> (used correctly) or <em>development</em> debugging</em></p>
+<p><em><strong>Practicality</strong>: *Production* debugging</em></p>
 
-<h3>File Logging</h3>
+<h3 id="remote-logging">Remote Logging</h3>
+<p>This is a little more difficult to accomplish and requires either some knowhow about client/server networking on a lower level than simply API consumption, or some help from a third party library.  The benefit to remote logging is that it combines all the best traits of console logging (real-time information) with file logging’s ability to not have to be physically connected to the device in order to capture the logs. This would require some participation on the user’s end, but if they’re having extreme issues, they may be more than happy to let you remotely log their device while they demonstrate the bug for you.</p>
 
-<p>File logging is just like it sounds. Instead of logging to the debug console, you simply log to a file. This is best demonstrated by simply having you look in the <code>/var/log/</code> folder on your Mac or Linux box.  You'll see a plethora of file logs chock full of information about what is happening on your system.  For iOS, this really doesn't make sense for your sandboxed application unless we as the developers know that we need to monitor that information.</p>
+<p><em><strong>Practicality</strong>: *Production* debugging (with a little more user participation)</em></p>
 
-<p><img class="left" src="/images/posts/nslog/part1/tweetbot_super_secret.png" width="300" title="Tweetbot's super-secret settings menu" ></p>
-
-<p>One example of this necessity is that a particular user is having an issue you've never even heard of before and you would like to capture the log output to see what is going on. Simply activate file logging by some super-secret menu and make an easy mechanism for the user to send you that log in an email. Just be responsible and don't log personal information and always remember to bound the length of your logs - nobody likes 100MB log files.</p>
-
-<p><em><strong>Practicality</strong>: <em>Production</em> debugging</em></p>
-
-<h3>Remote Logging</h3>
-
-<p>This is a little more difficult to accomplish and requires either some knowhow about client/server networking on a lower level than simply API consumption, or some help from a third party library.  The benefit to remote logging is that it combines all the best traits of console logging (real-time information) with file logging's ability to not have to be physically connected to the device in order to capture the logs. This would require some participation on the user's end, but if they're having extreme issues, they may be more than happy to let you remotely log their device while they demonstrate the bug for you.</p>
-
-<p><em><strong>Practicality</strong>: <em>Production</em> debugging (with a little more user participation)</em></p>
-
-<h2>To Log, or Not to Log?</h2>
-
-<p>So how often should include a log statement in their code?  When using the "right" logging techniques, you should log as much as possible. Some examples include:</p>
+<h2 id="to-log-or-not-to-log">To Log, or Not to Log?</h2>
+<p>So how often should include a log statement in their code?  When using the “right” logging techniques, you should log as much as possible. Some examples include:</p>
 
 <ul>
-<li>View/view controller life-cycles - calls to <code>viewDidLoad</code>, <code>dealloc</code>, etc.</li>
-<li>Errors</li>
-<li>Warnings</li>
-<li>Unexpected user input</li>
-<li>Whatevs</li>
+  <li>View/view controller life-cycles - calls to <code>viewDidLoad</code>, <code>dealloc</code>, etc.</li>
+  <li>Errors</li>
+  <li>Warnings</li>
+  <li>Unexpected user input</li>
+  <li>Whatevs</li>
 </ul>
 
+<p>Surround your pullquote like this {" text to be quoted "}</p>
 
-<p><span class='pullquote-right' data-pullquote='In not so many words: dynamic runtime logging'>The "right" logging techniques depends highly on who you are as a programmer and even moreso on where you work. I know we have very specific coding standards at <a href="http://mutualmobile.com">Mutual Mobile</a> so as to increase uniformity between codebases on disparate projects.  So the "right" logging techniques and practices I discuss here are those in which I believe most developers and users would benefit from. These practices are those in which you can dynamically choose which types of logs you would like to see depending on what you are working on.  In not so many words: dynamic runtime logging.</span></p>
+<p>Dynamic means that it involves conditional logic, and mucking with the logging mechanism at runtime means preprocessor macros are pretty much out of the picture.  In Part 2, we’ll look at some techniques as well as full-blown open source libraries that will make our job of logging much easier, more dynamic, and eliminate logs in production for all but the cases we specifically care about.</p>
 
-<p>Dynamic means that it involves conditional logic, and mucking with the logging mechanism at runtime means preprocessor macros are pretty much out of the picture.  In Part 2, we'll look at some techniques as well as full-blown open source libraries that will make our job of logging much easier, more dynamic, and eliminate logs in production for all but the cases we specifically care about.</p>
-
-<h2>Conclusion</h2>
-
-<p><code>NSLog</code> is our dear old friend. We've fixed a lot of bugs using <code>NSLog</code>. But now it's time to grow up. We've found out why <code>NSLog</code> really isn't all that great, some other ways in which we can utilize logs in different formats, as well as how we can use those logs in production as well as development! Now lets build some stuff!</p>
+<h2 id="conclusion">Conclusion</h2>
+<p><code>NSLog</code> is our dear old friend. We’ve fixed a lot of bugs using <code>NSLog</code>. But now it’s time to grow up. We’ve found out why <code>NSLog</code> really isn’t all that great, some other ways in which we can utilize logs in different formats, as well as how we can use those logs in production as well as development! Now lets build some stuff!</p>
 
 <p><strong>Check out Part II of Ditching NSLog to see how you can make your application logging work better for you!</strong></p>
 
 <hr />
 
 <p><em>Disclaimer:</em>
-<em>I don't pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I'll either correct it or simply agree to disagree.</em></p>
+<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em>  </p>
 ]]></content>
   </entry>
   
