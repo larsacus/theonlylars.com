@@ -1,11 +1,10 @@
 ---
 layout: post
 title: "Don't Forget the \"C\" in Objective-C: C Declarations"
-date: 2012-12-10 08:00
+date: 2012-12-10 00:00
 comments: true
 categories: [Advanced iOS,iOS,Development,ARC,Best-Practices]
 keywords: "c,c++,iOS,objective-c,c-declarations,declarations,iOS,development,best-practices,ARC"
-published: true
 ---
 
 It's been awhile. I blame my bike and the Thanksgiving Steam sale. If you're seriously reading this, then it is statistically likely your productivity was at some point affected by Steam's Thanksgiving sale.
