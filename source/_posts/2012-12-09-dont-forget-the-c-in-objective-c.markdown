@@ -14,9 +14,9 @@ This post is going to primarily serve for my personal purposes to bookmark some 
 
 Note also that while using very specific type and storage qualifiers can be unnecessary for most Objective-C development, Apple pretty much threw everyone into the fray when they introduced such common identifiers such as `__block` with Grand Central Dispatch. It got even better when ARC was introduced. You'll see...
 
-#Variable Declaration
+##Variable Declaration
 
-##The Problem
+###The Problem
 This is something that was either not immediately obvious to me when writing software, or I simply was never formally shown this. I'm not entirely sure how I never picked up on this in all my years of writing software (even informally), but here it is:
 
 This: `const NSString * myString` is totally not the same as this: `NSString * const myString`.
@@ -29,11 +29,11 @@ Mind blown, right? If you asked either "Why are they not the same?" or "I don't 
   
 "Umm..." Yeah, I'll get to it. Read on:
 
-##Declaration Modifiers
+###Declaration Modifiers
 
 There are two primary types of declaration modifiers: type qualifiers and storage classes, as well as a third. The third is a kind of "decorator" that in my words "details how _much_ memory is being allocated for a given variable declaration" - it's called a type _specifier_.
 
-###Type Qualifiers
+####Type Qualifiers
 Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see[^2]. You can add type qualifiers to both types and pointers. More on [type qualifiers here](http://www.idryman.org/blog/2012/10/29/type-qualifiers/) and [here](http://www.eskimo.com/~scs/cclass/int/sx4ga.html).
   
 **Type qualifiers** in C99 include:
@@ -42,7 +42,7 @@ Type qualifiers is basically you telling the compiler how you are going to use a
 - `volatile`
 - `restrict`
 
-###Type Specifiers
+####Type Specifiers
 Type specifiers are different in that they are basically just telling the compiler how many buckets of data to chunk out for a given variable to use. You can also use type specifiers as types themselves, such as `long int`, or `unsigned long double`.
 
 **Type _specifiers_** include:
@@ -58,7 +58,7 @@ Type specifiers are different in that they are basically just telling the compil
 
 I know the least about type specifiers.
 
-###Storage Classes
+####Storage Classes
 Storage classes are special in that they tell the system _how_ to allocate a given chunk of memory, in what scope that chunk of memory can be accessed, and the lifetime of those variables. More on [C storage classes here](http://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/CONCEPT/storage_class.html).
 
 **Storage classes** include
@@ -88,10 +88,10 @@ const NSString * const myString //The variable myString is a constant pointer to
 
 So how did I perform this black magic? Simply read the variable declaration from the right to left, and when you get to the type, start reading left to right until you get back to the type. [Code Project has an excellent writeup](http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations) on reading complicated C declarations and [ridiculous_fish](http://ridiculousfish.com) has an excellent conversion tool that will even [convert the declarations into English statements](http://cdecl.org) right before your eyes. There are [tons of guides out there](http://lmgtfy.com/?q=complicated+C+variable+declarations). There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.
 
-##A Small Dash of Cocoa
+###A Small Dash of Cocoa
 You may be thinking: "This is great and all, so why is this so important in Objective-C? I've never seen an `volatile unsigned long int * const` before in my life, and I've been writing in iOS since it began!". While all of that may be true[^3], things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.
 
-###Block Retain Cycles
+####Block Retain Cycles
 When Apple gave us blocks in iOS 4, it was a curse in disguise in terms of memory-management. *Everyone* loves blocks. *Everyone* tries to use blocks *everywhere*, but we'll save that for another topic (hint: don't forget about delegation and notifications).
 
 Because of this, the dreaded retain cycle would rear it's ugly head and engineers would end up scratching their heads if they even noticed it was happening. "Why is my view controller not being released when nothing else has a reference to it!" So you go and watch the WWDC videos on the introduction to blocks and GCD, and you discover the solution: [`__block`](http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW6). Simply declaring your variables as `__block` will magically make "weak" references to your objects to use inside your blocks.
@@ -116,7 +116,7 @@ self.completionBlock = ^(BOOL finished){
 
 In this example, we're creating a block variable outside of our block that is going to be modified inside said block. This is the correct way to use `__block`. To break our retain cycle, the more appropriate solution is to use some specific tools given to us in ARC that we'll get to in just a second. First, an aside on new hotness in ARC to look out for:
 
-###Ownership Qualifiers
+####Ownership Qualifiers
 When using ARC, we now have even _more_ qualifiers to look out for and use in our code. These ARC-specific qualifiers are called ownership qualifiers. Fitting, given that the primary function of ARC is to manage object lifetimes and ownership.
 
 Ownership qualifiers in ARC include:
@@ -142,7 +142,7 @@ MyClass * __weak myWeakReference;
 MyClass * __unsafe_unretained myUnsafeReference;
 {% endblockquote %}
 
-####Auto-Nil'ing Weak References
+#####Auto-Nil'ing Weak References
 In iOS 5, Apple gave us [auto-nil'ing weak references](http://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4) under ARC. This means that when you have a *weak* reference to a variable, it will allow you to use that variable and will set that variable to `nil` when no other object has a strong reference to it. This is a perfect place to replace the `__block` storage class with one of ARC's new [ownership qualifiers](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#ownership).  Let's use `__weak`:
 
 `typeof(self) __weak myself = self`

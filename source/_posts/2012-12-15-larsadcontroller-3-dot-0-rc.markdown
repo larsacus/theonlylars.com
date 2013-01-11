@@ -8,16 +8,16 @@ categories: iOS development ads open-source ARC LARSAdController
 keywords: "iAd,iOS,iOS development,AdMob,iAd Integration,easy,LARSAdController,ad mediation,iOS mediation,iOS house ads"
 ---
 
-_*Note: This is pre-release software and is still in-development. If you need a production version, please refer to the [master branch](https://github.com/larsacus/LARSAdController) for production code.*_
+_Edit Jan 10, 2013: Since publishing this post, [LARSAdController v3.0 has been pushed to the master branch](/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/) on [github](https://github.com/larsacus/LARSAdController/)!_
 
-I've been working hard on refactoring [LARSAdController 2.0](https://github.com/larsacus/LARSAdController) into a more modular and maintainable state over the past few months. I think it's finally in a place that could warrant some final testing from other developers before being merged into the master branch. 
+I've been working hard on refactoring [LARSAdController 2.0](https://github.com/larsacus/LARSAdController/tree/2.1.1) into a more modular and maintainable state over the past few months. I think it's finally in a place that could warrant some final testing from other developers before being merged into the master branch. 
 
 Let's take a look at what's changed:
 
 ##A New Class Prefix
 I've been using the class prefix `LARS` for all of my open-source classes. While this really is short and unique, it's always felt pretty egotistical to have my name plastered all over my classes. This is just how I feel from this side of the keyboard. Does it look the same from the user's end? Let me know what you think.
 
-Anyway, I've migrated new classes to the new `TOL` prefix, for [@TheOnlyLars](https://twitter.com/theonlylars). This feels more anonymous and I haven't seen the prefix used by anyone else before, yet. I'd love to know if someone well known _is_ using the `TOL` class prefix. If I feel like I like this prefix better, I may just start using it for everything.
+Anyway, I've migrated new classes to the new `TOL` prefix, for [@**T**he**O**nly**L**ars](https://twitter.com/theonlylars). This feels more anonymous and I haven't seen the prefix used by anyone else before, yet. I'd love to know if someone well known _is_ using the `TOL` class prefix. If I feel like I like this prefix better, I may just start using it for everything.
 
 I also like that it sounds like "toll". I have grand visions of having some cool project named `TOLBooth`, `TOLRoad`, or `TOLHouse`. I can't think of practical project ideas to put those names on, however.
 
@@ -66,12 +66,12 @@ I've added pretty extensive debug logging for what's currently constructed. If s
 
 To enable logs, simple define the `LARSADCONTROLLER_DEBUG` macro somewhere.
 
-#Help?
+##Help?
 I primarily created `LARSAdController` because I was unsatisfied with the big ad mediation networks. They also felt pretty heavyweight and a lot of overhead to simply run two mediated ad networks on my low-traffic app[^1]. This is my simple solution to theirs.
 
-This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo's branch, [AdapterAbstraction](https://github.com/larsacus/LARSAdController/tree/AdapterAbstraction).
+This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo's [tag](https://github.com/larsacus/LARSAdController/tree/3.0.0).
 
-You can find the [3.0 branch here](https://github.com/larsacus/LARSAdController/tree/AdapterAbstraction) and file [issues here](https://github.com/larsacus/LARSAdController/issues). Don't be shy about issues. If it's not a bug, but simply something you didn't expect and want clarification, file an issue.
+You can find the [3.0 tag here](https://github.com/larsacus/LARSAdController/tree/3.0.0) and file [issues here](https://github.com/larsacus/LARSAdController/issues). Don't be shy about issues. If it's not a bug, but simply something you didn't expect and want clarification, file an issue.
 
 If you're so inclined, let me know what you think: [@theonlylars](https://twitter.com/theonlylars)
 

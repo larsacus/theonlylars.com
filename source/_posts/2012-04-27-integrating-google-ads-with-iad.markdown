@@ -7,6 +7,8 @@ categories: iOS development iAd AdMob ads open-source ARC LARSAdController
 description: "Easily integrate iAds into your apps with just two lines of code and back them with Google's AdMob ads."
 keywords: "iAd,iOS,iOS development,AdMob,iAd Integration,easy,tutorial,iAd tutorial,iOS iAd tutorial,LARSAdController"
 ---
+_Edit Jan 10, 2013: Since publishing this post, [LARSAdController has been updated to v3.0](/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/). A lot of the material below may be outdated. If you need to use v2.x as is demonstrated below, you can still access it using [one of the tagged v2.x versions on github](https://github.com/larsacus/LARSAdController/tree/2.1.1)._
+
 I think Apple's iAds had great potential.  But let's face it.  They really aren't pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google's AdMob service as a backup.
 
 If you watch Apple's WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:

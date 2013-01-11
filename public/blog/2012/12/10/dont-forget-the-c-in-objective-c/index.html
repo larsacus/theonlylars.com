@@ -109,9 +109,9 @@
 
 <p>Note also that while using very specific type and storage qualifiers can be unnecessary for most Objective-C development, Apple pretty much threw everyone into the fray when they introduced such common identifiers such as <code>__block</code> with Grand Central Dispatch. It got even better when ARC was introduced. You’ll see…</p>
 
-<h1 id="variable-declaration">Variable Declaration</h1>
+<h2 id="variable-declaration">Variable Declaration</h2>
 
-<h2 id="the-problem">The Problem</h2>
+<h3 id="the-problem">The Problem</h3>
 <p>This is something that was either not immediately obvious to me when writing software, or I simply was never formally shown this. I’m not entirely sure how I never picked up on this in all my years of writing software (even informally), but here it is:</p>
 
 <p>This: <code>const NSString * myString</code> is totally not the same as this: <code>NSString * const myString</code>.</p>
@@ -124,11 +124,11 @@
 
 <p>“Umm…” Yeah, I’ll get to it. Read on:</p>
 
-<h2 id="declaration-modifiers">Declaration Modifiers</h2>
+<h3 id="declaration-modifiers">Declaration Modifiers</h3>
 
 <p>There are two primary types of declaration modifiers: type qualifiers and storage classes, as well as a third. The third is a kind of “decorator” that in my words “details how <em>much</em> memory is being allocated for a given variable declaration” - it’s called a type <em>specifier</em>.</p>
 
-<h3 id="type-qualifiers">Type Qualifiers</h3>
+<h4 id="type-qualifiers">Type Qualifiers</h4>
 <p>Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see<sup id="fnref:2"><a href="#fn:2" rel="footnote">1</a></sup>. You can add type qualifiers to both types and pointers. More on <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/">type qualifiers here</a> and <a href="http://www.eskimo.com/~scs/cclass/int/sx4ga.html">here</a>.</p>
 
 <p><strong>Type qualifiers</strong> in C99 include:</p>
@@ -139,7 +139,7 @@
   <li><code>restrict</code></li>
 </ul>
 
-<h3 id="type-specifiers">Type Specifiers</h3>
+<h4 id="type-specifiers">Type Specifiers</h4>
 <p>Type specifiers are different in that they are basically just telling the compiler how many buckets of data to chunk out for a given variable to use. You can also use type specifiers as types themselves, such as <code>long int</code>, or <code>unsigned long double</code>.</p>
 
 <p><strong>Type <em>specifiers</em></strong> include:</p>
@@ -157,7 +157,7 @@
 
 <p>I know the least about type specifiers.</p>
 
-<h3 id="storage-classes">Storage Classes</h3>
+<h4 id="storage-classes">Storage Classes</h4>
 <p>Storage classes are special in that they tell the system <em>how</em> to allocate a given chunk of memory, in what scope that chunk of memory can be accessed, and the lifetime of those variables. More on <a href="http://www.lix.polytechnique.fr/~liberti/public/computing/prog/c/C/CONCEPT/storage_class.html">C storage classes here</a>.</p>
 
 <p><strong>Storage classes</strong> include</p>
@@ -190,10 +190,10 @@
 
 <p>So how did I perform this black magic? Simply read the variable declaration from the right to left, and when you get to the type, start reading left to right until you get back to the type. <a href="http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations">Code Project has an excellent writeup</a> on reading complicated C declarations and <a href="http://ridiculousfish.com">ridiculous_fish</a> has an excellent conversion tool that will even <a href="http://cdecl.org">convert the declarations into English statements</a> right before your eyes. There are <a href="http://lmgtfy.com/?q=complicated+C+variable+declarations">tons of guides out there</a>. There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.</p>
 
-<h2 id="a-small-dash-of-cocoa">A Small Dash of Cocoa</h2>
+<h3 id="a-small-dash-of-cocoa">A Small Dash of Cocoa</h3>
 <p>You may be thinking: “This is great and all, so why is this so important in Objective-C? I’ve never seen an <code>volatile unsigned long int * const</code> before in my life, and I’ve been writing in iOS since it began!”. While all of that may be true<sup id="fnref:3"><a href="#fn:3" rel="footnote">2</a></sup>, things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
 
-<h3 id="block-retain-cycles">Block Retain Cycles</h3>
+<h4 id="block-retain-cycles">Block Retain Cycles</h4>
 <p>When Apple gave us blocks in iOS 4, it was a curse in disguise in terms of memory-management. <em>Everyone</em> loves blocks. <em>Everyone</em> tries to use blocks <em>everywhere</em>, but we’ll save that for another topic (hint: don’t forget about delegation and notifications).</p>
 
 <p>Because of this, the dreaded retain cycle would rear it’s ugly head and engineers would end up scratching their heads if they even noticed it was happening. “Why is my view controller not being released when nothing else has a reference to it!” So you go and watch the WWDC videos on the introduction to blocks and GCD, and you discover the solution: <a href="http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW6"><code>__block</code></a>. Simply declaring your variables as <code>__block</code> will magically make “weak” references to your objects to use inside your blocks.</p>
@@ -224,7 +224,7 @@
 
 <p>In this example, we’re creating a block variable outside of our block that is going to be modified inside said block. This is the correct way to use <code>__block</code>. To break our retain cycle, the more appropriate solution is to use some specific tools given to us in ARC that we’ll get to in just a second. First, an aside on new hotness in ARC to look out for:</p>
 
-<h3 id="ownership-qualifiers">Ownership Qualifiers</h3>
+<h4 id="ownership-qualifiers">Ownership Qualifiers</h4>
 <p>When using ARC, we now have even <em>more</em> qualifiers to look out for and use in our code. These ARC-specific qualifiers are called ownership qualifiers. Fitting, given that the primary function of ARC is to manage object lifetimes and ownership.</p>
 
 <p>Ownership qualifiers in ARC include:</p>
@@ -243,7 +243,7 @@
 <p><a href="http://developer.apple.com/library/mac/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%23//apple_ref/doc/uid/TP40011226-CH1-SW7">From the documentation</a>:</p>
 <blockquote><p>You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p><p>ClassName * qualifier variableName;</p><p>for example:</p><p>MyClass * __weak myWeakReference;<br />MyClass * __unsafe_unretained myUnsafeReference;</p></blockquote>
 
-<h4 id="auto-niling-weak-references">Auto-Nil’ing Weak References</h4>
+<h5 id="auto-niling-weak-references">Auto-Nil’ing Weak References</h5>
 <p>In iOS 5, Apple gave us <a href="http://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4">auto-nil’ing weak references</a> under ARC. This means that when you have a <em>weak</em> reference to a variable, it will allow you to use that variable and will set that variable to <code>nil</code> when no other object has a strong reference to it. This is a perfect place to replace the <code>__block</code> storage class with one of ARC’s new <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#ownership">ownership qualifiers</a>.  Let’s use <code>__weak</code>:</p>
 
 <p><code>typeof(self) __weak myself = self</code></p>
@@ -352,10 +352,14 @@
   
     <section class="well">
   <h1>About me</h1>
-  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of stuff.</p>
+  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of bits and cool animations.</p>
 </section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">Stupid Easy iOS Ad Mediation with LARSAdController 3.0</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 RC</a>
@@ -371,10 +375,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/03/go-forth-and-build/">Go Forth And Build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/">Ditching NSLog, Part II: Good Tools Make Work Easy</a>
       </li>
     
   </ul>
@@ -437,7 +437,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Lars Anderson -
+  Copyright &copy; 2013 - Lars Anderson -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

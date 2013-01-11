@@ -4,7 +4,7 @@
   <title><![CDATA[Category: open-source | hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/open-source/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-12-17T22:01:34-06:00</updated>
+  <updated>2013-01-10T22:36:00-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -14,20 +14,208 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Stupid Easy iOS Ad Mediation with LARSAdController 3.0]]></title>
+    <link href="http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/"/>
+    <updated>2013-01-10T20:10:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0</id>
+    <content type="html"><![CDATA[<h2 id="roots">Roots</h2>
+<p>When I originally built LARSAdController, I was building it to fulfill a very specific purpose for my first app (Droid Light): leverage a singleton to serve a single ad instance for iAds using best practices, and serve AdMob ads as a backup when iAds (stellar) inventory ran dry. Since then, I’ve expanded it to support multiple devices, as well as multiple orientations, all while being super-easy to integrate.</p>
+
+<h2 id="section">3.0</h2>
+<p>Version 3.0 now supports all of the things that the old version did, but now allows you much more flexibility and freedom in how you would like your ads to be used.</p>
+
+<h3 id="major-changes-from-v2x">Major Changes from v2.x</h3>
+
+<p>A detailed changelog of what has changed can be found in the <a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 release-candidate post</a>, but here’s the <code>tl;dr</code> version:</p>
+
+<ul>
+  <li><code>TOL</code> as a new class prefix</li>
+  <li>Arbitrary ad networks</li>
+  <li>Ad network priority</li>
+  <li>Conversion to ARC</li>
+  <li>Presentation types</li>
+  <li>Pinning locations (have ad reside at the top of your view)</li>
+  <li>Easy setup with a new view controller subclass <code>TOLAdViewController</code></li>
+  <li>Optional verbose debug logging for development</li>
+  <li>Upgrade base iOS dependency to iOS 5.0</li>
+</ul>
+
+<h2 id="easy-integration">Easy Integration</h2>
+<p>So let’s get started integrating your ad with some ad networks. If you would like to use Google as your ad vendor, then you will need to go ahead and setup an account with them and have your publisher ID handy.</p>
+
+<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.<!-- more --></p>
+
+<h3 id="integrate-the-source">Integrate the Source</h3>
+<p>This is by far the most difficult part of the entire process if you don’t use cocoapods. I highly suggest using cocoapods, so I’m going to go over that first. All of these instructions are mirrored on the <code>README</code> file on <a href="https://github.com/larsacus/LARSAdController">LARSAdController’s github page</a>.</p>
+
+<p>If you don’t have cocoapods setup, visit <a href="http://cocoapods.org">cocoapods.org</a> for installation instructions. I promise, it’s really easy, too. Then come back here.</p>
+
+<h4 id="cocoapods">Cocoapods</h4>
+<p>To include the LARSAdController source with your project, you will need to include the LARSAdController dependency in what is known as a “Podfile”. In your project’s root directory, you will need to create a new empty text file named <code>Podfile</code>.</p>
+
+<h5 id="podfile-setup">Podfile Setup</h5>
+<p>Inside <code>Podfile</code>, you will need to declare your project’s platform and base deployment target. LARSAdController only supports base deployment targets of 5.0 and above. To do this, add this as the first line:</p>
+
+<p><code>platform :ios, '5.0'</code></p>
+
+<p>This tells cocoapods that our platform is iOS and that our deployment target is iOS 5.0 and above.</p>
+
+<p>In order to tell cocoapods to install LARSAdController, simply specify that you would like your project to include LARSAdController as a “dependency”:</p>
+
+<p><code>pod 'LARSAdController', '~&gt;3.0'</code></p>
+
+<p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>.</p>
+
+<p>Your podfile should now look like this:<br />
+<div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">platform</span> <span class="o">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">‘</span><span class="mf">5.0</span><span class="err">’</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">pod</span> <span class="err">‘</span><span class="n">LARSAdController</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="o">~&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mf">3.0</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This will setup your project for both Google ads and iAds.</p>
+
+<h5 id="components">Components</h5>
+<p>If you are only interested in iAds <em>or</em> Google Ads, then you <em>can</em> (but you don’t have to) specify a specific component of LARSAdController in your podfile instead of the above:</p>
+
+<p>For only GoogleAds: <code>pod 'LARSAdController/GoogleAds', '~&gt;3.0'</code></p>
+
+<p>For only iAds: <code>pod 'LARSAdController/iAds', '~&gt;3.0'</code></p>
+
+<p>If you’re only interested in iAds, then this is a great way to avoid the bloat of the Google ads SDK in your project when you don’t even need it. Including both lines would be functionally the same as simply using <code>pod 'LARSAdController', '~&gt;3.0'</code> in your project.</p>
+
+<h5 id="install">Install</h5>
+<p>From here, save your podfile, and in terminal, run <code>pod install</code> to kickoff the installation. Cocoapods creates a new <code>xcworkspace</code> file with your pods already downloaded and configured for your project to use without you having to manage any of the dependencies.</p>
+
+<p>You must now open the <code>&lt;your_app&gt;.xcworkspace</code> file to use LARSAdController.</p>
+
+<p>Done. <a href="#decide-where">Click here</a> to skip the manual process instructions since you don’t need them.</p>
+
+<h4 id="manually">Manually</h4>
+<p>If you’re not using cocoapods, in order to use <code>LARSAdController</code>, you will need to clone this repo and add the <code>Source/</code> directory to your project, as well as add the required frameworks - all by hand.</p>
+
+<p>…like a caveman</p>
+
+<h5 id="git-submodule">Git Submodule</h5>
+<p>You can do this the old way by simply cloning the repository and adding the files to your project as a git submodule as shown below:</p>
+
+<p><code>git add submodule &lt;third_party_folder&gt; https://github.com/larsacus/LARSAdController.git --recursive</code></p>
+
+<p>Where <code>&lt;third_party_folder&gt;</code> is the folder where all of your third party code lives in your project file structure.</p>
+
+<h5 id="framework-requirements">Framework Requirements</h5>
+<p>In order to compile, you will need to include the following Apple frameworks:</p>
+
+<h6 id="iads">iAds</h6>
+
+<ol>
+  <li><code>iAd.framework</code></li>
+  <li><code>AdSupport.framework</code> (weak-link for iOS 6)</li>
+</ol>
+
+<h6 id="google-ads">Google Ads</h6>
+
+<ol>
+  <li><code>StoreKit.framework</code></li>
+  <li><code>AudioToolbox.framework</code></li>
+  <li><code>MessageUI.framework</code></li>
+  <li><code>SystemConfiguration.framework</code></li>
+  <li><code>CoreGraphics.framework</code></li>
+  <li><code>AdSupport.framework</code> (weak-link for iOS 6)</li>
+</ol>
+
+<p>You will also need the <code>Google AdMob SDK</code> available from <a href="https://developers.google.com/mobile-ads-sdk/download#downloadios">Google</a>. If you are using the <code>--recursive</code> call above, then a submodule of the googleads sdk will be cloned to the <code>Example/AdMob</code> folder.</p>
+
+<h3 id="decide-where">Decide Where</h3>
+<p>Decide where you want your ads to live. Try and stay away from trying to use them anywhere that the ad is going to be moving around (like in a table view cell). Publishers hate this and it could result in false impressions and possibly low revenues.</p>
+
+<p>You have the option of placing your ad at the top or bottom of a view. By default, LARSAdController will place your ad at the bottom of a given view. Specify if you want your ad at the top of the view by calling the following somewhere in your app delegate (like in <code>applicationDidFinishLaunching:</code>):</p>
+
+<p><code>[[LARSAdController sharedManager] setPinningLocation:LARSAdControllerPinLocationTop];</code></p>
+
+<p>If you would like to dynamically change the pinning location depending on view controller, then place this call in <code>viewDidLoad:</code> of the view controller you would like to change and where you would like the ad to be.</p>
+
+<h3 id="register-ad-networks">Register Ad Networks</h3>
+<p>You will need to specify which ad networks you would like to use and in which order they should display. Calling the below code will register LARSAdController with the iAd network as a primary network. You will be calling this sometime before your first ad is requested, which we’ll go over next.</p>
+
+<p><code>[[LARSAdController sharedManager] registerAdClass:[TOLAdAdapteriAds class]];</code></p>
+
+<p>To add Google ads as a secondary network to iAds, then call the following sometime <em>after</em> the above call:</p>
+
+<p><code>[[LARSAdController sharedManager] registerAdClass:[TOLAdAdapterGoogleAds class]];</code></p>
+
+<p>If you would like the reverse - to have Google ads served before iAds, then simply reverse the order in which the ad networks were registered.</p>
+
+<h3 id="add-banner-to-view">Add Banner to View</h3>
+<p>To install the ad banner in each of your views (view controllers), call</p>
+
+<p><code>[[LARSAdController sharedManager] addAdNetworkToViewInViewController:self];</code>.</p>
+
+<p>I’ve found the best place to call this method is in your view controller’s <code>viewWillAppear:</code> method.</p>
+
+<h4 id="even-simpler">Even Simpler</h4>
+<p>Guess what? Integrating ads can be even easier than above. If you have each of your view controllers inherit from the base class <code>TOLAdViewController</code>, ads will automatically installed in your view on <code>viewWillAppear:</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@interface</span> <span class="nc">MYBestViewControllerEvar</span> : <span class="nc">TOLAdViewController</span>
+</span><span class='line'><span class="c1">//BOOM - Ads</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>I’ve even included a method you can override in your view controller to conditionally display these ads. This is convenient when you don’t want to display ads under certain conditions (like when a user purchases an in-app upgrade):</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldDisplayAds</span><span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">([</span><span class="n">self</span><span class="p">.</span><span class="n">purchaseTracker</span> <span class="n">hasPurchasedUpgrade</span><span class="p">]</span> <span class="o">==</span> <span class="n">NO</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2 id="test">Test</h2>
+<p>Make sure you test that everything is working correctly in your particular app before you ship to the app store. <a href="https://github.com/larsacus/LARSAdController/issues">Submit an issue on github</a> if something feels wrong.</p>
+
+<h2 id="done">Done</h2>
+<p>Easy. Total lines of code I’ve counted for a standard integration of two ad networks in a single view controller is two if you use the view controller subclass. Two lines of code to have ads properly served in your app. If you use cocoapods, you can go from nothing to proper ads in less than a minute.</p>
+
+<p><a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> v3.0 is released under the very liberal MIT license on github. If you’re using LARSAdController in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the bottom of the README file.</p>
+
+<p>If you find an bug or have a suggestion, feel free to <a href="https://github.com/larsacus/LARSAdController/issues">submit a new issue on github</a> <em>with reproduction information and preferably source code</em> as well as a description of what you’re trying to accomplish if it even <em>feels</em> like it’s out of the normal use case.</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk. <a href="#fnref:1" rel="reference">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>.<a href="#fnref:2" rel="reference">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[LARSAdController 3.0 RC]]></title>
     <link href="http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc/"/>
     <updated>2012-12-15T15:25:00-06:00</updated>
     <id>http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc</id>
-    <content type="html"><![CDATA[<p><em>*Note: This is pre-release software and is still in-development. If you need a production version, please refer to the <a href="https://github.com/larsacus/LARSAdController">master branch</a> for production code.*</em></p>
+    <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
 
-<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
+<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
 
 <p>Let’s take a look at what’s changed:</p>
 
 <h2 id="a-new-class-prefix">A New Class Prefix</h2>
 <p>I’ve been using the class prefix <code>LARS</code> for all of my open-source classes. While this really is short and unique, it’s always felt pretty egotistical to have my name plastered all over my classes. This is just how I feel from this side of the keyboard. Does it look the same from the user’s end? Let me know what you think.</p>
 
-<p>Anyway, I’ve migrated new classes to the new <code>TOL</code> prefix, for <a href="https://twitter.com/theonlylars">@TheOnlyLars</a>. This feels more anonymous and I haven’t seen the prefix used by anyone else before, yet. I’d love to know if someone well known <em>is</em> using the <code>TOL</code> class prefix. If I feel like I like this prefix better, I may just start using it for everything.</p>
+<p>Anyway, I’ve migrated new classes to the new <code>TOL</code> prefix, for <a href="https://twitter.com/theonlylars">@<strong>T</strong>he<strong>O</strong>nly<strong>L</strong>ars</a>. This feels more anonymous and I haven’t seen the prefix used by anyone else before, yet. I’d love to know if someone well known <em>is</em> using the <code>TOL</code> class prefix. If I feel like I like this prefix better, I may just start using it for everything.</p>
 
 <p>I also like that it sounds like “toll”. I have grand visions of having some cool project named <code>TOLBooth</code>, <code>TOLRoad</code>, or <code>TOLHouse</code>. I can’t think of practical project ideas to put those names on, however.</p>
 
@@ -76,12 +264,12 @@
 
 <p>To enable logs, simple define the <code>LARSADCONTROLLER_DEBUG</code> macro somewhere.</p>
 
-<h1 id="help">Help?</h1>
+<h2 id="help">Help?</h2>
 <p>I primarily created <code>LARSAdController</code> because I was unsatisfied with the big ad mediation networks. They also felt pretty heavyweight and a lot of overhead to simply run two mediated ad networks on my low-traffic app<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. This is my simple solution to theirs.</p>
 
-<p>This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo’s branch, <a href="https://github.com/larsacus/LARSAdController/tree/AdapterAbstraction">AdapterAbstraction</a>.</p>
+<p>This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo’s <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">tag</a>.</p>
 
-<p>You can find the <a href="https://github.com/larsacus/LARSAdController/tree/AdapterAbstraction">3.0 branch here</a> and file <a href="https://github.com/larsacus/LARSAdController/issues">issues here</a>. Don’t be shy about issues. If it’s not a bug, but simply something you didn’t expect and want clarification, file an issue.</p>
+<p>You can find the <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">3.0 tag here</a> and file <a href="https://github.com/larsacus/LARSAdController/issues">issues here</a>. Don’t be shy about issues. If it’s not a bug, but simply something you didn’t expect and want clarification, file an issue.</p>
 
 <p>If you’re so inclined, let me know what you think: <a href="https://twitter.com/theonlylars">@theonlylars</a></p>
 
@@ -101,7 +289,9 @@
     <link href="http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad/"/>
     <updated>2012-04-27T21:30:00-05:00</updated>
     <id>http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad</id>
-    <content type="html"><![CDATA[<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
+    <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController has been updated to v3.0</a>. A lot of the material below may be outdated. If you need to use v2.x as is demonstrated below, you can still access it using <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">one of the tagged v2.x versions on github</a>.</em></p>
+
+<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
 
 <p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
 

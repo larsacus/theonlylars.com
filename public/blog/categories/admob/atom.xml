@@ -4,7 +4,7 @@
   <title><![CDATA[Category: AdMob | hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/admob/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2012-12-17T22:01:34-06:00</updated>
+  <updated>2013-01-10T22:36:00-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -18,7 +18,9 @@
     <link href="http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad/"/>
     <updated>2012-04-27T21:30:00-05:00</updated>
     <id>http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad</id>
-    <content type="html"><![CDATA[<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
+    <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController has been updated to v3.0</a>. A lot of the material below may be outdated. If you need to use v2.x as is demonstrated below, you can still access it using <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">one of the tagged v2.x versions on github</a>.</em></p>
+
+<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
 
 <p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
 

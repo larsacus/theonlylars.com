@@ -9,7 +9,7 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="*Note: This is pre-release software and is still in-development. If you need a production version, please refer to the master branch for production &hellip;">
+  <meta name="description" content="Edit Jan 10, 2013: Since publishing this post, LARSAdController v3.0 has been pushed to the master branch on github! I’ve been working hard on &hellip;">
   <meta name="keywords" content="iAd,iOS,iOS development,AdMob,iAd Integration,easy,LARSAdController,ad mediation,iOS mediation,iOS house ads">
 
   <!-- http://t.co/dKP3o1e -->
@@ -103,16 +103,16 @@
   </header>
 
 
-<div class="entry-content"><p><em>*Note: This is pre-release software and is still in-development. If you need a production version, please refer to the <a href="https://github.com/larsacus/LARSAdController">master branch</a> for production code.*</em></p>
+<div class="entry-content"><p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
 
-<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
+<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
 
 <p>Let’s take a look at what’s changed:</p>
 
 <h2 id="a-new-class-prefix">A New Class Prefix</h2>
 <p>I’ve been using the class prefix <code>LARS</code> for all of my open-source classes. While this really is short and unique, it’s always felt pretty egotistical to have my name plastered all over my classes. This is just how I feel from this side of the keyboard. Does it look the same from the user’s end? Let me know what you think.</p>
 
-<p>Anyway, I’ve migrated new classes to the new <code>TOL</code> prefix, for <a href="https://twitter.com/theonlylars">@TheOnlyLars</a>. This feels more anonymous and I haven’t seen the prefix used by anyone else before, yet. I’d love to know if someone well known <em>is</em> using the <code>TOL</code> class prefix. If I feel like I like this prefix better, I may just start using it for everything.</p>
+<p>Anyway, I’ve migrated new classes to the new <code>TOL</code> prefix, for <a href="https://twitter.com/theonlylars">@<strong>T</strong>he<strong>O</strong>nly<strong>L</strong>ars</a>. This feels more anonymous and I haven’t seen the prefix used by anyone else before, yet. I’d love to know if someone well known <em>is</em> using the <code>TOL</code> class prefix. If I feel like I like this prefix better, I may just start using it for everything.</p>
 
 <p>I also like that it sounds like “toll”. I have grand visions of having some cool project named <code>TOLBooth</code>, <code>TOLRoad</code>, or <code>TOLHouse</code>. I can’t think of practical project ideas to put those names on, however.</p>
 
@@ -161,12 +161,12 @@
 
 <p>To enable logs, simple define the <code>LARSADCONTROLLER_DEBUG</code> macro somewhere.</p>
 
-<h1 id="help">Help?</h1>
+<h2 id="help">Help?</h2>
 <p>I primarily created <code>LARSAdController</code> because I was unsatisfied with the big ad mediation networks. They also felt pretty heavyweight and a lot of overhead to simply run two mediated ad networks on my low-traffic app<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. This is my simple solution to theirs.</p>
 
-<p>This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo’s branch, <a href="https://github.com/larsacus/LARSAdController/tree/AdapterAbstraction">AdapterAbstraction</a>.</p>
+<p>This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo’s <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">tag</a>.</p>
 
-<p>You can find the <a href="https://github.com/larsacus/LARSAdController/tree/AdapterAbstraction">3.0 branch here</a> and file <a href="https://github.com/larsacus/LARSAdController/issues">issues here</a>. Don’t be shy about issues. If it’s not a bug, but simply something you didn’t expect and want clarification, file an issue.</p>
+<p>You can find the <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">3.0 tag here</a> and file <a href="https://github.com/larsacus/LARSAdController/issues">issues here</a>. Don’t be shy about issues. If it’s not a bug, but simply something you didn’t expect and want clarification, file an issue.</p>
 
 <p>If you’re so inclined, let me know what you think: <a href="https://twitter.com/theonlylars">@theonlylars</a></p>
 
@@ -228,6 +228,8 @@
         <a class="basic-alignment left" href="/blog/2012/12/10/dont-forget-the-c-in-objective-c/" title="Previous Post: Don't Forget the "C" in Objective-C: C Declarations">&laquo; Don't Forget the "C" in Objective-C: C Declarations</a>
       
       
+        <a class="basic-alignment right" href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/" title="Next Post: Stupid Easy iOS Ad Mediation with LARSAdController 3.0">Stupid Easy iOS Ad Mediation with LARSAdController 3.0 &raquo;</a>
+      
     </p>
   </footer>
 </article>
@@ -238,10 +240,14 @@
   
     <section class="well">
   <h1>About me</h1>
-  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of stuff.</p>
+  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of bits and cool animations.</p>
 </section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">Stupid Easy iOS Ad Mediation with LARSAdController 3.0</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 RC</a>
@@ -257,10 +263,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/03/go-forth-and-build/">Go Forth And Build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/">Ditching NSLog, Part II: Good Tools Make Work Easy</a>
       </li>
     
   </ul>
@@ -323,7 +325,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Lars Anderson -
+  Copyright &copy; 2013 - Lars Anderson -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

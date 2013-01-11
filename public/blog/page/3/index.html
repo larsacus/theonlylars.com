@@ -9,7 +9,7 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="Huge shout out to all the high schoolers at Lorena High School that put up with my chatter about how cool my job is this morning. You guys were &hellip;">
+  <meta name="description" content="Gettin’ ready for dub dub in less than two weeks! By my count, there are 42 “To be announced” sessions on the schedule released today. You will find &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +83,60 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/05/29/wwdc/">Dub Dub</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-05-29T22:19:00-05:00" pubdate data-updated="true">May 29<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Gettin’ ready for <a href="http://www.apple.com/wwdc">dub dub</a> in less than two weeks! By my count, there are 42 “To be announced” sessions on the schedule released today. You will find me at as many Core Animation, Core Graphics, and GCD sessions as I can attend, as well as all of the cool new API sessions.  To make the most of it all, I’ve been trying to think of some good questions for the framework engineers at the labs.  I’ll probably get some feedback on my <a href="https://github.com/larsacus/LARSAdController">ad controller</a>, as well as a new MBProgressHUD/SVProgressHUD-inspired HUD I’ve been working on at work, in addition to some other various work-related stuff.</p>
+
+<p>Some new API’s stuffs I’m thinking/hoping we may see fill in the ‘to be announced’ blanks during the keynote:</p>
+
+<ol>
+  <li>Easier iCloud integration (don’t tell me you haven’t tried to integrate iCloud without issue)</li>
+  <li>Notification Center widgets (I would even settle for a useful Notification Center)</li>
+  <li>New maps APIs (<a href="http://www.macrumors.com/2012/05/29/composite-mockup-of-ios-6-maps-app-based-on-purported-leaked-screenshots/">Exhibit A</a>)</li>
+  <li>More Core Image filters for iOS</li>
+  <li>Fully-baked Siri (I don’t necessarily think we’ll see app-level Siri integration, just yet)</li>
+  <li>Airplay&lt;-&gt;Mac integration</li>
+  <li>Heck, I’m thinking there will be more generic OS-level mac-integration (think Airdrop)</li>
+  <li>More twitter-like account integrations</li>
+  <li>A new system-wide visual overhaul (not likely, but it’s been since iOS 4 that the look has changed in any way, and even that was minor)</li>
+</ol>
+
+<p>We’ll see how it all plays out.  I’ll be tweeting about it the whole time, NDA permitting, if you care to <a href="https://twitter.com/theonlylars">follow along</a>.</p>
+
+<p>If you’re fortunate enough to be joining us all, then I’ll see you there!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/05/17/career-day-at-lorena-high/">Career Day @ Lorena High</a></h1>
     
     
@@ -144,7 +198,9 @@
   </header>
 
 
-  <div class="entry-content"><p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
+  <div class="entry-content"><p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController has been updated to v3.0</a>. A lot of the material below may be outdated. If you need to use v2.x as is demonstrated below, you can still access it using <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">one of the tagged v2.x versions on github</a>.</em></p>
+
+<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
 
 <p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
 
@@ -268,10 +324,14 @@
   
     <section class="well">
   <h1>About me</h1>
-  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of stuff.</p>
+  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of bits and cool animations.</p>
 </section><section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">Stupid Easy iOS Ad Mediation with LARSAdController 3.0</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 RC</a>
@@ -287,10 +347,6 @@
     
       <li class="post">
         <a href="/blog/2012/09/03/go-forth-and-build/">Go Forth And Build</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/">Ditching NSLog, Part II: Good Tools Make Work Easy</a>
       </li>
     
   </ul>
@@ -352,7 +408,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2012 - Lars Anderson -
+  Copyright &copy; 2013 - Lars Anderson -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
