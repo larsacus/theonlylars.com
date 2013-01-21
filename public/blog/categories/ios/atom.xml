@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | hello. i'm @theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2013-01-10T22:36:00-06:00</updated>
+  <updated>2013-01-20T20:35:50-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -12,6 +12,261 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Cocoapods: Creating a Pod Spec]]></title>
+    <link href="http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec/"/>
+    <updated>2013-01-20T14:58:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec</id>
+    <content type="html"><![CDATA[<p><em>Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
+
+<p><img class="left" src="/images/posts/cocoapods/cocoapods_logo.png" width="200" height="200">If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
+
+<p>Since I’ve had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.</p>
+
+<p>I’m assuming that you already have cocoapods installed, and that you are looking to build and test a new <code>.podspec</code> file for a component.</p>
+
+<h2 id="what-is-a-spec">What is a Spec?</h2>
+<p>The basis behind how cocoapods is able to function is on a project’s “podspec”. Podspecs are created by maintainers of a project (or sometimes just other developers who want to use a component as a pod) and submitted to a public repository of specs in an organized git repository on github.</p>
+
+<p>Specs identify everything about a library or component that needs to be performed before you can properly use it in your project. This includes everything from supported platform, ARC-readiness and required frameworks to other C flags that might need to be switched on.</p>
+
+<h2 id="basic-requirements">Basic Requirements</h2>
+<p>At a minimum, your spec needs to have the following attributes defined in order to be valid. If you think about it, if any one of these were missing, the spec itself wouldn’t really make sense:</p>
+
+<ul>
+  <li>Component name</li>
+  <li>Semantic version number</li>
+  <li>Platform</li>
+  <li>Summary</li>
+  <li>Author info dictionary</li>
+  <li>Component homepage</li>
+  <li>License</li>
+  <li>Source location</li>
+  <li>Source files list</li>
+  <li>Any component dependencies*</li>
+  <li>Required apple frameworks*</li>
+</ul>
+
+<h3 id="semantic-versioning">Semantic Versioning</h3>
+<p>Cocoapods <a href="https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo"><em>highly</em> suggests</a> using (as in - don’t <em>not</em> do it) <a href="http://semver.org">semantic versioning</a> to version your cocoapods. Without semantic versioning, it becomes much more difficult if not impossible to resolve some cross-dependencies between similar pod dependencies in your project, if any exist. All that was very complicated to say - use semantic versioning (v1.1.0). Tag your code in your repository with a tag corresponding to the version number of your component (for v3.0.0 of your component, tag your code <code>3.0.0</code>).</p>
+
+<h3 id="dependencies">Dependencies</h3>
+<p>The dependency line is technically optional if your component does not rely on any external pod.</p>
+
+<h3 id="frameworks">Frameworks</h3>
+<p>The frameworks line is also technically optional if your pod only uses the standard apple frameworks.</p>
+
+<h2 id="construction">Construction</h2>
+<p>A Podspec is <a href="https://github.com/CocoaPods/CocoaPods/wiki/A-pod-specification">constructed by building a new <code>Spec</code> object</a> using a ruby “block”. My ruby-fu is still pretty green, so I won’t try and explain the ruby-ness of a podspec. To create a podspec using a block, we’re going to declare the following in a new file named <code>&lt;component_name&gt;.podspec</code>. Please don’t literally put the angle brackets in your file name:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>AwesomeComponent.podspec </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># pod customization goes in here</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This creates a new <code>Spec</code> object that is included in the <code>Pod</code> library and inserts it into the local variable <code>s</code> for us to customize before it is returned. I’ve gone ahead and filled in some basic information for a spec I wrote for LARSAdController to demonstrate:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>LARSAdController.podspec </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">name</span>         <span class="o">=</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">version</span>      <span class="o">=</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">summary</span>      <span class="o">=</span> <span class="err">‘</span><span class="no">Lightweight</span> <span class="n">ad</span> <span class="n">mediation</span> <span class="k">for</span> <span class="n">iOS</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="err">‘</span><span class="no">Lars</span> <span class="no">Anderson</span><span class="err">’</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="n">youremail</span><span class="vi">@here</span><span class="o">.</span><span class="n">com</span><span class="err">’</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">:git</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">larsacus</span><span class="o">/</span><span class="no">LARSAdController</span><span class="o">.</span><span class="n">git</span><span class="err">’</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:tag</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source_files</span> <span class="o">=</span> <span class="err">‘</span><span class="no">Source</span><span class="o">/*.</span><span class="p">{</span><span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">}</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">dependency</span>     <span class="err">‘</span><span class="no">AdMob</span><span class="err">’</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>This will include all source files with file extensions <code>.h</code> &amp; <code>.m</code> in the <code>Source/</code> folder in the github repository <code>https://github.com/larsacus/LARSAdController.git</code> in the source tag <code>3.0.0</code> while also including the pod for the dependency of <code>AdMob</code>.</p>
+
+<h3 id="hashes">Hashes</h3>
+<p>If you’re unfamiliar with ruby, you’ll notice some interesting <code>{}</code> structures being assigned to variables like <code>source</code> and <code>author</code>. These structures are called “hashes” and they are exactly like your standard dictionary in objective-c:</p>
+
+<p><code>key =&gt; value</code></p>
+
+<p>For the <code>source</code> hash, the colon (<code>:</code>) before the key name is important. This <a href="http://rubylearning.com/satishtalim/ruby_hashes.html">defines things like :git and :tag as ruby “symbols”</a> that are defined within cocoapods.</p>
+
+<h3 id="tags-and-unversioned-repositories">Tags and Unversioned Repositories</h3>
+<p>There are other methods of specifying the location of source code instead of tags, but you should really be using tags to mark your code commit for your spec. If you are not the owner of the repository you are creating a spec for, <a href="https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo">file an issue with the repository</a> to request that a tag be made. If this doesn’t work, then you should specify the version of your podspec to begin at <code>0.0.1</code> to indicate that this pod’s spec is unmanaged. Should the owner finally get a tag, then you can update the podspec with the correct version with little fear of conflicting with your previously unmanaged podspec’s version.</p>
+
+<h3 id="version-simplification">Version Simplification</h3>
+<p>Since this is just a ruby file, you can use all of the ruby tricks on any string in this file. To simplify our podspec for revving our version later, you can tell our <code>source</code> hash to use the podspec’s version as the repository’s tag to use using the <code>to_s</code> helper:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">:git</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="n">https</span><span class="ss">:/</span><span class="o">/</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">larsacus</span><span class="o">/</span><span class="no">LARSAdController</span><span class="o">.</span><span class="n">git</span><span class="err">’</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:tag</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">s</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="err">…</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2 id="completing-your-spec">Completing Your Spec</h2>
+<p>This is where writing a podspec gets a little complicated. The general example specs from the wiki are just fine, but when you start customizing your spec to the specific needs of your component or library, you can easily find yourself running to google with few available resources.</p>
+
+<h3 id="help">Help</h3>
+<p>For the majority of the issues you will run into when creating your podspec, the <a href="https://github.com/CocoaPods/CocoaPods/wiki/">cocoapods wiki</a> will have a page that will answer your question. Almost every issue I was having, I eventually found the answer to in the wiki. It could be a little better organized, because I really can’t complain too much since I haven’t submitted a pull request to fix it myself.</p>
+
+<p>If you simply cannot find an answer anywhere, submit an issue on the <a href="https://github.com/CocoaPods/Specs/issues">Cocoapods/Specs</a> repository (not the Cocoapods/Cocoapods repo) and someone is usually knowledgable enough to figure out what you’re doing wrong or help you file a bug to fix the issue.</p>
+
+<h3 id="learn-by-example">Learn By Example</h3>
+<p>If you have a component or library that is built a specific way and you’re having an issue, try and find a similar component that is built like yours and try that Pod’s spec configuration. For instance, if your component is a static library, find a spec (like <a href="https://github.com/CocoaPods/Specs/blob/master/TestFlightSDK/1.2/TestFlightSDK.podspec">Testflight</a>) that is built utilizing a static library.</p>
+
+<h2 id="testing">Testing</h2>
+<p>I found that this step was by far the most difficult to perform. I was not about to simply deploy a podspec that I had not tested, so this left me not even wanting to build a podspec for my component. I’m going to spare you the workflow iterations I tried before arriving at what I believe to be the “correct” way to test your podspec.</p>
+
+<p><em>I also understand that I am fully able to submit pull requests to modify the cocoapods wiki to make it more clear. This is something that I simply have not done, yet. This is way easier for now.</em></p>
+
+<h2 id="spec-lint">Spec Lint</h2>
+<p>The first step to testing your spec is to use cocoapods’ built-in “lint” tool to test for syntax compliance and minimum requirements. In your terminal prompt, run the lint tool on your podspec using:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pod spec lint “&lt;spec <span class="nv">location</span><span class="o">=</span><span class="s2">&quot;&quot;</span>&gt;/SpecName.podspec<span class="err">&quot;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></spec></p>
+
+<p>If anything is syntactically wrong with your spec, it will show up here after running lint. Refer to the <a href="https://github.com/CocoaPods/CocoaPods/wiki">cocoapods wiki</a> if any errors or warnings come up.</p>
+
+<h2 id="in-project-functional-testing">In-Project (Functional) Testing</h2>
+<p>It’s <em>very</em> important to actually test your pod in a <em>fresh</em> project without any other configuration. Don’t be the guy that creates a spec, submits it, then you get a bunch of complaints because your spec doesn’t actually install properly when it’s installed. It’s also annoying to find a spec you can use, put it as a dependency on your project, only to find out it’s not configured properly. It looks bad on the cocoapods community when this happens.</p>
+
+<p>Please functionally test your specs before submitting them:</p>
+
+<ol>
+  <li>Create a new empty xcode project</li>
+  <li>Create your <code>Podfile</code></li>
+  <li>Add your pod as a project dependency</li>
+  <li>Specify local file path for new podspec</li>
+</ol>
+
+<p>This is where I had a huge issue testing my podspec. The trick I learned is to <a href="https://github.com/CocoaPods/CocoaPods/wiki/Dependency-declaration-options">specify a local file path</a> for your Podfile to look for your new podspec:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span><span class="p">,</span> <span class="ss">:local</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="o">~</span><span class="sr">/Specs/</span><span class="no">LARSAdController</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Now you can install and test your pod:</p>
+
+<ol>
+  <li>Install pod
+    <ul>
+      <li><code>pod install</code> (initial install)</li>
+      <li><code>pod update</code> (subsequent installs)</li>
+    </ul>
+  </li>
+  <li>Test to ensure your component works</li>
+  <li>Rinse, repeat until component installs correctly</li>
+</ol>
+
+<h2 id="subspecs">Subspecs</h2>
+<p>A cool feature of cocoapods is it’s ability for you to specify sub-components of your component to include. This will enable other developers to be able to a-la-carte choose which sub-components of your library to include in their project. This reduces the bloat, especially when only some parts of your project have dependencies on other large components.</p>
+
+<p>Subspecs are totally optional in your podspec.</p>
+
+<h3 id="defining-a-subspec">Defining a Subspec</h3>
+<p>To define a <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">subspec</a> in your spec file, define a <code>subspec</code> variable (?) on your spec variable - much like we did in creating the spec itself:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="err">‘</span><span class="n">iAds</span><span class="err">’</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">source_files</span> <span class="o">=</span> <span class="err">‘</span><span class="no">Source</span><span class="o">/</span><span class="n">iAds</span><span class="o">/*.</span><span class="p">{</span><span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">}</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">dependency</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="o">/</span><span class="no">Core</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">frameworks</span> <span class="o">=</span> <span class="err">‘</span><span class="no">QuartzCore</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">weak_frameworks</span> <span class="o">=</span> <span class="err">‘</span><span class="no">AdSupport</span><span class="err">’</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="err">…</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Give your subspec a descriptive name, specify the source files to use, etc. In the above example, I have named this subspec ‘iAds’ since this will be including iAd functionality in with my pod. You’ll continue to customize the subspec in the same way that you customized your parent spec object. Note that the subspec will inherit all of the base properties of the parent spec, so there is no need to repeat them in your subspec.</p>
+
+<p>There are some properties that are not allowed to be defined on a subspec and can only be defined on the parent spec. These “Top level attributes” are outlined on the <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">podspec page</a> on the Cocoapods wiki.</p>
+
+<p>Continue to create additional subspecs for however many sub-specifications that you need to create using the template:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="err">‘</span><span class="no">SubspecName</span><span class="err">’</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># Customize</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h3 id="final-product">Final Product</h3>
+<p>In the end, you should have a podspec that looks a lot like mine does <a href="https://github.com/CocoaPods/Specs/blob/master/LARSAdController/3.0.0/LARSAdController.podspec">for LARSAdController</a>.</p>
+
+<h3 id="depending-on-a-subspec">Depending on a Subspec</h3>
+<p>To use the subspec in a Podfile, define the dependency like normal, but suffix it with a <code>/</code> and the subspec name:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="o">/</span><span class="n">iAds</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<h2 id="releasing">Releasing</h2>
+<p>Congratulations! You’ve now completed the hardest parts of constructing your podspec. This next part is easy as long as your podspec lints correctly and installs - which you’ve already tested, right? In order to contribute to the <a href="https://github.com/CocoaPods/Specs">Cocoapods/Specs</a> repository, you will need to clone the repo, add your spec and submit a pull request to have your spec added.</p>
+
+<h3 id="forkingcloning">Forking/Cloning</h3>
+<p>To add your spec to the list of podspecs, you will need to fork the <a href="https://github.com/CocoaPods/Specs">Cocoapods/Specs</a> repo using your own github account. If you have cloned a fork of the repository and haven’t committed to it even in the last 12 hours, you will want to update your repository by doing a <code>git pull</code> on your repo specifying the original remote location to pull the latest podspecs from. This repository gets updated quite frequently, so make sure you are up to date.</p>
+
+<p>You will then need to clone the repository on your local machine and add your spec using the established file structure:</p>
+
+<p><code>ProjectName/Version/ProjectName.podspec</code></p>
+
+<p>So for the last release of LARSAdController, I put my latest podspec in <code>LARSAdController/3.0.0/LARSAdController.podspec</code> - one podspec per version folder.</p>
+
+<p>Once this is added, you’ll want to add the files to git, commit, and push them back up to your own fork of the Specs repo.</p>
+
+<h3 id="pull-request">Pull Request</h3>
+<p>Once the podspec is committed and pushed to your fork on github, you can submit a new pull request to merge the changes you made in your fork to the master repository that cocoapods is pulling their spec library from.</p>
+
+<p>The friendly, hard-working folks who actively work to get your components merged in will then make sure that everything is linted and working correctly (syntactically, but not functionally) before allowing your changes to be merged into the master specs branch.</p>
+
+<p>If this succeeds, then your podspec will now be available for everyone to use in their own projects! Pat yourself on the back - it wasn’t all that bad, was it?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Stupid Easy iOS Ad Mediation with LARSAdController 3.0]]></title>
@@ -505,161 +760,6 @@
 <p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
 
 <p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ditching NSLog, Part II: Good Tools Make Work Easy]]></title>
-    <link href="http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/"/>
-    <updated>2012-07-29T22:09:00-05:00</updated>
-    <id>http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2</id>
-    <content type="html"><![CDATA[<h2 id="in-review">In Review</h2>
-<p>In <a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
-
-<p>In this post, we’ll go over some of the options you have available in your developer tool-belt to make your tasks easier to tackle. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you’ll be more likely to produce a solid product.</p>
-
-<p><em>Pre-Disclaimer: My original intent for the second part of this post was to actually <strong>use</strong> every library before writing about them.  I found so many different libraries, that this never actually ended up happening.  I present here a synopsis of each logging library on the basis that I have used some of them, but I have not used them all.  Blame my day job and Battlefield 3. Yes, I am weak.</em></p>
-
-<h2 id="logging-libraries">Logging Libraries</h2>
-<p>###Simple Macro Replacement
-While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Conditionally Replacing NSLog  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#ifdef DEBUG</span>
-</span><span class='line'>  <span class="cp">#define DLog(fmt, …) NSLog((@”%s [Line %d] “ fmt), &lt;strong&gt;PRETTY_FUNCTION&lt;/strong&gt;, &lt;strong&gt;LINE&lt;/strong&gt;, ##&lt;strong&gt;VA_ARGS&lt;/strong&gt;);</span>
-</span><span class='line'><span class="cp">#else</span>
-</span><span class='line'>  <span class="cp">#define DLog(…)</span>
-</span><span class='line'><span class="cp">#endif</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>For those of you who don’t regularly use preprocessor macros, here’s what’s happening in this block of code in pseudocode:
-<code>
-if the macro `DEBUG` has been previously defined
-  define a new function named `DLog` that takes parameters in `NSLog` form and write write them into NSLog
-else
-  define `DLog` to do nothing (non-op)
-</code></p>
-
-<p>There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it’s use is acceptable.</p>
-
-<p>The complex, angry-sounding capital-lettered arguments at the end of the <code>NSLog</code> definition are essentially helpers to output the function name and line number respectively that the command was called from.  This looks like the following when output in the console using the command <code>DLog(@"Logging like a boss");</code>:</p>
-
-<p><code>-[MyAppDelegate application:didFinishLaunchingWithOptions:] [Line 40] Logging like a boss</code></p>
-
-<p>Pretty helpful, I’d say.</p>
-
-<p><strong>Helpfulness</strong>: 3/10<br />
-<strong>Performance</strong>: 1/10 - It’s basically <code>NSLog</code><br />
-<strong>Ease of Use</strong>: 9/10</p>
-
-<h3 id="nslogger">NSLogger</h3>
-<p><a href="https://github.com/fpillet/NSLogger">NSLogger</a> is the Rolls Royce of logging frameworks. Just as not everyone would choose a Rolls over, say, a Maserati, NSLogger may also be overkill or simply inappropriate for a lot of developers. That being said - NSLogger does <em>everything</em>.  Tired of having to be physically connected to your machine to get console logs?  Tired of even having to be on the same <em>network</em> as your device for logging?  NSLogger can help.  NSLogger comes with a standalone Mac app that can accept connections via bonjour, https, https, ssl, telegraph, etc.  It does it all.  You can even log binary data blobs.</p>
-
-<h4 id="so-what-about-performance">So what about performance?</h4>
-<p>NSLogger appears to try it’s darndest to use a few CPU cycles as possible, even to the point of not sending logging info over the wire and caching logging info to memory and possibly even to disk until the desktop client is found.</p>
-
-<p>The developer suggests creating a preprocessor macro to call the <code>NSLogger</code> methods in order to have them sequestered in release mode, so this doesn’t really help for production debugging. For beta and other development activities, especially among distributed groups of test or QA persons, this one takes the cake.</p>
-
-<p><strong>Helpfulness</strong>: 6/10 - Really depends on what you need help with<br />
-<strong>Performance</strong>: 5/10<br />
-<strong>Ease of Use</strong>: 6/10</p>
-
-<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
-<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
-<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
-<p>###ECLogging
-<a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
-
-<h4 id="channels">Channels</h4>
-<p>“Channels” allow you to create “debug”, “info”, or “networking” channels (as an example) and are very similar to Cocoa Lumberjack’s methodology on logging.  Two types of channels exist - <code>debug</code> and <code>log</code> channels. The difference between the two being that debug channel statements are completely compiled out at compile-time in release mode (much like our dear friend <code>DLog</code> above), and log channel statements are not and will appear in the console even in release mode. Create your own channel with a single-line of code, and start using it on the next line using either <code>ECLog(channel, @"log");</code> or <code>ECDebug(debugChannel, @"debug log")</code>.</p>
-
-<h4 id="handling">Handling</h4>
-<p>You also have the ability to change how the log “handles” objects. The default implementation will simply call <code>-description</code> on your object and output the response, just as <code>NSLog</code> does. Some examples on <a href="https://github.com/elegantchaos/ECLogging/wiki">ECLogging’s Github Wiki</a> show passing a <code>UIImage</code> into the log and handling that in a custom way.</p>
-
-<h4 id="boilerplate-settings-ui">Boilerplate Settings UI</h4>
-<p>The single-coolest part of ECLogging is the drop-in view controller it gives you, which enables the ability to change the logging settings on the fly without having to manually write in any conditional logging code paths of your own.  Want to log to a file? Check it! Don’t want to log to ASL anymore? Uncheck it! <em>In</em> the UI, no less! You can even choose which channels to switch on and off on-the-fly. Very neat.</p>
-
-<p><strong>Helpfulness</strong>: 8/10<br />
-<strong>Performance</strong>: x/10 - No mention of performance, and I haven’t tested anything yet<br />
-<strong>Ease of Use</strong>: 8/10</p>
-
-<h3 id="cocoa-lumberjack">Cocoa Lumberjack</h3>
-<p>The first time I found <a href="https://github.com/robbiehanson/CocoaLumberjack/">Cocoa Lumberjack</a>, I almost didn’t know what to do with myself.  I had never been presented with so many options for logging in all my time with iOS or even prior, nor had I seen such logging practices actually put to use in any projects I have worked on. One thing was for sure: my console logs have always ended up <em>really</em> messy by the end of a project. I could basically write an entire blog post solely on Cocoa Lumberjack, but the developer seems to have done a pretty good job of that on his own with the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki">Cocoa Lumberjack wiki</a> and the readme. The developer touts that Cocoa Lumberjack is simple, fast, powerful, and flexible.  Let’s see how true this is:</p>
-
-<h4 id="fast">Fast</h4>
-<p>The developer claims that Cocoa Lumberjack is (in most cases) an order of magnitude faster than NSLog.  He achieves this reusing a single ASL connection and posting messages to this connection asynchronously. Asynchronous logging is optional, as (for example) you obviously want an error to log immediately as the system may be in an unstable state. It’s a little different using asynchronous logging for the first time, as you typically expect to step through your code and immediately see your log statements show up in the console.  You’ll have to use the synchronous logs in order for this to work. The developer has spent a great deal of time architecting Cocoa Lumberjack from the ground-up with performance in mind. Check out the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/Performance">Cocoa Lumberjack performance</a> page for all the nitty-gritty behind all the benchmarks.</p>
-
-<h4 id="simple">Simple</h4>
-<p>The Cocoa Lumberjack framework is dead-simple to use:</p>
-
-<ol>
-  <li>Setup a logging destination</li>
-  <li>Log using a log-level logger</li>
-  <li>Profit?</li>
-</ol>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Setting up and using Cocoa Lumberjack  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">[</span><span class="n">DDLog</span> <span class="n">addLogger</span><span class="o">:</span><span class="p">[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">DDLogError</span><span class="p">(</span><span class="err">“</span><span class="n">Image</span> <span class="n">is</span> <span class="n">nil</span><span class="o">!</span><span class="err">”</span><span class="p">);</span>
-</span><span class='line'><span class="n">DDLogVerbose</span><span class="p">(</span><span class="err">“</span><span class="n">newViewController</span> <span class="n">viewDidLoad</span><span class="err">”</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>You have access to four default levels of logging: <code>DDLogError</code>, <code>DDLogWarn</code>, <code>DDLogInfo</code>, <code>DDLogVerbose</code>. In addition to these, you can both <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/CustomLogLevels">customize the names</a> of the default levels as well <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/FineGrainedLogging">as define your additional custom levels</a>.</p>
-
-<p>And since the <code>DDLog</code> syntax is the same as <code>NSLog</code>, converting/using <code>DDLog</code> shouldn’t even fire off any new neurons.</p>
-
-<h4 id="powerful">Powerful</h4>
-<p>Much of Cocoa Lumberjack’s power comes from it’s simplicity. With the ability to create highly-tuned logging paths and mechanisms, Cocoa Lumberjack gives you, the developer, the ability to hone-in on issues that you’re working with and trying to identify. With single log statements, you can deliver log messages to multiple destinations (file, ASL, network, etc.), as well as add custom destinations of your own. You choose the info and method of delivery for how you need to get things debugged.</p>
-
-<h4 id="flexible">Flexible</h4>
-<p>The power doesn’t end after you switch your build mode to release mode, either. Dynamically giving you the ability to change the log level at runtime can allow you to leave all of your logging architecture compiled-in but inactive until an issue arises in the field. Have your users log to a file when they’re having a specific issue, then send the log file to your server for analysis. Your mother’s <code>NSLog</code> can’t do that.</p>
-
-<p><strong>Helpfulness</strong>: 10/10 - Extremely flexible<br />
-<strong>Performance</strong>: 9/10<br />
-<strong>Ease of Use</strong>: 8/10</p>
-
-<h2 id="logging-enhancements-for-debugging">Logging <em>Enhancements</em> for Debugging</h2>
-<p>I don’t consider logging “enhancements” to be logging mechanisms in and of themselves, but more of an augment or helpful loggers for debugging that may or may not originate from you.</p>
-
-<h3 id="afhttprequestoperationlogger">AFHTTPRequestOperationLogger</h3>
-<p><a href="https://github.com/AFNetworking/AFHTTPRequestOperationLogger">AFHTTPRequestOperationLogger</a> is a logging enhancer for the ubiquitous <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> library. It won’t really help you unless you are using AFNetworking, but it can tremendously help out debugging networking issues you may be having with complex APIs.  It can be a bit verbose at times, even to the point of being straight up noisy, but the advantage of open source is that you can go change it if you don’t like it.</p>
-
-<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
-<p>###XLog
-<a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I’ve actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
-
-<h3 id="xcodecolors">XcodeColors</h3>
-<p><a href="https://github.com/robbiehanson/XcodeColors">XcodeColors</a> is a similar-looking Xcode plugin to XLog that colors your console output. The original was created by <a href="https://github.com/DeepIT">DeepIT on Github</a>, but now appears to be mostly maintained by <a href="https://github.com/robbiehanson">Robbie Hanson</a>, who created Cocoa Lumberjack (above). If you use Cocoa Lumberjack, I would use this.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-<p>Logging is an important yet often overlooked practice that can make development and debugging much easier. Finding the right tool for a job can be a task in itself, but once the correct tool (either for you, or for the job) is found, your task becomes much easier or in some cases - possible.</p>
-
-<p>Extensible logging enables you to customize your logging workflow to best suit your app, team, or QA environment. Performant logging means that you don’t have to worry as much about production logging throwing a wrench in your highly-tuned scroll-view code. Just as performance and extensibility are important, if logging isn’t simple - developer’s just aren’t going to want to utilize it. Logging must be as simple as <code>NSLog</code> or developers won’t adopt it in their daily workflow.</p>
-
-<p>It is my opinion that highly extensible, non-<code>NSLog</code> logging should be just as much an architectural consideration as coding standards, unit test coverage, and class prefix names on a project. Most developers may not know advanced logging techniques even exist, much less employ one in a large project in order to get more debugging done in less time. Don’t spend more time debugging your code - equip yourself with the proper tools to spend more time making your app the best experience possible for your users, while also making your future-self love you (which we all know doesn’t happen that often).</p>
-
-<hr />
-
-<p><em>Disclaimer:</em>
-<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em></p>
 ]]></content>
   </entry>
   
