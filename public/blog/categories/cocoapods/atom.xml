@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: cocoapods | hello. i'm @theonlylars]]></title>
+  <title><![CDATA[Category: cocoapods | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2013-01-20T20:35:50-06:00</updated>
+  <updated>2013-01-27T17:21:54-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -22,7 +22,7 @@
 
 <p><img class="left" src="/images/posts/cocoapods/cocoapods_logo.png" width="200" height="200">If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
 
-<p>Since I’ve had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.</p>
+<p>Since I’ve had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.<!-- more --></p>
 
 <p>I’m assuming that you already have cocoapods installed, and that you are looking to build and test a new <code>.podspec</code> file for a component.</p>
 

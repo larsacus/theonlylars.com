@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>hello. i'm @theonlylars</title>
+  <title>theonlylars</title>
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="In the US today, it is what our government has deemed “Labor Day”. This holiday is marked (at least from what I see here in Texas) by beer, boats, &hellip;">
+  <meta name="description" content="When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -22,10 +22,11 @@
   <link rel="canonical" href="http://theonlylars.com/blog/page/2/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/achievements/achievements.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="hello. i'm @theonlylars" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="theonlylars" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -48,7 +49,7 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">hello. i'm @theonlylars</a></h1>
+  <h1><a href="/">theonlylars</a></h1>
   
     <h2>have you ever met another?</h2>
   
@@ -70,6 +71,7 @@
 <ul class="main-navigation">
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="/blog/achievements">Personal Achievements</a></li>
 </ul>
 
 </nav>
@@ -77,6 +79,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 &#8220;Smart&#8221; App Banners</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-29T21:34:00-05:00" pubdate data-updated="true">Sep 29<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app that users could directly download on the app store from your webpage.  After the keynote, I forgot to investigate the documentation about it all through the iOS 6 Beta and never really heard much about it until the GM release of iOS 6.  So I went to check out how to do this thinking it was going to be super-involved, at least html-wise.</p>
+
+<p>Are you ready?</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That’s it.  Add this meta tag to the <code>&lt;head&gt;</code> section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.</p>
+
+<p>If you’re on an iOS 6 device, then you will see this at the top of this webpage:</p>
+
+<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png" /></p>
+
+<p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner’s action will launch the app.</p>
+
+<p>You can even go one or two steps further and pass in affiliate link information when your app gets downloaded or have information passed to your app on first launch in the app’s url handling delegate method.  More detail can be found in the documentation on <a href="http://developer.apple.com/library/ios/#Documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html">Apple’s website</a>.</p>
+
+<p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
+
+<p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -258,59 +316,6 @@ While not really a “library” per se, this <em>method</em> is the most basic 
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/04/minty-boost-dubdub-edition/">Minty Boost! DubDub Edition</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-04T23:46:00-05:00" pubdate data-updated="true">Jun 4<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Of all of the lists I have read about what to bring with you to WWDC, or suggestions on what veterans say you should do, the most consistent and unanimously present suggestion from all sources is that you will need to extend the battery life of your mobile device.  In the case of WWDC, there is a 99.99 (repeating, of course)% chance that it will be an iPhone. Being a procrastinator, I did not order one online like I should have from monoprice or similar.  Being a cheap, stingy software engineer, I refused to pay between $60-$100 for similar Li-Ion battery packs that carry anywhere from 3000-6500mAh of power. Being an electrical engineer by schooling, you tend to have <a href="http://www.ladyada.net/make/mintyboost/">stuff like this lying around the house</a>. Specifically, I had the minty boost powering an Arduino/Xbee assembly that is feeding temperature data from my HVAC exaust to Cosm.  You can read all about <em>that</em> <a href="/homedata">here</a>. It ultimately didn’t work for this application due to it’s limited supply time (only lasted about 6 hours at a time).</p>
-
-<p><img class="center" src="/images/posts/mintyboost/minty-boost-1.jpg" /> This will enable me to use two rechargeable AA batteries at a time to at least get my iDevice back on it’s feet. I don’t intend for this to get me to a full charge, but it should suffice to get me to the next wall outlet.</p>
-
-<p>Also, since Altoids does not make the Altoids gum that the Minty Boost was originally designed for, I had to improvise using some engineering magic:</p>
-
-<p><img class="center" src="/images/posts/mintyboost/minty-boost-2.jpg" />
-This Eclipse mints container works perfectly for the Minty Boost, even if I did have to reverse the lid to get it to fit.</p>
-
-<p>According to the battery rating, as well as the specs on the <a href="http://www.ifixit.com/Teardown/iPhone-4-Teardown/3130/1#s15307">iPhone’s battery</a> and <a href="http://www.ladyada.net/make/mintyboost/power.html">Adafruit’s own website</a>, I should be able to get about half a charge on two high-capacity NiMH AA batteries (the green Energizers shown above):</p>
-
-<p>Input: <code>2 * 1.2V * 2450mAh * 80% = 4704 mWh</code></p>
-
-<p>Output: <code>4704mWh/5V * 80% = 753 mAh</code></p>
-
-<p>Charges: <code>1420 mAh iPhone 4 Capacity / 753 mAh = ~1/2</code> charge of iPhone 4 on two fresh AA rechargeable batteries</p>
-
-<p>Good enough, I say.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -331,6 +336,10 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/01/27/2013-personal-achievements/">Personal Achievements</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/20/cocoapods-creating-a-pod-spec/">Cocoapods: Creating a Pod Spec</a>
       </li>
     
@@ -344,10 +353,6 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
     
       <li class="post">
         <a href="/blog/2012/12/10/dont-forget-the-c-in-objective-c/">Don&#8217;t Forget the &#8220;C&#8221; in Objective-C: C Declarations</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 &#8220;Smart&#8221; App Banners</a>
       </li>
     
   </ul>
@@ -390,7 +395,7 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
 
         github.showRepos({
             user: 'larsacus',
-            count: 3,
+            count: 4,
             skip_forks: true,
             target: '#gh_repos'
         });

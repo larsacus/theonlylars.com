@@ -12,7 +12,7 @@ _Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as 
 
 {% img left /images/posts/cocoapods/cocoapods_logo.png 200 200 %}If you're reading this there is a good chance you have at least heard of [Cocoapods](http://cocoapods.org). For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community's "[rubygem bundler](http://gembundler.com)". Each "pod" has a "spec" that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I'll be referring to these from here on out as either a "podspec" or more simply - a "spec".
 
-Since I've had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.
+Since I've had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.<!-- more -->
 
 I'm assuming that you already have cocoapods installed, and that you are looking to build and test a new `.podspec` file for a component.
 
