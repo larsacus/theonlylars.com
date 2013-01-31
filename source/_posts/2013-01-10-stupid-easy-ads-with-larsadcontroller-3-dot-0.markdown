@@ -35,7 +35,7 @@ So let's get started integrating your ad with some ad networks. If you would lik
 This is going to be so stupid simple it's going to blow your mind[^1].<!-- more -->
 
 ###Integrate the Source
-This is by far the most difficult part of the entire process if you don't use cocoapods. I highly suggest using cocoapods, so I'm going to go over that first. All of these instructions are mirrored on the `README` file on [LARSAdController's github page](https://github.com/larsacus/LARSAdController).
+This is by far the most difficult part of the entire process if you don't use cocoapods. I highly suggest using cocoapods, so I'm going to go over that first. All of these instructions are mirrored on the `README` file on [LARSAdController's github page](http://larsacus.github.com/LARSAdController).
 
 If you don't have cocoapods setup, visit [cocoapods.org](http://cocoapods.org) for installation instructions. I promise, it's really easy, too. Then come back here.
 
@@ -161,7 +161,7 @@ Make sure you test that everything is working correctly in your particular app b
 ##Done
 Easy. Total lines of code I've counted for a standard integration of two ad networks in a single view controller is two if you use the view controller subclass. Two lines of code to have ads properly served in your app. If you use cocoapods, you can go from nothing to proper ads in less than a minute.
 
-[LARSAdController](https://github.com/larsacus/LARSAdController) v3.0 is released under the very liberal MIT license on github. If you're using LARSAdController in your app, I'd love to know. You can send me an email if you can find it, [fork the repo](http://github.com/larsacus/LARSAdController) and change the readme on GitHub, or even better, just send me a quick note at [@theonlylars](http://twitter.com/theonlylars) and I'll add it to the bottom of the README file.
+[LARSAdController](http://larsacus.github.com/LARSAdController) v3.0 is released under the very liberal MIT license on github. If you're using LARSAdController in your app, I'd love to know. You can send me an email if you can find it, [fork the repo](http://github.com/larsacus/LARSAdController) and change the readme on GitHub, or even better, just send me a quick note at [@theonlylars](http://twitter.com/theonlylars) and I'll add it to the bottom of the README file.
 
 If you find an bug or have a suggestion, feel free to [submit a new issue on github](https://github.com/larsacus/LARSAdController/issues) *with reproduction information and preferably source code* as well as a description of what you're trying to accomplish if it even *feels* like it's out of the normal use case.
 

@@ -199,7 +199,7 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
   </header>
 
 
-  <div class="entry-content"><p>Gettin’ ready for <a href="http://www.apple.com/wwdc">dub dub</a> in less than two weeks! By my count, there are 42 “To be announced” sessions on the schedule released today. You will find me at as many Core Animation, Core Graphics, and GCD sessions as I can attend, as well as all of the cool new API sessions.  To make the most of it all, I’ve been trying to think of some good questions for the framework engineers at the labs.  I’ll probably get some feedback on my <a href="https://github.com/larsacus/LARSAdController">ad controller</a>, as well as a new MBProgressHUD/SVProgressHUD-inspired HUD I’ve been working on at work, in addition to some other various work-related stuff.</p>
+  <div class="entry-content"><p>Gettin’ ready for <a href="http://www.apple.com/wwdc">dub dub</a> in less than two weeks! By my count, there are 42 “To be announced” sessions on the schedule released today. You will find me at as many Core Animation, Core Graphics, and GCD sessions as I can attend, as well as all of the cool new API sessions.  To make the most of it all, I’ve been trying to think of some good questions for the framework engineers at the labs.  I’ll probably get some feedback on my <a href="http://larsacus.github.com/LARSAdController">ad controller</a>, as well as a new MBProgressHUD/SVProgressHUD-inspired HUD I’ve been working on at work, in addition to some other various work-related stuff.</p>
 
 <p>Some new API’s stuffs I’m thinking/hoping we may see fill in the ‘to be announced’ blanks during the keynote:</p>
 
@@ -297,13 +297,13 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
 
 <p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
 
-<h2 id="introducing-larsadcontrollerhttpsgithubcomlarsacuslarsadcontroller">Introducing <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a></h2>
-<p>I built <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a <code>UIView</code>. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in <em>any</em> orientation.</p>
+<h2 id="introducing-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Introducing <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
+<p>I built <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a <code>UIView</code>. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in <em>any</em> orientation.</p>
 
-<h2 id="integrating-larsadcontrollerhttpsgithubcomlarsacuslarsadcontroller">Integrating <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a></h2>
+<h2 id="integrating-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Integrating <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
 <ol>
   <li>
-    <p>First, you will need to clone the source from <a href="https://github.com/larsacus/LARSAdController">Github</a>:</p>
+    <p>First, you will need to clone the source from <a href="http://larsacus.github.com/LARSAdController">Github</a>:</p>
 
     <p><code>$ git clone git@github.com:larsacus/LARSAdController.git</code></p>
 
@@ -326,7 +326,7 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
     <p>Whew! What a lot of stupid setup and we haven’t even written any code, yet! If you want to write code, you may be a little disappointed by this post, because there really isn’t any.</p>
   </li>
   <li>Now go to <code>Product &gt; Build</code> or type ‘⌘+B’ to build the project.  If your project builds without any errors, hurray! Skip to step 7.  If not, continue on…</li>
-  <li><span class="pullquote-right" data-pullquote="F, no, Objective-C, I don&#8217;t want ARC on this file!">If you have errors and you followed the above <em>and</em> you’re have ARC enabled, you will need to tell the compiler not to use ARC with <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> as it is not supported, yet. Disable ARC on <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> by following the same steps in step 4 to add frameworks to a project, but go to the <code>Compile Sources</code> section. Find <code>LARSAdController.m</code> in the list of files and double-click in the region to the right marked <code>Compiler Flags</code>. Add a new flag called <code>-fno-objc-arc</code>. A good way to remember this command is to read it like this: F, no, Objective-C, I don’t want ARC on this file!.  Moving along… Hit ‘⌘+B’ to verify everything is building correctly. </span></li>
+  <li><span class="pullquote-right" data-pullquote="F, no, Objective-C, I don&#8217;t want ARC on this file!">If you have errors and you followed the above <em>and</em> you’re have ARC enabled, you will need to tell the compiler not to use ARC with <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> as it is not supported, yet. Disable ARC on <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> by following the same steps in step 4 to add frameworks to a project, but go to the <code>Compile Sources</code> section. Find <code>LARSAdController.m</code> in the list of files and double-click in the region to the right marked <code>Compiler Flags</code>. Add a new flag called <code>-fno-objc-arc</code>. A good way to remember this command is to read it like this: F, no, Objective-C, I don’t want ARC on this file!.  Moving along… Hit ‘⌘+B’ to verify everything is building correctly. </span></li>
   <li><em>Now</em> we’re ready to write some code! Get your typing fingers ready, because text doesn’t just copy/paste itself! Add the following two lines of code to one of your view controller’s view lifecycle load or appear methods.  I’ve found that <code>viewWillAppear:</code> seems to be the best when pushing/popping view controllers with ads on them:</li>
 </ol>
 
@@ -358,7 +358,7 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
 <h2 id="in-conclusion">In Conclusion</h2>
 <p>I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren’t using AdMob ads.  If you’re registered to use AdMob ads, then it’s an even <em>more</em> efficient method, as it’s only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
 
-<p>If you’re using <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the README file.</p>
+<p>If you’re using <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the README file.</p>
 
 </div>
   

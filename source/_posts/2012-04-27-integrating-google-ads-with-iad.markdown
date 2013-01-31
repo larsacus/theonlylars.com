@@ -13,11 +13,11 @@ I think Apple's iAds had great potential.  But let's face it.  They really aren'
 
 If you watch Apple's WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:
 
-##Introducing [LARSAdController](https://github.com/larsacus/LARSAdController)
-I built [LARSAdController](https://github.com/larsacus/LARSAdController) in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a `UIView`. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in *any* orientation.
+##Introducing [LARSAdController](http://larsacus.github.com/LARSAdController)
+I built [LARSAdController](http://larsacus.github.com/LARSAdController) in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a `UIView`. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in *any* orientation.
 
-##Integrating [LARSAdController](https://github.com/larsacus/LARSAdController)
-1. First, you will need to clone the source from [Github](https://github.com/larsacus/LARSAdController):
+##Integrating [LARSAdController](http://larsacus.github.com/LARSAdController)
+1. First, you will need to clone the source from [Github](http://larsacus.github.com/LARSAdController):
 
     `$ git clone git@github.com:larsacus/LARSAdController.git`
     
@@ -38,7 +38,7 @@ I built [LARSAdController](https://github.com/larsacus/LARSAdController) in orde
     Whew! What a lot of stupid setup and we haven't even written any code, yet! If you want to write code, you may be a little disappointed by this post, because there really isn't any.
 
 5. Now go to `Product > Build` or type '⌘+B' to build the project.  If your project builds without any errors, hurray! Skip to step 7.  If not, continue on...
-6. {% pullquote %}If you have errors and you followed the above *and* you're have ARC enabled, you will need to tell the compiler not to use ARC with [LARSAdController](https://github.com/larsacus/LARSAdController) as it is not supported, yet. Disable ARC on [LARSAdController](https://github.com/larsacus/LARSAdController) by following the same steps in step 4 to add frameworks to a project, but go to the `Compile Sources` section. Find `LARSAdController.m` in the list of files and double-click in the region to the right marked `Compiler Flags`. Add a new flag called `-fno-objc-arc`. A good way to remember this command is to read it like this: {"F, no, Objective-C, I don't want ARC on this file!"}.  Moving along... Hit '⌘+B' to verify everything is building correctly. {% endpullquote %}
+6. {% pullquote %}If you have errors and you followed the above *and* you're have ARC enabled, you will need to tell the compiler not to use ARC with [LARSAdController](http://larsacus.github.com/LARSAdController) as it is not supported, yet. Disable ARC on [LARSAdController](http://larsacus.github.com/LARSAdController) by following the same steps in step 4 to add frameworks to a project, but go to the `Compile Sources` section. Find `LARSAdController.m` in the list of files and double-click in the region to the right marked `Compiler Flags`. Add a new flag called `-fno-objc-arc`. A good way to remember this command is to read it like this: {"F, no, Objective-C, I don't want ARC on this file!"}.  Moving along... Hit '⌘+B' to verify everything is building correctly. {% endpullquote %}
 7. *Now* we're ready to write some code! Get your typing fingers ready, because text doesn't just copy/paste itself! Add the following two lines of code to one of your view controller's view lifecycle load or appear methods.  I've found that `viewWillAppear:` seems to be the best when pushing/popping view controllers with ads on them:
     
   {% codeblock lang:objc %}
@@ -65,5 +65,5 @@ Simply call the code in step 7 in any view you need the ad banner to be in, and 
 ## In Conclusion
 I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren't using AdMob ads.  If you're registered to use AdMob ads, then it's an even *more* efficient method, as it's only one line of code more in order to integrate and you will *always* have an ad displaying in your app.
 
-If you're using [LARSAdController](https://github.com/larsacus/LARSAdController) in your app, I'd love to know. You can send me an email if you can find it, [fork the repo](http://github.com/larsacus/LARSAdController) and change the readme on GitHub, or even better, just send me a quick note at [@theonlylars](http://twitter.com/theonlylars) and I'll add it to the README file.
+If you're using [LARSAdController](http://larsacus.github.com/LARSAdController) in your app, I'd love to know. You can send me an email if you can find it, [fork the repo](http://github.com/larsacus/LARSAdController) and change the readme on GitHub, or even better, just send me a quick note at [@theonlylars](http://twitter.com/theonlylars) and I'll add it to the README file.
     

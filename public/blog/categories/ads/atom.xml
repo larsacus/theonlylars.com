@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ads | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/ads/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2013-01-27T19:50:20-06:00</updated>
+  <updated>2013-01-30T19:49:29-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -46,7 +46,7 @@
 <p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.<!-- more --></p>
 
 <h3 id="integrate-the-source">Integrate the Source</h3>
-<p>This is by far the most difficult part of the entire process if you don’t use cocoapods. I highly suggest using cocoapods, so I’m going to go over that first. All of these instructions are mirrored on the <code>README</code> file on <a href="https://github.com/larsacus/LARSAdController">LARSAdController’s github page</a>.</p>
+<p>This is by far the most difficult part of the entire process if you don’t use cocoapods. I highly suggest using cocoapods, so I’m going to go over that first. All of these instructions are mirrored on the <code>README</code> file on <a href="http://larsacus.github.com/LARSAdController">LARSAdController’s github page</a>.</p>
 
 <p>If you don’t have cocoapods setup, visit <a href="http://cocoapods.org">cocoapods.org</a> for installation instructions. I promise, it’s really easy, too. Then come back here.</p>
 
@@ -182,7 +182,7 @@
 <h2 id="done">Done</h2>
 <p>Easy. Total lines of code I’ve counted for a standard integration of two ad networks in a single view controller is two if you use the view controller subclass. Two lines of code to have ads properly served in your app. If you use cocoapods, you can go from nothing to proper ads in less than a minute.</p>
 
-<p><a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> v3.0 is released under the very liberal MIT license on github. If you’re using LARSAdController in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the bottom of the README file.</p>
+<p><a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> v3.0 is released under the very liberal MIT license on github. If you’re using LARSAdController in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the bottom of the README file.</p>
 
 <p>If you find an bug or have a suggestion, feel free to <a href="https://github.com/larsacus/LARSAdController/issues">submit a new issue on github</a> <em>with reproduction information and preferably source code</em> as well as a description of what you’re trying to accomplish if it even <em>feels</em> like it’s out of the normal use case.</p>
 
@@ -295,13 +295,13 @@
 
 <p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
 
-<h2 id="introducing-larsadcontrollerhttpsgithubcomlarsacuslarsadcontroller">Introducing <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a></h2>
-<p>I built <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a <code>UIView</code>. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in <em>any</em> orientation.</p>
+<h2 id="introducing-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Introducing <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
+<p>I built <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a <code>UIView</code>. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in <em>any</em> orientation.</p>
 
-<h2 id="integrating-larsadcontrollerhttpsgithubcomlarsacuslarsadcontroller">Integrating <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a></h2>
+<h2 id="integrating-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Integrating <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
 <ol>
   <li>
-    <p>First, you will need to clone the source from <a href="https://github.com/larsacus/LARSAdController">Github</a>:</p>
+    <p>First, you will need to clone the source from <a href="http://larsacus.github.com/LARSAdController">Github</a>:</p>
 
     <p><code>$ git clone git@github.com:larsacus/LARSAdController.git</code></p>
 
@@ -356,7 +356,7 @@
 <h2 id="in-conclusion">In Conclusion</h2>
 <p>I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren’t using AdMob ads.  If you’re registered to use AdMob ads, then it’s an even <em>more</em> efficient method, as it’s only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
 
-<p>If you’re using <a href="https://github.com/larsacus/LARSAdController">LARSAdController</a> in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the README file.</p>
+<p>If you’re using <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the README file.</p>
 
 ]]></content>
   </entry>

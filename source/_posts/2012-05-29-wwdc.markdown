@@ -6,7 +6,7 @@ comments: true
 categories: wwdc
 ---
 
-Gettin' ready for [dub dub](http://www.apple.com/wwdc) in less than two weeks! By my count, there are 42 "To be announced" sessions on the schedule released today. You will find me at as many Core Animation, Core Graphics, and GCD sessions as I can attend, as well as all of the cool new API sessions.  To make the most of it all, I've been trying to think of some good questions for the framework engineers at the labs.  I'll probably get some feedback on my [ad controller](https://github.com/larsacus/LARSAdController), as well as a new MBProgressHUD/SVProgressHUD-inspired HUD I've been working on at work, in addition to some other various work-related stuff.
+Gettin' ready for [dub dub](http://www.apple.com/wwdc) in less than two weeks! By my count, there are 42 "To be announced" sessions on the schedule released today. You will find me at as many Core Animation, Core Graphics, and GCD sessions as I can attend, as well as all of the cool new API sessions.  To make the most of it all, I've been trying to think of some good questions for the framework engineers at the labs.  I'll probably get some feedback on my [ad controller](http://larsacus.github.com/LARSAdController), as well as a new MBProgressHUD/SVProgressHUD-inspired HUD I've been working on at work, in addition to some other various work-related stuff.
 
 Some new API's stuffs I'm thinking/hoping we may see fill in the 'to be announced' blanks during the keynote:
 
