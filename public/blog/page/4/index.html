@@ -9,7 +9,7 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="I’ve had this domain for awhile, but haven’t had the time to build a website the way I like. I wanted a blog that accepted markdown as text input, as &hellip;">
+  <meta name="description" content="Edit Jan 10, 2013: Since publishing this post, LARSAdController has been updated to v3.0. A lot of the material below may be outdated. If you need to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +85,110 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/04/27/integrating-google-ads-with-iad/">Easily Integrate Your iOS App With iAd and AdMob</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-04-27T21:30:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController has been updated to v3.0</a>. A lot of the material below may be outdated. If you need to use v2.x as is demonstrated below, you can still access it using <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">one of the tagged v2.x versions on github</a>.</em></p>
+
+<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
+
+<p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
+
+<h2 id="introducing-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Introducing <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
+<p>I built <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a <code>UIView</code>. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in <em>any</em> orientation.</p>
+
+<h2 id="integrating-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Integrating <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
+<ol>
+  <li>
+    <p>First, you will need to clone the source from <a href="http://larsacus.github.com/LARSAdController">Github</a>:</p>
+
+    <p><code>$ git clone git@github.com:larsacus/LARSAdController.git</code></p>
+
+    <p>or add it as a git submodule:</p>
+
+    <p><code>$ git submodule add git@github.com:larsacus/LARSAdController.git Vendor/LARSAdController</code></p>
+  </li>
+  <li>Add folder or <code>LARSAdController.m/h</code> to your project</li>
+  <li>Download and copy the <a href="https://developers.google.com/mobile-ads-sdk/download#downloadios">Google ad SDK</a> into your project and go ahead and sign up for a Google publisher account at <a href="https://admob.com">AdMob.com</a> if you haven’t already</li>
+  <li>Ensure the proper frameworks have been added to your application in order for iAds and AdMob ads to compile properly:
+    <ol>
+      <li>iAd.framework</li>
+      <li>AudioToolbox.framework</li>
+      <li>MessageUI.framework</li>
+      <li>SystemConfiguration.framework</li>
+    </ol>
+
+    <p>You can add additional frameworks to your project in Xcode 4 by clicking on your project file in the project navigator on the left and going to <code>Build Phases &gt; Link Binary With Libraries &gt; Click + Symbol</code></p>
+
+    <p>Whew! What a lot of stupid setup and we haven’t even written any code, yet! If you want to write code, you may be a little disappointed by this post, because there really isn’t any.</p>
+  </li>
+  <li>Now go to <code>Product &gt; Build</code> or type ‘⌘+B’ to build the project.  If your project builds without any errors, hurray! Skip to step 7.  If not, continue on…</li>
+  <li><span class="pullquote-right" data-pullquote="F, no, Objective-C, I don&#8217;t want ARC on this file!">If you have errors and you followed the above <em>and</em> you’re have ARC enabled, you will need to tell the compiler not to use ARC with <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> as it is not supported, yet. Disable ARC on <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> by following the same steps in step 4 to add frameworks to a project, but go to the <code>Compile Sources</code> section. Find <code>LARSAdController.m</code> in the list of files and double-click in the region to the right marked <code>Compiler Flags</code>. Add a new flag called <code>-fno-objc-arc</code>. A good way to remember this command is to read it like this: F, no, Objective-C, I don’t want ARC on this file!.  Moving along… Hit ‘⌘+B’ to verify everything is building correctly. </span></li>
+  <li><em>Now</em> we’re ready to write some code! Get your typing fingers ready, because text doesn’t just copy/paste itself! Add the following two lines of code to one of your view controller’s view lifecycle load or appear methods.  I’ve found that <code>viewWillAppear:</code> seems to be the best when pushing/popping view controllers with ads on them:</li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span>
+</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController:</span><span class="n">self</span><span class="p">];</span>
+</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId:</span><span class="n">myPublisherId</span><span class="p">];</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you’re basically done.  Just add the first single line of code to any view controller that you want to host ads in. Just be sure to call <code>setGoogleAdPublisherId:</code> the first time you add LARSAdController to a view. The ads will automatically be added to the bottom of the view and appear/hide whenever they have inventory available.</p>
+
+<h2 id="multiple-orientations">Multiple Orientations</h2>
+
+<p>If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="objc"><span class="line"><span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setShouldHandleOrientationChanges:</span><span class="n">YES</span><span class="p">];</span>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+
+<p>This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.</p>
+
+<p>Simply call the code in step 7 in any view you need the ad banner to be in, and it will automatically remove it from the old view and add it to the bottom of the new view.</p>
+
+<h2 id="in-conclusion">In Conclusion</h2>
+<p>I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren’t using AdMob ads.  If you’re registered to use AdMob ads, then it’s an even <em>more</em> efficient method, as it’s only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
+
+<p>If you’re using <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the README file.</p>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/04/26/check-out-my-new-crib/">Check Out My New Crib</a></h1>
     
     
@@ -136,6 +240,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/09/one-week-with-a-standing-desk/">One week with a standing desk</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/01/27/2013-personal-achievements/">Personal Achievements</a>
       </li>
     
@@ -149,10 +257,6 @@
     
       <li class="post">
         <a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 RC</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/10/dont-forget-the-c-in-objective-c/">Don&#8217;t Forget the &#8220;C&#8221; in Objective-C: C Declarations</a>
       </li>
     
   </ul>
