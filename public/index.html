@@ -9,7 +9,7 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="As a full-time software engineer, having my legs do nothing all day but atrophy has not been helping my legs’ health - namely my knees’ health. So &hellip;">
+  <meta name="description" content="A coworker recently asked me at the end of last what I thought, based on my experience on my last iOS 6-only project, would be the best approach to &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -85,6 +85,64 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/">Autolayout: To NIB or Not to NIB</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-11T19:39:00-06:00" pubdate data-updated="true">Feb 11<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A coworker recently asked me at the end of last what I thought, based on my experience on my last iOS 6-only project, would be the best approach to starting to learn and work with autolayout. He was specifically asking if he should bother working with xib files, or simply layout everything in code. He then asked that if he were to go with a xib file, what the best approach would be to balance the time/effort workflow for autolayout.</p>
+
+<p>All of the below is 100% based on my experience on my last project that was iOS 6-only, where autolayout was extensively utilized.</p>
+
+<h2 id="autolayout-layout-construction-priority">Autolayout Layout Construction Priority</h2>
+<p>Apple states in all of their documentation the following order you should begin implementing autolayout:</p>
+
+<ol>
+  <li>Nib file</li>
+  <li>Visual formatting language</li>
+  <li>Individual constraints</li>
+</ol>
+
+<h2 id="to-nib">To NIB</h2>
+<p>The priority above is, in my opinion, very dependent on what you are working on. If you have a pretty trivial layout that is simply being constrained based on something simple like an orientation change, then a xib file will probably be your best bet for a rapid layout that is unambiguous and doesn’t give you any issue during maintenance with very little effort.</p>
+
+<p>Another very helpful feature of autolayout’s constraints is the fact that you can create an outlet to a single constraint. You can use this outlet to easily animate a change, change the constraints constant, or remove a constraint altogether without much additional effort. To animation a constraint change, simply update your constraint(s), call <code>-setNeedsLayout</code>, then call <code>-layoutIfNeeded</code> in an animation block. Very quick and easy.</p>
+
+<h3 id="no-touching">No Touching</h3>
+<p><a href="/images/no_touching.gif"><img class="right" src="/images/no_touching_static.jpg" width="300" /></a> However, using xibs for autolayout starts to break down and become more time than it’s worth when you get into complex layouts that depend on cross-view constraints, constraints depending on a view’s content or complex constraint sets relating to many physically smaller views (the constraints simply become an absolute nightmare to <em>physically</em> click on and manage in the xib without screwing something else up).</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2013/02/09/one-week-with-a-standing-desk/">One Week With a Standing Desk</a></h1>
     
     
@@ -111,18 +169,13 @@
   <div class="entry-content"><p>As a full-time software engineer, having my legs do nothing all day but atrophy has not been helping my legs’ health - namely my knees’ health. So this week I spent big money ($6) at the local hardware store on 4 cinder-blocks. I converted my normal desk into a standing-desk to see if I liked it at all. I’ve heard differing opinions on the standing desk ranging from “foot fatigue” to “hated it”. If you’re thinking about a standing desk, hopefully this will server as another datapoint in your research.</p>
 
 <h2 id="macgyver">MacGyver</h2>
-<p>The first part was actually converting my desk into a standing desk. One of my coworkers on the project I’m currently working on had already converted his normal desk to a standing desk using cinder blocks, but I never really wanted to touch his desk for fear of it falling over. I can happily say that I trust my desk just as much sitting on top of four stone blocks as I do sitting on the floor. No issues with stability and the height is perfect.</p>
-
-<h2 id="comfort">Comfort</h2>
-<p>Standing while working is definitely odd at first. It took me a little while to find a foot position that worked for me while standing. It also helped that there was an extra bar-stool just hanging around our project pod that I swiped for myself. When my legs or feet get even remotely tired or uncomfortable, I simply sit in my bar stool. Since the bar stool has just a small chair back, it forces me to sit more upright. Also, since the chair is so high off the ground, it prevents me from putting my leg underneath the other, which is usually my default sitting position and is also pretty terrible on your knees. Ballpark standing percentage: 60% standing - standing-desk doesn’t have to be a full-time standing affair.</p>
-
-<h2 id="socialization">Socialization</h2>
-<p>The other large difference I noticed from having a normal desk was that whenever someone had a question and came up to your desk, you were both already at the same level. The desk “guest” didn’t have to find a chair nor did they have to kneel down to look at your monitor. You’re both naturally at the same level looking at the same thing. I think it very much encourages others to come check out what you’re doing and ask questions.</p>
-
-<h2 id="rise">Rise</h2>
-<p>If you’re thinking about a standing desk and your employer will allow it, try out cinder blocks and a taller chair to see it it’s something you might like to do on a full-time basis.</p>
+<p>The first part was actually converting my desk into a standing desk. One of my coworkers on the project I’m currently working on had already converted his normal desk to a standing desk using cinder blocks, but I never really wanted to touch his desk for fear of it falling over. I can happily say that I trust my desk just as much sitting on top of four stone blocks as I do sitting on the floor. No issues with stability and the height is perfect.
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/02/09/one-week-with-a-standing-desk/">Read on &rarr;</a>
+    </footer>
   
 
 
@@ -312,64 +365,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 RC</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-15T15:25:00-06:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
-
-<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
-
-<p>Let’s take a look at what’s changed:</p>
-
-<h2 id="a-new-class-prefix">A New Class Prefix</h2>
-<p>I’ve been using the class prefix <code>LARS</code> for all of my open-source classes. While this really is short and unique, it’s always felt pretty egotistical to have my name plastered all over my classes. This is just how I feel from this side of the keyboard. Does it look the same from the user’s end? Let me know what you think.</p>
-
-<p>Anyway, I’ve migrated new classes to the new <code>TOL</code> prefix, for <a href="https://twitter.com/theonlylars">@<strong>T</strong>he<strong>O</strong>nly<strong>L</strong>ars</a>. This feels more anonymous and I haven’t seen the prefix used by anyone else before, yet. I’d love to know if someone well known <em>is</em> using the <code>TOL</code> class prefix. If I feel like I like this prefix better, I may just start using it for everything.</p>
-
-<p>I also like that it sounds like “toll”. I have grand visions of having some cool project named <code>TOLBooth</code>, <code>TOLRoad</code>, or <code>TOLHouse</code>. I can’t think of practical project ideas to put those names on, however.</p>
-
-<h2 id="modular-ad-networks">Modular Ad Networks</h2>
-<p>The big new feature for this release is modular ad networks. Ad junkies will know this as ad mediation. AdMob has an ad mediation framework, so does AdWhirl, MobClix, and others. This is my implementation. The actual mediation logic is in a single .h/.m file pair. The other files support the ad networks. I feel this is a very lightweight implementation compared to other company’s mediation platforms, not to mention it’s open source so you can peek under the hood to see how another developer has solved a problem.</p>
-
-<p>Right now I’ve built ad network adapters for iAds and AdMob ads. These are the only two ad networks that I use in Droid Light, so I don’t know much about others, and these two seem to be the most popular for banner ads on iOS.</p>
-
-<h3 id="house-ads">House Ads</h3>
-<p>A third planned adapter I’m particularly excited about is an adapter for “house” ads, <em>but I have not started on it as of yet</em>. House ads would basically amount to an image and a tap destination that you supply yourself. It’s an ad for yourself. </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -388,6 +383,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/">Autolayout: To NIB or not to NIB</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/09/one-week-with-a-standing-desk/">One week with a standing desk</a>
       </li>
     
@@ -401,10 +400,6 @@
     
       <li class="post">
         <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">Stupid Easy iOS Ad Mediation with LARSAdController 3.0</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 RC</a>
       </li>
     
   </ul>

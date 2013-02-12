@@ -9,7 +9,7 @@ As a full-time software engineer, having my legs do nothing all day but atrophy 
 
 ##MacGyver
 The first part was actually converting my desk into a standing desk. One of my coworkers on the project I'm currently working on had already converted his normal desk to a standing desk using cinder blocks, but I never really wanted to touch his desk for fear of it falling over. I can happily say that I trust my desk just as much sitting on top of four stone blocks as I do sitting on the floor. No issues with stability and the height is perfect.
-
+<!--more-->
 ##Comfort
 Standing while working is definitely odd at first. It took me a little while to find a foot position that worked for me while standing. It also helped that there was an extra bar-stool just hanging around our project pod that I swiped for myself. When my legs or feet get even remotely tired or uncomfortable, I simply sit in my bar stool. Since the bar stool has just a small chair back, it forces me to sit more upright. Also, since the chair is so high off the ground, it prevents me from putting my leg underneath the other, which is usually my default sitting position and is also pretty terrible on your knees. Ballpark standing percentage: 60% standing - standing-desk doesn't have to be a full-time standing affair.
 
