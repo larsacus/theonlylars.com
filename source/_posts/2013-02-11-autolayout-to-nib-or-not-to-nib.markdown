@@ -5,7 +5,7 @@ date: 2013-02-11 19:39
 comments: true
 categories: iOS development autolayout
 ---
-A coworker recently asked me at the end of last what I thought, based on my experience on my last iOS 6-only project, would be the best approach to starting to learn and work with autolayout. He was specifically asking if he should bother working with xib files, or simply layout everything in code. He then asked that if he were to go with a xib file, what the best approach would be to balance the time/effort workflow for autolayout.
+A coworker recently asked me at the end of last week what I thought, based on my experience on my last iOS 6-only project, would be the best approach to starting to learn and work with autolayout. He was specifically asking if he should bother working with xib files, or simply layout everything in code. He then asked that if he were to go with a xib file, what the best approach would be to balance the time/effort workflow for autolayout.
 
 All of the below is 100% based on my experience on my last project that was iOS 6-only, where autolayout was extensively utilized.
 
