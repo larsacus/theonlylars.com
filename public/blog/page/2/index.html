@@ -9,7 +9,8 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="Edit Jan 10, 2013: Since publishing this post, LARSAdController v3.0 has been pushed to the master branch on github! I’ve been working hard on &hellip;">
+  <meta name="description" content="Roots
+When I originally built LARSAdController, I was building it to fulfill a very specific purpose for my first app (Droid Light): leverage a &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +80,70 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">Stupid Easy iOS Ad Mediation With LARSAdController 3.0</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-10T20:10:00-06:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2 id="roots">Roots</h2>
+<p>When I originally built LARSAdController, I was building it to fulfill a very specific purpose for my first app (Droid Light): leverage a singleton to serve a single ad instance for iAds using best practices, and serve AdMob ads as a backup when iAds (stellar) inventory ran dry. Since then, I’ve expanded it to support multiple devices, as well as multiple orientations, all while being super-easy to integrate.</p>
+
+<h2 id="section">3.0</h2>
+<p>Version 3.0 now supports all of the things that the old version did, but now allows you much more flexibility and freedom in how you would like your ads to be used.</p>
+
+<h3 id="major-changes-from-v2x">Major Changes from v2.x</h3>
+
+<p>A detailed changelog of what has changed can be found in the <a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 release-candidate post</a>, but here’s the <code>tl;dr</code> version:</p>
+
+<ul>
+  <li><code>TOL</code> as a new class prefix</li>
+  <li>Arbitrary ad networks</li>
+  <li>Ad network priority</li>
+  <li>Conversion to ARC</li>
+  <li>Presentation types</li>
+  <li>Pinning locations (have ad reside at the top of your view)</li>
+  <li>Easy setup with a new view controller subclass <code>TOLAdViewController</code></li>
+  <li>Optional verbose debug logging for development</li>
+  <li>Upgrade base iOS dependency to iOS 5.0</li>
+</ul>
+
+<h2 id="easy-integration">Easy Integration</h2>
+<p>So let’s get started integrating your ad with some ad networks. If you would like to use Google as your ad vendor, then you will need to go ahead and setup an account with them and have your publisher ID handy.</p>
+
+<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -288,54 +353,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/">Ditching NSLog, Part II: Good Tools Make Work Easy</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-07-29T22:09:00-05:00" pubdate data-updated="true">Jul 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2 id="in-review">In Review</h2>
-<p>In <a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
-
-<p>In this post, we’ll go over some of the options you have available in your developer tool-belt to make your tasks easier to tackle. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you’ll be more likely to produce a solid product.</p>
-
-<p><em>Pre-Disclaimer: My original intent for the second part of this post was to actually <strong>use</strong> every library before writing about them.  I found so many different libraries, that this never actually ended up happening.  I present here a synopsis of each logging library on the basis that I have used some of them, but I have not used them all.  Blame my day job and Battlefield 3. Yes, I am weak.</em></p>
-
-<h2 id="logging-libraries">Logging Libraries</h2>
-<p>###Simple Macro Replacement
-While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -356,6 +373,10 @@ While not really a “library” per se, this <em>method</em> is the most basic 
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience/">Abandoning the Consumer: Ignoring User Experience</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/">Autolayout: To NIB or not to NIB</a>
       </li>
     
@@ -369,10 +390,6 @@ While not really a “library” per se, this <em>method</em> is the most basic 
     
       <li class="post">
         <a href="/blog/2013/01/20/cocoapods-creating-a-pod-spec/">Cocoapods: Creating a Pod Spec</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">Stupid Easy iOS Ad Mediation with LARSAdController 3.0</a>
       </li>
     
   </ul>
