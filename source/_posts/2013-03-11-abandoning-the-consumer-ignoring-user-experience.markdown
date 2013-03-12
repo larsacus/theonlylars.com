@@ -36,7 +36,7 @@ Others actively go out of their way to ensure that the minimum number of people 
 ##EA and SimCity
 *This is my personal account of my (user) experience with EA and it's brand-new "blockbuster", SimCity.*
 
-I have been really excited about SimCity for a long time, so I preordered it. The only place it is for sale is directly through EA's subpar Origin client. I paid for the "digital" version. I later found out that they [do not offer refunds](https://help.ea.com/article/returns-and-cancellations) for digitally downloaded products and in fact [will ban your account](http://www.cinemablend.com/games/EA-Officially-Halts-SimCity-Refunds-Polygon-Drops-Review-Score-Even-Lower-53444.html) if you follow through with a chargeback - it's just their policy. On launch day I started the download before work and then came home and was going to fire it up to play it. This was just the beginning.
+I have been really excited about SimCity for a long time, so I preordered it. The only place it is available to play is directly through EA's subpar Origin client. I paid for the "digital" version on Origin. I later found out that they [do not offer refunds](https://help.ea.com/article/returns-and-cancellations) for digitally downloaded products and in fact [will ban your account](http://www.cinemablend.com/games/EA-Officially-Halts-SimCity-Refunds-Polygon-Drops-Review-Score-Even-Lower-53444.html) if you follow through with a chargeback - it's just their policy. You can, however, get a refund from Amazon if you buy it there. On launch day I started the download before work and then came home and was going to fire it up to play it. This was just the beginning.
 
 ###Initial User Experience
 On first launch I was greeted with this lovely screen. {% img right /images/simcity1.jpg 300 300 %}A list of servers that I was not allowed to get on. Getting on a server is a prerequisite to playing the game since the SimCity servers do a couple of things:
@@ -45,7 +45,7 @@ On first launch I was greeted with this lovely screen. {% img right /images/simc
 2. Store everything in the cloud all of the time
 3. Offload part of the computational simulation to their servers so it's impossible to play offline
 
-The first is simply annoying and is done every time you launch the game and continuously from then on. The second should be in addition to storing your data locally. The third should have been killed off during product discovery for the game mechanics 6 years ago before any code was written.
+The first is simply annoying and is done every time you launch the game and continuously from then on. The second should be in addition to storing your data locally. The third [should have been killed off](http://www.rockpapershotgun.com/2013/03/11/simcity-is-inherently-broken-lets-not-let-this-go/) during product discovery for the game mechanics 6 years ago before any code was written.
 
 I personally ran into just about every issue that I heard others talk about online:
 
