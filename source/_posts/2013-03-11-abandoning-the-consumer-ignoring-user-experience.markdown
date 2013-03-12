@@ -81,6 +81,6 @@ The user's experience shouldn't just be those that are designing a product's res
 
 Don't abandon the consumer. After all, they *are* the ones giving you their money.
 
-*My personal recommendation for SimCity? Wait for the game to go on sale. While the game is moderately fun in it's current state, it's not as fun as it could be with all of the server issues worked out, not to mention all of the bugs and crippled features. Maybe by then we'll have an offline mode to play while on an airplane or bus.*
+*My personal recommendation for SimCity? Wait for the game to go on sale. While the game is moderately fun in its current state, it's not as fun as it could be with all of the server issues worked out, not to mention all of the bugs and crippled features. Maybe by then we'll have an offline mode to play while on an airplane or bus.*
 
 [^1]: Other industries do this, too, don't get me wrong
