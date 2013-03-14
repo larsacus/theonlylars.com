@@ -7,6 +7,7 @@ comments: true
 categories: [Advanced iOS,iOS,Development,Third-Party,NSLog,Debugging,Logging]
 keywords: "NSLog,logging,iOS,development"
 ---
+
 ##In Review
 In [Part I of Ditching `NSLog`](/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/), we introduced our good friend `NSLog` and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how `NSLog`, in general, cannot satisfy these requirements.
 
@@ -15,6 +16,7 @@ In this post, we'll go over some of the options you have available in your devel
 _Pre-Disclaimer: My original intent for the second part of this post was to actually __use__ every library before writing about them.  I found so many different libraries, that this never actually ended up happening.  I present here a synopsis of each logging library on the basis that I have used some of them, but I have not used them all.  Blame my day job and Battlefield 3. Yes, I am weak._
 
 ##Logging Libraries
+
 ###Simple Macro Replacement
 While not really a "library" per se, this _method_ is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you `#define` a preprocessor macro that will conditionally "comment out" your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a `#define DEBUG` statement that you can use when running in your debug configuration. I believe I first saw this method evolve on [iPhone Incubator](http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog), so I don't take any credit for this.  I have successfully used this in a largish project before and it has done it's job, but it is not optimal and can get messy due to it's "all or nothing" approach:
 
@@ -27,12 +29,13 @@ While not really a "library" per se, this _method_ is the most basic of all the 
 {% endcodeblock %}
 
 For those of you who don't regularly use preprocessor macros, here's what's happening in this block of code in pseudocode:
-```
+
+````
 if the macro `DEBUG` has been previously defined
   define a new function named `DLog` that takes parameters in `NSLog` form and write write them into NSLog
 else
   define `DLog` to do nothing (non-op)
-```
+````
 
 There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it's use is acceptable.
 
@@ -56,11 +59,8 @@ The developer suggests creating a preprocessor macro to call the `NSLogger` meth
 
 __Helpfulness__: 6/10 - Really depends on what you need help with  
 __Performance__: 5/10  
-__Ease of Use__: 6/10
+__Ease of Use__: 6/10  
 
-<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
-<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
-<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
 ###ECLogging
 [ECLogging](https://github.com/elegantchaos/ECLogging) appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are "channels", "handling", and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.
 
@@ -119,7 +119,6 @@ I don't consider logging "enhancements" to be logging mechanisms in and of thems
 ###AFHTTPRequestOperationLogger
 [AFHTTPRequestOperationLogger](https://github.com/AFNetworking/AFHTTPRequestOperationLogger) is a logging enhancer for the ubiquitous [AFNetworking](https://github.com/AFNetworking/AFNetworking) library. It won't really help you unless you are using AFNetworking, but it can tremendously help out debugging networking issues you may be having with complex APIs.  It can be a bit verbose at times, even to the point of being straight up noisy, but the advantage of open source is that you can go change it if you don't like it.
 
-<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
 ###XLog
 [XLog](https://github.com/Maxwin-z/XLog) is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I've actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.
 
@@ -134,6 +133,11 @@ Extensible logging enables you to customize your logging workflow to best suit y
 It is my opinion that highly extensible, non-`NSLog` logging should be just as much an architectural consideration as coding standards, unit test coverage, and class prefix names on a project. Most developers may not know advanced logging techniques even exist, much less employ one in a large project in order to get more debugging done in less time. Don't spend more time debugging your code - equip yourself with the proper tools to spend more time making your app the best experience possible for your users, while also making your future-self love you (which we all know doesn't happen that often).
 
 ***
+
+<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
+<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
+<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
+<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
 
 _Disclaimer:_
 _I don't pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or \*gasp\* find errors.  If you disagree with any of this, write me a note at [@theonlylars](https://twitter.com/theonlylars) and let me know. I'll either correct it or simply agree to disagree._

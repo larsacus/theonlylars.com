@@ -114,8 +114,9 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
 <p><em>Pre-Disclaimer: My original intent for the second part of this post was to actually <strong>use</strong> every library before writing about them.  I found so many different libraries, that this never actually ended up happening.  I present here a synopsis of each logging library on the basis that I have used some of them, but I have not used them all.  Blame my day job and Battlefield 3. Yes, I am weak.</em></p>
 
 <h2 id="logging-libraries">Logging Libraries</h2>
-<p>###Simple Macro Replacement
-While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
+
+<h3 id="simple-macro-replacement">Simple Macro Replacement</h3>
+<p>While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Conditionally Replacing NSLog  </span></figcaption>
  <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
@@ -130,15 +131,16 @@ While not really a “library” per se, this <em>method</em> is the most basic 
 </span><span class="line"><span class="cp">#endif</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>For those of you who don’t regularly use preprocessor macros, here’s what’s happening in this block of code in pseudocode:
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<p>For those of you who don’t regularly use preprocessor macros, here’s what’s happening in this block of code in pseudocode:</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">if the macro `DEBUG` has been previously defined
+</pre></td><td class="code"><pre><code class=""><span class="line">if the macro `DEBUG` has been previously defined
 </span><span class="line">  define a new function named `DLog` that takes parameters in `NSLog` form and write write them into NSLog
 </span><span class="line">else
-</span><span class="line">  define `DLog` to do nothing (non-op)</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+</span><span class="line">  define `DLog` to do nothing (non-op)</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it’s use is acceptable.</p>
 

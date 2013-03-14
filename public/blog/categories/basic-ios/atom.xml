@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Basic iOS | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/basic-ios/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2013-03-12T11:22:33-05:00</updated>
+  <updated>2013-03-14T18:15:12-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -30,7 +30,7 @@
 
 <p>If you’re on an iOS 6 device, then you will see this at the top of this webpage:</p>
 
-<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png"></p>
+<p>{% img center /images/posts/smartbanners/droidlightbanner.png %}</p>
 
 <p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner’s action will launch the app.</p>
 

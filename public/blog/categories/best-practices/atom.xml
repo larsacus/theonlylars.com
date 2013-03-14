@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Best-Practices | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/best-practices/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2013-03-12T11:22:33-05:00</updated>
+  <updated>2013-03-14T18:15:12-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -91,17 +91,16 @@
 <h2 id="interpretingconstructing-variable-declarations">Interpreting/Constructing Variable Declarations</h2>
 <p>Let’s look at the previous example to dissect how they are different. If I were reading an English sentence describing each variable declaration, it would go like this for each:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a pointer to a constant NSString</span>
-</span><span class='line'><span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a constant pointer to an NSString</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+const NSString * myString; //The variable myString is a pointer to a constant NSString
+NSString * const myString; //The variable myString is a constant pointer to an NSString
+{% endcodeblock %}</p>
 
 <p>After reading the above, you can’t tell me you still think both of those variable declarations are the same. In fact, based on the above information, we could even construct a third similar-but-different variable declaration:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span> <span class="c1">//The variable myString is a constant pointer to a constant NSString</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+const NSString * const myString //The variable myString is a constant pointer to a constant NSString
+{% endcodeblock %}</p>
 
 <p>So how did I perform this black magic? Simply read the variable declaration from the right to left, and when you get to the type, start reading left to right until you get back to the type. <a href="http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations">Code Project has an excellent writeup</a> on reading complicated C declarations and <a href="http://ridiculousfish.com">ridiculous_fish</a> has an excellent conversion tool that will even <a href="http://cdecl.org">convert the declarations into English statements</a> right before your eyes. There are <a href="http://lmgtfy.com/?q=complicated+C+variable+declarations">tons of guides out there</a>. There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.</p>
 
@@ -115,27 +114,21 @@
 
 <p>So we’d end up with this: </p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+__block typeof(self) myself = self;
+{% endcodeblock %}</p>
 
 <p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+__block int count = 0;</p>
+
+<p>self.completionBlock = ^(BOOL finished){
+  if(finished){
+    count++;
+  }
+}
+{% endcodeblock %}</p>
 
 <p>In this example, we’re creating a block variable outside of our block that is going to be modified inside said block. This is the correct way to use <code>__block</code>. To break our retain cycle, the more appropriate solution is to use some specific tools given to us in ARC that we’ll get to in just a second. First, an aside on new hotness in ARC to look out for:</p>
 
@@ -156,7 +149,16 @@
 <p>@idryman has a really <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/#arc-ownership-qualifiers-1">concise writeup</a> on ARC ownership qualifiers, as well as explaining the improper use of them.</p>
 
 <p><a href="http://developer.apple.com/library/mac/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%23//apple_ref/doc/uid/TP40011226-CH1-SW7">From the documentation</a>:
-<blockquote><p>You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p></p><p><p>ClassName * qualifier variableName;</p></p><p><p>for example:</p></p><p><p>MyClass * __weak myWeakReference;<br/>MyClass * __unsafe_unretained myUnsafeReference;</p></blockquote></p>
+{% blockquote %}
+You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p>
+
+<p>ClassName * qualifier variableName;</p>
+
+<p>for example:</p>
+
+<p>MyClass * __weak myWeakReference;
+MyClass * __unsafe_unretained myUnsafeReference;
+{% endblockquote %}</p>
 
 <h5 id="auto-niling-weak-references">Auto-Nil’ing Weak References</h5>
 <p>In iOS 5, Apple gave us <a href="http://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4">auto-nil’ing weak references</a> under ARC. This means that when you have a <em>weak</em> reference to a variable, it will allow you to use that variable and will set that variable to <code>nil</code> when no other object has a strong reference to it. This is a perfect place to replace the <code>__block</code> storage class with one of ARC’s new <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#ownership">ownership qualifiers</a>.  Let’s use <code>__weak</code>:</p>
@@ -165,17 +167,13 @@
 
 <p>Viola! We now have an auto-nil’ing (auto-zeroing) weak reference to <code>self</code> that we can use in a block that <code>self</code> has a strong reference to without modifying where the object lives in memory:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">__weak</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">myself</span> <span class="nl">playWithObject:</span><span class="n">myself</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+typeof(self) __weak myself = self;</p>
+
+<p>self.completionBlock = ^(BOOL finished){
+  [myself playWithObject:myself];
+}
+{% endcodeblock %}</p>
 
 <h2 id="ok-cool">Ok, Cool</h2>
 <p>I think it’s important to understand the guts of a C declaration because of the small nuances that are present when you introduce things like ARC ownership qualifiers.  If you don’t know what a storage qualifier is, then you’re surely not going to know what an ownership qualifier is or how to properly use it. While it’s true for the most part that the compiler will generally let you know when something is awry, isn’t it nice to know that you know a little bit more about what the compiler is actually thinking when it tells you that retaining an object strongly in this context could result in a retain cycle?</p>
