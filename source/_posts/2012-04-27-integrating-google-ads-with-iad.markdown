@@ -54,9 +54,9 @@ I built [LARSAdController](http://larsacus.github.com/LARSAdController) in order
 ##Multiple Orientations
   
 If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
-``` objc
+{% codeblock lang: objc %}
     [[LARSAdController sharedManager] setShouldHandleOrientationChanges:YES];
-```
+{% endcodeblock %}
 
 This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.
 

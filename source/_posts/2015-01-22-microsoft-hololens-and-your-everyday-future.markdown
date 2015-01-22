@@ -8,6 +8,8 @@ categories: user-experience technology
 keywords: "HoloLens,Microsoft,technology,brett victor,worrydream,holographic,technology"
 ---
 
+_Having not posted on here in over a year, it feels good to write again._
+
 Yesterday, Microsoft announced and demoed a surprising, radical new project called [HoloLens](http://www.microsoft.com/microsoft-hololens). If you haven't seen it yet, please go the Microsoft site and glance at it to make the rest of this make sense. The essence behind HoloLens is a goggle-like device you wear over your eyes that projects holograms augmented into your perception of reality -- wirelessly. Technology like this is significant for a few reasons that may not be immedately apparent when looking at the demos they have provided. This technology today, itself may look a little socially isolating, may just be a necessary stepping stone to what we will soon know as the 'present' of computing.
 
 As much as it surprises me to say this to myself about Microsoft, but it's a little refreshing to see Microsoft show off this kind of technology and not Google.

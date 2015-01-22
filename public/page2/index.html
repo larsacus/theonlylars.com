@@ -19,7 +19,7 @@
   <meta name="apple-itunes-app" content="app-id=379660205"/>
 
   
-  <link rel="canonical" href="http://theonlylars.com/blog/page/2/">
+  <link rel="canonical" href="http://theonlylars.com/page2/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/stylesheets/achievements/achievements.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -101,7 +101,7 @@
   
 
 
-<time datetime="2013-01-20T14:58:00-06:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
+<time datetime="2013-01-20T14:58:00-06:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -144,7 +144,7 @@
   
 
 
-<time datetime="2013-01-10T20:10:00-06:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
+<time datetime="2013-01-10T20:10:00-06:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -176,56 +176,12 @@
 <h2 id="easy-integration">Easy Integration</h2>
 <p>So let’s get started integrating your ad with some ad networks. If you would like to use Google as your ad vendor, then you will need to go ahead and setup an account with them and have your publisher ID handy.</p>
 
-<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</div>
+<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.</div>
   
   
     <footer>
       <a rel="full-article" href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">Read on &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/17/christmas-shopping-in-a-ubiquitous-world/">Christmas Shopping in a Ubiquitous World</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-17T22:05:00-06:00" pubdate data-updated="true">Dec 17<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>I try to do all of my Christmas (holiday, whatever) shopping online. Going out in Austin traffic is a huge pain, especially when I get home from work way past dark. I’d rather hang out with my wife at home. For my wife and I, shopping for each other this year</p>
-
-<ol>
-  <li>1Password</li>
-  <li>UPS Emails</li>
-  <li>iDevices left at home</li>
-  <li>Picking up packages</li>
-  <li>Amazon wishlists</li>
-</ol>
-</div>
-  
   
 
 
@@ -252,7 +208,7 @@
   
 
 
-<time datetime="2012-12-15T15:25:00-06:00" pubdate data-updated="true">Dec 15<span>th</span>, 2012</time>
+<time datetime="2012-12-15T15:25:00-06:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -310,7 +266,7 @@
   
 
 
-<time datetime="2012-12-10T00:00:00-06:00" pubdate data-updated="true">Dec 10<span>th</span>, 2012</time>
+<time datetime="2012-12-10T00:00:00-06:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -341,13 +297,69 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 &#8220;Smart&#8221; App Banners</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-29T21:34:00-05:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app that users could directly download on the app store from your webpage.  After the keynote, I forgot to investigate the documentation about it all through the iOS 6 Beta and never really heard much about it until the GM release of iOS 6.  So I went to check out how to do this thinking it was going to be super-involved, at least html-wise.</p>
+
+<p>Are you ready?</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That’s it.  Add this meta tag to the <code>&lt;head&gt;</code> section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.</p>
+
+<p>If you’re on an iOS 6 device, then you will see this at the top of this webpage:</p>
+
+<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png" /></p>
+
+<p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner’s action will launch the app.</p>
+
+<p>You can even go one or two steps further and pass in affiliate link information when your app gets downloaded or have information passed to your app on first launch in the app’s url handling delegate method.  More detail can be found in the documentation on <a href="http://developer.apple.com/library/ios/#Documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html">Apple’s website</a>.</p>
+
+<p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
+
+<p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
-      <a class="prev" href="/blog/page/3/">&larr; Older</a>
+      <a class="prev" href="3">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
-    <a class="next" href="/">Newer &rarr;</a>
+    <a class="next" href="1">Newer &rarr;</a>
     
   </div>
 </div>

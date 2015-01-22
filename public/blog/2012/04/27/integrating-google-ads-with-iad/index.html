@@ -98,7 +98,7 @@
   
 
 
-<time datetime="2012-04-27T21:30:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2012-04-27T21:30:00-05:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -144,14 +144,14 @@
   <li><em>Now</em> we’re ready to write some code! Get your typing fingers ready, because text doesn’t just copy/paste itself! Add the following two lines of code to one of your view controller’s view lifecycle load or appear methods.  I’ve found that <code>viewWillAppear:</code> seems to be the best when pushing/popping view controllers with ads on them:</li>
 </ol>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line">  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span>
-</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController:</span><span class="n">self</span><span class="p">];</span>
-</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId:</span><span class="n">myPublisherId</span><span class="p">];</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear</span><span class="p">:(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span>
+</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController</span><span class="p">:</span><span class="nb">self</span><span class="p">];</span>
+</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId</span><span class="p">:</span><span class="n">myPublisherId</span><span class="p">];</span>
 </span><span class="line">  <span class="p">}</span>
 </span><span class="line">
 </span></code></pre></td></tr></table></div></figure></notextile></div>
@@ -161,9 +161,9 @@
 <h2 id="multiple-orientations">Multiple Orientations</h2>
 
 <p>If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="objc"><span class="line"><span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setShouldHandleOrientationChanges:</span><span class="n">YES</span><span class="p">];</span>
-</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span>lang: objc </span>&lt;/figcaption&gt;
+&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">[[LARSAdController sharedManager] setShouldHandleOrientationChanges:YES];</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <p>This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.</p>
 
@@ -196,12 +196,12 @@
   
 
 
-<time datetime="2012-04-27T21:30:00-05:00" pubdate data-updated="true">Apr 27<span>th</span>, 2012</time>
+<time datetime="2012-04-27T21:30:00-05:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/arc/'>ARC</a>, <a class='category' href='/blog/categories/admob/'>AdMob</a>, <a class='category' href='/blog/categories/larsadcontroller/'>LARSAdController</a>, <a class='category' href='/blog/categories/ads/'>ads</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/iad/'>iAd</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>, <a class='category' href='/blog/categories/open-source/'>open-source</a>
+    <a class='category' href='/blog/categories/admob/'>admob</a>, <a class='category' href='/blog/categories/ads/'>ads</a>, <a class='category' href='/blog/categories/arc/'>arc</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/iad/'>iad</a>, <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/larsadcontroller/'>larsadcontroller</a>, <a class='category' href='/blog/categories/open-source/'>open-source</a>
   
 </span>
 
@@ -267,7 +267,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -284,7 +284,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/larsacus">@larsacus</a> on GitHub

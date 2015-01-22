@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Advanced iOS | theonlylars]]></title>
+  <title><![CDATA[Category: advanced ios | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/advanced-ios/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:20:54-06:00</updated>
+  <updated>2015-01-22T12:33:33-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -44,7 +44,7 @@
 <p>There are two primary types of declaration modifiers: type qualifiers and storage classes, as well as a third. The third is a kind of “decorator” that in my words “details how <em>much</em> memory is being allocated for a given variable declaration” - it’s called a type <em>specifier</em>.</p>
 
 <h4 id="type-qualifiers">Type Qualifiers</h4>
-<p>Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see<sup id="fnref:2"><a href="#fn:2" rel="footnote">1</a></sup>. You can add type qualifiers to both types and pointers. More on <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/">type qualifiers here</a> and <a href="http://www.eskimo.com/~scs/cclass/int/sx4ga.html">here</a>.</p>
+<p>Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see<sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup>. You can add type qualifiers to both types and pointers. More on <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/">type qualifiers here</a> and <a href="http://www.eskimo.com/~scs/cclass/int/sx4ga.html">here</a>.</p>
 
 <p><strong>Type qualifiers</strong> in C99 include:</p>
 
@@ -91,22 +91,21 @@
 <h2 id="interpretingconstructing-variable-declarations">Interpreting/Constructing Variable Declarations</h2>
 <p>Let’s look at the previous example to dissect how they are different. If I were reading an English sentence describing each variable declaration, it would go like this for each:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a pointer to a constant NSString</span>
-</span><span class='line'><span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a constant pointer to an NSString</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+const NSString * myString; //The variable myString is a pointer to a constant NSString
+NSString * const myString; //The variable myString is a constant pointer to an NSString
+{% endcodeblock %}</p>
 
 <p>After reading the above, you can’t tell me you still think both of those variable declarations are the same. In fact, based on the above information, we could even construct a third similar-but-different variable declaration:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span> <span class="c1">//The variable myString is a constant pointer to a constant NSString</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+const NSString * const myString //The variable myString is a constant pointer to a constant NSString
+{% endcodeblock %}</p>
 
 <p>So how did I perform this black magic? Simply read the variable declaration from the right to left, and when you get to the type, start reading left to right until you get back to the type. <a href="http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations">Code Project has an excellent writeup</a> on reading complicated C declarations and <a href="http://ridiculousfish.com">ridiculous_fish</a> has an excellent conversion tool that will even <a href="http://cdecl.org">convert the declarations into English statements</a> right before your eyes. There are <a href="http://lmgtfy.com/?q=complicated+C+variable+declarations">tons of guides out there</a>. There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.</p>
 
 <h3 id="a-small-dash-of-cocoa">A Small Dash of Cocoa</h3>
-<p>You may be thinking: “This is great and all, so why is this so important in Objective-C? I’ve never seen an <code>volatile unsigned long int * const</code> before in my life, and I’ve been writing in iOS since it began!”. While all of that may be true<sup id="fnref:3"><a href="#fn:3" rel="footnote">2</a></sup>, things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
+<p>You may be thinking: “This is great and all, so why is this so important in Objective-C? I’ve never seen an <code>volatile unsigned long int * const</code> before in my life, and I’ve been writing in iOS since it began!”. While all of that may be true<sup id="fnref:3"><a href="#fn:3" class="footnote">2</a></sup>, things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
 
 <h4 id="block-retain-cycles">Block Retain Cycles</h4>
 <p>When Apple gave us blocks in iOS 4, it was a curse in disguise in terms of memory-management. <em>Everyone</em> loves blocks. <em>Everyone</em> tries to use blocks <em>everywhere</em>, but we’ll save that for another topic (hint: don’t forget about delegation and notifications).</p>
@@ -115,27 +114,21 @@
 
 <p>So we’d end up with this: </p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+__block typeof(self) myself = self;
+{% endcodeblock %}</p>
 
-<p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
+<p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" class="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+__block int count = 0;</p>
+
+<p>self.completionBlock = ^(BOOL finished){
+  if(finished){
+    count++;
+  }
+}
+{% endcodeblock %}</p>
 
 <p>In this example, we’re creating a block variable outside of our block that is going to be modified inside said block. This is the correct way to use <code>__block</code>. To break our retain cycle, the more appropriate solution is to use some specific tools given to us in ARC that we’ll get to in just a second. First, an aside on new hotness in ARC to look out for:</p>
 
@@ -156,7 +149,16 @@
 <p>@idryman has a really <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/#arc-ownership-qualifiers-1">concise writeup</a> on ARC ownership qualifiers, as well as explaining the improper use of them.</p>
 
 <p><a href="http://developer.apple.com/library/mac/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%23//apple_ref/doc/uid/TP40011226-CH1-SW7">From the documentation</a>:
-<blockquote><p>You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p></p><p><p>ClassName * qualifier variableName;</p></p><p><p>for example:</p></p><p><p>MyClass * __weak myWeakReference;<br/>MyClass * __unsafe_unretained myUnsafeReference;</p></blockquote></p>
+{% blockquote %}
+You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p>
+
+<p>ClassName * qualifier variableName;</p>
+
+<p>for example:</p>
+
+<p>MyClass * __weak myWeakReference;
+MyClass * __unsafe_unretained myUnsafeReference;
+{% endblockquote %}</p>
 
 <h5 id="auto-niling-weak-references">Auto-Nil’ing Weak References</h5>
 <p>In iOS 5, Apple gave us <a href="http://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4">auto-nil’ing weak references</a> under ARC. This means that when you have a <em>weak</em> reference to a variable, it will allow you to use that variable and will set that variable to <code>nil</code> when no other object has a strong reference to it. This is a perfect place to replace the <code>__block</code> storage class with one of ARC’s new <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#ownership">ownership qualifiers</a>.  Let’s use <code>__weak</code>:</p>
@@ -165,17 +167,13 @@
 
 <p>Viola! We now have an auto-nil’ing (auto-zeroing) weak reference to <code>self</code> that we can use in a block that <code>self</code> has a strong reference to without modifying where the object lives in memory:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">__weak</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">myself</span> <span class="nl">playWithObject:</span><span class="n">myself</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+typeof(self) __weak myself = self;</p>
+
+<p>self.completionBlock = ^(BOOL finished){
+  [myself playWithObject:myself];
+}
+{% endcodeblock %}</p>
 
 <h2 id="ok-cool">Ok, Cool</h2>
 <p>I think it’s important to understand the guts of a C declaration because of the small nuances that are present when you introduce things like ARC ownership qualifiers.  If you don’t know what a storage qualifier is, then you’re surely not going to know what an ownership qualifier is or how to properly use it. While it’s true for the most part that the compiler will generally let you know when something is awry, isn’t it nice to know that you know a little bit more about what the compiler is actually thinking when it tells you that retaining an object strongly in this context could result in a retain cycle?</p>
@@ -195,13 +193,13 @@
 <div class="footnotes">
   <ol>
     <li id="fn:2">
-      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C<a href="#fnref:2" rel="reference">&#8617;</a></p>
+      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C<a href="#fnref:3" rel="reference">&#8617;</a></p>
+      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:1">
-      <p>This is my opinion<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>This is my opinion <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -225,29 +223,22 @@
 <h3 id="simple-macro-replacement">Simple Macro Replacement</h3>
 <p>While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Conditionally Replacing NSLog  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#ifdef DEBUG</span>
-</span><span class='line'>  <span class="cp">#define DLog(fmt, …) NSLog((@”%s [Line %d] “ fmt), &lt;strong&gt;PRETTY_FUNCTION&lt;/strong&gt;, &lt;strong&gt;LINE&lt;/strong&gt;, ##&lt;strong&gt;VA_ARGS&lt;/strong&gt;);</span>
-</span><span class='line'><span class="cp">#else</span>
-</span><span class='line'>  <span class="cp">#define DLog(…)</span>
-</span><span class='line'><span class="cp">#endif</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Conditionally Replacing NSLog lang:c %}
+#ifdef DEBUG
+  #define DLog(fmt, …) NSLog((@”%s [Line %d] “ fmt), <strong>PRETTY_FUNCTION</strong>, <strong>LINE</strong>, ##<strong>VA_ARGS</strong>);
+#else
+  #define DLog(…)
+#endif
+{% endcodeblock %}</p>
 
 <p>For those of you who don’t regularly use preprocessor macros, here’s what’s happening in this block of code in pseudocode:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>if the macro &lt;code>DEBUG&lt;/code> has been previously defined
-</span><span class='line'>  define a new function named &lt;code>DLog&lt;/code> that takes parameters in &lt;code>NSLog&lt;/code> form and write write them into NSLog
-</span><span class='line'>else
-</span><span class='line'>  define &lt;code>DLog&lt;/code> to do nothing (non-op)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock %}
+if the macro <code>DEBUG</code> has been previously defined
+  define a new function named <code>DLog</code> that takes parameters in <code>NSLog</code> form and write write them into NSLog
+else
+  define <code>DLog</code> to do nothing (non-op)
+{% endcodeblock %}</p>
 
 <p>There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it’s use is acceptable.</p>
 
@@ -304,24 +295,14 @@
   <li>Profit?</li>
 </ol>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Setting up and using Cocoa Lumberjack  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">[</span><span class="n">DDLog</span> <span class="n">addLogger</span><span class="o">:</span><span class="p">[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">DDLogError</span><span class="p">(</span><span class="err">“</span><span class="n">Image</span> <span class="n">is</span> <span class="n">nil</span><span class="o">!</span><span class="err">”</span><span class="p">);</span>
-</span><span class='line'><span class="n">DDLogVerbose</span><span class="p">(</span><span class="err">“</span><span class="n">newViewController</span> <span class="n">viewDidLoad</span><span class="err">”</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock Setting up and using Cocoa Lumberjack lang:c %}</p>
+
+<p>[DDLog addLogger:[DDASLLogger sharedInstance]];</p>
+
+<p>DDLogError(“Image is nil!”);
+DDLogVerbose(“newViewController viewDidLoad”);</p>
+
+<p>{% endcodeblock %}</p>
 
 <p>You have access to four default levels of logging: <code>DDLogError</code>, <code>DDLogWarn</code>, <code>DDLogInfo</code>, <code>DDLogVerbose</code>. In addition to these, you can both <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/CustomLogLevels">customize the names</a> of the default levels as well <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/FineGrainedLogging">as define your additional custom levels</a>.</p>
 
@@ -418,7 +399,7 @@ This is the most basic type of logging, and one which you’re probably most fam
 <h3 id="file-logging">File Logging</h3>
 <p>File logging is just like it sounds. Instead of logging to the debug console, you simply log to a file. This is best demonstrated by simply having you look in the <code>/var/log/</code> folder on your Mac or Linux box.  You’ll see a plethora of file logs chock full of information about what is happening on your system.  For iOS, this really doesn’t make sense for your sandboxed application unless we as the developers know that we need to monitor that information.</p>
 
-<p><img class="left" src="/images/posts/nslog/part1/tweetbot_super_secret.png" width="300" title="Tweetbot’s super-secret settings menu" ></p>
+<p>{% img left /images/posts/nslog/part1/tweetbot_super_secret.png 300 Tweetbot’s super-secret settings menu %}</p>
 
 <p>One example of this necessity is that a particular user is having an issue you’ve never even heard of before and you would like to capture the log output to see what is going on. Simply activate file logging by some super-secret menu and make an easy mechanism for the user to send you that log in an email. Just be responsible and don’t log personal information and always remember to bound the length of your logs - nobody likes 100MB log files.</p>
 
@@ -440,7 +421,7 @@ This is the most basic type of logging, and one which you’re probably most fam
   <li>Whatevs</li>
 </ul>
 
-<p>Surround your pullquote like this {" text to be quoted "}</p>
+<p>{% pullquote %}The “right” logging techniques depends highly on who you are as a programmer and even moreso on where you work. I know we have very specific coding standards at <a href="http://mutualmobile.com">Mutual Mobile</a> so as to increase uniformity between codebases on disparate projects.  So the “right” logging techniques and practices I discuss here are those in which I believe most developers and users would benefit from. These practices are those in which you can dynamically choose which types of logs you would like to see depending on what you are working on.  {“In not so many words: dynamic runtime logging”}.{% endpullquote %}</p>
 
 <p>Dynamic means that it involves conditional logic, and mucking with the logging mechanism at runtime means preprocessor macros are pretty much out of the picture.  In Part 2, we’ll look at some techniques as well as full-blown open source libraries that will make our job of logging much easier, more dynamic, and eliminate logs in production for all but the cases we specifically care about.</p>
 

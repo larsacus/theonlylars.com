@@ -4,7 +4,7 @@
   <title><![CDATA[theonlylars]]></title>
   <link href="http://theonlylars.com/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:20:54-06:00</updated>
+  <updated>2015-01-22T12:32:36-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -18,7 +18,9 @@
     <link href="http://theonlylars.com/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/"/>
     <updated>2015-01-22T11:36:00-06:00</updated>
     <id>http://theonlylars.com/blog/2015/01/22/microsoft-hololens-and-your-everyday-future</id>
-    <content type="html"><![CDATA[<p>Yesterday, Microsoft announced and demoed a surprising, radical new project called <a href="http://www.microsoft.com/microsoft-hololens">HoloLens</a>. If you haven’t seen it yet, please go the Microsoft site and glance at it to make the rest of this make sense. The essence behind HoloLens is a goggle-like device you wear over your eyes that projects holograms augmented into your perception of reality – wirelessly. Technology like this is significant for a few reasons that may not be immedately apparent when looking at the demos they have provided. This technology today, itself may look a little socially isolating, may just be a necessary stepping stone to what we will soon know as the ‘present’ of computing.</p>
+    <content type="html"><![CDATA[<p><em>Having not posted on here in over a year, it feels good to write again.</em></p>
+
+<p>Yesterday, Microsoft announced and demoed a surprising, radical new project called <a href="http://www.microsoft.com/microsoft-hololens">HoloLens</a>. If you haven’t seen it yet, please go the Microsoft site and glance at it to make the rest of this make sense. The essence behind HoloLens is a goggle-like device you wear over your eyes that projects holograms augmented into your perception of reality – wirelessly. Technology like this is significant for a few reasons that may not be immedately apparent when looking at the demos they have provided. This technology today, itself may look a little socially isolating, may just be a necessary stepping stone to what we will soon know as the ‘present’ of computing.</p>
 
 <p>As much as it surprises me to say this to myself about Microsoft, but it’s a little refreshing to see Microsoft show off this kind of technology and not Google.</p>
 
@@ -79,7 +81,7 @@
 <p>Master these and you end up with companies like Apple, who are <em>so</em> intently focused on the user’s experience, they have a team that does nothing but <a href="http://www.networkworld.com/community/node/79642">design and test the box for the “best” experience when opening your new iPhone</a>.</p>
 
 <h2 id="the-game-industry">The Game Industry</h2>
-<p>The game industry is an incredibly complex industry. I don’t pretend to be a game developer, publisher or in any way know the business ends of the gaming industry. However, I <em>am</em> a PC gamer and a software engineer in the business of pleasing my users. I have been a PC gamer since the DOS days, and I’m really not that old. I bring this up to say that I believe the game industry seems to be rapidly devolving when speaking in terms of the user’s experience. They do all of this in the name of “piracy”<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+<p>The game industry is an incredibly complex industry. I don’t pretend to be a game developer, publisher or in any way know the business ends of the gaming industry. However, I <em>am</em> a PC gamer and a software engineer in the business of pleasing my users. I have been a PC gamer since the DOS days, and I’m really not that old. I bring this up to say that I believe the game industry seems to be rapidly devolving when speaking in terms of the user’s experience. They do all of this in the name of “piracy”<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.</p>
 
 <h3 id="drm">DRM</h3>
 <p>The specific example of user-experience gone awry in the game industry is with DRM (digital rights management). This literally has nothing to do with any game individually and has everything to do with access control to a specific resource. The idea behind DRM being that the user is given an obstacle course of hoops and conditions to satisfy before they are given access to the resource (the game) they paid for. This is to prevent people who have <em>not</em> paid for the game from using the resource.</p>
@@ -147,7 +149,7 @@
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Other industries do this, too, don’t get me wrong<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>Other industries do this, too, don’t get me wrong <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -183,7 +185,7 @@
 <p>Even if you do end up successfully laying out your complex auto-layout layout in a nib and get it to behave the way you want, it’s best to treat your xib file like George Bluth in prison and <em>never</em> touch that nib again. Any constraint that is touched could potentially be changed by Xcode because it thinks it knows better than you. You’ll then be back at square one trying to figure out which constraints’ priorities to change back to 1 to get your layout to behave the way you want. I hope you committed that xib into source control just now.</p>
 
 <h2 id="not-to-nib">Not to NIB</h2>
-<p>It’s at this point that writing your layouts using the visual formatting language<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> becomes quicker and less error-prone, even at the expense of having to do it in code. A layout you build in code is the same layout <em>every</em> time the code is run. It’s like this because you built it. Only you know the semantics of the layout you are trying to construct. The code is not going to do anything you don’t tell it to - you just need to practice and learn to get better at telling it what to do. Use the visual formatting language and you’ll eventually make it out alive with a rock-solid layout that is much easier to maintain than the same complex layout in you would have had in your nib file.</p>
+<p>It’s at this point that writing your layouts using the visual formatting language<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> becomes quicker and less error-prone, even at the expense of having to do it in code. A layout you build in code is the same layout <em>every</em> time the code is run. It’s like this because you built it. Only you know the semantics of the layout you are trying to construct. The code is not going to do anything you don’t tell it to - you just need to practice and learn to get better at telling it what to do. Use the visual formatting language and you’ll eventually make it out alive with a rock-solid layout that is much easier to maintain than the same complex layout in you would have had in your nib file.</p>
 
 <h2 id="so-what-should-i-use">So What Should I Use?</h2>
 <p>Some general thoughts to consider when learning to work with autolayout:</p>
@@ -208,7 +210,7 @@
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>This includes the <a href="https://developer.apple.com/library/mac/#documentation/AppKit/Reference/NSLayoutConstraint_Class/NSLayoutConstraint/NSLayoutConstraint.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:">individual constraint APIs</a><a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>This includes the <a href="https://developer.apple.com/library/mac/#documentation/AppKit/Reference/NSLayoutConstraint_Class/NSLayoutConstraint/NSLayoutConstraint.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:">individual constraint APIs</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -246,7 +248,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <p>The problem with goals of mine in the past have always been that they are very generic and/or very difficult to satisfy. I have made a deliberate effort to make my goals for this year both small and specific. This will make it much more difficult to justify my way out of satisfying my goals for this year and much easier to satisfy more goals is they are more achievable.</p>
 
 <h2 id="achievement-unlocked">Achievement Unlocked</h2>
-<p>So, in the spirit of both personal growth and gamification, I bring you <a href="http://theonlylars.com/blog/Achievements/index.html">a new page</a> with my personal list<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> of “achievements” for 2013 that look like this:</p>
+<p>So, in the spirit of both personal growth and gamification, I bring you <a href="http://theonlylars.com/blog/Achievements/index.html">a new page</a> with my personal list<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> of “achievements” for 2013 that look like this:</p>
 
 <div class="achievement">
   <div>
@@ -279,7 +281,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I’ve obviously omitted the truly personal achievements about my life like friends, family, etc.<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>I’ve obviously omitted the truly personal achievements about my life like friends, family, etc. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -334,7 +336,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <p>A Podspec is <a href="https://github.com/CocoaPods/CocoaPods/wiki/A-pod-specification">constructed by building a new <code>Spec</code> object</a> using a ruby “block”. My ruby-fu is still pretty green, so I won’t try and explain the ruby-ness of a podspec. To create a podspec using a block, we’re going to declare the following in a new file named <code>&lt;component_name&gt;.podspec</code>. Please don’t literally put the angle brackets in your file name:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>AwesomeComponent.podspec </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
@@ -345,7 +347,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <p>This creates a new <code>Spec</code> object that is included in the <code>Pod</code> library and inserts it into the local variable <code>s</code> for us to customize before it is returned. I’ve gone ahead and filled in some basic information for a spec I wrote for LARSAdController to demonstrate:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>LARSAdController.podspec </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -390,7 +392,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h3 id="version-simplification">Version Simplification</h3>
 <p>Since this is just a ruby file, you can use all of the ruby tricks on any string in this file. To simplify our podspec for revving our version later, you can tell our <code>source</code> hash to use the podspec’s version as the repository’s tag to use using the <code>to_s</code> helper:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -427,7 +429,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h2 id="spec-lint">Spec Lint</h2>
 <p>The first step to testing your spec is to use cocoapods’ built-in “lint” tool to test for syntax compliance and minimum requirements. In your terminal prompt, run the lint tool on your podspec using:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="bash"><span class="line">pod spec lint <span class="s2">&quot;&lt;spec location&gt;/SpecName.podspec&quot;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -447,7 +449,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>This is where I had a huge issue testing my podspec. The trick I learned is to <a href="https://github.com/CocoaPods/CocoaPods/wiki/Dependency-declaration-options">specify a local file path</a> for your Podfile to look for your new podspec:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">pod</span> <span class="s1">&#39;LARSAdController&#39;</span><span class="p">,</span> <span class="s1">&#39;3.0&#39;</span><span class="p">,</span> <span class="ss">:local</span> <span class="o">=&gt;</span> <span class="s1">&#39;~/Specs/LARSAdController&#39;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -472,7 +474,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h3 id="defining-a-subspec">Defining a Subspec</h3>
 <p>To define a <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">subspec</a> in your spec file, define a <code>subspec</code> variable (?) on your spec variable - much like we did in creating the spec itself:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -500,7 +502,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>Continue to create additional subspecs for however many sub-specifications that you need to create using the template:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="s1">&#39;SubspecName&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
@@ -514,7 +516,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h3 id="depending-on-a-subspec">Depending on a Subspec</h3>
 <p>To use the subspec in a Podfile, define the dependency like normal, but suffix it with a <code>/</code> and the subspec name:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">pod</span> <span class="s1">&#39;LARSAdController/iAds&#39;</span><span class="p">,</span> <span class="s1">&#39;3.0&#39;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -571,7 +573,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h2 id="easy-integration">Easy Integration</h2>
 <p>So let’s get started integrating your ad with some ad networks. If you would like to use Google as your ad vendor, then you will need to go ahead and setup an account with them and have your publisher ID handy.</p>
 
-<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.<!-- more --></p>
+<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.<!-- more --></p>
 
 <h3 id="integrate-the-source">Integrate the Source</h3>
 <p>This is by far the most difficult part of the entire process if you don’t use cocoapods. I highly suggest using cocoapods, so I’m going to go over that first. All of these instructions are mirrored on the <code>README</code> file on <a href="http://larsacus.github.com/LARSAdController">LARSAdController’s github page</a>.</p>
@@ -592,17 +594,16 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p><code>pod 'LARSAdController', '~&gt;3.0'</code></p>
 
-<p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>.</p>
+<p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
 
-<p>Your podfile should now look like this:  </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<p>Your podfile should now look like this:<br />
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">platform</span> <span class="o">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">&#39;</span><span class="mf">5.0</span><span class="err">&#39;</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="objc"><span class="line"><span class="nl">platform</span> <span class="p">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">&#39;</span><span class="mf">5.0</span><span class="err">&#39;</span>
 </span><span class="line">
 </span><span class="line"><span class="n">pod</span> <span class="err">&#39;</span><span class="n">LARSAdController</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="o">~&gt;</span><span class="mf">3.0</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <p>This will setup your project for both Google ads and iAds.</p>
 
@@ -687,7 +688,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h4 id="even-simpler">Even Simpler</h4>
 <p>Guess what? Integrating ads can be even easier than above. If you have each of your view controllers inherit from the base class <code>TOLAdViewController</code>, ads will automatically installed in your view on <code>viewWillAppear:</code>:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 </pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">@interface</span> <span class="nc">MYBestViewControllerEvar</span> : <span class="nc">TOLAdViewController</span>
@@ -697,11 +698,11 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>I’ve even included a method you can override in your view controller to conditionally display these ads. This is convenient when you don’t want to display ads under certain conditions (like when a user purchases an in-app upgrade):</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldDisplayAds</span><span class="p">{</span>
-</span><span class="line">  <span class="k">return</span> <span class="p">([</span><span class="n">self</span><span class="p">.</span><span class="n">purchaseTracker</span> <span class="n">hasPurchasedUpgrade</span><span class="p">]</span> <span class="o">==</span> <span class="n">NO</span><span class="p">);</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldDisplayAds</span><span class="p">{</span>
+</span><span class="line">  <span class="k">return</span> <span class="p">([</span><span class="nb">self</span><span class="p">.</span><span class="n">purchaseTracker</span> <span class="n">hasPurchasedUpgrade</span><span class="p">]</span> <span class="o">==</span> <span class="nb">NO</span><span class="p">);</span>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -720,30 +721,13 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk. <a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk.  <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>.<a href="#fnref:2" rel="reference">&#8617;</a></p>
+      <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Christmas Shopping in a Ubiquitous World]]></title>
-    <link href="http://theonlylars.com/blog/2012/12/17/christmas-shopping-in-a-ubiquitous-world/"/>
-    <updated>2012-12-17T22:05:00-06:00</updated>
-    <id>http://theonlylars.com/blog/2012/12/17/christmas-shopping-in-a-ubiquitous-world</id>
-    <content type="html"><![CDATA[<p>I try to do all of my Christmas (holiday, whatever) shopping online. Going out in Austin traffic is a huge pain, especially when I get home from work way past dark. I’d rather hang out with my wife at home. For my wife and I, shopping for each other this year</p>
-
-<ol>
-  <li>1Password</li>
-  <li>UPS Emails</li>
-  <li>iDevices left at home</li>
-  <li>Picking up packages</li>
-  <li>Amazon wishlists</li>
-</ol>
 ]]></content>
   </entry>
   
@@ -811,7 +795,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <p>To enable logs, simple define the <code>LARSADCONTROLLER_DEBUG</code> macro somewhere.</p>
 
 <h2 id="help">Help?</h2>
-<p>I primarily created <code>LARSAdController</code> because I was unsatisfied with the big ad mediation networks. They also felt pretty heavyweight and a lot of overhead to simply run two mediated ad networks on my low-traffic app<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. This is my simple solution to theirs.</p>
+<p>I primarily created <code>LARSAdController</code> because I was unsatisfied with the big ad mediation networks. They also felt pretty heavyweight and a lot of overhead to simply run two mediated ad networks on my low-traffic app<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. This is my simple solution to theirs.</p>
 
 <p>This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo’s <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">tag</a>.</p>
 
@@ -823,7 +807,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>That and I <em>hate</em> when 3rd party libraries make me use the <code>-all_load</code> compiler flag<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>That and I <em>hate</em> when 3rd party libraries make me use the <code>-all_load</code> compiler flag <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -861,7 +845,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <p>There are two primary types of declaration modifiers: type qualifiers and storage classes, as well as a third. The third is a kind of “decorator” that in my words “details how <em>much</em> memory is being allocated for a given variable declaration” - it’s called a type <em>specifier</em>.</p>
 
 <h4 id="type-qualifiers">Type Qualifiers</h4>
-<p>Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see<sup id="fnref:2"><a href="#fn:2" rel="footnote">1</a></sup>. You can add type qualifiers to both types and pointers. More on <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/">type qualifiers here</a> and <a href="http://www.eskimo.com/~scs/cclass/int/sx4ga.html">here</a>.</p>
+<p>Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see<sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup>. You can add type qualifiers to both types and pointers. More on <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/">type qualifiers here</a> and <a href="http://www.eskimo.com/~scs/cclass/int/sx4ga.html">here</a>.</p>
 
 <p><strong>Type qualifiers</strong> in C99 include:</p>
 
@@ -908,22 +892,22 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h2 id="interpretingconstructing-variable-declarations">Interpreting/Constructing Variable Declarations</h2>
 <p>Let’s look at the previous example to dissect how they are different. If I were reading an English sentence describing each variable declaration, it would go like this for each:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a pointer to a constant NSString</span>
-</span><span class="line"><span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a constant pointer to an NSString</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">const</span> <span class="bp">NSString</span> <span class="o">*</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a pointer to a constant NSString</span>
+</span><span class="line"><span class="bp">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a constant pointer to an NSString</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>After reading the above, you can’t tell me you still think both of those variable declarations are the same. In fact, based on the above information, we could even construct a third similar-but-different variable declaration:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span> <span class="c1">//The variable myString is a constant pointer to a constant NSString</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">const</span> <span class="bp">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span> <span class="c1">//The variable myString is a constant pointer to a constant NSString</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>So how did I perform this black magic? Simply read the variable declaration from the right to left, and when you get to the type, start reading left to right until you get back to the type. <a href="http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations">Code Project has an excellent writeup</a> on reading complicated C declarations and <a href="http://ridiculousfish.com">ridiculous_fish</a> has an excellent conversion tool that will even <a href="http://cdecl.org">convert the declarations into English statements</a> right before your eyes. There are <a href="http://lmgtfy.com/?q=complicated+C+variable+declarations">tons of guides out there</a>. There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.</p>
 
 <h3 id="a-small-dash-of-cocoa">A Small Dash of Cocoa</h3>
-<p>You may be thinking: “This is great and all, so why is this so important in Objective-C? I’ve never seen an <code>volatile unsigned long int * const</code> before in my life, and I’ve been writing in iOS since it began!”. While all of that may be true<sup id="fnref:3"><a href="#fn:3" rel="footnote">2</a></sup>, things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
+<p>You may be thinking: “This is great and all, so why is this so important in Objective-C? I’ve never seen an <code>volatile unsigned long int * const</code> before in my life, and I’ve been writing in iOS since it began!”. While all of that may be true<sup id="fnref:3"><a href="#fn:3" class="footnote">2</a></sup>, things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
 
 <h4 id="block-retain-cycles">Block Retain Cycles</h4>
 <p>When Apple gave us blocks in iOS 4, it was a curse in disguise in terms of memory-management. <em>Everyone</em> loves blocks. <em>Everyone</em> tries to use blocks <em>everywhere</em>, but we’ll save that for another topic (hint: don’t forget about delegation and notifications).</p>
@@ -932,22 +916,22 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>So we’d end up with this: </p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">__block</span> <span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">__block</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
-<p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
+<p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" class="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
 <span class="line-number">6</span>
 <span class="line-number">7</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">__block</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">__block</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
+</span><span class="line"><span class="nb">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
 </span><span class="line">  <span class="k">if</span><span class="p">(</span><span class="n">finished</span><span class="p">){</span>
 </span><span class="line">    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
 </span><span class="line">  <span class="p">}</span>
@@ -982,15 +966,15 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>Viola! We now have an auto-nil’ing (auto-zeroing) weak reference to <code>self</code> that we can use in a block that <code>self</code> has a strong reference to without modifying where the object lives in memory:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
 <span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">__weak</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="k">__weak</span> <span class="n">myself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
 </span><span class="line">
-</span><span class="line"><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
-</span><span class="line">  <span class="p">[</span><span class="n">myself</span> <span class="nl">playWithObject:</span><span class="n">myself</span><span class="p">];</span>
+</span><span class="line"><span class="nb">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
+</span><span class="line">  <span class="p">[</span><span class="n">myself</span> <span class="nl">playWithObject</span><span class="p">:</span><span class="n">myself</span><span class="p">];</span>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -1012,13 +996,13 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:2">
-      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C<a href="#fnref:2" rel="reference">&#8617;</a></p>
+      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C<a href="#fnref:3" rel="reference">&#8617;</a></p>
+      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:1">
-      <p>This is my opinion<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>This is my opinion <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -1034,7 +1018,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>Are you ready?</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span><span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -1051,17 +1035,6 @@ Standing while working is definitely odd at first. It took me a little while to 
 <p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
 
 <p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[The Perception of Old]]></title>
-    <link href="http://theonlylars.com/blog/2012/09/12/the-perception-of-old/"/>
-    <updated>2012-09-12T18:39:00-05:00</updated>
-    <id>http://theonlylars.com/blog/2012/09/12/the-perception-of-old</id>
-    <content type="html"><![CDATA[<p>Today I turn 27. I am a software engineer at a growing mobile consultancy shop, and I often feel like I’m getting too “old” to have not accomplished something amazing already in my life. I see others who are my age or younger who seemed to have already accomplished so much either professionally or socially (in contributions).</p>
-
-<p>Just go out and build. Really old mountain bikers.</p>
 ]]></content>
   </entry>
   
@@ -1097,8 +1070,8 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h3 id="simple-macro-replacement">Simple Macro Replacement</h3>
 <p>While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Conditionally Replacing NSLog  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Conditionally Replacing NSLog </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -1176,12 +1149,12 @@ Standing while working is definitely odd at first. It took me a little while to 
   <li>Profit?</li>
 </ol>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Setting up and using Cocoa Lumberjack  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Setting up and using Cocoa Lumberjack </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="p">[</span><span class="n">DDLog</span> <span class="n">addLogger</span><span class="o">:</span><span class="p">[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span>
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="p">[</span><span class="n">DDLog</span> <span class="nl">addLogger</span><span class="p">:[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span>
 </span><span class="line">
 </span><span class="line"><span class="n">DDLogError</span><span class="p">(</span><span class="s">&quot;Image is nil!&quot;</span><span class="p">);</span>
 </span><span class="line"><span class="n">DDLogVerbose</span><span class="p">(</span><span class="s">&quot;newViewController viewDidLoad&quot;</span><span class="p">);</span>
@@ -1405,6 +1378,94 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
     <content type="html"><![CDATA[<p>Huge shout out to all the high schoolers at <a href="http://lorenaisd.net">Lorena High School</a> that put up with my chatter about how cool my job is this morning. You guys were awesome.</p>
 
 <p>If you’re looking for the presentation, you can find it on <a href="https://github.com/larsacus/career-day">here on my github page</a>. It’s available in powerpoint, keynote, and just plain old pdf. If you have any questions, you can <a href="https://twitter.com/theonlylars">find me on Twitter</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Easily Integrate Your iOS App with iAd and AdMob]]></title>
+    <link href="http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad/"/>
+    <updated>2012-04-27T21:30:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad</id>
+    <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController has been updated to v3.0</a>. A lot of the material below may be outdated. If you need to use v2.x as is demonstrated below, you can still access it using <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">one of the tagged v2.x versions on github</a>.</em></p>
+
+<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
+
+<p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
+
+<h2 id="introducing-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Introducing <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
+<p>I built <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a <code>UIView</code>. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in <em>any</em> orientation.</p>
+
+<h2 id="integrating-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Integrating <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
+<ol>
+  <li>
+    <p>First, you will need to clone the source from <a href="http://larsacus.github.com/LARSAdController">Github</a>:</p>
+
+    <p><code>$ git clone git@github.com:larsacus/LARSAdController.git</code></p>
+
+    <p>or add it as a git submodule:</p>
+
+    <p><code>$ git submodule add git@github.com:larsacus/LARSAdController.git Vendor/LARSAdController</code></p>
+  </li>
+  <li>Add folder or <code>LARSAdController.m/h</code> to your project</li>
+  <li>Download and copy the <a href="https://developers.google.com/mobile-ads-sdk/download#downloadios">Google ad SDK</a> into your project and go ahead and sign up for a Google publisher account at <a href="https://admob.com">AdMob.com</a> if you haven’t already</li>
+  <li>Ensure the proper frameworks have been added to your application in order for iAds and AdMob ads to compile properly:
+    <ol>
+      <li>iAd.framework</li>
+      <li>AudioToolbox.framework</li>
+      <li>MessageUI.framework</li>
+      <li>SystemConfiguration.framework</li>
+    </ol>
+
+    <p>You can add additional frameworks to your project in Xcode 4 by clicking on your project file in the project navigator on the left and going to <code>Build Phases &gt; Link Binary With Libraries &gt; Click + Symbol</code></p>
+
+    <p>Whew! What a lot of stupid setup and we haven’t even written any code, yet! If you want to write code, you may be a little disappointed by this post, because there really isn’t any.</p>
+  </li>
+  <li>Now go to <code>Product &gt; Build</code> or type ‘⌘+B’ to build the project.  If your project builds without any errors, hurray! Skip to step 7.  If not, continue on…</li>
+  <li><span class="pullquote-right" data-pullquote="F, no, Objective-C, I don&#8217;t want ARC on this file!">If you have errors and you followed the above <em>and</em> you’re have ARC enabled, you will need to tell the compiler not to use ARC with <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> as it is not supported, yet. Disable ARC on <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> by following the same steps in step 4 to add frameworks to a project, but go to the <code>Compile Sources</code> section. Find <code>LARSAdController.m</code> in the list of files and double-click in the region to the right marked <code>Compiler Flags</code>. Add a new flag called <code>-fno-objc-arc</code>. A good way to remember this command is to read it like this: F, no, Objective-C, I don’t want ARC on this file!.  Moving along… Hit ‘⌘+B’ to verify everything is building correctly. </span></li>
+  <li><em>Now</em> we’re ready to write some code! Get your typing fingers ready, because text doesn’t just copy/paste itself! Add the following two lines of code to one of your view controller’s view lifecycle load or appear methods.  I’ve found that <code>viewWillAppear:</code> seems to be the best when pushing/popping view controllers with ads on them:</li>
+</ol>
+
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<span class="line-number">2</span>
+<span class="line-number">3</span>
+<span class="line-number">4</span>
+<span class="line-number">5</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line">  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear</span><span class="p">:(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span>
+</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController</span><span class="p">:</span><span class="nb">self</span><span class="p">];</span>
+</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId</span><span class="p">:</span><span class="n">myPublisherId</span><span class="p">];</span>
+</span><span class="line">  <span class="p">}</span>
+</span><span class="line">
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you’re basically done.  Just add the first single line of code to any view controller that you want to host ads in. Just be sure to call <code>setGoogleAdPublisherId:</code> the first time you add LARSAdController to a view. The ads will automatically be added to the bottom of the view and appear/hide whenever they have inventory available.</p>
+
+<h2 id="multiple-orientations">Multiple Orientations</h2>
+
+<p>If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span>lang: objc </span>&lt;/figcaption&gt;
+&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class=""><span class="line">[[LARSAdController sharedManager] setShouldHandleOrientationChanges:YES];</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+
+<p>This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.</p>
+
+<p>Simply call the code in step 7 in any view you need the ad banner to be in, and it will automatically remove it from the old view and add it to the bottom of the new view.</p>
+
+<h2 id="in-conclusion">In Conclusion</h2>
+<p>I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren’t using AdMob ads.  If you’re registered to use AdMob ads, then it’s an even <em>more</em> efficient method, as it’s only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
+
+<p>If you’re using <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the README file.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[check out my new crib]]></title>
+    <link href="http://theonlylars.com/blog/2012/04/26/check-out-my-new-crib/"/>
+    <updated>2012-04-26T19:51:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/04/26/check-out-my-new-crib</id>
+    <content type="html"><![CDATA[<p>I’ve had this domain for awhile, but haven’t had the time to build a website the way I like.  I wanted a blog that accepted markdown as text input, as well as some other social-media integration features, so imagine how intrigued I was to find <a href="http://octopress.org">Octopress</a>, which supported exactly this.  And since it’s basically just a rack/sinatra app, it should be pretty easy for me to modify it how I want.</p>
+
+<p>More to come.</p>
 ]]></content>
   </entry>
   

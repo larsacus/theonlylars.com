@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Development | theonlylars]]></title>
+  <title><![CDATA[Category: development | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/development/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:20:54-06:00</updated>
+  <updated>2015-01-22T12:33:33-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -12,6 +12,552 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Autolayout: To NIB or not to NIB]]></title>
+    <link href="http://theonlylars.com/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/"/>
+    <updated>2013-02-11T19:39:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2013/02/11/autolayout-to-nib-or-not-to-nib</id>
+    <content type="html"><![CDATA[<p>A coworker recently asked me at the end of last week what I thought, based on my experience on my last iOS 6-only project, would be the best approach to starting to learn and work with autolayout. He was specifically asking if he should bother working with xib files, or simply layout everything in code. He then asked that if he were to go with a xib file, what the best approach would be to balance the time/effort workflow for autolayout.</p>
+
+<p>All of the below is 100% based on my experience on my last project that was iOS 6-only, where autolayout was extensively utilized.</p>
+
+<h2 id="autolayout-layout-construction-priority">Autolayout Layout Construction Priority</h2>
+<p>Apple states in all of their documentation the following order you should begin implementing autolayout:</p>
+
+<ol>
+  <li>Nib file</li>
+  <li>Visual formatting language</li>
+  <li>Individual constraints</li>
+</ol>
+
+<h2 id="to-nib">To NIB</h2>
+<p>The priority above is, in my opinion, very dependent on what you are working on. If you have a pretty trivial layout that is simply being constrained based on something simple like an orientation change, then a xib file will probably be your best bet for a rapid layout that is unambiguous and doesn’t give you any issue during maintenance with very little effort.</p>
+
+<p>Another very helpful feature of autolayout’s constraints is the fact that you can create an outlet to a single constraint. You can use this outlet to easily animate a change, change the constraints constant, or remove a constraint altogether without much additional effort. To animation a constraint change, simply update your constraint(s), call <code>-setNeedsLayout</code>, then call <code>-layoutIfNeeded</code> in an animation block. Very quick and easy.</p>
+
+<h3 id="no-touching">No Touching</h3>
+<p><a href="/images/no_touching.gif">{% img right /images/no_touching_static.jpg 300 %}</a> However, using xibs for autolayout starts to break down and become more time than it’s worth when you get into complex layouts that depend on cross-view constraints, constraints depending on a view’s content or complex constraint sets relating to many physically smaller views (the constraints simply become an absolute nightmare to <em>physically</em> click on and manage in the xib without screwing something else up).<!--more--> Couple this with the fact that a “feature” of auto layout nibs is to avoid ambiguous layouts. This means that Xcode will actually <em>add</em> constraints it “feels” are necessary for your layout despite you knowing better based on your semantic knowledge of the layout you’re trying to build. These constraints are <em>not</em> removable and thus, a huge nuisance.</p>
+
+<p>Even if you do end up successfully laying out your complex auto-layout layout in a nib and get it to behave the way you want, it’s best to treat your xib file like George Bluth in prison and <em>never</em> touch that nib again. Any constraint that is touched could potentially be changed by Xcode because it thinks it knows better than you. You’ll then be back at square one trying to figure out which constraints’ priorities to change back to 1 to get your layout to behave the way you want. I hope you committed that xib into source control just now.</p>
+
+<h2 id="not-to-nib">Not to NIB</h2>
+<p>It’s at this point that writing your layouts using the visual formatting language<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> becomes quicker and less error-prone, even at the expense of having to do it in code. A layout you build in code is the same layout <em>every</em> time the code is run. It’s like this because you built it. Only you know the semantics of the layout you are trying to construct. The code is not going to do anything you don’t tell it to - you just need to practice and learn to get better at telling it what to do. Use the visual formatting language and you’ll eventually make it out alive with a rock-solid layout that is much easier to maintain than the same complex layout in you would have had in your nib file.</p>
+
+<h2 id="so-what-should-i-use">So What Should I Use?</h2>
+<p>Some general thoughts to consider when learning to work with autolayout:</p>
+
+<h3 id="always-use-nibs-when-possible">Always Use NIBs When Possible</h3>
+<p>Don’t let interface builder get the best of you. At the first sign of interface builder throwing a fit with your layout and changing things from under your feet - switch to code. Autolayout really is hard, but interface builder sometimes makes it unnecessarily so. Always use a xib when you can. Even if you can only use the nib for a part of the layout, do the complex layout in code and leave the simple layout to the xib if you so choose. The xib is supposed to make your life easier, not more difficult.</p>
+
+<h3 id="use-the-vfl">Use the VFL</h3>
+<p>Use autolayout’s visual formatting language at the first sign of complexity or resistance from interface builder that is impeding your productivity.</p>
+
+<h3 id="hybrid-approach">Hybrid Approach</h3>
+<p>For complex layouts, simply omit that view heirarchy from the nib if it’s only a subset of the nib.</p>
+
+<h3 id="dont-use-autolayout">Don’t Use Autolayout</h3>
+<p>Sometimes you really may not need autolayout. Sometimes the simplest approach is the correct one.</p>
+
+<h3 id="autolayout-is-hard">Autolayout is Hard</h3>
+<p>Yes, autolayout is hard. You’ll often find me comparing the shape of autolayout’s learning curve to that of the face of a cliff. I took it on myself to try and learn as much as I could about autolayout when I got back from WWDC last year. I was then fortunate to be one of a few people to actually get to use iOS 6 APIs in a production environment with a project at Mutual Mobile before iOS 6 was even out of beta. It is still the number one thing people come to me asking questions about at work - for good reason.</p>
+
+<p>Many blog posts have been written by other developers on the nuances of autolayout. Bottom line - autolayout is really hard. It is the only API I can think of that is more closely related to an art than science. One that is only mastered with practice and many hours diagnosing ambiguous and over-constrained layouts in the debugger. The only true advice I could give another is this: “Autolayout is hard. Practice often if you care to learn it.”</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>This includes the <a href="https://developer.apple.com/library/mac/#documentation/AppKit/Reference/NSLayoutConstraint_Class/NSLayoutConstraint/NSLayoutConstraint.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:">individual constraint APIs</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Cocoapods: Creating a Pod Spec]]></title>
+    <link href="http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec/"/>
+    <updated>2013-01-20T14:58:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec</id>
+    <content type="html"><![CDATA[<p><em>Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
+
+<p>{% img left /images/posts/cocoapods/cocoapods_logo.png 200 200 %}If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
+
+<p>Since I’ve had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.<!-- more --></p>
+
+<p>I’m assuming that you already have cocoapods installed, and that you are looking to build and test a new <code>.podspec</code> file for a component.</p>
+
+<h2 id="what-is-a-spec">What is a Spec?</h2>
+<p>The basis behind how cocoapods is able to function is on a project’s “podspec”. Podspecs are created by maintainers of a project (or sometimes just other developers who want to use a component as a pod) and submitted to a public repository of specs in an organized git repository on github.</p>
+
+<p>Specs identify everything about a library or component that needs to be performed before you can properly use it in your project. This includes everything from supported platform, ARC-readiness and required frameworks to other C flags that might need to be switched on.</p>
+
+<h2 id="basic-requirements">Basic Requirements</h2>
+<p>At a minimum, your spec needs to have the following attributes defined in order to be valid. If you think about it, if any one of these were missing, the spec itself wouldn’t really make sense:</p>
+
+<ul>
+  <li>Component name</li>
+  <li>Semantic version number</li>
+  <li>Platform</li>
+  <li>Summary</li>
+  <li>Author info dictionary</li>
+  <li>Component homepage</li>
+  <li>License</li>
+  <li>Source location</li>
+  <li>Source files list</li>
+  <li>Any component dependencies*</li>
+  <li>Required apple frameworks*</li>
+</ul>
+
+<h3 id="semantic-versioning">Semantic Versioning</h3>
+<p>Cocoapods <a href="https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo"><em>highly</em> suggests</a> using (as in - don’t <em>not</em> do it) <a href="http://semver.org">semantic versioning</a> to version your cocoapods. Without semantic versioning, it becomes much more difficult if not impossible to resolve some cross-dependencies between similar pod dependencies in your project, if any exist. All that was very complicated to say - use semantic versioning (v1.1.0). Tag your code in your repository with a tag corresponding to the version number of your component (for v3.0.0 of your component, tag your code <code>3.0.0</code>).</p>
+
+<h3 id="dependencies">Dependencies</h3>
+<p>The dependency line is technically optional if your component does not rely on any external pod.</p>
+
+<h3 id="frameworks">Frameworks</h3>
+<p>The frameworks line is also technically optional if your pod only uses the standard apple frameworks.</p>
+
+<h2 id="construction">Construction</h2>
+<p>A Podspec is <a href="https://github.com/CocoaPods/CocoaPods/wiki/A-pod-specification">constructed by building a new <code>Spec</code> object</a> using a ruby “block”. My ruby-fu is still pretty green, so I won’t try and explain the ruby-ness of a podspec. To create a podspec using a block, we’re going to declare the following in a new file named <code>&lt;component_name&gt;.podspec</code>. Please don’t literally put the angle brackets in your file name:</p>
+
+<p>{% codeblock lang:ruby AwesomeComponent.podspec %}
+Pod::Spec.new do |s|
+  # pod customization goes in here
+end
+{% endcodeblock %}</p>
+
+<p>This creates a new <code>Spec</code> object that is included in the <code>Pod</code> library and inserts it into the local variable <code>s</code> for us to customize before it is returned. I’ve gone ahead and filled in some basic information for a spec I wrote for LARSAdController to demonstrate:</p>
+
+<p>{% codeblock lang:ruby LARSAdController.podspec %}
+Pod::Spec.new do |s|
+  s.name         = ‘LARSAdController’
+  s.version      = ‘3.0.0’
+  s.summary      = ‘Lightweight ad mediation for iOS’
+  s.author = {
+    ‘Lars Anderson’ =&gt; ‘youremail@here.com’
+  }
+  s.source = {
+    :git =&gt; ‘https://github.com/larsacus/LARSAdController.git’,
+    :tag =&gt; ‘3.0.0’
+  }
+  s.source_files = ‘Source/*.{h,m}’
+  s.dependency     ‘AdMob’
+end
+{% endcodeblock %}</p>
+
+<p>This will include all source files with file extensions <code>.h</code> &amp; <code>.m</code> in the <code>Source/</code> folder in the github repository <code>https://github.com/larsacus/LARSAdController.git</code> in the source tag <code>3.0.0</code> while also including the pod for the dependency of <code>AdMob</code>.</p>
+
+<h3 id="hashes">Hashes</h3>
+<p>If you’re unfamiliar with ruby, you’ll notice some interesting <code>{}</code> structures being assigned to variables like <code>source</code> and <code>author</code>. These structures are called “hashes” and they are exactly like your standard dictionary in objective-c:</p>
+
+<p><code>key =&gt; value</code></p>
+
+<p>For the <code>source</code> hash, the colon (<code>:</code>) before the key name is important. This <a href="http://rubylearning.com/satishtalim/ruby_hashes.html">defines things like :git and :tag as ruby “symbols”</a> that are defined within cocoapods.</p>
+
+<h3 id="tags-and-unversioned-repositories">Tags and Unversioned Repositories</h3>
+<p>There are other methods of specifying the location of source code instead of tags, but you should really be using tags to mark your code commit for your spec. If you are not the owner of the repository you are creating a spec for, <a href="https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo">file an issue with the repository</a> to request that a tag be made. If this doesn’t work, then you should specify the version of your podspec to begin at <code>0.0.1</code> to indicate that this pod’s spec is unmanaged. Should the owner finally get a tag, then you can update the podspec with the correct version with little fear of conflicting with your previously unmanaged podspec’s version.</p>
+
+<h3 id="version-simplification">Version Simplification</h3>
+<p>Since this is just a ruby file, you can use all of the ruby tricks on any string in this file. To simplify our podspec for revving our version later, you can tell our <code>source</code> hash to use the podspec’s version as the repository’s tag to use using the <code>to_s</code> helper:</p>
+
+<p>{% codeblock lang:ruby %}
+Pod::Spec.new do |s|
+  ..
+  s.source = {
+    :git =&gt; ‘https://github.com/larsacus/LARSAdController.git’,
+    :tag =&gt; s.version.to_s
+  }
+  …
+end
+{% endcodeblock %}</p>
+
+<h2 id="completing-your-spec">Completing Your Spec</h2>
+<p>This is where writing a podspec gets a little complicated. The general example specs from the wiki are just fine, but when you start customizing your spec to the specific needs of your component or library, you can easily find yourself running to google with few available resources.</p>
+
+<h3 id="help">Help</h3>
+<p>For the majority of the issues you will run into when creating your podspec, the <a href="https://github.com/CocoaPods/CocoaPods/wiki/">cocoapods wiki</a> will have a page that will answer your question. Almost every issue I was having, I eventually found the answer to in the wiki. It could be a little better organized, because I really can’t complain too much since I haven’t submitted a pull request to fix it myself.</p>
+
+<p>If you simply cannot find an answer anywhere, submit an issue on the <a href="https://github.com/CocoaPods/Specs/issues">Cocoapods/Specs</a> repository (not the Cocoapods/Cocoapods repo) and someone is usually knowledgable enough to figure out what you’re doing wrong or help you file a bug to fix the issue.</p>
+
+<h3 id="learn-by-example">Learn By Example</h3>
+<p>If you have a component or library that is built a specific way and you’re having an issue, try and find a similar component that is built like yours and try that Pod’s spec configuration. For instance, if your component is a static library, find a spec (like <a href="https://github.com/CocoaPods/Specs/blob/master/TestFlightSDK/1.2/TestFlightSDK.podspec">Testflight</a>) that is built utilizing a static library.</p>
+
+<h2 id="testing">Testing</h2>
+<p>I found that this step was by far the most difficult to perform. I was not about to simply deploy a podspec that I had not tested, so this left me not even wanting to build a podspec for my component. I’m going to spare you the workflow iterations I tried before arriving at what I believe to be the “correct” way to test your podspec.</p>
+
+<p><em>I also understand that I am fully able to submit pull requests to modify the cocoapods wiki to make it more clear. This is something that I simply have not done, yet. This is way easier for now.</em></p>
+
+<h2 id="spec-lint">Spec Lint</h2>
+<p>The first step to testing your spec is to use cocoapods’ built-in “lint” tool to test for syntax compliance and minimum requirements. In your terminal prompt, run the lint tool on your podspec using:</p>
+
+<p>{% codeblock lang:bash %}
+pod spec lint “<spec location="">/SpecName.podspec&#8221;
+{% endcodeblock%}</spec></p>
+
+<p>If anything is syntactically wrong with your spec, it will show up here after running lint. Refer to the <a href="https://github.com/CocoaPods/CocoaPods/wiki">cocoapods wiki</a> if any errors or warnings come up.</p>
+
+<h2 id="in-project-functional-testing">In-Project (Functional) Testing</h2>
+<p>It’s <em>very</em> important to actually test your pod in a <em>fresh</em> project without any other configuration. Don’t be the guy that creates a spec, submits it, then you get a bunch of complaints because your spec doesn’t actually install properly when it’s installed. It’s also annoying to find a spec you can use, put it as a dependency on your project, only to find out it’s not configured properly. It looks bad on the cocoapods community when this happens.</p>
+
+<p>Please functionally test your specs before submitting them:</p>
+
+<ol>
+  <li>Create a new empty xcode project</li>
+  <li>Create your <code>Podfile</code></li>
+  <li>Add your pod as a project dependency</li>
+  <li>Specify local file path for new podspec</li>
+</ol>
+
+<p>This is where I had a huge issue testing my podspec. The trick I learned is to <a href="https://github.com/CocoaPods/CocoaPods/wiki/Dependency-declaration-options">specify a local file path</a> for your Podfile to look for your new podspec:</p>
+
+<p>{% codeblock lang:ruby %}
+pod ‘LARSAdController’, ‘3.0’, :local =&gt; ‘~/Specs/LARSAdController’
+{% endcodeblock%}</p>
+
+<p>Now you can install and test your pod:</p>
+
+<ol>
+  <li>Install pod
+    <ul>
+      <li><code>pod install</code> (initial install)</li>
+      <li><code>pod update</code> (subsequent installs)</li>
+    </ul>
+  </li>
+  <li>Test to ensure your component works</li>
+  <li>Rinse, repeat until component installs correctly</li>
+</ol>
+
+<h2 id="subspecs">Subspecs</h2>
+<p>A cool feature of cocoapods is it’s ability for you to specify sub-components of your component to include. This will enable other developers to be able to a-la-carte choose which sub-components of your library to include in their project. This reduces the bloat, especially when only some parts of your project have dependencies on other large components.</p>
+
+<p>Subspecs are totally optional in your podspec.</p>
+
+<h3 id="defining-a-subspec">Defining a Subspec</h3>
+<p>To define a <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">subspec</a> in your spec file, define a <code>subspec</code> variable (?) on your spec variable - much like we did in creating the spec itself:</p>
+
+<p>{% codeblock lang:ruby %}
+Pod::Spec.new do |s|
+  ..
+  s.subspec ‘iAds’ do |a|
+    a.source_files = ‘Source/iAds/*.{h,m}’
+    a.dependency ‘LARSAdController/Core’
+    a.frameworks = ‘QuartzCore’
+    a.weak_frameworks = ‘AdSupport’
+  end
+  …
+end
+{% endcodeblock%}</p>
+
+<p>Give your subspec a descriptive name, specify the source files to use, etc. In the above example, I have named this subspec ‘iAds’ since this will be including iAd functionality in with my pod. You’ll continue to customize the subspec in the same way that you customized your parent spec object. Note that the subspec will inherit all of the base properties of the parent spec, so there is no need to repeat them in your subspec.</p>
+
+<p>There are some properties that are not allowed to be defined on a subspec and can only be defined on the parent spec. These “Top level attributes” are outlined on the <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">podspec page</a> on the Cocoapods wiki.</p>
+
+<p>Continue to create additional subspecs for however many sub-specifications that you need to create using the template:</p>
+
+<p>{% codeblock lang:ruby %}
+s.subspec ‘SubspecName’ do |a|
+  # Customize
+end
+{% endcodeblock%}</p>
+
+<h3 id="final-product">Final Product</h3>
+<p>In the end, you should have a podspec that looks a lot like mine does <a href="https://github.com/CocoaPods/Specs/blob/master/LARSAdController/3.0.0/LARSAdController.podspec">for LARSAdController</a>.</p>
+
+<h3 id="depending-on-a-subspec">Depending on a Subspec</h3>
+<p>To use the subspec in a Podfile, define the dependency like normal, but suffix it with a <code>/</code> and the subspec name:</p>
+
+<p>{% codeblock lang:ruby %}
+pod ‘LARSAdController/iAds’, ‘3.0’
+{% endcodeblock%}</p>
+
+<h2 id="releasing">Releasing</h2>
+<p>Congratulations! You’ve now completed the hardest parts of constructing your podspec. This next part is easy as long as your podspec lints correctly and installs - which you’ve already tested, right? In order to contribute to the <a href="https://github.com/CocoaPods/Specs">Cocoapods/Specs</a> repository, you will need to clone the repo, add your spec and submit a pull request to have your spec added.</p>
+
+<h3 id="forkingcloning">Forking/Cloning</h3>
+<p>To add your spec to the list of podspecs, you will need to fork the <a href="https://github.com/CocoaPods/Specs">Cocoapods/Specs</a> repo using your own github account. If you have cloned a fork of the repository and haven’t committed to it even in the last 12 hours, you will want to update your repository by doing a <code>git pull</code> on your repo specifying the original remote location to pull the latest podspecs from. This repository gets updated quite frequently, so make sure you are up to date.</p>
+
+<p>You will then need to clone the repository on your local machine and add your spec using the established file structure:</p>
+
+<p><code>ProjectName/Version/ProjectName.podspec</code></p>
+
+<p>So for the last release of LARSAdController, I put my latest podspec in <code>LARSAdController/3.0.0/LARSAdController.podspec</code> - one podspec per version folder.</p>
+
+<p>Once this is added, you’ll want to add the files to git, commit, and push them back up to your own fork of the Specs repo.</p>
+
+<h3 id="pull-request">Pull Request</h3>
+<p>Once the podspec is committed and pushed to your fork on github, you can submit a new pull request to merge the changes you made in your fork to the master repository that cocoapods is pulling their spec library from.</p>
+
+<p>The friendly, hard-working folks who actively work to get your components merged in will then make sure that everything is linted and working correctly (syntactically, but not functionally) before allowing your changes to be merged into the master specs branch.</p>
+
+<p>If this succeeds, then your podspec will now be available for everyone to use in their own projects! Pat yourself on the back - it wasn’t all that bad, was it?</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Stupid Easy iOS Ad Mediation with LARSAdController 3.0]]></title>
+    <link href="http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/"/>
+    <updated>2013-01-10T20:10:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0</id>
+    <content type="html"><![CDATA[<h2 id="roots">Roots</h2>
+<p>When I originally built LARSAdController, I was building it to fulfill a very specific purpose for my first app (Droid Light): leverage a singleton to serve a single ad instance for iAds using best practices, and serve AdMob ads as a backup when iAds (stellar) inventory ran dry. Since then, I’ve expanded it to support multiple devices, as well as multiple orientations, all while being super-easy to integrate.</p>
+
+<h2 id="section">3.0</h2>
+<p>Version 3.0 now supports all of the things that the old version did, but now allows you much more flexibility and freedom in how you would like your ads to be used.</p>
+
+<h3 id="major-changes-from-v2x">Major Changes from v2.x</h3>
+
+<p>A detailed changelog of what has changed can be found in the <a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 release-candidate post</a>, but here’s the <code>tl;dr</code> version:</p>
+
+<ul>
+  <li><code>TOL</code> as a new class prefix</li>
+  <li>Arbitrary ad networks</li>
+  <li>Ad network priority</li>
+  <li>Conversion to ARC</li>
+  <li>Presentation types</li>
+  <li>Pinning locations (have ad reside at the top of your view)</li>
+  <li>Easy setup with a new view controller subclass <code>TOLAdViewController</code></li>
+  <li>Optional verbose debug logging for development</li>
+  <li>Upgrade base iOS dependency to iOS 5.0</li>
+</ul>
+
+<h2 id="easy-integration">Easy Integration</h2>
+<p>So let’s get started integrating your ad with some ad networks. If you would like to use Google as your ad vendor, then you will need to go ahead and setup an account with them and have your publisher ID handy.</p>
+
+<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.<!-- more --></p>
+
+<h3 id="integrate-the-source">Integrate the Source</h3>
+<p>This is by far the most difficult part of the entire process if you don’t use cocoapods. I highly suggest using cocoapods, so I’m going to go over that first. All of these instructions are mirrored on the <code>README</code> file on <a href="http://larsacus.github.com/LARSAdController">LARSAdController’s github page</a>.</p>
+
+<p>If you don’t have cocoapods setup, visit <a href="http://cocoapods.org">cocoapods.org</a> for installation instructions. I promise, it’s really easy, too. Then come back here.</p>
+
+<h4 id="cocoapods">Cocoapods</h4>
+<p>To include the LARSAdController source with your project, you will need to include the LARSAdController dependency in what is known as a “Podfile”. In your project’s root directory, you will need to create a new empty text file named <code>Podfile</code>.</p>
+
+<h5 id="podfile-setup">Podfile Setup</h5>
+<p>Inside <code>Podfile</code>, you will need to declare your project’s platform and base deployment target. LARSAdController only supports base deployment targets of 5.0 and above. To do this, add this as the first line:</p>
+
+<p><code>platform :ios, '5.0'</code></p>
+
+<p>This tells cocoapods that our platform is iOS and that our deployment target is iOS 5.0 and above.</p>
+
+<p>In order to tell cocoapods to install LARSAdController, simply specify that you would like your project to include LARSAdController as a “dependency”:</p>
+
+<p><code>pod 'LARSAdController', '~&gt;3.0'</code></p>
+
+<p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
+
+<p>Your podfile should now look like this:<br />
+{% codeblock lang:objc %}
+platform :ios, ‘5.0’</p>
+
+<p>pod ‘LARSAdController’, ‘~&gt;3.0’
+{% endcodeblock%}</p>
+
+<p>This will setup your project for both Google ads and iAds.</p>
+
+<h5 id="components">Components</h5>
+<p>If you are only interested in iAds <em>or</em> Google Ads, then you <em>can</em> (but you don’t have to) specify a specific component of LARSAdController in your podfile instead of the above:</p>
+
+<p>For only GoogleAds: <code>pod 'LARSAdController/GoogleAds', '~&gt;3.0'</code></p>
+
+<p>For only iAds: <code>pod 'LARSAdController/iAds', '~&gt;3.0'</code></p>
+
+<p>If you’re only interested in iAds, then this is a great way to avoid the bloat of the Google ads SDK in your project when you don’t even need it. Including both lines would be functionally the same as simply using <code>pod 'LARSAdController', '~&gt;3.0'</code> in your project.</p>
+
+<h5 id="install">Install</h5>
+<p>From here, save your podfile, and in terminal, run <code>pod install</code> to kickoff the installation. Cocoapods creates a new <code>xcworkspace</code> file with your pods already downloaded and configured for your project to use without you having to manage any of the dependencies.</p>
+
+<p>You must now open the <code>&lt;your_app&gt;.xcworkspace</code> file to use LARSAdController.</p>
+
+<p>Done. <a href="#decide-where">Click here</a> to skip the manual process instructions since you don’t need them.</p>
+
+<h4 id="manually">Manually</h4>
+<p>If you’re not using cocoapods, in order to use <code>LARSAdController</code>, you will need to clone this repo and add the <code>Source/</code> directory to your project, as well as add the required frameworks - all by hand.</p>
+
+<p>…like a caveman</p>
+
+<h5 id="git-submodule">Git Submodule</h5>
+<p>You can do this the old way by simply cloning the repository and adding the files to your project as a git submodule as shown below:</p>
+
+<p><code>git add submodule &lt;third_party_folder&gt; https://github.com/larsacus/LARSAdController.git --recursive</code></p>
+
+<p>Where <code>&lt;third_party_folder&gt;</code> is the folder where all of your third party code lives in your project file structure.</p>
+
+<h5 id="framework-requirements">Framework Requirements</h5>
+<p>In order to compile, you will need to include the following Apple frameworks:</p>
+
+<h6 id="iads">iAds</h6>
+
+<ol>
+  <li><code>iAd.framework</code></li>
+  <li><code>AdSupport.framework</code> (weak-link for iOS 6)</li>
+</ol>
+
+<h6 id="google-ads">Google Ads</h6>
+
+<ol>
+  <li><code>StoreKit.framework</code></li>
+  <li><code>AudioToolbox.framework</code></li>
+  <li><code>MessageUI.framework</code></li>
+  <li><code>SystemConfiguration.framework</code></li>
+  <li><code>CoreGraphics.framework</code></li>
+  <li><code>AdSupport.framework</code> (weak-link for iOS 6)</li>
+</ol>
+
+<p>You will also need the <code>Google AdMob SDK</code> available from <a href="https://developers.google.com/mobile-ads-sdk/download#downloadios">Google</a>. If you are using the <code>--recursive</code> call above, then a submodule of the googleads sdk will be cloned to the <code>Example/AdMob</code> folder.</p>
+
+<h3 id="decide-where">Decide Where</h3>
+<p>Decide where you want your ads to live. Try and stay away from trying to use them anywhere that the ad is going to be moving around (like in a table view cell). Publishers hate this and it could result in false impressions and possibly low revenues.</p>
+
+<p>You have the option of placing your ad at the top or bottom of a view. By default, LARSAdController will place your ad at the bottom of a given view. Specify if you want your ad at the top of the view by calling the following somewhere in your app delegate (like in <code>applicationDidFinishLaunching:</code>):</p>
+
+<p><code>[[LARSAdController sharedManager] setPinningLocation:LARSAdControllerPinLocationTop];</code></p>
+
+<p>If you would like to dynamically change the pinning location depending on view controller, then place this call in <code>viewDidLoad:</code> of the view controller you would like to change and where you would like the ad to be.</p>
+
+<h3 id="register-ad-networks">Register Ad Networks</h3>
+<p>You will need to specify which ad networks you would like to use and in which order they should display. Calling the below code will register LARSAdController with the iAd network as a primary network. You will be calling this sometime before your first ad is requested, which we’ll go over next.</p>
+
+<p><code>[[LARSAdController sharedManager] registerAdClass:[TOLAdAdapteriAds class]];</code></p>
+
+<p>To add Google ads as a secondary network to iAds, then call the following sometime <em>after</em> the above call:</p>
+
+<p><code>[[LARSAdController sharedManager] registerAdClass:[TOLAdAdapterGoogleAds class]];</code></p>
+
+<p>If you would like the reverse - to have Google ads served before iAds, then simply reverse the order in which the ad networks were registered.</p>
+
+<h3 id="add-banner-to-view">Add Banner to View</h3>
+<p>To install the ad banner in each of your views (view controllers), call</p>
+
+<p><code>[[LARSAdController sharedManager] addAdNetworkToViewInViewController:self];</code>.</p>
+
+<p>I’ve found the best place to call this method is in your view controller’s <code>viewWillAppear:</code> method.</p>
+
+<h4 id="even-simpler">Even Simpler</h4>
+<p>Guess what? Integrating ads can be even easier than above. If you have each of your view controllers inherit from the base class <code>TOLAdViewController</code>, ads will automatically installed in your view on <code>viewWillAppear:</code>:</p>
+
+<p>{% codeblock lang:objc %}
+@interface MYBestViewControllerEvar : TOLAdViewController
+//BOOM - Ads
+@end
+{% endcodeblock %}</p>
+
+<p>I’ve even included a method you can override in your view controller to conditionally display these ads. This is convenient when you don’t want to display ads under certain conditions (like when a user purchases an in-app upgrade):</p>
+
+<p>{% codeblock lang:objc %}
+- (BOOL)shouldDisplayAds{
+  return ([self.purchaseTracker hasPurchasedUpgrade] == NO);
+}
+{% endcodeblock %}</p>
+
+<h2 id="test">Test</h2>
+<p>Make sure you test that everything is working correctly in your particular app before you ship to the app store. <a href="https://github.com/larsacus/LARSAdController/issues">Submit an issue on github</a> if something feels wrong.</p>
+
+<h2 id="done">Done</h2>
+<p>Easy. Total lines of code I’ve counted for a standard integration of two ad networks in a single view controller is two if you use the view controller subclass. Two lines of code to have ads properly served in your app. If you use cocoapods, you can go from nothing to proper ads in less than a minute.</p>
+
+<p><a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> v3.0 is released under the very liberal MIT license on github. If you’re using LARSAdController in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the bottom of the README file.</p>
+
+<p>If you find an bug or have a suggestion, feel free to <a href="https://github.com/larsacus/LARSAdController/issues">submit a new issue on github</a> <em>with reproduction information and preferably source code</em> as well as a description of what you’re trying to accomplish if it even <em>feels</em> like it’s out of the normal use case.</p>
+
+<hr />
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk.  <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[LARSAdController 3.0 RC]]></title>
+    <link href="http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc/"/>
+    <updated>2012-12-15T15:25:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc</id>
+    <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
+
+<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
+
+<p>Let’s take a look at what’s changed:</p>
+
+<h2 id="a-new-class-prefix">A New Class Prefix</h2>
+<p>I’ve been using the class prefix <code>LARS</code> for all of my open-source classes. While this really is short and unique, it’s always felt pretty egotistical to have my name plastered all over my classes. This is just how I feel from this side of the keyboard. Does it look the same from the user’s end? Let me know what you think.</p>
+
+<p>Anyway, I’ve migrated new classes to the new <code>TOL</code> prefix, for <a href="https://twitter.com/theonlylars">@<strong>T</strong>he<strong>O</strong>nly<strong>L</strong>ars</a>. This feels more anonymous and I haven’t seen the prefix used by anyone else before, yet. I’d love to know if someone well known <em>is</em> using the <code>TOL</code> class prefix. If I feel like I like this prefix better, I may just start using it for everything.</p>
+
+<p>I also like that it sounds like “toll”. I have grand visions of having some cool project named <code>TOLBooth</code>, <code>TOLRoad</code>, or <code>TOLHouse</code>. I can’t think of practical project ideas to put those names on, however.</p>
+
+<h2 id="modular-ad-networks">Modular Ad Networks</h2>
+<p>The big new feature for this release is modular ad networks. Ad junkies will know this as ad mediation. AdMob has an ad mediation framework, so does AdWhirl, MobClix, and others. This is my implementation. The actual mediation logic is in a single .h/.m file pair. The other files support the ad networks. I feel this is a very lightweight implementation compared to other company’s mediation platforms, not to mention it’s open source so you can peek under the hood to see how another developer has solved a problem.</p>
+
+<p>Right now I’ve built ad network adapters for iAds and AdMob ads. These are the only two ad networks that I use in Droid Light, so I don’t know much about others, and these two seem to be the most popular for banner ads on iOS.</p>
+
+<h3 id="house-ads">House Ads</h3>
+<p>A third planned adapter I’m particularly excited about is an adapter for “house” ads, <em>but I have not started on it as of yet</em>. House ads would basically amount to an image and a tap destination that you supply yourself. It’s an ad for yourself. <!-- more -->This will ideally be loaded dynamically from a remote server somewhere so you won’t have to upload a new binary to the app store every time you want to change the ads.</p>
+
+<p>You could have this house ad link to another page in your app, have it load a remote URL for another app you have in the app store, or even let users know a new version is available. This would be able to be mediated in just like any other ad network.</p>
+
+<p>This is not necessarily part of this release, but is something that is going to be at least started by then.</p>
+
+<h3 id="additional-ad-networks">Additional Ad Networks</h3>
+<p>Additional ad networks can be easily created by conforming your <code>NSObject</code> subclass to the <code>TOLAdAdapter</code> protocol. As long as you have logging enabled, I feel the warnings and assertions, as well as the header documentation have been well-built enough to make this a pretty painless process.</p>
+
+<h3 id="priority">Priority</h3>
+<p>You can now prioritize which ad network you would like to have highest priority. Version 2.0 and prior had their priority fixed to have iAds serve first and have AdMob ads slaved to display when there was no available iAd inventory to display.</p>
+
+<p>This worked for the first couple years of iAd as the eCPM and fill rate was so much better than anything else. Since iAds are basically paying out on par or worse than AdMob ads with way worse fill rates, you may not want to have iAds be your highest priority network. This is now possible.</p>
+
+<h2 id="arc">ARC</h2>
+<p><code>LARSAdController</code> 3.0 is now ARC-enabled. You’re welcome.</p>
+
+<h2 id="presentation-types--pinning-location">Presentation Types &amp; Pinning Location</h2>
+<p>In 2.0 and prior versions, you were limited to only displaying the ad at the bottom of your view and having it slide from the bottom as your animation. Two new properties have been added on <code>LARSAdController</code>: <code>presentationType</code> and <code>pinningLocation</code>.</p>
+
+<h3 id="presentationtype">presentationType</h3>
+<p>You now have the option to change the animation sliding direction of your ads when a new ad is loaded and animated on screen. You can have it slide in from any edge. I thought about adding different transition types (flip, etc.), but thought it really unnecessary unless this is something other’s think they want.</p>
+
+<h3 id="pinninglocation">pinningLocation</h3>
+<p>You also now have the option to change the physical location that the ad container lives on screen. In addition to the good ol’ bottom of your view, you can pin the ad to the top of the view. This is not revolutionary.</p>
+
+<h2 id="a-view-controller-subclass">A View Controller Subclass</h2>
+<p>I’ve created a new view controller subclass that is the <em>easiest</em> method to integrating ads into your view controller’s view. For simple configurations, simply having your view controller inherit from <code>TOLAdViewController</code> will display an ad on <code>viewDidLoad:</code>, just like is suggested in the setup instructions. Literally no other work is needed from you in the simplest case.</p>
+
+<h3 id="conditionally-display-ads">Conditionally Display Ads</h3>
+<p>If you need to conditionally display ads while using the view controller subclass, overriding <code>shouldDisplayAds</code> will enable you to add some logic to determine if the subclass should add the ad container to your view or not. If you return <code>NO</code>, then nothing else is performed and no ad is added to your view hierarchy. The base implementation always returns <code>YES</code>.</p>
+
+<p>I am dogfooding this view controller to myself in Droid Light, so it works for more than just the trivial implementations.</p>
+
+<h2 id="debug-logging">Debug Logging</h2>
+<p>I’ve added pretty extensive debug logging for what’s currently constructed. If something goes wrong, you should be able to tell <em>what</em> is going on and on what line in what file. Runtime warnings are unconditionally displayed regardless of debug log state and should probably be taken care of.</p>
+
+<p>To enable logs, simple define the <code>LARSADCONTROLLER_DEBUG</code> macro somewhere.</p>
+
+<h2 id="help">Help?</h2>
+<p>I primarily created <code>LARSAdController</code> because I was unsatisfied with the big ad mediation networks. They also felt pretty heavyweight and a lot of overhead to simply run two mediated ad networks on my low-traffic app<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. This is my simple solution to theirs.</p>
+
+<p>This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo’s <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">tag</a>.</p>
+
+<p>You can find the <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">3.0 tag here</a> and file <a href="https://github.com/larsacus/LARSAdController/issues">issues here</a>. Don’t be shy about issues. If it’s not a bug, but simply something you didn’t expect and want clarification, file an issue.</p>
+
+<p>If you’re so inclined, let me know what you think: <a href="https://twitter.com/theonlylars">@theonlylars</a></p>
+
+<hr />
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>That and I <em>hate</em> when 3rd party libraries make me use the <code>-all_load</code> compiler flag <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Don't Forget the "C" in Objective-C: C Declarations]]></title>
@@ -44,7 +590,7 @@
 <p>There are two primary types of declaration modifiers: type qualifiers and storage classes, as well as a third. The third is a kind of “decorator” that in my words “details how <em>much</em> memory is being allocated for a given variable declaration” - it’s called a type <em>specifier</em>.</p>
 
 <h4 id="type-qualifiers">Type Qualifiers</h4>
-<p>Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see<sup id="fnref:2"><a href="#fn:2" rel="footnote">1</a></sup>. You can add type qualifiers to both types and pointers. More on <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/">type qualifiers here</a> and <a href="http://www.eskimo.com/~scs/cclass/int/sx4ga.html">here</a>.</p>
+<p>Type qualifiers is basically you telling the compiler how you are going to use a given variable so that it can either perform optimizations on that variable to increase performance, prevent modification of them by anyone else (constants), or to ensure that you always have the most up-to-date information every time you access that variable (volatile). These are less common to see<sup id="fnref:2"><a href="#fn:2" class="footnote">1</a></sup>. You can add type qualifiers to both types and pointers. More on <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/">type qualifiers here</a> and <a href="http://www.eskimo.com/~scs/cclass/int/sx4ga.html">here</a>.</p>
 
 <p><strong>Type qualifiers</strong> in C99 include:</p>
 
@@ -91,22 +637,21 @@
 <h2 id="interpretingconstructing-variable-declarations">Interpreting/Constructing Variable Declarations</h2>
 <p>Let’s look at the previous example to dissect how they are different. If I were reading an English sentence describing each variable declaration, it would go like this for each:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a pointer to a constant NSString</span>
-</span><span class='line'><span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a constant pointer to an NSString</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+const NSString * myString; //The variable myString is a pointer to a constant NSString
+NSString * const myString; //The variable myString is a constant pointer to an NSString
+{% endcodeblock %}</p>
 
 <p>After reading the above, you can’t tell me you still think both of those variable declarations are the same. In fact, based on the above information, we could even construct a third similar-but-different variable declaration:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="n">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span> <span class="c1">//The variable myString is a constant pointer to a constant NSString</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+const NSString * const myString //The variable myString is a constant pointer to a constant NSString
+{% endcodeblock %}</p>
 
 <p>So how did I perform this black magic? Simply read the variable declaration from the right to left, and when you get to the type, start reading left to right until you get back to the type. <a href="http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations">Code Project has an excellent writeup</a> on reading complicated C declarations and <a href="http://ridiculousfish.com">ridiculous_fish</a> has an excellent conversion tool that will even <a href="http://cdecl.org">convert the declarations into English statements</a> right before your eyes. There are <a href="http://lmgtfy.com/?q=complicated+C+variable+declarations">tons of guides out there</a>. There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.</p>
 
 <h3 id="a-small-dash-of-cocoa">A Small Dash of Cocoa</h3>
-<p>You may be thinking: “This is great and all, so why is this so important in Objective-C? I’ve never seen an <code>volatile unsigned long int * const</code> before in my life, and I’ve been writing in iOS since it began!”. While all of that may be true<sup id="fnref:3"><a href="#fn:3" rel="footnote">2</a></sup>, things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
+<p>You may be thinking: “This is great and all, so why is this so important in Objective-C? I’ve never seen an <code>volatile unsigned long int * const</code> before in my life, and I’ve been writing in iOS since it began!”. While all of that may be true<sup id="fnref:3"><a href="#fn:3" class="footnote">2</a></sup>, things got a little more complicated when Apple introduced ARC and blocks with Grand Central Dispatch.</p>
 
 <h4 id="block-retain-cycles">Block Retain Cycles</h4>
 <p>When Apple gave us blocks in iOS 4, it was a curse in disguise in terms of memory-management. <em>Everyone</em> loves blocks. <em>Everyone</em> tries to use blocks <em>everywhere</em>, but we’ll save that for another topic (hint: don’t forget about delegation and notifications).</p>
@@ -115,27 +660,21 @@
 
 <p>So we’d end up with this: </p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+__block typeof(self) myself = self;
+{% endcodeblock %}</p>
 
-<p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" rel="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
+<p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" class="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">__block</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+__block int count = 0;</p>
+
+<p>self.completionBlock = ^(BOOL finished){
+  if(finished){
+    count++;
+  }
+}
+{% endcodeblock %}</p>
 
 <p>In this example, we’re creating a block variable outside of our block that is going to be modified inside said block. This is the correct way to use <code>__block</code>. To break our retain cycle, the more appropriate solution is to use some specific tools given to us in ARC that we’ll get to in just a second. First, an aside on new hotness in ARC to look out for:</p>
 
@@ -156,7 +695,16 @@
 <p>@idryman has a really <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/#arc-ownership-qualifiers-1">concise writeup</a> on ARC ownership qualifiers, as well as explaining the improper use of them.</p>
 
 <p><a href="http://developer.apple.com/library/mac/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%23//apple_ref/doc/uid/TP40011226-CH1-SW7">From the documentation</a>:
-<blockquote><p>You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p></p><p><p>ClassName * qualifier variableName;</p></p><p><p>for example:</p></p><p><p>MyClass * __weak myWeakReference;<br/>MyClass * __unsafe_unretained myUnsafeReference;</p></blockquote></p>
+{% blockquote %}
+You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p>
+
+<p>ClassName * qualifier variableName;</p>
+
+<p>for example:</p>
+
+<p>MyClass * __weak myWeakReference;
+MyClass * __unsafe_unretained myUnsafeReference;
+{% endblockquote %}</p>
 
 <h5 id="auto-niling-weak-references">Auto-Nil’ing Weak References</h5>
 <p>In iOS 5, Apple gave us <a href="http://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4">auto-nil’ing weak references</a> under ARC. This means that when you have a <em>weak</em> reference to a variable, it will allow you to use that variable and will set that variable to <code>nil</code> when no other object has a strong reference to it. This is a perfect place to replace the <code>__block</code> storage class with one of ARC’s new <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#ownership">ownership qualifiers</a>.  Let’s use <code>__weak</code>:</p>
@@ -165,17 +713,13 @@
 
 <p>Viola! We now have an auto-nil’ing (auto-zeroing) weak reference to <code>self</code> that we can use in a block that <code>self</code> has a strong reference to without modifying where the object lives in memory:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="n">typeof</span><span class="p">(</span><span class="n">self</span><span class="p">)</span> <span class="n">__weak</span> <span class="n">myself</span> <span class="o">=</span> <span class="n">self</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
-</span><span class='line'>  <span class="p">[</span><span class="n">myself</span> <span class="nl">playWithObject:</span><span class="n">myself</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>{% codeblock lang:objc %}
+typeof(self) __weak myself = self;</p>
+
+<p>self.completionBlock = ^(BOOL finished){
+  [myself playWithObject:myself];
+}
+{% endcodeblock %}</p>
 
 <h2 id="ok-cool">Ok, Cool</h2>
 <p>I think it’s important to understand the guts of a C declaration because of the small nuances that are present when you introduce things like ARC ownership qualifiers.  If you don’t know what a storage qualifier is, then you’re surely not going to know what an ownership qualifier is or how to properly use it. While it’s true for the most part that the compiler will generally let you know when something is awry, isn’t it nice to know that you know a little bit more about what the compiler is actually thinking when it tells you that retaining an object strongly in this context could result in a retain cycle?</p>
@@ -195,293 +739,16 @@
 <div class="footnotes">
   <ol>
     <li id="fn:2">
-      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C<a href="#fnref:2" rel="reference">&#8617;</a></p>
+      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C<a href="#fnref:3" rel="reference">&#8617;</a></p>
+      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:1">
-      <p>This is my opinion<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>This is my opinion <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[iOS 6 "Smart" App Banners]]></title>
-    <link href="http://theonlylars.com/blog/2012/09/29/ios-6-app-banners/"/>
-    <updated>2012-09-29T21:34:00-05:00</updated>
-    <id>http://theonlylars.com/blog/2012/09/29/ios-6-app-banners</id>
-    <content type="html"><![CDATA[<p>When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app that users could directly download on the app store from your webpage.  After the keynote, I forgot to investigate the documentation about it all through the iOS 6 Beta and never really heard much about it until the GM release of iOS 6.  So I went to check out how to do this thinking it was going to be super-involved, at least html-wise.</p>
-
-<p>Are you ready?</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span> <span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>That’s it.  Add this meta tag to the <code>&lt;head&gt;</code> section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.</p>
-
-<p>If you’re on an iOS 6 device, then you will see this at the top of this webpage:</p>
-
-<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png"></p>
-
-<p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner’s action will launch the app.</p>
-
-<p>You can even go one or two steps further and pass in affiliate link information when your app gets downloaded or have information passed to your app on first launch in the app’s url handling delegate method.  More detail can be found in the documentation on <a href="http://developer.apple.com/library/ios/#Documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html">Apple’s website</a>.</p>
-
-<p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
-
-<p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ditching NSLog, Part II: Good Tools Make Work Easy]]></title>
-    <link href="http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/"/>
-    <updated>2012-07-29T22:09:00-05:00</updated>
-    <id>http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2</id>
-    <content type="html"><![CDATA[<h2 id="in-review">In Review</h2>
-<p>In <a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
-
-<p>In this post, we’ll go over some of the options you have available in your developer tool-belt to make your tasks easier to tackle. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you’ll be more likely to produce a solid product.</p>
-
-<p><em>Pre-Disclaimer: My original intent for the second part of this post was to actually <strong>use</strong> every library before writing about them.  I found so many different libraries, that this never actually ended up happening.  I present here a synopsis of each logging library on the basis that I have used some of them, but I have not used them all.  Blame my day job and Battlefield 3. Yes, I am weak.</em></p>
-
-<h2 id="logging-libraries">Logging Libraries</h2>
-
-<h3 id="simple-macro-replacement">Simple Macro Replacement</h3>
-<p>While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Conditionally Replacing NSLog  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#ifdef DEBUG</span>
-</span><span class='line'>  <span class="cp">#define DLog(fmt, …) NSLog((@”%s [Line %d] “ fmt), &lt;strong&gt;PRETTY_FUNCTION&lt;/strong&gt;, &lt;strong&gt;LINE&lt;/strong&gt;, ##&lt;strong&gt;VA_ARGS&lt;/strong&gt;);</span>
-</span><span class='line'><span class="cp">#else</span>
-</span><span class='line'>  <span class="cp">#define DLog(…)</span>
-</span><span class='line'><span class="cp">#endif</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>For those of you who don’t regularly use preprocessor macros, here’s what’s happening in this block of code in pseudocode:</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>if the macro &lt;code>DEBUG&lt;/code> has been previously defined
-</span><span class='line'>  define a new function named &lt;code>DLog&lt;/code> that takes parameters in &lt;code>NSLog&lt;/code> form and write write them into NSLog
-</span><span class='line'>else
-</span><span class='line'>  define &lt;code>DLog&lt;/code> to do nothing (non-op)</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it’s use is acceptable.</p>
-
-<p>The complex, angry-sounding capital-lettered arguments at the end of the <code>NSLog</code> definition are essentially helpers to output the function name and line number respectively that the command was called from.  This looks like the following when output in the console using the command <code>DLog(@"Logging like a boss");</code>:</p>
-
-<p><code>-[MyAppDelegate application:didFinishLaunchingWithOptions:] [Line 40] Logging like a boss</code></p>
-
-<p>Pretty helpful, I’d say.</p>
-
-<p><strong>Helpfulness</strong>: 3/10<br />
-<strong>Performance</strong>: 1/10 - It’s basically <code>NSLog</code><br />
-<strong>Ease of Use</strong>: 9/10</p>
-
-<h3 id="nslogger">NSLogger</h3>
-<p><a href="https://github.com/fpillet/NSLogger">NSLogger</a> is the Rolls Royce of logging frameworks. Just as not everyone would choose a Rolls over, say, a Maserati, NSLogger may also be overkill or simply inappropriate for a lot of developers. That being said - NSLogger does <em>everything</em>.  Tired of having to be physically connected to your machine to get console logs?  Tired of even having to be on the same <em>network</em> as your device for logging?  NSLogger can help.  NSLogger comes with a standalone Mac app that can accept connections via bonjour, https, https, ssl, telegraph, etc.  It does it all.  You can even log binary data blobs.</p>
-
-<h4 id="so-what-about-performance">So what about performance?</h4>
-<p>NSLogger appears to try it’s darndest to use a few CPU cycles as possible, even to the point of not sending logging info over the wire and caching logging info to memory and possibly even to disk until the desktop client is found.</p>
-
-<p>The developer suggests creating a preprocessor macro to call the <code>NSLogger</code> methods in order to have them sequestered in release mode, so this doesn’t really help for production debugging. For beta and other development activities, especially among distributed groups of test or QA persons, this one takes the cake.</p>
-
-<p><strong>Helpfulness</strong>: 6/10 - Really depends on what you need help with<br />
-<strong>Performance</strong>: 5/10<br />
-<strong>Ease of Use</strong>: 6/10  </p>
-
-<h3 id="eclogging">ECLogging</h3>
-<p><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
-
-<h4 id="channels">Channels</h4>
-<p>“Channels” allow you to create “debug”, “info”, or “networking” channels (as an example) and are very similar to Cocoa Lumberjack’s methodology on logging.  Two types of channels exist - <code>debug</code> and <code>log</code> channels. The difference between the two being that debug channel statements are completely compiled out at compile-time in release mode (much like our dear friend <code>DLog</code> above), and log channel statements are not and will appear in the console even in release mode. Create your own channel with a single-line of code, and start using it on the next line using either <code>ECLog(channel, @"log");</code> or <code>ECDebug(debugChannel, @"debug log")</code>.</p>
-
-<h4 id="handling">Handling</h4>
-<p>You also have the ability to change how the log “handles” objects. The default implementation will simply call <code>-description</code> on your object and output the response, just as <code>NSLog</code> does. Some examples on <a href="https://github.com/elegantchaos/ECLogging/wiki">ECLogging’s Github Wiki</a> show passing a <code>UIImage</code> into the log and handling that in a custom way.</p>
-
-<h4 id="boilerplate-settings-ui">Boilerplate Settings UI</h4>
-<p>The single-coolest part of ECLogging is the drop-in view controller it gives you, which enables the ability to change the logging settings on the fly without having to manually write in any conditional logging code paths of your own.  Want to log to a file? Check it! Don’t want to log to ASL anymore? Uncheck it! <em>In</em> the UI, no less! You can even choose which channels to switch on and off on-the-fly. Very neat.</p>
-
-<p><strong>Helpfulness</strong>: 8/10<br />
-<strong>Performance</strong>: x/10 - No mention of performance, and I haven’t tested anything yet<br />
-<strong>Ease of Use</strong>: 8/10</p>
-
-<h3 id="cocoa-lumberjack">Cocoa Lumberjack</h3>
-<p>The first time I found <a href="https://github.com/robbiehanson/CocoaLumberjack/">Cocoa Lumberjack</a>, I almost didn’t know what to do with myself.  I had never been presented with so many options for logging in all my time with iOS or even prior, nor had I seen such logging practices actually put to use in any projects I have worked on. One thing was for sure: my console logs have always ended up <em>really</em> messy by the end of a project. I could basically write an entire blog post solely on Cocoa Lumberjack, but the developer seems to have done a pretty good job of that on his own with the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki">Cocoa Lumberjack wiki</a> and the readme. The developer touts that Cocoa Lumberjack is simple, fast, powerful, and flexible.  Let’s see how true this is:</p>
-
-<h4 id="fast">Fast</h4>
-<p>The developer claims that Cocoa Lumberjack is (in most cases) an order of magnitude faster than NSLog.  He achieves this reusing a single ASL connection and posting messages to this connection asynchronously. Asynchronous logging is optional, as (for example) you obviously want an error to log immediately as the system may be in an unstable state. It’s a little different using asynchronous logging for the first time, as you typically expect to step through your code and immediately see your log statements show up in the console.  You’ll have to use the synchronous logs in order for this to work. The developer has spent a great deal of time architecting Cocoa Lumberjack from the ground-up with performance in mind. Check out the <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/Performance">Cocoa Lumberjack performance</a> page for all the nitty-gritty behind all the benchmarks.</p>
-
-<h4 id="simple">Simple</h4>
-<p>The Cocoa Lumberjack framework is dead-simple to use:</p>
-
-<ol>
-  <li>Setup a logging destination</li>
-  <li>Log using a log-level logger</li>
-  <li>Profit?</li>
-</ol>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Setting up and using Cocoa Lumberjack  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">[</span><span class="n">DDLog</span> <span class="n">addLogger</span><span class="o">:</span><span class="p">[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">DDLogError</span><span class="p">(</span><span class="err">“</span><span class="n">Image</span> <span class="n">is</span> <span class="n">nil</span><span class="o">!</span><span class="err">”</span><span class="p">);</span>
-</span><span class='line'><span class="n">DDLogVerbose</span><span class="p">(</span><span class="err">“</span><span class="n">newViewController</span> <span class="n">viewDidLoad</span><span class="err">”</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>You have access to four default levels of logging: <code>DDLogError</code>, <code>DDLogWarn</code>, <code>DDLogInfo</code>, <code>DDLogVerbose</code>. In addition to these, you can both <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/CustomLogLevels">customize the names</a> of the default levels as well <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/FineGrainedLogging">as define your additional custom levels</a>.</p>
-
-<p>And since the <code>DDLog</code> syntax is the same as <code>NSLog</code>, converting/using <code>DDLog</code> shouldn’t even fire off any new neurons.</p>
-
-<h4 id="powerful">Powerful</h4>
-<p>Much of Cocoa Lumberjack’s power comes from it’s simplicity. With the ability to create highly-tuned logging paths and mechanisms, Cocoa Lumberjack gives you, the developer, the ability to hone-in on issues that you’re working with and trying to identify. With single log statements, you can deliver log messages to multiple destinations (file, ASL, network, etc.), as well as add custom destinations of your own. You choose the info and method of delivery for how you need to get things debugged.</p>
-
-<h4 id="flexible">Flexible</h4>
-<p>The power doesn’t end after you switch your build mode to release mode, either. Dynamically giving you the ability to change the log level at runtime can allow you to leave all of your logging architecture compiled-in but inactive until an issue arises in the field. Have your users log to a file when they’re having a specific issue, then send the log file to your server for analysis. Your mother’s <code>NSLog</code> can’t do that.</p>
-
-<p><strong>Helpfulness</strong>: 10/10 - Extremely flexible<br />
-<strong>Performance</strong>: 9/10<br />
-<strong>Ease of Use</strong>: 8/10</p>
-
-<h2 id="logging-enhancements-for-debugging">Logging <em>Enhancements</em> for Debugging</h2>
-<p>I don’t consider logging “enhancements” to be logging mechanisms in and of themselves, but more of an augment or helpful loggers for debugging that may or may not originate from you.</p>
-
-<h3 id="afhttprequestoperationlogger">AFHTTPRequestOperationLogger</h3>
-<p><a href="https://github.com/AFNetworking/AFHTTPRequestOperationLogger">AFHTTPRequestOperationLogger</a> is a logging enhancer for the ubiquitous <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> library. It won’t really help you unless you are using AFNetworking, but it can tremendously help out debugging networking issues you may be having with complex APIs.  It can be a bit verbose at times, even to the point of being straight up noisy, but the advantage of open source is that you can go change it if you don’t like it.</p>
-
-<h3 id="xlog">XLog</h3>
-<p><a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I’ve actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
-
-<h3 id="xcodecolors">XcodeColors</h3>
-<p><a href="https://github.com/robbiehanson/XcodeColors">XcodeColors</a> is a similar-looking Xcode plugin to XLog that colors your console output. The original was created by <a href="https://github.com/DeepIT">DeepIT on Github</a>, but now appears to be mostly maintained by <a href="https://github.com/robbiehanson">Robbie Hanson</a>, who created Cocoa Lumberjack (above). If you use Cocoa Lumberjack, I would use this.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-<p>Logging is an important yet often overlooked practice that can make development and debugging much easier. Finding the right tool for a job can be a task in itself, but once the correct tool (either for you, or for the job) is found, your task becomes much easier or in some cases - possible.</p>
-
-<p>Extensible logging enables you to customize your logging workflow to best suit your app, team, or QA environment. Performant logging means that you don’t have to worry as much about production logging throwing a wrench in your highly-tuned scroll-view code. Just as performance and extensibility are important, if logging isn’t simple - developer’s just aren’t going to want to utilize it. Logging must be as simple as <code>NSLog</code> or developers won’t adopt it in their daily workflow.</p>
-
-<p>It is my opinion that highly extensible, non-<code>NSLog</code> logging should be just as much an architectural consideration as coding standards, unit test coverage, and class prefix names on a project. Most developers may not know advanced logging techniques even exist, much less employ one in a large project in order to get more debugging done in less time. Don’t spend more time debugging your code - equip yourself with the proper tools to spend more time making your app the best experience possible for your users, while also making your future-self love you (which we all know doesn’t happen that often).</p>
-
-<hr />
-
-<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
-<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
-<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
-<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
-
-<p><em>Disclaimer:</em>
-<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ditching NSLog, Part I: You Deserve Better]]></title>
-    <link href="http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/"/>
-    <updated>2012-07-03T21:33:00-05:00</updated>
-    <id>http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1</id>
-    <content type="html"><![CDATA[<p>Every iOS developer has used <code>NSLog</code>. We use it as a debugging tool to see the what data the system sees at a particular time while the application is running, or even to track the path our data takes when moving through our applications. But <code>NSLog</code> is not the be-all, end-all logging mechanism many of you think it is.</p>
-
-<p>If you’re new to iOS, you may want to sit this one out until you get annoyed by <code>NSLog</code> - then come back here and read this.</p>
-
-<h2 id="i-use-nslog-and-i-think-its-awesome-isnt-that-enough">I Use NSLog and I think it’s awesome. Isn’t that enough?</h2>
-<p>Umm… Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he’s that guy on a Friday afternoon at the bank who’s exchanging three years worth of saved coins and asking about the interest rates on free checking accounts. I hate that guy. </p>
-
-<p>There are more forces at work than you might think operating behind the scenes in order to get your log messages to both the console and into Xcode console log. Let’s go over some of the issues I have with <code>NSLog</code>:</p>
-
-<h3 id="performance">Performance</h3>
-<p><code>NSLog</code> is slow. This wouldn’t be so bad if it were asynchronous - but it is most definitely very synchronous. This is why you can set a breakpoint, step through your code and instantly see your <code>NSLog</code> statements show up in the console after you step over them. Make enough calls with <code>NSLog</code> in highly-iterative, performance-oriented or <code>drawRect:</code> code and the performance-penalty begins to add up. This is also not to say that we don’t sometimes need a synchronous logging mechanism. After all - if your code is in an unstable state, wouldn’t you want to know about both synchronously and immediately?
-<!-- more -->
-####Yeah? Prove it
-<a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/Performance"><code>NSLog</code>’s poor performance</a> is a result of a combination of a few different things. The gist of which is as follows:</p>
-
-<ol>
-  <li>Open a new connection to ASL (Apple System Logger) daemon</li>
-  <li>Close that connection</li>
-  <li>Write that same message to STDERR</li>
-  <li>Do all of the above synchronously for each call to <code>NSLog</code></li>
-</ol>
-
-<p>As you will see in Part II of Ditching NSLog, some of the logging alternatives <a href="https://github.com/robbiehanson/CocoaLumberjack">can be faster than <code>NSLog</code> by an entire order of magnitude</a>!</p>
-
-<h3 id="conditional-logic">Conditional Logic</h3>
-<p><code>NSLog</code> is dumb. There is only one type of <code>NSLog</code> - the type that will display in your console. Yet, we will use our logging statements for many different purposes. Sometimes we log an error, a UI event, maybe a networking call, other times we are simply keeping track of a view controller’s view lifecycle. These are all very different types of logs that you may or may not want to show up all the time.</p>
-
-<p>Wouldn’t it be nice if we could simply set a flag and <em>only</em> see our view lifecycle log statements? Think about that.</p>
-
-<h3 id="beyond-development">Beyond Development</h3>
-<p><code>NSLog</code> will show up even in your production code regardless of release setting unless you deliberately do something about it. It’s not like <code>NSAssert</code>, which will simply get stripped out in release mode. It will rear it’s ugly head all up on your user’s devices with the same performance-penalties as before, but now nobody can even see the logs unless they can connect to their device’s console. This is serving zero purpose to aid the user’s experience in your application.</p>
-
-<p>To resolve this, I’m sure we’ve all done the genius find/replace <code>NSLog</code> with <code>//NSLog</code> at least once in our careers. Yes, this technically gets rid of the <code>NSLog</code>s in production, but it is a huge pain to keep up with and looks ugly to boot. Then after you do this, the reverse action isn’t always as straight-forward. There may be <code>NSLog</code>s that you intentionally wanted commented out that are now uncommented as a result of you trying to undo your previous strike of genius. Just don’t do it.  <a href="http://stackoverflow.com/a/969291">Use a conditional macro</a> if you want some basic control over compile-time removal of <code>NSLog</code> in production.</p>
-
-<p>There is a time and place for production logging, but chances are pretty good that you aren’t doing it right if you’re still using <code>NSLog</code>. Next we’ll go over the different types of logging methodologies, then discuss their role in debugging in both development <em>and</em> production after you ship your application to your users. That’s right - <em>production</em> logging!</p>
-
-<h2 id="types-of-logging">Types of Logging</h2>
-<p>###Console Logging
-This is the most basic type of logging, and one which you’re probably most familiar with. The console log simply logs all of your statements to the debug log (if you’re in Xcode or in the organizer) or to Console.app if you’re running a mac app or running an app in the iPhone simulator detached from the debugger.</p>
-
-<p><em><strong>Practicality</strong>: *Production* (used correctly) or *development* debugging</em></p>
-
-<h3 id="file-logging">File Logging</h3>
-<p>File logging is just like it sounds. Instead of logging to the debug console, you simply log to a file. This is best demonstrated by simply having you look in the <code>/var/log/</code> folder on your Mac or Linux box.  You’ll see a plethora of file logs chock full of information about what is happening on your system.  For iOS, this really doesn’t make sense for your sandboxed application unless we as the developers know that we need to monitor that information.</p>
-
-<p><img class="left" src="/images/posts/nslog/part1/tweetbot_super_secret.png" width="300" title="Tweetbot’s super-secret settings menu" ></p>
-
-<p>One example of this necessity is that a particular user is having an issue you’ve never even heard of before and you would like to capture the log output to see what is going on. Simply activate file logging by some super-secret menu and make an easy mechanism for the user to send you that log in an email. Just be responsible and don’t log personal information and always remember to bound the length of your logs - nobody likes 100MB log files.</p>
-
-<p><em><strong>Practicality</strong>: *Production* debugging</em></p>
-
-<h3 id="remote-logging">Remote Logging</h3>
-<p>This is a little more difficult to accomplish and requires either some knowhow about client/server networking on a lower level than simply API consumption, or some help from a third party library.  The benefit to remote logging is that it combines all the best traits of console logging (real-time information) with file logging’s ability to not have to be physically connected to the device in order to capture the logs. This would require some participation on the user’s end, but if they’re having extreme issues, they may be more than happy to let you remotely log their device while they demonstrate the bug for you.</p>
-
-<p><em><strong>Practicality</strong>: *Production* debugging (with a little more user participation)</em></p>
-
-<h2 id="to-log-or-not-to-log">To Log, or Not to Log?</h2>
-<p>So how often should include a log statement in their code?  When using the “right” logging techniques, you should log as much as possible. Some examples include:</p>
-
-<ul>
-  <li>View/view controller life-cycles - calls to <code>viewDidLoad</code>, <code>dealloc</code>, etc.</li>
-  <li>Errors</li>
-  <li>Warnings</li>
-  <li>Unexpected user input</li>
-  <li>Whatevs</li>
-</ul>
-
-<p>Surround your pullquote like this {" text to be quoted "}</p>
-
-<p>Dynamic means that it involves conditional logic, and mucking with the logging mechanism at runtime means preprocessor macros are pretty much out of the picture.  In Part 2, we’ll look at some techniques as well as full-blown open source libraries that will make our job of logging much easier, more dynamic, and eliminate logs in production for all but the cases we specifically care about.</p>
-
-<h2 id="conclusion">Conclusion</h2>
-<p><code>NSLog</code> is our dear old friend. We’ve fixed a lot of bugs using <code>NSLog</code>. But now it’s time to grow up. We’ve found out why <code>NSLog</code> really isn’t all that great, some other ways in which we can utilize logs in different formats, as well as how we can use those logs in production as well as development! Now lets build some stuff!</p>
-
-<p><strong>Check out Part II of Ditching NSLog to see how you can make your application logging work better for you!</strong></p>
-
-<hr />
-
-<p><em>Disclaimer:</em>
-<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em>  </p>
 ]]></content>
   </entry>
   

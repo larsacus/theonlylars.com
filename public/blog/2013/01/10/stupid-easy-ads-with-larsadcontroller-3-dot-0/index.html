@@ -98,7 +98,7 @@
   
 
 
-<time datetime="2013-01-10T20:10:00-06:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
+<time datetime="2013-01-10T20:10:00-06:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -130,7 +130,7 @@
 <h2 id="easy-integration">Easy Integration</h2>
 <p>So let’s get started integrating your ad with some ad networks. If you would like to use Google as your ad vendor, then you will need to go ahead and setup an account with them and have your publisher ID handy.</p>
 
-<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.<!-- more --></p>
+<p>This is going to be so stupid simple it’s going to blow your mind<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.<!-- more --></p>
 
 <h3 id="integrate-the-source">Integrate the Source</h3>
 <p>This is by far the most difficult part of the entire process if you don’t use cocoapods. I highly suggest using cocoapods, so I’m going to go over that first. All of these instructions are mirrored on the <code>README</code> file on <a href="http://larsacus.github.com/LARSAdController">LARSAdController’s github page</a>.</p>
@@ -151,17 +151,16 @@
 
 <p><code>pod 'LARSAdController', '~&gt;3.0'</code></p>
 
-<p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>.</p>
+<p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
 
-<p>Your podfile should now look like this:  </p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<p>Your podfile should now look like this:<br />
+&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="n">platform</span> <span class="o">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">&#39;</span><span class="mf">5.0</span><span class="err">&#39;</span>
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="objc"><span class="line"><span class="nl">platform</span> <span class="p">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">&#39;</span><span class="mf">5.0</span><span class="err">&#39;</span>
 </span><span class="line">
 </span><span class="line"><span class="n">pod</span> <span class="err">&#39;</span><span class="n">LARSAdController</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="o">~&gt;</span><span class="mf">3.0</span><span class="err">&#39;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
 
 <p>This will setup your project for both Google ads and iAds.</p>
 
@@ -246,7 +245,7 @@
 <h4 id="even-simpler">Even Simpler</h4>
 <p>Guess what? Integrating ads can be even easier than above. If you have each of your view controllers inherit from the base class <code>TOLAdViewController</code>, ads will automatically installed in your view on <code>viewWillAppear:</code>:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 </pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">@interface</span> <span class="nc">MYBestViewControllerEvar</span> : <span class="nc">TOLAdViewController</span>
@@ -256,11 +255,11 @@
 
 <p>I’ve even included a method you can override in your view controller to conditionally display these ads. This is convenient when you don’t want to display ads under certain conditions (like when a user purchases an in-app upgrade):</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldDisplayAds</span><span class="p">{</span>
-</span><span class="line">  <span class="k">return</span> <span class="p">([</span><span class="n">self</span><span class="p">.</span><span class="n">purchaseTracker</span> <span class="n">hasPurchasedUpgrade</span><span class="p">]</span> <span class="o">==</span> <span class="n">NO</span><span class="p">);</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldDisplayAds</span><span class="p">{</span>
+</span><span class="line">  <span class="k">return</span> <span class="p">([</span><span class="nb">self</span><span class="p">.</span><span class="n">purchaseTracker</span> <span class="n">hasPurchasedUpgrade</span><span class="p">]</span> <span class="o">==</span> <span class="nb">NO</span><span class="p">);</span>
 </span><span class="line"><span class="p">}</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -279,10 +278,10 @@
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk. <a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk.  <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>.<a href="#fnref:2" rel="reference">&#8617;</a></p>
+      <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -308,12 +307,12 @@
   
 
 
-<time datetime="2013-01-10T20:10:00-06:00" pubdate data-updated="true">Jan 10<span>th</span>, 2013</time>
+<time datetime="2013-01-10T20:10:00-06:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/larsadcontroller/'>LARSAdController</a>, <a class='category' href='/blog/categories/ads/'>ads</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>, <a class='category' href='/blog/categories/open-source/'>open-source</a>
+    <a class='category' href='/blog/categories/ads/'>ads</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/larsadcontroller/'>larsadcontroller</a>, <a class='category' href='/blog/categories/open-source/'>open-source</a>
   
 </span>
 
@@ -333,7 +332,7 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/12/17/christmas-shopping-in-a-ubiquitous-world/" title="Previous Post: Christmas Shopping in a Ubiquitous World">&laquo; Christmas Shopping in a Ubiquitous World</a>
+        <a class="basic-alignment left" href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/" title="Previous Post: LARSAdController 3.0 RC">&laquo; LARSAdController 3.0 RC</a>
       
       
         <a class="basic-alignment right" href="/blog/2013/01/20/cocoapods-creating-a-pod-spec/" title="Next Post: Cocoapods: Creating a Pod Spec">Cocoapods: Creating a Pod Spec &raquo;</a>
@@ -379,7 +378,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -396,7 +395,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/larsacus">@larsacus</a> on GitHub

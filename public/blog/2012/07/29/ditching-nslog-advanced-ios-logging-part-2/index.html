@@ -99,7 +99,7 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
   
 
 
-<time datetime="2012-07-29T22:09:00-05:00" pubdate data-updated="true">Jul 29<span>th</span>, 2012</time>
+<time datetime="2012-07-29T22:09:00-05:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -118,8 +118,8 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
 <h3 id="simple-macro-replacement">Simple Macro Replacement</h3>
 <p>While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Conditionally Replacing NSLog  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Conditionally Replacing NSLog </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -197,12 +197,12 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
   <li>Profit?</li>
 </ol>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Setting up and using Cocoa Lumberjack  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>Setting up and using Cocoa Lumberjack </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
-</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="p">[</span><span class="n">DDLog</span> <span class="n">addLogger</span><span class="o">:</span><span class="p">[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span>
+</pre></td><td class="code"><pre><code class="c"><span class="line"><span class="p">[</span><span class="n">DDLog</span> <span class="nl">addLogger</span><span class="p">:[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span>
 </span><span class="line">
 </span><span class="line"><span class="n">DDLogError</span><span class="p">(</span><span class="s">&quot;Image is nil!&quot;</span><span class="p">);</span>
 </span><span class="line"><span class="n">DDLogVerbose</span><span class="p">(</span><span class="s">&quot;newViewController viewDidLoad&quot;</span><span class="p">);</span>
@@ -272,12 +272,12 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
   
 
 
-<time datetime="2012-07-29T22:09:00-05:00" pubdate data-updated="true">Jul 29<span>th</span>, 2012</time>
+<time datetime="2012-07-29T22:09:00-05:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/advanced-ios/'>Advanced iOS</a>, <a class='category' href='/blog/categories/debugging/'>Debugging</a>, <a class='category' href='/blog/categories/development/'>Development</a>, <a class='category' href='/blog/categories/logging/'>Logging</a>, <a class='category' href='/blog/categories/nslog/'>NSLog</a>, <a class='category' href='/blog/categories/third-party/'>Third-Party</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>
+    <a class='category' href='/blog/categories/advanced-ios/'>advanced ios</a>, <a class='category' href='/blog/categories/debugging/'>debugging</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/logging/'>logging</a>, <a class='category' href='/blog/categories/nslog/'>nslog</a>, <a class='category' href='/blog/categories/third-party/'>third-party</a>
   
 </span>
 
@@ -343,7 +343,7 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -360,7 +360,7 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/larsacus">@larsacus</a> on GitHub

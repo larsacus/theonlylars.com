@@ -4,7 +4,7 @@
   <title><![CDATA[Category: achievements | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/achievements/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:20:54-06:00</updated>
+  <updated>2015-01-22T12:33:33-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -23,7 +23,7 @@
 <p>The problem with goals of mine in the past have always been that they are very generic and/or very difficult to satisfy. I have made a deliberate effort to make my goals for this year both small and specific. This will make it much more difficult to justify my way out of satisfying my goals for this year and much easier to satisfy more goals is they are more achievable.</p>
 
 <h2 id="achievement-unlocked">Achievement Unlocked</h2>
-<p>So, in the spirit of both personal growth and gamification, I bring you <a href="/blog/Achievements/index.html">a new page</a> with my personal list<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup> of “achievements” for 2013 that look like this:</p>
+<p>So, in the spirit of both personal growth and gamification, I bring you <a href="/blog/Achievements/index.html">a new page</a> with my personal list<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> of “achievements” for 2013 that look like this:</p>
 
 <div class="achievement">
   <div>
@@ -31,7 +31,7 @@
   </div>
   <div class="achievement-contents">
       <h2>Read three non-technical books</h2>
-      <div>I don't read enough. I read plenty of technical content, but not near enough book-books (some rare individuals call this "fun" reading).
+      <div>I don&#8217;t read enough. I read plenty of technical content, but not near enough book-books (some rare individuals call this &#8220;fun&#8221; reading).
         <ol>
           <li><a href="http://www.amazon.com/Traffic-Drive-What-Says-About/dp/0307277194">Traffic: Why We Drive the Way We Do (and What It Says About Us)</a> - Tom Vanderbilt</li>
         </ol>
@@ -56,7 +56,7 @@
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I’ve obviously omitted the truly personal achievements about my life like friends, family, etc.<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>I’ve obviously omitted the truly personal achievements about my life like friends, family, etc. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>

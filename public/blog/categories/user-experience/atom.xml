@@ -4,7 +4,7 @@
   <title><![CDATA[Category: user-experience | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/user-experience/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:20:54-06:00</updated>
+  <updated>2015-01-22T12:33:33-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -18,7 +18,9 @@
     <link href="http://theonlylars.com/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/"/>
     <updated>2015-01-22T11:36:00-06:00</updated>
     <id>http://theonlylars.com/blog/2015/01/22/microsoft-hololens-and-your-everyday-future</id>
-    <content type="html"><![CDATA[<p>Yesterday, Microsoft announced and demoed a surprising, radical new project called <a href="http://www.microsoft.com/microsoft-hololens">HoloLens</a>. If you haven’t seen it yet, please go the Microsoft site and glance at it to make the rest of this make sense. The essence behind HoloLens is a goggle-like device you wear over your eyes that projects holograms augmented into your perception of reality – wirelessly. Technology like this is significant for a few reasons that may not be immedately apparent when looking at the demos they have provided. This technology today, itself may look a little socially isolating, may just be a necessary stepping stone to what we will soon know as the ‘present’ of computing.</p>
+    <content type="html"><![CDATA[<p><em>Having not posted on here in over a year, it feels good to write again.</em></p>
+
+<p>Yesterday, Microsoft announced and demoed a surprising, radical new project called <a href="http://www.microsoft.com/microsoft-hololens">HoloLens</a>. If you haven’t seen it yet, please go the Microsoft site and glance at it to make the rest of this make sense. The essence behind HoloLens is a goggle-like device you wear over your eyes that projects holograms augmented into your perception of reality – wirelessly. Technology like this is significant for a few reasons that may not be immedately apparent when looking at the demos they have provided. This technology today, itself may look a little socially isolating, may just be a necessary stepping stone to what we will soon know as the ‘present’ of computing.</p>
 
 <p>As much as it surprises me to say this to myself about Microsoft, but it’s a little refreshing to see Microsoft show off this kind of technology and not Google.</p>
 
@@ -79,7 +81,7 @@
 <p>Master these and you end up with companies like Apple, who are <em>so</em> intently focused on the user’s experience, they have a team that does nothing but <a href="http://www.networkworld.com/community/node/79642">design and test the box for the “best” experience when opening your new iPhone</a>.</p>
 
 <h2 id="the-game-industry">The Game Industry</h2>
-<p>The game industry is an incredibly complex industry. I don’t pretend to be a game developer, publisher or in any way know the business ends of the gaming industry. However, I <em>am</em> a PC gamer and a software engineer in the business of pleasing my users. I have been a PC gamer since the DOS days, and I’m really not that old. I bring this up to say that I believe the game industry seems to be rapidly devolving when speaking in terms of the user’s experience. They do all of this in the name of “piracy”<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+<p>The game industry is an incredibly complex industry. I don’t pretend to be a game developer, publisher or in any way know the business ends of the gaming industry. However, I <em>am</em> a PC gamer and a software engineer in the business of pleasing my users. I have been a PC gamer since the DOS days, and I’m really not that old. I bring this up to say that I believe the game industry seems to be rapidly devolving when speaking in terms of the user’s experience. They do all of this in the name of “piracy”<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>.</p>
 
 <h3 id="drm">DRM</h3>
 <p>The specific example of user-experience gone awry in the game industry is with DRM (digital rights management). This literally has nothing to do with any game individually and has everything to do with access control to a specific resource. The idea behind DRM being that the user is given an obstacle course of hoops and conditions to satisfy before they are given access to the resource (the game) they paid for. This is to prevent people who have <em>not</em> paid for the game from using the resource.</p>
@@ -94,7 +96,7 @@
 <p>I have been really excited about SimCity for a long time, so I preordered it. The only place it is available to play is directly through EA’s subpar Origin client. I paid for the “digital” version on Origin. I later found out that they <a href="https://help.ea.com/article/returns-and-cancellations">do not offer refunds</a> for digitally downloaded products and in fact <a href="http://www.cinemablend.com/games/EA-Officially-Halts-SimCity-Refunds-Polygon-Drops-Review-Score-Even-Lower-53444.html">will ban your account</a> if you follow through with a chargeback - it’s just their policy. You can, however, get a refund from Amazon if you buy it there. On launch day I started the download before work and then came home and was going to fire it up to play it. This was just the beginning.</p>
 
 <h3 id="initial-user-experience">Initial User Experience</h3>
-<p>On first launch I was greeted with this lovely screen. <img class="right" src="/images/simcity1.jpg" width="300" height="300">A list of servers that I was not allowed to get on. Getting on a server is a prerequisite to playing the game since the SimCity servers do a couple of things:</p>
+<p>On first launch I was greeted with this lovely screen. {% img right /images/simcity1.jpg 300 300 %}A list of servers that I was not allowed to get on. Getting on a server is a prerequisite to playing the game since the SimCity servers do a couple of things:</p>
 
 <ol>
   <li>Authenticate that you paid for the game</li>
@@ -147,7 +149,7 @@
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Other industries do this, too, don’t get me wrong<a href="#fnref:1" rel="reference">&#8617;</a></p>
+      <p>Other industries do this, too, don’t get me wrong <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>

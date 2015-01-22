@@ -98,7 +98,7 @@
   
 
 
-<time datetime="2013-01-20T14:58:00-06:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
+<time datetime="2013-01-20T14:58:00-06:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -148,7 +148,7 @@
 <p>A Podspec is <a href="https://github.com/CocoaPods/CocoaPods/wiki/A-pod-specification">constructed by building a new <code>Spec</code> object</a> using a ruby “block”. My ruby-fu is still pretty green, so I won’t try and explain the ruby-ness of a podspec. To create a podspec using a block, we’re going to declare the following in a new file named <code>&lt;component_name&gt;.podspec</code>. Please don’t literally put the angle brackets in your file name:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>AwesomeComponent.podspec </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
@@ -159,7 +159,7 @@
 <p>This creates a new <code>Spec</code> object that is included in the <code>Pod</code> library and inserts it into the local variable <code>s</code> for us to customize before it is returned. I’ve gone ahead and filled in some basic information for a spec I wrote for LARSAdController to demonstrate:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span>LARSAdController.podspec </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -204,7 +204,7 @@
 <h3 id="version-simplification">Version Simplification</h3>
 <p>Since this is just a ruby file, you can use all of the ruby tricks on any string in this file. To simplify our podspec for revving our version later, you can tell our <code>source</code> hash to use the podspec’s version as the repository’s tag to use using the <code>to_s</code> helper:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -241,7 +241,7 @@
 <h2 id="spec-lint">Spec Lint</h2>
 <p>The first step to testing your spec is to use cocoapods’ built-in “lint” tool to test for syntax compliance and minimum requirements. In your terminal prompt, run the lint tool on your podspec using:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="bash"><span class="line">pod spec lint <span class="s2">&quot;&lt;spec location&gt;/SpecName.podspec&quot;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -261,7 +261,7 @@
 
 <p>This is where I had a huge issue testing my podspec. The trick I learned is to <a href="https://github.com/CocoaPods/CocoaPods/wiki/Dependency-declaration-options">specify a local file path</a> for your Podfile to look for your new podspec:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">pod</span> <span class="s1">&#39;LARSAdController&#39;</span><span class="p">,</span> <span class="s1">&#39;3.0&#39;</span><span class="p">,</span> <span class="ss">:local</span> <span class="o">=&gt;</span> <span class="s1">&#39;~/Specs/LARSAdController&#39;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -286,7 +286,7 @@
 <h3 id="defining-a-subspec">Defining a Subspec</h3>
 <p>To define a <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">subspec</a> in your spec file, define a <code>subspec</code> variable (?) on your spec variable - much like we did in creating the spec itself:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 <span class="line-number">4</span>
@@ -314,7 +314,7 @@
 
 <p>Continue to create additional subspecs for however many sub-specifications that you need to create using the template:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="s1">&#39;SubspecName&#39;</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
@@ -328,7 +328,7 @@
 <h3 id="depending-on-a-subspec">Depending on a Subspec</h3>
 <p>To use the subspec in a Podfile, define the dependency like normal, but suffix it with a <code>/</code> and the subspec name:</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="ruby"><span class="line"><span class="n">pod</span> <span class="s1">&#39;LARSAdController/iAds&#39;</span><span class="p">,</span> <span class="s1">&#39;3.0&#39;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -374,12 +374,12 @@
   
 
 
-<time datetime="2013-01-20T14:58:00-06:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
+<time datetime="2013-01-20T14:58:00-06:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/cocoapods/'>cocoapods</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>, <a class='category' href='/blog/categories/open-source/'>open-source</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
+    <a class='category' href='/blog/categories/cocoapods/'>cocoapods</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/open-source/'>open-source</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>
   
 </span>
 
@@ -445,7 +445,7 @@
 <section>
   <h1>Latest Tweets</h1>
   <ul id="tweets">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
@@ -462,7 +462,7 @@
 <section>
   <h1>GitHub Repos</h1>
   <ul id="gh_repos">
-    <li class="loading">Status updating...</li>
+    <li class="loading">Status updating&#8230;</li>
   </ul>
   
   <a href="https://github.com/larsacus">@larsacus</a> on GitHub
