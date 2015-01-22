@@ -4,7 +4,7 @@
   <title><![CDATA[Category: nslog | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/nslog/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:33:33-06:00</updated>
+  <updated>2015-01-22T13:20:33-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -30,22 +30,29 @@
 <h3 id="simple-macro-replacement">Simple Macro Replacement</h3>
 <p>While not really a “library” per se, this <em>method</em> is the most basic of all the options that will be listed here and will only get you part of the way to logging nerdvana. <!-- more --> The premise behind the macro log replacement is that you <code>#define</code> a preprocessor macro that will conditionally “comment out” your log statements at compile-time when you switch to a non-debug build mode.  Most (if not all) Xcode projects already have a <code>#define DEBUG</code> statement that you can use when running in your debug configuration. I believe I first saw this method evolve on <a href="http://iPhoneIncubator.com/blog/debugging/the-evolution-of-a-replacement-for-nslog">iPhone Incubator</a>, so I don’t take any credit for this.  I have successfully used this in a largish project before and it has done it’s job, but it is not optimal and can get messy due to it’s “all or nothing” approach:</p>
 
-<p>{% codeblock Conditionally Replacing NSLog lang:c %}
-#ifdef DEBUG
-  #define DLog(fmt, …) NSLog((@”%s [Line %d] “ fmt), <strong>PRETTY_FUNCTION</strong>, <strong>LINE</strong>, ##<strong>VA_ARGS</strong>);
-#else
-  #define DLog(…)
-#endif
-{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>Conditionally Replacing NSLog </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cp">#ifdef DEBUG</span>
+</span><span class='line'>  <span class="cp">#define DLog(fmt, …) NSLog((@”%s [Line %d] “ fmt), &lt;strong&gt;PRETTY_FUNCTION&lt;/strong&gt;, &lt;strong&gt;LINE&lt;/strong&gt;, ##&lt;strong&gt;VA_ARGS&lt;/strong&gt;);</span>
+</span><span class='line'><span class="cp">#else</span>
+</span><span class='line'>  <span class="cp">#define DLog(…)</span>
+</span><span class='line'><span class="cp">#endif</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>For those of you who don’t regularly use preprocessor macros, here’s what’s happening in this block of code in pseudocode:</p>
 
-<p>{% codeblock %}
-if the macro <code>DEBUG</code> has been previously defined
-  define a new function named <code>DLog</code> that takes parameters in <code>NSLog</code> form and write write them into NSLog
-else
-  define <code>DLog</code> to do nothing (non-op)
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>if the macro &lt;code>DEBUG&lt;/code> has been previously defined
+</span><span class='line'>  define a new function named &lt;code>DLog&lt;/code> that takes parameters in &lt;code>NSLog&lt;/code> form and write write them into NSLog
+</span><span class='line'>else
+</span><span class='line'>  define &lt;code>DLog&lt;/code> to do nothing (non-op)</span></code></pre></td></tr></table></div></figure></p>
 
 <p>There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it’s use is acceptable.</p>
 
@@ -102,14 +109,24 @@ else
   <li>Profit?</li>
 </ol>
 
-<p>{% codeblock Setting up and using Cocoa Lumberjack lang:c %}</p>
-
-<p>[DDLog addLogger:[DDASLLogger sharedInstance]];</p>
-
-<p>DDLogError(“Image is nil!”);
-DDLogVerbose(“newViewController viewDidLoad”);</p>
-
-<p>{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>Setting up and using Cocoa Lumberjack </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">[</span><span class="n">DDLog</span> <span class="nl">addLogger</span><span class="p">:[</span><span class="n">DDASLLogger</span> <span class="n">sharedInstance</span><span class="p">]];</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">DDLogError</span><span class="p">(</span><span class="err">“</span><span class="n">Image</span> <span class="n">is</span> <span class="n">nil</span><span class="o">!</span><span class="err">”</span><span class="p">);</span>
+</span><span class='line'><span class="n">DDLogVerbose</span><span class="p">(</span><span class="err">“</span><span class="n">newViewController</span> <span class="n">viewDidLoad</span><span class="err">”</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>You have access to four default levels of logging: <code>DDLogError</code>, <code>DDLogWarn</code>, <code>DDLogInfo</code>, <code>DDLogVerbose</code>. In addition to these, you can both <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/CustomLogLevels">customize the names</a> of the default levels as well <a href="https://github.com/robbiehanson/CocoaLumberjack/wiki/FineGrainedLogging">as define your additional custom levels</a>.</p>
 
@@ -206,7 +223,7 @@ This is the most basic type of logging, and one which you’re probably most fam
 <h3 id="file-logging">File Logging</h3>
 <p>File logging is just like it sounds. Instead of logging to the debug console, you simply log to a file. This is best demonstrated by simply having you look in the <code>/var/log/</code> folder on your Mac or Linux box.  You’ll see a plethora of file logs chock full of information about what is happening on your system.  For iOS, this really doesn’t make sense for your sandboxed application unless we as the developers know that we need to monitor that information.</p>
 
-<p>{% img left /images/posts/nslog/part1/tweetbot_super_secret.png 300 Tweetbot’s super-secret settings menu %}</p>
+<p><img class="left" src="/images/posts/nslog/part1/tweetbot_super_secret.png" width="300" title="Tweetbot’s super-secret settings menu" ></p>
 
 <p>One example of this necessity is that a particular user is having an issue you’ve never even heard of before and you would like to capture the log output to see what is going on. Simply activate file logging by some super-secret menu and make an easy mechanism for the user to send you that log in an email. Just be responsible and don’t log personal information and always remember to bound the length of your logs - nobody likes 100MB log files.</p>
 
@@ -228,7 +245,7 @@ This is the most basic type of logging, and one which you’re probably most fam
   <li>Whatevs</li>
 </ul>
 
-<p>{% pullquote %}The “right” logging techniques depends highly on who you are as a programmer and even moreso on where you work. I know we have very specific coding standards at <a href="http://mutualmobile.com">Mutual Mobile</a> so as to increase uniformity between codebases on disparate projects.  So the “right” logging techniques and practices I discuss here are those in which I believe most developers and users would benefit from. These practices are those in which you can dynamically choose which types of logs you would like to see depending on what you are working on.  {“In not so many words: dynamic runtime logging”}.{% endpullquote %}</p>
+<p>Surround your pullquote like this {&#8221; text to be quoted &#8220;}</p>
 
 <p>Dynamic means that it involves conditional logic, and mucking with the logging mechanism at runtime means preprocessor macros are pretty much out of the picture.  In Part 2, we’ll look at some techniques as well as full-blown open source libraries that will make our job of logging much easier, more dynamic, and eliminate logs in production for all but the cases we specifically care about.</p>
 

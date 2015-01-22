@@ -4,7 +4,7 @@
   <title><![CDATA[Category: open-source | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/open-source/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:33:33-06:00</updated>
+  <updated>2015-01-22T13:20:33-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -20,7 +20,7 @@
     <id>http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec</id>
     <content type="html"><![CDATA[<p><em>Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
 
-<p>{% img left /images/posts/cocoapods/cocoapods_logo.png 200 200 %}If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
+<p><img class="left" src="/images/posts/cocoapods/cocoapods_logo.png" width="200" height="200">If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
 
 <p>Since I’ve had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.<!-- more --></p>
 
@@ -60,30 +60,47 @@
 <h2 id="construction">Construction</h2>
 <p>A Podspec is <a href="https://github.com/CocoaPods/CocoaPods/wiki/A-pod-specification">constructed by building a new <code>Spec</code> object</a> using a ruby “block”. My ruby-fu is still pretty green, so I won’t try and explain the ruby-ness of a podspec. To create a podspec using a block, we’re going to declare the following in a new file named <code>&lt;component_name&gt;.podspec</code>. Please don’t literally put the angle brackets in your file name:</p>
 
-<p>{% codeblock lang:ruby AwesomeComponent.podspec %}
-Pod::Spec.new do |s|
-  # pod customization goes in here
-end
-{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>AwesomeComponent.podspec </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># pod customization goes in here</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This creates a new <code>Spec</code> object that is included in the <code>Pod</code> library and inserts it into the local variable <code>s</code> for us to customize before it is returned. I’ve gone ahead and filled in some basic information for a spec I wrote for LARSAdController to demonstrate:</p>
 
-<p>{% codeblock lang:ruby LARSAdController.podspec %}
-Pod::Spec.new do |s|
-  s.name         = ‘LARSAdController’
-  s.version      = ‘3.0.0’
-  s.summary      = ‘Lightweight ad mediation for iOS’
-  s.author = {
-    ‘Lars Anderson’ =&gt; ‘youremail@here.com’
-  }
-  s.source = {
-    :git =&gt; ‘https://github.com/larsacus/LARSAdController.git’,
-    :tag =&gt; ‘3.0.0’
-  }
-  s.source_files = ‘Source/*.{h,m}’
-  s.dependency     ‘AdMob’
-end
-{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>LARSAdController.podspec </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">name</span>         <span class="o">=</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">version</span>      <span class="o">=</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">summary</span>      <span class="o">=</span> <span class="err">‘</span><span class="no">Lightweight</span> <span class="n">ad</span> <span class="n">mediation</span> <span class="k">for</span> <span class="n">iOS</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="err">‘</span><span class="no">Lars</span> <span class="no">Anderson</span><span class="err">’</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="n">youremail</span><span class="vi">@here</span><span class="o">.</span><span class="n">com</span><span class="err">’</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">:git</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">larsacus</span><span class="o">/</span><span class="no">LARSAdController</span><span class="o">.</span><span class="n">git</span><span class="err">’</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:tag</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source_files</span> <span class="o">=</span> <span class="err">‘</span><span class="no">Source</span><span class="o">/*.</span><span class="p">{</span><span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">}</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">dependency</span>     <span class="err">‘</span><span class="no">AdMob</span><span class="err">’</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This will include all source files with file extensions <code>.h</code> &amp; <code>.m</code> in the <code>Source/</code> folder in the github repository <code>https://github.com/larsacus/LARSAdController.git</code> in the source tag <code>3.0.0</code> while also including the pod for the dependency of <code>AdMob</code>.</p>
 
@@ -100,16 +117,23 @@ end
 <h3 id="version-simplification">Version Simplification</h3>
 <p>Since this is just a ruby file, you can use all of the ruby tricks on any string in this file. To simplify our podspec for revving our version later, you can tell our <code>source</code> hash to use the podspec’s version as the repository’s tag to use using the <code>to_s</code> helper:</p>
 
-<p>{% codeblock lang:ruby %}
-Pod::Spec.new do |s|
-  ..
-  s.source = {
-    :git =&gt; ‘https://github.com/larsacus/LARSAdController.git’,
-    :tag =&gt; s.version.to_s
-  }
-  …
-end
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">:git</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">larsacus</span><span class="o">/</span><span class="no">LARSAdController</span><span class="o">.</span><span class="n">git</span><span class="err">’</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:tag</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">s</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="err">…</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2 id="completing-your-spec">Completing Your Spec</h2>
 <p>This is where writing a podspec gets a little complicated. The general example specs from the wiki are just fine, but when you start customizing your spec to the specific needs of your component or library, you can easily find yourself running to google with few available resources.</p>
@@ -130,9 +154,9 @@ end
 <h2 id="spec-lint">Spec Lint</h2>
 <p>The first step to testing your spec is to use cocoapods’ built-in “lint” tool to test for syntax compliance and minimum requirements. In your terminal prompt, run the lint tool on your podspec using:</p>
 
-<p>{% codeblock lang:bash %}
-pod spec lint “<spec location="">/SpecName.podspec&#8221;
-{% endcodeblock%}</spec></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pod spec lint “&lt;spec <span class="nv">location</span><span class="o">=</span><span class="s2">&quot;&quot;</span>&gt;/SpecName.podspec<span class="err">&quot;</span>
+</span></code></pre></td></tr></table></div></figure></spec></p>
 
 <p>If anything is syntactically wrong with your spec, it will show up here after running lint. Refer to the <a href="https://github.com/CocoaPods/CocoaPods/wiki">cocoapods wiki</a> if any errors or warnings come up.</p>
 
@@ -150,9 +174,9 @@ pod spec lint “<spec location="">/SpecName.podspec&#8221;
 
 <p>This is where I had a huge issue testing my podspec. The trick I learned is to <a href="https://github.com/CocoaPods/CocoaPods/wiki/Dependency-declaration-options">specify a local file path</a> for your Podfile to look for your new podspec:</p>
 
-<p>{% codeblock lang:ruby %}
-pod ‘LARSAdController’, ‘3.0’, :local =&gt; ‘~/Specs/LARSAdController’
-{% endcodeblock%}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span><span class="p">,</span> <span class="ss">:local</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="o">~</span><span class="sr">/Specs/</span><span class="no">LARSAdController</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Now you can install and test your pod:</p>
 
@@ -175,18 +199,27 @@ pod ‘LARSAdController’, ‘3.0’, :local =&gt; ‘~/Specs/LARSAdController�
 <h3 id="defining-a-subspec">Defining a Subspec</h3>
 <p>To define a <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">subspec</a> in your spec file, define a <code>subspec</code> variable (?) on your spec variable - much like we did in creating the spec itself:</p>
 
-<p>{% codeblock lang:ruby %}
-Pod::Spec.new do |s|
-  ..
-  s.subspec ‘iAds’ do |a|
-    a.source_files = ‘Source/iAds/*.{h,m}’
-    a.dependency ‘LARSAdController/Core’
-    a.frameworks = ‘QuartzCore’
-    a.weak_frameworks = ‘AdSupport’
-  end
-  …
-end
-{% endcodeblock%}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="err">‘</span><span class="n">iAds</span><span class="err">’</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">source_files</span> <span class="o">=</span> <span class="err">‘</span><span class="no">Source</span><span class="o">/</span><span class="n">iAds</span><span class="o">/*.</span><span class="p">{</span><span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">}</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">dependency</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="o">/</span><span class="no">Core</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">frameworks</span> <span class="o">=</span> <span class="err">‘</span><span class="no">QuartzCore</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">weak_frameworks</span> <span class="o">=</span> <span class="err">‘</span><span class="no">AdSupport</span><span class="err">’</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="err">…</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Give your subspec a descriptive name, specify the source files to use, etc. In the above example, I have named this subspec ‘iAds’ since this will be including iAd functionality in with my pod. You’ll continue to customize the subspec in the same way that you customized your parent spec object. Note that the subspec will inherit all of the base properties of the parent spec, so there is no need to repeat them in your subspec.</p>
 
@@ -194,11 +227,13 @@ end
 
 <p>Continue to create additional subspecs for however many sub-specifications that you need to create using the template:</p>
 
-<p>{% codeblock lang:ruby %}
-s.subspec ‘SubspecName’ do |a|
-  # Customize
-end
-{% endcodeblock%}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="err">‘</span><span class="no">SubspecName</span><span class="err">’</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># Customize</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h3 id="final-product">Final Product</h3>
 <p>In the end, you should have a podspec that looks a lot like mine does <a href="https://github.com/CocoaPods/Specs/blob/master/LARSAdController/3.0.0/LARSAdController.podspec">for LARSAdController</a>.</p>
@@ -206,9 +241,9 @@ end
 <h3 id="depending-on-a-subspec">Depending on a Subspec</h3>
 <p>To use the subspec in a Podfile, define the dependency like normal, but suffix it with a <code>/</code> and the subspec name:</p>
 
-<p>{% codeblock lang:ruby %}
-pod ‘LARSAdController/iAds’, ‘3.0’
-{% endcodeblock%}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="o">/</span><span class="n">iAds</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2 id="releasing">Releasing</h2>
 <p>Congratulations! You’ve now completed the hardest parts of constructing your podspec. This next part is easy as long as your podspec lints correctly and installs - which you’ve already tested, right? In order to contribute to the <a href="https://github.com/CocoaPods/Specs">Cocoapods/Specs</a> repository, you will need to clone the repo, add your spec and submit a pull request to have your spec added.</p>
@@ -287,11 +322,13 @@ pod ‘LARSAdController/iAds’, ‘3.0’
 <p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
 
 <p>Your podfile should now look like this:<br />
-{% codeblock lang:objc %}
-platform :ios, ‘5.0’</p>
-
-<p>pod ‘LARSAdController’, ‘~&gt;3.0’
-{% endcodeblock%}</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="nl">platform</span> <span class="p">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">‘</span><span class="mf">5.0</span><span class="err">’</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">pod</span> <span class="err">‘</span><span class="n">LARSAdController</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="o">~&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mf">3.0</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This will setup your project for both Google ads and iAds.</p>
 
@@ -376,19 +413,23 @@ platform :ios, ‘5.0’</p>
 <h4 id="even-simpler">Even Simpler</h4>
 <p>Guess what? Integrating ads can be even easier than above. If you have each of your view controllers inherit from the base class <code>TOLAdViewController</code>, ads will automatically installed in your view on <code>viewWillAppear:</code>:</p>
 
-<p>{% codeblock lang:objc %}
-@interface MYBestViewControllerEvar : TOLAdViewController
-//BOOM - Ads
-@end
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@interface</span> <span class="nc">MYBestViewControllerEvar</span> : <span class="nc">TOLAdViewController</span>
+</span><span class='line'><span class="c1">//BOOM - Ads</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>I’ve even included a method you can override in your view controller to conditionally display these ads. This is convenient when you don’t want to display ads under certain conditions (like when a user purchases an in-app upgrade):</p>
 
-<p>{% codeblock lang:objc %}
-- (BOOL)shouldDisplayAds{
-  return ([self.purchaseTracker hasPurchasedUpgrade] == NO);
-}
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldDisplayAds</span><span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">([</span><span class="nb">self</span><span class="p">.</span><span class="n">purchaseTracker</span> <span class="n">hasPurchasedUpgrade</span><span class="p">]</span> <span class="o">==</span> <span class="nb">NO</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2 id="test">Test</h2>
 <p>Make sure you test that everything is working correctly in your particular app before you ship to the app store. <a href="https://github.com/larsacus/LARSAdController/issues">Submit an issue on github</a> if something feels wrong.</p>
@@ -538,25 +579,30 @@ platform :ios, ‘5.0’</p>
     <p>Whew! What a lot of stupid setup and we haven’t even written any code, yet! If you want to write code, you may be a little disappointed by this post, because there really isn’t any.</p>
   </li>
   <li>Now go to <code>Product &gt; Build</code> or type ‘⌘+B’ to build the project.  If your project builds without any errors, hurray! Skip to step 7.  If not, continue on…</li>
-  <li>{% pullquote %}If you have errors and you followed the above <em>and</em> you’re have ARC enabled, you will need to tell the compiler not to use ARC with <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> as it is not supported, yet. Disable ARC on <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> by following the same steps in step 4 to add frameworks to a project, but go to the <code>Compile Sources</code> section. Find <code>LARSAdController.m</code> in the list of files and double-click in the region to the right marked <code>Compiler Flags</code>. Add a new flag called <code>-fno-objc-arc</code>. A good way to remember this command is to read it like this: {“F, no, Objective-C, I don’t want ARC on this file!”}.  Moving along… Hit ‘⌘+B’ to verify everything is building correctly. {% endpullquote %}</li>
+  <li>Surround your pullquote like this {&#8221; text to be quoted &#8220;}</li>
   <li><em>Now</em> we’re ready to write some code! Get your typing fingers ready, because text doesn’t just copy/paste itself! Add the following two lines of code to one of your view controller’s view lifecycle load or appear methods.  I’ve found that <code>viewWillAppear:</code> seems to be the best when pushing/popping view controllers with ads on them:</li>
 </ol>
 
-<p>{% codeblock lang:objc %}
-  - (void)viewWillAppear:(BOOL)animated{
-      [[LARSAdController sharedManager] addAdContainerToView:self.view withParentViewController:self];
-      [[LARSAdController sharedManager] setGoogleAdPublisherId:myPublisherId];
-  }
-  {% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear</span><span class="p">:(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span>
+</span><span class='line'>      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController</span><span class="p">:</span><span class="nb">self</span><span class="p">];</span>
+</span><span class='line'>      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId</span><span class="p">:</span><span class="n">myPublisherId</span><span class="p">];</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you’re basically done.  Just add the first single line of code to any view controller that you want to host ads in. Just be sure to call <code>setGoogleAdPublisherId:</code> the first time you add LARSAdController to a view. The ads will automatically be added to the bottom of the view and appear/hide whenever they have inventory available.</p>
 
 <h2 id="multiple-orientations">Multiple Orientations</h2>
 
 <p>If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
-{% codeblock lang: objc %}
-    [[LARSAdController sharedManager] setShouldHandleOrientationChanges:YES];
-{% endcodeblock %}</p>
+<figure class='code'><figcaption><span>lang: objc </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[[LARSAdController sharedManager] setShouldHandleOrientationChanges:YES];</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.</p>
 

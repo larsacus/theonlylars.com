@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:33:33-06:00</updated>
+  <updated>2015-01-22T13:20:33-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -37,7 +37,7 @@
 <p>Another very helpful feature of autolayout’s constraints is the fact that you can create an outlet to a single constraint. You can use this outlet to easily animate a change, change the constraints constant, or remove a constraint altogether without much additional effort. To animation a constraint change, simply update your constraint(s), call <code>-setNeedsLayout</code>, then call <code>-layoutIfNeeded</code> in an animation block. Very quick and easy.</p>
 
 <h3 id="no-touching">No Touching</h3>
-<p><a href="/images/no_touching.gif">{% img right /images/no_touching_static.jpg 300 %}</a> However, using xibs for autolayout starts to break down and become more time than it’s worth when you get into complex layouts that depend on cross-view constraints, constraints depending on a view’s content or complex constraint sets relating to many physically smaller views (the constraints simply become an absolute nightmare to <em>physically</em> click on and manage in the xib without screwing something else up).<!--more--> Couple this with the fact that a “feature” of auto layout nibs is to avoid ambiguous layouts. This means that Xcode will actually <em>add</em> constraints it “feels” are necessary for your layout despite you knowing better based on your semantic knowledge of the layout you’re trying to build. These constraints are <em>not</em> removable and thus, a huge nuisance.</p>
+<p><a href="/images/no_touching.gif"><img class="right" src="/images/no_touching_static.jpg" width="300"></a> However, using xibs for autolayout starts to break down and become more time than it’s worth when you get into complex layouts that depend on cross-view constraints, constraints depending on a view’s content or complex constraint sets relating to many physically smaller views (the constraints simply become an absolute nightmare to <em>physically</em> click on and manage in the xib without screwing something else up).<!--more--> Couple this with the fact that a “feature” of auto layout nibs is to avoid ambiguous layouts. This means that Xcode will actually <em>add</em> constraints it “feels” are necessary for your layout despite you knowing better based on your semantic knowledge of the layout you’re trying to build. These constraints are <em>not</em> removable and thus, a huge nuisance.</p>
 
 <p>Even if you do end up successfully laying out your complex auto-layout layout in a nib and get it to behave the way you want, it’s best to treat your xib file like George Bluth in prison and <em>never</em> touch that nib again. Any constraint that is touched could potentially be changed by Xcode because it thinks it knows better than you. You’ll then be back at square one trying to figure out which constraints’ priorities to change back to 1 to get your layout to behave the way you want. I hope you committed that xib into source control just now.</p>
 
@@ -81,7 +81,7 @@
     <id>http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec</id>
     <content type="html"><![CDATA[<p><em>Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
 
-<p>{% img left /images/posts/cocoapods/cocoapods_logo.png 200 200 %}If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
+<p><img class="left" src="/images/posts/cocoapods/cocoapods_logo.png" width="200" height="200">If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
 
 <p>Since I’ve had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.<!-- more --></p>
 
@@ -121,30 +121,47 @@
 <h2 id="construction">Construction</h2>
 <p>A Podspec is <a href="https://github.com/CocoaPods/CocoaPods/wiki/A-pod-specification">constructed by building a new <code>Spec</code> object</a> using a ruby “block”. My ruby-fu is still pretty green, so I won’t try and explain the ruby-ness of a podspec. To create a podspec using a block, we’re going to declare the following in a new file named <code>&lt;component_name&gt;.podspec</code>. Please don’t literally put the angle brackets in your file name:</p>
 
-<p>{% codeblock lang:ruby AwesomeComponent.podspec %}
-Pod::Spec.new do |s|
-  # pod customization goes in here
-end
-{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>AwesomeComponent.podspec </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># pod customization goes in here</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This creates a new <code>Spec</code> object that is included in the <code>Pod</code> library and inserts it into the local variable <code>s</code> for us to customize before it is returned. I’ve gone ahead and filled in some basic information for a spec I wrote for LARSAdController to demonstrate:</p>
 
-<p>{% codeblock lang:ruby LARSAdController.podspec %}
-Pod::Spec.new do |s|
-  s.name         = ‘LARSAdController’
-  s.version      = ‘3.0.0’
-  s.summary      = ‘Lightweight ad mediation for iOS’
-  s.author = {
-    ‘Lars Anderson’ =&gt; ‘youremail@here.com’
-  }
-  s.source = {
-    :git =&gt; ‘https://github.com/larsacus/LARSAdController.git’,
-    :tag =&gt; ‘3.0.0’
-  }
-  s.source_files = ‘Source/*.{h,m}’
-  s.dependency     ‘AdMob’
-end
-{% endcodeblock %}</p>
+<p><figure class='code'><figcaption><span>LARSAdController.podspec </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">name</span>         <span class="o">=</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">version</span>      <span class="o">=</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">summary</span>      <span class="o">=</span> <span class="err">‘</span><span class="no">Lightweight</span> <span class="n">ad</span> <span class="n">mediation</span> <span class="k">for</span> <span class="n">iOS</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="err">‘</span><span class="no">Lars</span> <span class="no">Anderson</span><span class="err">’</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="n">youremail</span><span class="vi">@here</span><span class="o">.</span><span class="n">com</span><span class="err">’</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">:git</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">larsacus</span><span class="o">/</span><span class="no">LARSAdController</span><span class="o">.</span><span class="n">git</span><span class="err">’</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:tag</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source_files</span> <span class="o">=</span> <span class="err">‘</span><span class="no">Source</span><span class="o">/*.</span><span class="p">{</span><span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">}</span><span class="err">’</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">dependency</span>     <span class="err">‘</span><span class="no">AdMob</span><span class="err">’</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This will include all source files with file extensions <code>.h</code> &amp; <code>.m</code> in the <code>Source/</code> folder in the github repository <code>https://github.com/larsacus/LARSAdController.git</code> in the source tag <code>3.0.0</code> while also including the pod for the dependency of <code>AdMob</code>.</p>
 
@@ -161,16 +178,23 @@ end
 <h3 id="version-simplification">Version Simplification</h3>
 <p>Since this is just a ruby file, you can use all of the ruby tricks on any string in this file. To simplify our podspec for revving our version later, you can tell our <code>source</code> hash to use the podspec’s version as the repository’s tag to use using the <code>to_s</code> helper:</p>
 
-<p>{% codeblock lang:ruby %}
-Pod::Spec.new do |s|
-  ..
-  s.source = {
-    :git =&gt; ‘https://github.com/larsacus/LARSAdController.git’,
-    :tag =&gt; s.version.to_s
-  }
-  …
-end
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class='line'>    <span class="ss">:git</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="ss">https</span><span class="p">:</span><span class="sr">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">larsacus</span><span class="o">/</span><span class="no">LARSAdController</span><span class="o">.</span><span class="n">git</span><span class="err">’</span><span class="p">,</span>
+</span><span class='line'>    <span class="ss">:tag</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="n">s</span><span class="o">.</span><span class="n">version</span><span class="o">.</span><span class="n">to_s</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="err">…</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2 id="completing-your-spec">Completing Your Spec</h2>
 <p>This is where writing a podspec gets a little complicated. The general example specs from the wiki are just fine, but when you start customizing your spec to the specific needs of your component or library, you can easily find yourself running to google with few available resources.</p>
@@ -191,9 +215,9 @@ end
 <h2 id="spec-lint">Spec Lint</h2>
 <p>The first step to testing your spec is to use cocoapods’ built-in “lint” tool to test for syntax compliance and minimum requirements. In your terminal prompt, run the lint tool on your podspec using:</p>
 
-<p>{% codeblock lang:bash %}
-pod spec lint “<spec location="">/SpecName.podspec&#8221;
-{% endcodeblock%}</spec></p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>pod spec lint “&lt;spec <span class="nv">location</span><span class="o">=</span><span class="s2">&quot;&quot;</span>&gt;/SpecName.podspec<span class="err">&quot;</span>
+</span></code></pre></td></tr></table></div></figure></spec></p>
 
 <p>If anything is syntactically wrong with your spec, it will show up here after running lint. Refer to the <a href="https://github.com/CocoaPods/CocoaPods/wiki">cocoapods wiki</a> if any errors or warnings come up.</p>
 
@@ -211,9 +235,9 @@ pod spec lint “<spec location="">/SpecName.podspec&#8221;
 
 <p>This is where I had a huge issue testing my podspec. The trick I learned is to <a href="https://github.com/CocoaPods/CocoaPods/wiki/Dependency-declaration-options">specify a local file path</a> for your Podfile to look for your new podspec:</p>
 
-<p>{% codeblock lang:ruby %}
-pod ‘LARSAdController’, ‘3.0’, :local =&gt; ‘~/Specs/LARSAdController’
-{% endcodeblock%}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span><span class="p">,</span> <span class="ss">:local</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="o">~</span><span class="sr">/Specs/</span><span class="no">LARSAdController</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Now you can install and test your pod:</p>
 
@@ -236,18 +260,27 @@ pod ‘LARSAdController’, ‘3.0’, :local =&gt; ‘~/Specs/LARSAdController�
 <h3 id="defining-a-subspec">Defining a Subspec</h3>
 <p>To define a <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">subspec</a> in your spec file, define a <code>subspec</code> variable (?) on your spec variable - much like we did in creating the spec itself:</p>
 
-<p>{% codeblock lang:ruby %}
-Pod::Spec.new do |s|
-  ..
-  s.subspec ‘iAds’ do |a|
-    a.source_files = ‘Source/iAds/*.{h,m}’
-    a.dependency ‘LARSAdController/Core’
-    a.frameworks = ‘QuartzCore’
-    a.weak_frameworks = ‘AdSupport’
-  end
-  …
-end
-{% endcodeblock%}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="err">‘</span><span class="n">iAds</span><span class="err">’</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">source_files</span> <span class="o">=</span> <span class="err">‘</span><span class="no">Source</span><span class="o">/</span><span class="n">iAds</span><span class="o">/*.</span><span class="p">{</span><span class="n">h</span><span class="p">,</span><span class="n">m</span><span class="p">}</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">dependency</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="o">/</span><span class="no">Core</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">frameworks</span> <span class="o">=</span> <span class="err">‘</span><span class="no">QuartzCore</span><span class="err">’</span>
+</span><span class='line'>    <span class="n">a</span><span class="o">.</span><span class="n">weak_frameworks</span> <span class="o">=</span> <span class="err">‘</span><span class="no">AdSupport</span><span class="err">’</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="err">…</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>Give your subspec a descriptive name, specify the source files to use, etc. In the above example, I have named this subspec ‘iAds’ since this will be including iAd functionality in with my pod. You’ll continue to customize the subspec in the same way that you customized your parent spec object. Note that the subspec will inherit all of the base properties of the parent spec, so there is no need to repeat them in your subspec.</p>
 
@@ -255,11 +288,13 @@ end
 
 <p>Continue to create additional subspecs for however many sub-specifications that you need to create using the template:</p>
 
-<p>{% codeblock lang:ruby %}
-s.subspec ‘SubspecName’ do |a|
-  # Customize
-end
-{% endcodeblock%}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="err">‘</span><span class="no">SubspecName</span><span class="err">’</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</span><span class='line'>  <span class="c1"># Customize</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h3 id="final-product">Final Product</h3>
 <p>In the end, you should have a podspec that looks a lot like mine does <a href="https://github.com/CocoaPods/Specs/blob/master/LARSAdController/3.0.0/LARSAdController.podspec">for LARSAdController</a>.</p>
@@ -267,9 +302,9 @@ end
 <h3 id="depending-on-a-subspec">Depending on a Subspec</h3>
 <p>To use the subspec in a Podfile, define the dependency like normal, but suffix it with a <code>/</code> and the subspec name:</p>
 
-<p>{% codeblock lang:ruby %}
-pod ‘LARSAdController/iAds’, ‘3.0’
-{% endcodeblock%}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="o">/</span><span class="n">iAds</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2 id="releasing">Releasing</h2>
 <p>Congratulations! You’ve now completed the hardest parts of constructing your podspec. This next part is easy as long as your podspec lints correctly and installs - which you’ve already tested, right? In order to contribute to the <a href="https://github.com/CocoaPods/Specs">Cocoapods/Specs</a> repository, you will need to clone the repo, add your spec and submit a pull request to have your spec added.</p>
@@ -348,11 +383,13 @@ pod ‘LARSAdController/iAds’, ‘3.0’
 <p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
 
 <p>Your podfile should now look like this:<br />
-{% codeblock lang:objc %}
-platform :ios, ‘5.0’</p>
-
-<p>pod ‘LARSAdController’, ‘~&gt;3.0’
-{% endcodeblock%}</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="nl">platform</span> <span class="p">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">‘</span><span class="mf">5.0</span><span class="err">’</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">pod</span> <span class="err">‘</span><span class="n">LARSAdController</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="o">~&amp;</span><span class="n">gt</span><span class="p">;</span><span class="mf">3.0</span><span class="err">’</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>This will setup your project for both Google ads and iAds.</p>
 
@@ -437,19 +474,23 @@ platform :ios, ‘5.0’</p>
 <h4 id="even-simpler">Even Simpler</h4>
 <p>Guess what? Integrating ads can be even easier than above. If you have each of your view controllers inherit from the base class <code>TOLAdViewController</code>, ads will automatically installed in your view on <code>viewWillAppear:</code>:</p>
 
-<p>{% codeblock lang:objc %}
-@interface MYBestViewControllerEvar : TOLAdViewController
-//BOOM - Ads
-@end
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@interface</span> <span class="nc">MYBestViewControllerEvar</span> : <span class="nc">TOLAdViewController</span>
+</span><span class='line'><span class="c1">//BOOM - Ads</span>
+</span><span class='line'><span class="k">@end</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>I’ve even included a method you can override in your view controller to conditionally display these ads. This is convenient when you don’t want to display ads under certain conditions (like when a user purchases an in-app upgrade):</p>
 
-<p>{% codeblock lang:objc %}
-- (BOOL)shouldDisplayAds{
-  return ([self.purchaseTracker hasPurchasedUpgrade] == NO);
-}
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">shouldDisplayAds</span><span class="p">{</span>
+</span><span class='line'>  <span class="k">return</span> <span class="p">([</span><span class="nb">self</span><span class="p">.</span><span class="n">purchaseTracker</span> <span class="n">hasPurchasedUpgrade</span><span class="p">]</span> <span class="o">==</span> <span class="nb">NO</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2 id="test">Test</h2>
 <p>Make sure you test that everything is working correctly in your particular app before you ship to the app store. <a href="https://github.com/larsacus/LARSAdController/issues">Submit an issue on github</a> if something feels wrong.</p>
@@ -637,16 +678,17 @@ platform :ios, ‘5.0’</p>
 <h2 id="interpretingconstructing-variable-declarations">Interpreting/Constructing Variable Declarations</h2>
 <p>Let’s look at the previous example to dissect how they are different. If I were reading an English sentence describing each variable declaration, it would go like this for each:</p>
 
-<p>{% codeblock lang:objc %}
-const NSString * myString; //The variable myString is a pointer to a constant NSString
-NSString * const myString; //The variable myString is a constant pointer to an NSString
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="bp">NSString</span> <span class="o">*</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a pointer to a constant NSString</span>
+</span><span class='line'><span class="bp">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span><span class="p">;</span> <span class="c1">//The variable myString is a constant pointer to an NSString</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>After reading the above, you can’t tell me you still think both of those variable declarations are the same. In fact, based on the above information, we could even construct a third similar-but-different variable declaration:</p>
 
-<p>{% codeblock lang:objc %}
-const NSString * const myString //The variable myString is a constant pointer to a constant NSString
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">const</span> <span class="bp">NSString</span> <span class="o">*</span> <span class="k">const</span> <span class="n">myString</span> <span class="c1">//The variable myString is a constant pointer to a constant NSString</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>So how did I perform this black magic? Simply read the variable declaration from the right to left, and when you get to the type, start reading left to right until you get back to the type. <a href="http://www.codeproject.com/Articles/7042/How-to-interpret-complex-C-C-declarations">Code Project has an excellent writeup</a> on reading complicated C declarations and <a href="http://ridiculousfish.com">ridiculous_fish</a> has an excellent conversion tool that will even <a href="http://cdecl.org">convert the declarations into English statements</a> right before your eyes. There are <a href="http://lmgtfy.com/?q=complicated+C+variable+declarations">tons of guides out there</a>. There are other complicated cases that involve array declarations and pointers, as well as comma-delimited declarations that I have yet to see in an Objective-C project (thank you) that can complicate a declaration.</p>
 
@@ -660,21 +702,27 @@ const NSString * const myString //The variable myString is a constant pointer to
 
 <p>So we’d end up with this: </p>
 
-<p>{% codeblock lang:objc %}
-__block typeof(self) myself = self;
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">__block</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>I would consider this incorrect even though more often than not, this will yield the result you want. This is an <em>inaccurate</em> use of <code>__block</code><sup id="fnref:1"><a href="#fn:1" class="footnote">3</a></sup>. <code>__block</code> is a <em>storage class</em> (like we discussed above) and is designed for variables that are going to be “created” inside the block so that memory can be allocated appropriately for use inside the block like so:</p>
 
-<p>{% codeblock lang:objc %}
-__block int count = 0;</p>
-
-<p>self.completionBlock = ^(BOOL finished){
-  if(finished){
-    count++;
-  }
-}
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">__block</span> <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nb">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>    <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <p>In this example, we’re creating a block variable outside of our block that is going to be modified inside said block. This is the correct way to use <code>__block</code>. To break our retain cycle, the more appropriate solution is to use some specific tools given to us in ARC that we’ll get to in just a second. First, an aside on new hotness in ARC to look out for:</p>
 
@@ -695,16 +743,7 @@ __block int count = 0;</p>
 <p>@idryman has a really <a href="http://www.idryman.org/blog/2012/10/29/type-qualifiers/#arc-ownership-qualifiers-1">concise writeup</a> on ARC ownership qualifiers, as well as explaining the improper use of them.</p>
 
 <p><a href="http://developer.apple.com/library/mac/#releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html%23//apple_ref/doc/uid/TP40011226-CH1-SW7">From the documentation</a>:
-{% blockquote %}
-You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p>
-
-<p>ClassName * qualifier variableName;</p>
-
-<p>for example:</p>
-
-<p>MyClass * __weak myWeakReference;
-MyClass * __unsafe_unretained myUnsafeReference;
-{% endblockquote %}</p>
+<blockquote><p>You should decorate variables correctly. When using qualifiers in an object variable declaration, the correct format is:</p></p><p><p>ClassName * qualifier variableName;</p></p><p><p>for example:</p></p><p><p>MyClass * __weak myWeakReference;<br/>MyClass * __unsafe_unretained myUnsafeReference;</p></blockquote></p>
 
 <h5 id="auto-niling-weak-references">Auto-Nil’ing Weak References</h5>
 <p>In iOS 5, Apple gave us <a href="http://developer.apple.com/library/ios/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW4">auto-nil’ing weak references</a> under ARC. This means that when you have a <em>weak</em> reference to a variable, it will allow you to use that variable and will set that variable to <code>nil</code> when no other object has a strong reference to it. This is a perfect place to replace the <code>__block</code> storage class with one of ARC’s new <a href="http://clang.llvm.org/docs/AutomaticReferenceCounting.html#ownership">ownership qualifiers</a>.  Let’s use <code>__weak</code>:</p>
@@ -713,13 +752,17 @@ MyClass * __unsafe_unretained myUnsafeReference;
 
 <p>Viola! We now have an auto-nil’ing (auto-zeroing) weak reference to <code>self</code> that we can use in a block that <code>self</code> has a strong reference to without modifying where the object lives in memory:</p>
 
-<p>{% codeblock lang:objc %}
-typeof(self) __weak myself = self;</p>
-
-<p>self.completionBlock = ^(BOOL finished){
-  [myself playWithObject:myself];
-}
-{% endcodeblock %}</p>
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="k">__weak</span> <span class="n">myself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="nb">self</span><span class="p">.</span><span class="n">completionBlock</span> <span class="o">=</span> <span class="o">^</span><span class="p">(</span><span class="kt">BOOL</span> <span class="n">finished</span><span class="p">){</span>
+</span><span class='line'>  <span class="p">[</span><span class="n">myself</span> <span class="nl">playWithObject</span><span class="p">:</span><span class="n">myself</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure></p>
 
 <h2 id="ok-cool">Ok, Cool</h2>
 <p>I think it’s important to understand the guts of a C declaration because of the small nuances that are present when you introduce things like ARC ownership qualifiers.  If you don’t know what a storage qualifier is, then you’re surely not going to know what an ownership qualifier is or how to properly use it. While it’s true for the most part that the compiler will generally let you know when something is awry, isn’t it nice to know that you know a little bit more about what the compiler is actually thinking when it tells you that retaining an object strongly in this context could result in a retain cycle?</p>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: autolayout | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/autolayout/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T12:33:33-06:00</updated>
+  <updated>2015-01-22T13:20:33-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -37,7 +37,7 @@
 <p>Another very helpful feature of autolayout’s constraints is the fact that you can create an outlet to a single constraint. You can use this outlet to easily animate a change, change the constraints constant, or remove a constraint altogether without much additional effort. To animation a constraint change, simply update your constraint(s), call <code>-setNeedsLayout</code>, then call <code>-layoutIfNeeded</code> in an animation block. Very quick and easy.</p>
 
 <h3 id="no-touching">No Touching</h3>
-<p><a href="/images/no_touching.gif">{% img right /images/no_touching_static.jpg 300 %}</a> However, using xibs for autolayout starts to break down and become more time than it’s worth when you get into complex layouts that depend on cross-view constraints, constraints depending on a view’s content or complex constraint sets relating to many physically smaller views (the constraints simply become an absolute nightmare to <em>physically</em> click on and manage in the xib without screwing something else up).<!--more--> Couple this with the fact that a “feature” of auto layout nibs is to avoid ambiguous layouts. This means that Xcode will actually <em>add</em> constraints it “feels” are necessary for your layout despite you knowing better based on your semantic knowledge of the layout you’re trying to build. These constraints are <em>not</em> removable and thus, a huge nuisance.</p>
+<p><a href="/images/no_touching.gif"><img class="right" src="/images/no_touching_static.jpg" width="300"></a> However, using xibs for autolayout starts to break down and become more time than it’s worth when you get into complex layouts that depend on cross-view constraints, constraints depending on a view’s content or complex constraint sets relating to many physically smaller views (the constraints simply become an absolute nightmare to <em>physically</em> click on and manage in the xib without screwing something else up).<!--more--> Couple this with the fact that a “feature” of auto layout nibs is to avoid ambiguous layouts. This means that Xcode will actually <em>add</em> constraints it “feels” are necessary for your layout despite you knowing better based on your semantic knowledge of the layout you’re trying to build. These constraints are <em>not</em> removable and thus, a huge nuisance.</p>
 
 <p>Even if you do end up successfully laying out your complex auto-layout layout in a nib and get it to behave the way you want, it’s best to treat your xib file like George Bluth in prison and <em>never</em> touch that nib again. Any constraint that is touched could potentially be changed by Xcode because it thinks it knows better than you. You’ll then be back at square one trying to figure out which constraints’ priorities to change back to 1 to get your layout to behave the way you want. I hope you committed that xib into source control just now.</p>
 
