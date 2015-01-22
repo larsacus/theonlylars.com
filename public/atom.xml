@@ -4,7 +4,7 @@
   <title><![CDATA[theonlylars]]></title>
   <link href="http://theonlylars.com/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2013-03-14T18:05:04-05:00</updated>
+  <updated>2015-01-22T12:20:54-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Microsoft HoloLens and Your Everyday Future]]></title>
+    <link href="http://theonlylars.com/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/"/>
+    <updated>2015-01-22T11:36:00-06:00</updated>
+    <id>http://theonlylars.com/blog/2015/01/22/microsoft-hololens-and-your-everyday-future</id>
+    <content type="html"><![CDATA[<p>Yesterday, Microsoft announced and demoed a surprising, radical new project called <a href="http://www.microsoft.com/microsoft-hololens">HoloLens</a>. If you haven’t seen it yet, please go the Microsoft site and glance at it to make the rest of this make sense. The essence behind HoloLens is a goggle-like device you wear over your eyes that projects holograms augmented into your perception of reality – wirelessly. Technology like this is significant for a few reasons that may not be immedately apparent when looking at the demos they have provided. This technology today, itself may look a little socially isolating, may just be a necessary stepping stone to what we will soon know as the ‘present’ of computing.</p>
+
+<p>As much as it surprises me to say this to myself about Microsoft, but it’s a little refreshing to see Microsoft show off this kind of technology and not Google.</p>
+
+<h2 id="close-your-eyes">Close Your Eyes</h2>
+<p>Close your eyes. Now imagine what the future looks like to you. You may be picturing your favorite science-fiction movie like <em>Minority Report</em> or <em>Blade Runner</em>. Usually there are screens everywhere. Computing is so cheap we can make displays out of and integrate them into almost anything – giant displays on the side of a building, displays integrated into walls, clothing, or other materials. <!-- more --></p>
+
+<p>Maybe this is the case. But <em>what if</em> the future of this functional reality is just a little bit close than that? Yes, maybe we will have screens everywhere, but what if only you could see those screens? What if the requirement for those screens to be physically present were removed? You look to your left and right – there are holographic screens projected everywhere just like you imagined the future.</p>
+
+<h2 id="too-much-information">Too Much Information?</h2>
+<p>If the future has screens everywhere, would you not simply be overwhelmed with the information being presented on those screens? As a thought-application of this, let’s imagine we are driving down the road in our personal automobile. A virtual screen is “projected” over most every surface within eye’s-reach. As a direct translation of the current physical configuration of your car, you may immediately imagine your speed or navigation being on these virtual screens – maybe even the current music playing or your calendar from your phone.</p>
+
+<p>Let’s glipse the in-car experience in a different light, since many engineering constraints of the automobile driver’s UX paradigm has completely shifted: The A-pillar is replaced with a projection of what lies just behind it. Your car door becomes transparent just like your A-pillar to reveal a small motorcycle in your blind spot. Your vehicle’s on-board radar (something already existing on some vehicles) is pulling double-duty in a massive snow-storm to project a better picture of the cars that lie just out of your visible range. The near-future of driving may not be “more screens” with useless, distracting information – it may actually be an <em>extension</em> of your reality by bypassing the physical constraints we already have on our world, making us <em>more aware</em> by providing more natural, easily digestible information.</p>
+
+<p>Fighter pilots have been using a variant of this technology in their helmets for awhile now in order to provide them with more relevent, contextual information while piloting a $100M aircraft. The purpose of such a technology is to provide someone with <em>more information</em> in such a way that is easy to process for the user. Something like this is a brand-new area of user-experience for the everyman.</p>
+
+<h2 id="creation">Creation</h2>
+<p>One of the applications shown in the demo videos was in content creation. A designer sits next to a computer with a holographic projection of their work sitting next to them on the desk. They then walk over to a 1:1 scale model of their work to feel the presence of their work as they walk around it, tweaking parameters as if they were using their 3D CAD software. Is this not the natural progression of where computing, content creation and design should be headed? Technology should <em>enable</em> humans to create, not get in the way with IDEs, keystrokes or even screens. This is exactly what car designers do now with clay models and styrofoam, just on a more physical, tedious scale.</p>
+
+<h2 id="tomorrows-computing-today">Tomorrow’s Computing Today?</h2>
+<p><a href="http://worrydream.com">Brett Victor</a> has a mission to explore and guide the future of technology as it applies to human interaction. In his talk, <a href="http://vimeo.com/115154289">“The Humane Representation of Thought”</a>, he talks about the current state of programming (and maybe even computing in general) “inhumane”. As a programmer, I can’t disagree with this: A human being sits in front of a computer for 8-10 hours a day, entering individual characters into a computer telling it very explicitly what to do. These characters get translated into all of the things we use everyday we know generically as software. Everything from text editors to 3D CAD software – all built the same.</p>
+
+<p>Brett explores how future technologies should integrate with human interactions to make the experience richer and more engaging, not less engaging. This is something that Microsoft’s HoloLens is definitely a step <em>toward</em> – at least in the richness factor. We still don’t get any of the physical feedback mechanisms that, for instance, paper and pencil have. “The Humane Representation of Thought” is an excellent watch if you have time, as well as his talks “<a href="http://worrydream.com/DrawingDynamicVisualizationsTalk/">Drawing Dynamic Visualizations</a>” and “<a href="http://worrydream.com/StopDrawingDeadFish/">Stop drawing dead fish</a>” since they both relate to human-computer interaction and the way we should think about computing in the future.</p>
+
+<h2 id="but-i-would-never-wear-that-in-public">“But I Would Never Wear That In Public”</h2>
+<p>I know many people are looking at the device saying “it’s so ugly and unweildy, I would never wear this in public” – and I don’t really think that’s the point of the HoloLens. Many have even pointed and laughed at pictures of a group of people using HoloLens. They do indeed look a little bit ridiculous. I don’t believe this initial application or device is meant to be used as an everyday wearable that you walk down the street with, or even wear around the office full-time. You could, but you would probably be treated in much the same way those who wore Google Glass were. As a computing correlary, you don’t walk around your office or home 100% with your laptop staring at it everywhere you go. I know this is not 100% translatable, but I don’t think the intent with v1 is to be a daily personable wearable.</p>
+
+<p>The initial application of this device is going be more along the lines of “computing augmentation”. These are the experience “hacks” that directly translate your current computing environment and paradigms into your physical world, just like some of Microsoft’s own demos show off. This includes the scenarios where a designer is creating a physical model, a researcher is exploring mars, gaming applications and even the integration of other physical people in your augmented world with you (think remote collaboration). Another set of immediate applications includes “piloting” activities (driving a motorcycle or car, driving heavy machinery, etc) or sports such as skiing or mountain biking.</p>
+
+<p>Subsequent, evolved applications of this technology will depend on the v2+ physical devices that are created to project the holographs. This is when you might could get into the everyday integration of HoloLens as a personal device if the technology is able to get out of the way enough to enable this. It is at this point in which we will see applications of holographic technology used in ways we can’t easily grasp now since our minds don’t yet build products or applications that use this technology natively.</p>
+
+<h2 id="microsoft-as-the-future"><em>Microsoft</em> as the Future?</h2>
+<p>With all this said, does this mean that Microsoft will be helping to lead technology into their perception of the future – the same company that released Windows 8 and created the Windows Phone 7 Pro Plus Edition? This could be a new era of computing, or could it be another Nintendo Virtual Boy? With all of the money and attention being poured into products like <a href="https://www.leapmotion.com">LeapMotion</a>, <a href="https://www.oculus.com">Oculus</a> and <a href="http://www.magicleap.com/">MagicLeap</a>, it’s going to be difficult to argue that our future is not in some way tied to integrated computing. We should also take note from Brett Victor, to be careful not to allow technology to guide how we use it, but humanize technology in a way that will better our lives and connect us with others.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Abandoning the Consumer: Ignoring User Experience]]></title>
@@ -993,7 +1034,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>Are you ready?</p>
 
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span><span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div>
 
@@ -1102,13 +1143,10 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p><strong>Helpfulness</strong>: 6/10 - Really depends on what you need help with<br />
 <strong>Performance</strong>: 5/10<br />
-<strong>Ease of Use</strong>: 6/10</p>
+<strong>Ease of Use</strong>: 6/10  </p>
 
-<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
-<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
-<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
-<p>###ECLogging
-<a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
+<h3 id="eclogging">ECLogging</h3>
+<p><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
 
 <h4 id="channels">Channels</h4>
 <p>“Channels” allow you to create “debug”, “info”, or “networking” channels (as an example) and are very similar to Cocoa Lumberjack’s methodology on logging.  Two types of channels exist - <code>debug</code> and <code>log</code> channels. The difference between the two being that debug channel statements are completely compiled out at compile-time in release mode (much like our dear friend <code>DLog</code> above), and log channel statements are not and will appear in the console even in release mode. Create your own channel with a single-line of code, and start using it on the next line using either <code>ECLog(channel, @"log");</code> or <code>ECDebug(debugChannel, @"debug log")</code>.</p>
@@ -1169,9 +1207,8 @@ Standing while working is definitely odd at first. It took me a little while to 
 <h3 id="afhttprequestoperationlogger">AFHTTPRequestOperationLogger</h3>
 <p><a href="https://github.com/AFNetworking/AFHTTPRequestOperationLogger">AFHTTPRequestOperationLogger</a> is a logging enhancer for the ubiquitous <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> library. It won’t really help you unless you are using AFNetworking, but it can tremendously help out debugging networking issues you may be having with complex APIs.  It can be a bit verbose at times, even to the point of being straight up noisy, but the advantage of open source is that you can go change it if you don’t like it.</p>
 
-<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
-<p>###XLog
-<a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I’ve actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
+<h3 id="xlog">XLog</h3>
+<p><a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I’ve actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
 
 <h3 id="xcodecolors">XcodeColors</h3>
 <p><a href="https://github.com/robbiehanson/XcodeColors">XcodeColors</a> is a similar-looking Xcode plugin to XLog that colors your console output. The original was created by <a href="https://github.com/DeepIT">DeepIT on Github</a>, but now appears to be mostly maintained by <a href="https://github.com/robbiehanson">Robbie Hanson</a>, who created Cocoa Lumberjack (above). If you use Cocoa Lumberjack, I would use this.</p>
@@ -1184,6 +1221,11 @@ Standing while working is definitely odd at first. It took me a little while to 
 <p>It is my opinion that highly extensible, non-<code>NSLog</code> logging should be just as much an architectural consideration as coding standards, unit test coverage, and class prefix names on a project. Most developers may not know advanced logging techniques even exist, much less employ one in a large project in order to get more debugging done in less time. Don’t spend more time debugging your code - equip yourself with the proper tools to spend more time making your app the best experience possible for your users, while also making your future-self love you (which we all know doesn’t happen that often).</p>
 
 <hr />
+
+<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
+<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
+<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
+<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
 
 <p><em>Disclaimer:</em>
 <em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em></p>
@@ -1363,83 +1405,6 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
     <content type="html"><![CDATA[<p>Huge shout out to all the high schoolers at <a href="http://lorenaisd.net">Lorena High School</a> that put up with my chatter about how cool my job is this morning. You guys were awesome.</p>
 
 <p>If you’re looking for the presentation, you can find it on <a href="https://github.com/larsacus/career-day">here on my github page</a>. It’s available in powerpoint, keynote, and just plain old pdf. If you have any questions, you can <a href="https://twitter.com/theonlylars">find me on Twitter</a>.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Easily Integrate Your iOS App with iAd and AdMob]]></title>
-    <link href="http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad/"/>
-    <updated>2012-04-27T21:30:00-05:00</updated>
-    <id>http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad</id>
-    <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController has been updated to v3.0</a>. A lot of the material below may be outdated. If you need to use v2.x as is demonstrated below, you can still access it using <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">one of the tagged v2.x versions on github</a>.</em></p>
-
-<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
-
-<p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
-
-<h2 id="introducing-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Introducing <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
-<p>I built <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a <code>UIView</code>. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in <em>any</em> orientation.</p>
-
-<h2 id="integrating-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Integrating <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
-<ol>
-  <li>
-    <p>First, you will need to clone the source from <a href="http://larsacus.github.com/LARSAdController">Github</a>:</p>
-
-    <p><code>$ git clone git@github.com:larsacus/LARSAdController.git</code></p>
-
-    <p>or add it as a git submodule:</p>
-
-    <p><code>$ git submodule add git@github.com:larsacus/LARSAdController.git Vendor/LARSAdController</code></p>
-  </li>
-  <li>Add folder or <code>LARSAdController.m/h</code> to your project</li>
-  <li>Download and copy the <a href="https://developers.google.com/mobile-ads-sdk/download#downloadios">Google ad SDK</a> into your project and go ahead and sign up for a Google publisher account at <a href="https://admob.com">AdMob.com</a> if you haven’t already</li>
-  <li>Ensure the proper frameworks have been added to your application in order for iAds and AdMob ads to compile properly:
-    <ol>
-      <li>iAd.framework</li>
-      <li>AudioToolbox.framework</li>
-      <li>MessageUI.framework</li>
-      <li>SystemConfiguration.framework</li>
-    </ol>
-
-    <p>You can add additional frameworks to your project in Xcode 4 by clicking on your project file in the project navigator on the left and going to <code>Build Phases &gt; Link Binary With Libraries &gt; Click + Symbol</code></p>
-
-    <p>Whew! What a lot of stupid setup and we haven’t even written any code, yet! If you want to write code, you may be a little disappointed by this post, because there really isn’t any.</p>
-  </li>
-  <li>Now go to <code>Product &gt; Build</code> or type ‘⌘+B’ to build the project.  If your project builds without any errors, hurray! Skip to step 7.  If not, continue on…</li>
-  <li><span class="pullquote-right" data-pullquote="F, no, Objective-C, I don&#8217;t want ARC on this file!">If you have errors and you followed the above <em>and</em> you’re have ARC enabled, you will need to tell the compiler not to use ARC with <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> as it is not supported, yet. Disable ARC on <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> by following the same steps in step 4 to add frameworks to a project, but go to the <code>Compile Sources</code> section. Find <code>LARSAdController.m</code> in the list of files and double-click in the region to the right marked <code>Compiler Flags</code>. Add a new flag called <code>-fno-objc-arc</code>. A good way to remember this command is to read it like this: F, no, Objective-C, I don’t want ARC on this file!.  Moving along… Hit ‘⌘+B’ to verify everything is building correctly. </span></li>
-  <li><em>Now</em> we’re ready to write some code! Get your typing fingers ready, because text doesn’t just copy/paste itself! Add the following two lines of code to one of your view controller’s view lifecycle load or appear methods.  I’ve found that <code>viewWillAppear:</code> seems to be the best when pushing/popping view controllers with ads on them:</li>
-</ol>
-
-<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-<span class="line-number">2</span>
-<span class="line-number">3</span>
-<span class="line-number">4</span>
-<span class="line-number">5</span>
-</pre></td><td class="code"><pre><code class="objc"><span class="line">  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear:</span><span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span>
-</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView:</span><span class="n">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController:</span><span class="n">self</span><span class="p">];</span>
-</span><span class="line">      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId:</span><span class="n">myPublisherId</span><span class="p">];</span>
-</span><span class="line">  <span class="p">}</span>
-</span><span class="line">
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you’re basically done.  Just add the first single line of code to any view controller that you want to host ads in. Just be sure to call <code>setGoogleAdPublisherId:</code> the first time you add LARSAdController to a view. The ads will automatically be added to the bottom of the view and appear/hide whenever they have inventory available.</p>
-
-<h2 id="multiple-orientations">Multiple Orientations</h2>
-
-<p>If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;figcaption&gt;<span></span>&lt;/figcaption&gt;&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="objc"><span class="line"><span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setShouldHandleOrientationChanges:</span><span class="n">YES</span><span class="p">];</span>
-</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
-
-<p>This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.</p>
-
-<p>Simply call the code in step 7 in any view you need the ad banner to be in, and it will automatically remove it from the old view and add it to the bottom of the new view.</p>
-
-<h2 id="in-conclusion">In Conclusion</h2>
-<p>I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren’t using AdMob ads.  If you’re registered to use AdMob ads, then it’s an even <em>more</em> efficient method, as it’s only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
-
-<p>If you’re using <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the README file.</p>
-
 ]]></content>
   </entry>
   

@@ -11,9 +11,9 @@ When iOS 6 was announced, one of the lesser features was a "Smart" App Banner th
 
 Are you ready?
 
-``` html
+{% codeblock lang:html %}
 <meta name="apple-itunes-app" content="app-id=379660205"/>
-```
+{% endcodeblock %}
 
 That's it.  Add this meta tag to the `<head>` section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.
   

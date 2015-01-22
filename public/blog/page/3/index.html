@@ -9,7 +9,7 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="Today I turn 27. I am a software engineer at a growing mobile consultancy shop, and I often feel like I’m getting too “old” to have not accomplished &hellip;">
+  <meta name="description" content="When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -79,6 +79,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 &#8220;Smart&#8221; App Banners</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-29T21:34:00-05:00" pubdate data-updated="true">Sep 29<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app that users could directly download on the app store from your webpage.  After the keynote, I forgot to investigate the documentation about it all through the iOS 6 Beta and never really heard much about it until the GM release of iOS 6.  So I went to check out how to do this thinking it was going to be super-involved, at least html-wise.</p>
+
+<p>Are you ready?</p>
+
+<div class="bogus-wrapper"><notextile><figure class="code"> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
+</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span><span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
+
+<p>That’s it.  Add this meta tag to the <code>&lt;head&gt;</code> section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.</p>
+
+<p>If you’re on an iOS 6 device, then you will see this at the top of this webpage:</p>
+
+<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png" /></p>
+
+<p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner’s action will launch the app.</p>
+
+<p>You can even go one or two steps further and pass in affiliate link information when your app gets downloaded or have information passed to your app on first launch in the app’s url handling delegate method.  More detail can be found in the documentation on <a href="http://developer.apple.com/library/ios/#Documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html">Apple’s website</a>.</p>
+
+<p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
+
+<p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -259,46 +315,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/06/27/post-wwdc/">Post-WWDC</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-06-27T23:34:00-05:00" pubdate data-updated="true">Jun 27<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>WWDC was a ton of fun.  One of my coworkers equated it to drinking from a fire-hose all week, and that’s exactly what it was like - hardly any time to process any of what you’re taught all week. The sessions were really good, being surrounded by others who do what you do was inspiring, and the labs gave me access to Apple engineers to ask them whatever I wanted.  I got some really good feedback on my <a href="http://larsacus.github.com/LARSAdController">iOS ad integration class</a>, as well as some help integrating auto layout with some existing projects. There is a ton of material that is not mentioned in the videos (and sometimes even in the documentation) about how a class functions or was built. This is when access to the engineers that actually build the API is infinitely useful.  I’ll definitely be more prepared next year.</p>
-
-<p>For those wondering, the WWDC minty boost <em>did</em> in fact work to charge my devices (which was totally necessary every single day), but heated up the AA’s due to the current draw and re-melted the hot-glue that was protecting the PCB to the battery chassis. I only got one use out of it, but really didn’t need it any longer once you know to plug your phone in to charge at every opportunity.</p>
-
-<p>It also humbles me as an engineer to be surrounded by so many people from all over the world who have gone on to do such publicly “great” things by comparison to what I feel like I’ve done.  Most of the work I do can’t be shown to anyone else as <em>my</em> work, so I often find myself longing for a very public application or open source project to put my name on. Something I can say that <em>I</em> built or had a significant impact in building and it’s something that millions of others love and find useful. All good things come in time to those who work hard, so we’ll see where the next few years takes me. But for someone who really likes being openly proud of his work instead of just knowing intrinsically that I worked on something public, private white-label consulting is difficult for me - at least in that way. I’m not entirely sure how I would do in a single-project setting where the company I worked for <em>was</em> the product and I wasn’t able to bounce around multiple projects if I wanted to, but I’m sure I would manage just fine.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -319,6 +335,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/">Microsoft HoloLens and Your Everyday Future</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience/">Abandoning the Consumer: Ignoring User Experience</a>
       </li>
     
@@ -332,10 +352,6 @@
     
       <li class="post">
         <a href="/blog/2013/01/27/2013-personal-achievements/">Personal Achievements</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/cocoapods-creating-a-pod-spec/">Cocoapods: Creating a Pod Spec</a>
       </li>
     
   </ul>
@@ -397,7 +413,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Lars Anderson -
+  Copyright &copy; 2015 - Lars Anderson -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -9,8 +9,7 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="Roots
-When I originally built LARSAdController, I was building it to fulfill a very specific purpose for my first app (Droid Light): leverage a &hellip;">
+  <meta name="description" content="Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -80,6 +79,49 @@ When I originally built LARSAdController, I was building it to fulfill a very sp
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/20/cocoapods-creating-a-pod-spec/">Cocoapods: Creating a Pod Spec</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-20T14:58:00-06:00" pubdate data-updated="true">Jan 20<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
+
+<p><img class="left" src="/images/posts/cocoapods/cocoapods_logo.png" width="200" height="200" />If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
+
+<p>Since I’ve had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/01/20/cocoapods-creating-a-pod-spec/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -299,62 +341,6 @@ When I originally built LARSAdController, I was building it to fulfill a very sp
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 &#8220;Smart&#8221; App Banners</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-29T21:34:00-05:00" pubdate data-updated="true">Sep 29<span>th</span>, 2012</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app that users could directly download on the app store from your webpage.  After the keynote, I forgot to investigate the documentation about it all through the iOS 6 Beta and never really heard much about it until the GM release of iOS 6.  So I went to check out how to do this thinking it was going to be super-involved, at least html-wise.</p>
-
-<p>Are you ready?</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>That’s it.  Add this meta tag to the <code>&lt;head&gt;</code> section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.</p>
-
-<p>If you’re on an iOS 6 device, then you will see this at the top of this webpage:</p>
-
-<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png" /></p>
-
-<p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner’s action will launch the app.</p>
-
-<p>You can even go one or two steps further and pass in affiliate link information when your app gets downloaded or have information passed to your app on first launch in the app’s url handling delegate method.  More detail can be found in the documentation on <a href="http://developer.apple.com/library/ios/#Documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html">Apple’s website</a>.</p>
-
-<p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
-
-<p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -375,6 +361,10 @@ When I originally built LARSAdController, I was building it to fulfill a very sp
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/">Microsoft HoloLens and Your Everyday Future</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience/">Abandoning the Consumer: Ignoring User Experience</a>
       </li>
     
@@ -388,10 +378,6 @@ When I originally built LARSAdController, I was building it to fulfill a very sp
     
       <li class="post">
         <a href="/blog/2013/01/27/2013-personal-achievements/">Personal Achievements</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/cocoapods-creating-a-pod-spec/">Cocoapods: Creating a Pod Spec</a>
       </li>
     
   </ul>
@@ -453,7 +439,7 @@ When I originally built LARSAdController, I was building it to fulfill a very sp
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Lars Anderson -
+  Copyright &copy; 2015 - Lars Anderson -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

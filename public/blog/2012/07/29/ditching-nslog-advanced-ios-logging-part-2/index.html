@@ -164,13 +164,10 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
 
 <p><strong>Helpfulness</strong>: 6/10 - Really depends on what you need help with<br />
 <strong>Performance</strong>: 5/10<br />
-<strong>Ease of Use</strong>: 6/10</p>
+<strong>Ease of Use</strong>: 6/10  </p>
 
-<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
-<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
-<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
-<p>###ECLogging
-<a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
+<h3 id="eclogging">ECLogging</h3>
+<p><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
 
 <h4 id="channels">Channels</h4>
 <p>“Channels” allow you to create “debug”, “info”, or “networking” channels (as an example) and are very similar to Cocoa Lumberjack’s methodology on logging.  Two types of channels exist - <code>debug</code> and <code>log</code> channels. The difference between the two being that debug channel statements are completely compiled out at compile-time in release mode (much like our dear friend <code>DLog</code> above), and log channel statements are not and will appear in the console even in release mode. Create your own channel with a single-line of code, and start using it on the next line using either <code>ECLog(channel, @"log");</code> or <code>ECDebug(debugChannel, @"debug log")</code>.</p>
@@ -231,9 +228,8 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
 <h3 id="afhttprequestoperationlogger">AFHTTPRequestOperationLogger</h3>
 <p><a href="https://github.com/AFNetworking/AFHTTPRequestOperationLogger">AFHTTPRequestOperationLogger</a> is a logging enhancer for the ubiquitous <a href="https://github.com/AFNetworking/AFNetworking">AFNetworking</a> library. It won’t really help you unless you are using AFNetworking, but it can tremendously help out debugging networking issues you may be having with complex APIs.  It can be a bit verbose at times, even to the point of being straight up noisy, but the advantage of open source is that you can go change it if you don’t like it.</p>
 
-<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
-<p>###XLog
-<a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I’ve actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
+<h3 id="xlog">XLog</h3>
+<p><a href="https://github.com/Maxwin-z/XLog">XLog</a> is a small Xcode plugin that I have not yet tried out, but looks to be pretty neat and helpful.  The premise behind it is that it will conditionally color your lines of log output in the Xcode console depending on keywords.  For instance, if the word debug is found in your log, the console line is colored green.  I’ve actually filed a similar radar with apple to be able to have a multicolored log, so the prospect of this is pretty cool.</p>
 
 <h3 id="xcodecolors">XcodeColors</h3>
 <p><a href="https://github.com/robbiehanson/XcodeColors">XcodeColors</a> is a similar-looking Xcode plugin to XLog that colors your console output. The original was created by <a href="https://github.com/DeepIT">DeepIT on Github</a>, but now appears to be mostly maintained by <a href="https://github.com/robbiehanson">Robbie Hanson</a>, who created Cocoa Lumberjack (above). If you use Cocoa Lumberjack, I would use this.</p>
@@ -246,6 +242,11 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
 <p>It is my opinion that highly extensible, non-<code>NSLog</code> logging should be just as much an architectural consideration as coding standards, unit test coverage, and class prefix names on a project. Most developers may not know advanced logging techniques even exist, much less employ one in a large project in order to get more debugging done in less time. Don’t spend more time debugging your code - equip yourself with the proper tools to spend more time making your app the best experience possible for your users, while also making your future-self love you (which we all know doesn’t happen that often).</p>
 
 <hr />
+
+<!-- ##[TouchLogging](https://github.com/TouchCode/TouchLogging) -->
+<!-- ##[JRLog](https://github.com/rentzsch/JRLog) -->
+<!-- ##[HOLog](https://github.com/holtwick/HOLog) -->
+<!-- ##[OCLog](https://github.com/shadowphoenix/OCLog) -->
 
 <p><em>Disclaimer:</em>
 <em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em></p>
@@ -317,6 +318,10 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/">Microsoft HoloLens and Your Everyday Future</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience/">Abandoning the Consumer: Ignoring User Experience</a>
       </li>
     
@@ -330,10 +335,6 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
     
       <li class="post">
         <a href="/blog/2013/01/27/2013-personal-achievements/">Personal Achievements</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/20/cocoapods-creating-a-pod-spec/">Cocoapods: Creating a Pod Spec</a>
       </li>
     
   </ul>
@@ -396,7 +397,7 @@ In Part I of Ditching NSLog, we introduced our good friend NSLog and why there i
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Lars Anderson -
+  Copyright &copy; 2015 - Lars Anderson -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

@@ -30,12 +30,12 @@ While not really a "library" per se, this _method_ is the most basic of all the 
 
 For those of you who don't regularly use preprocessor macros, here's what's happening in this block of code in pseudocode:
 
-````
+{% codeblock %}
 if the macro `DEBUG` has been previously defined
   define a new function named `DLog` that takes parameters in `NSLog` form and write write them into NSLog
 else
   define `DLog` to do nothing (non-op)
-````
+{% endcodeblock %}
 
 There are not many instances in which I recommend using preprocessor macros but, in my opinion, this is one instance in which it's use is acceptable.
 

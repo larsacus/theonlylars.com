@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS 6 | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/ios-6/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2013-03-14T18:15:51-05:00</updated>
+  <updated>2015-01-22T12:20:54-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -22,15 +22,15 @@
 
 <p>Are you ready?</p>
 
-<p><code>html
-&lt;meta name="apple-itunes-app" content="app-id=379660205"/&gt;
-</code></p>
+<p><div class='bogus-wrapper'><notextile><figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>That’s it.  Add this meta tag to the <code>&lt;head&gt;</code> section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.</p>
 
 <p>If you’re on an iOS 6 device, then you will see this at the top of this webpage:</p>
 
-<p>{% img center /images/posts/smartbanners/droidlightbanner.png %}</p>
+<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png"></p>
 
 <p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner’s action will launch the app.</p>
 
