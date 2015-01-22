@@ -1,3 +1,11 @@
+a.nav-item {
+  $nav-link-color: #fefefe;
+  $nav-link-color-hover: lighten($nav-link-color, 10) !default;
+  $nav-link-color-visited: darken($nav-link-color, 10) !default;
+  $nav-link-color-active: adjust-color($nav-link-color-hover, $lightness: -15) !default;
+  @include link-colors($nav-link-color, $hover: $nav-link-color-hover, $focus: $nav-link-color-hover, $visited: $nav-link-color-visited, $active: $nav-link-color-active);
+}
+
 body > nav {
   position: relative;
   background-color: $nav-bg;
@@ -53,9 +61,10 @@ body > nav {
       margin: 0;
     }
     a {
-      @include link-colors($nav-color, $nav-color-hover, $visited: $nav-color);
+      $nav-link-color: #fefefe;
+      @include link-colors($nav-link-color);
       font-family: $sans;
-      text-shadow: lighten($nav-bg, 12) 0 1px;
+      text-shadow: lighten(#111111, 12) 0 1px;
       float: left;
       text-decoration: none;
       font-size: 1.1em;

@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Rapid Content Prototyping With PlaceKit - theonlylars</title>
+  <meta name="author" content="Lars Anderson">
+
+  
+  <meta name="description" content="PlaceKit is a central, lightweight, dependency-less library for all of your content, placeholder, test data and random numerical needs that you might &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-itunes-app" content="app-id=379660205"/>
+
+  
+  <link rel="canonical" href="http://theonlylars.com/blog/2013/07/01/rapid-development-with-placekit/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/achievements/achievements.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="theonlylars" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29343433-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">theonlylars</a></h1>
+  
+    <h2>have you ever met another?</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:theonlylars.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a class="nav-item" href="/">Blog</a></li>
+  <li><a class="nav-item" href="/blog/archives">Archives</a></li>
+  <li><a class="nav-item" href="/blog/Achievements">Personal Achievements</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Rapid Content Prototyping With PlaceKit</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-01T08:00:00-05:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Last week I open-sourced <a href="https://github.com/mutualmobile/MMProgressHUD">MMProgressHUD</a>, a small work-project that I’ve been working on for what seems like an eternity. I alluded in my last post that I was also releasing a personal project later in the week. I went ahead and open-sourced that project which I’ve been calling “<a href="https://github.com/larsacus/PlaceKit">PlaceKit</a>” for the Objective-C “<a href="https://objectivechackathon.appspot.com">Back On the Map</a>” hackathon this past Saturday.</p>
+
+<h2 id="what-is-placekit">What is PlaceKit?</h2>
+<p>Think of PlaceKit as a central, lightweight, dependency-less library for all of your content, placeholder, test data and random numerical needs that you might run into during prototyping or in the early phases of production development.</p>
+
+<p>Let’s go through a couple of scenarios that you might find yourself needing PlaceKit:</p>
+
+<ol>
+  <li>You want to try something out fast, but need some content to show how it might look with real text or images</li>
+  <li>You want to create a demo application for some particular widget you are working on, and need a set of fake data to display. Ditto for needing randomized data and geometry for creating random views or random offsets.</li>
+  <li>You are working on a production app, but the server API is not ready yet, so you now have to come up with a large dataset of fake data to populate a fake database that you can use in your application until it is ready.</li>
+</ol>
+
+<p>These are the primary scenarios I built PlaceKit to make easier. We all know about using lorem ipsum, but when we need it, we typically will open up our favorite browser, google “lorem ipsum generator” and then copy/paste the text into the appropriate place we would like it to show up. This is all well and great, but it really isn’t scalable, isn’t randomized and also won’t simulate fetching from the network. This scenario is also true for images.
+<!-- more --></p>
+
+<h2 id="what-does-it-do">What Does it Do?</h2>
+<p>It basically saves you time. If you don’t like to save time, then feel free to not use it. It will also add a little more life into your app in the early stages of development or when you’re just trying something new out and need some basic data to get you by. PlaceKit can also add a little variety into your placeholders - developers all get bored occasionally. If you want the generic grey image placeholders, PlaceKit has those. If you would to motivate your designers to get you assets with hideous images of meat- or kitten-based pixels, then PlaceKit also has that.</p>
+
+<p>My favorite features of PlaceKit are the geometrical and random numerical APIs: These APIs will give you easy access to random geometries like random rects, random points or a random point enclosed in a given rect. The numerical APIs will give you incredibly easy access to random numerical values such as random percentages, random float in a given range, or random phone numbers.</p>
+
+<p>If you have AFNetworking already integrated into your project, or simply want the ease of a built-in category on UIImageView, PlaceKit also has a wrapper around the UIImageView+AFNetworking category for the image APIs. This will enable you to easily and asynchronously request placeholder images of a given type without the need for the block-based APIs.</p>
+
+<h2 id="interested">Interested?</h2>
+<p>If you are interested in the above, have suggestions on how to improve PlaceKit or simply just want to peek under the hood, you can check out the source available on GitHub <a href="https://github.com/larsacus/PlaceKit">here</a>. Full information on what PlaceKit is capable of is fully documented in the header files <a href="https://github.com/larsacus/PlaceKit/blob/master/PlaceKit/PlaceKit.h">here</a>.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lars Anderson</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-07-01T08:00:00-05:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ios/'>ios</a>, <a class='category' href='/blog/categories/open-source/'>open-source</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://theonlylars.com/blog/2013/07/01/rapid-development-with-placekit/" data-via="theonlylars" data-counturl="http://theonlylars.com/blog/2013/07/01/rapid-development-with-placekit/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/06/26/mmprogresshud/" title="Previous Post: MMProgressHUD">&laquo; MMProgressHUD</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/" title="Next Post: Microsoft HoloLens and Your Everyday Future">Microsoft HoloLens and Your Everyday Future &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section class="well">
+  <h1>About me</h1>
+  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of bits and cool animations.</p>
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/">Microsoft HoloLens and Your Everyday Future</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/01/rapid-development-with-placekit/">Rapid Content Prototyping With PlaceKit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/mmprogresshud/">MMProgressHUD</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/14/rebuilding-twitter-number-musics-eq-slider/">Building Twitter #music&#8217;s EQ Slider</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience/">Abandoning the Consumer: Ignoring User Experience</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("theonlylars", 7, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/theonlylars" class="twitter-follow-button" data-show-count="false">Follow @theonlylars</a>
+  
+</section>
+
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/larsacus">@larsacus</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'larsacus',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Lars Anderson -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

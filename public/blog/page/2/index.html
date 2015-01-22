@@ -9,7 +9,7 @@
   <meta name="author" content="Lars Anderson">
 
   
-  <meta name="description" content="Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong &hellip;">
+  <meta name="description" content="A coworker recently asked me at the end of last week what I thought, based on my experience on my last iOS 6-only project, would be the best approach &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -69,9 +69,9 @@
 </form>
   
 <ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
-  <li><a href="/blog/Achievements">Personal Achievements</a></li>
+  <li><a class="nav-item" href="/">Blog</a></li>
+  <li><a class="nav-item" href="/blog/archives">Archives</a></li>
+  <li><a class="nav-item" href="/blog/Achievements">Personal Achievements</a></li>
 </ul>
 
 </nav>
@@ -79,6 +79,184 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/">Autolayout: To NIB or Not to NIB</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-11T19:39:00-06:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>A coworker recently asked me at the end of last week what I thought, based on my experience on my last iOS 6-only project, would be the best approach to starting to learn and work with autolayout. He was specifically asking if he should bother working with xib files, or simply layout everything in code. He then asked that if he were to go with a xib file, what the best approach would be to balance the time/effort workflow for autolayout.</p>
+
+<p>All of the below is 100% based on my experience on my last project that was iOS 6-only, where autolayout was extensively utilized.</p>
+
+<h2 id="autolayout-layout-construction-priority">Autolayout Layout Construction Priority</h2>
+<p>Apple states in all of their documentation the following order you should begin implementing autolayout:</p>
+
+<ol>
+  <li>Nib file</li>
+  <li>Visual formatting language</li>
+  <li>Individual constraints</li>
+</ol>
+
+<h2 id="to-nib">To NIB</h2>
+<p>The priority above is, in my opinion, very dependent on what you are working on. If you have a pretty trivial layout that is simply being constrained based on something simple like an orientation change, then a xib file will probably be your best bet for a rapid layout that is unambiguous and doesn’t give you any issue during maintenance with very little effort.</p>
+
+<p>Another very helpful feature of autolayout’s constraints is the fact that you can create an outlet to a single constraint. You can use this outlet to easily animate a change, change the constraints constant, or remove a constraint altogether without much additional effort. To animation a constraint change, simply update your constraint(s), call <code>-setNeedsLayout</code>, then call <code>-layoutIfNeeded</code> in an animation block. Very quick and easy.</p>
+
+<h3 id="no-touching">No Touching</h3>
+<p><a href="/images/no_touching.gif"><img class="right" src="/images/no_touching_static.jpg" width="300" /></a> However, using xibs for autolayout starts to break down and become more time than it’s worth when you get into complex layouts that depend on cross-view constraints, constraints depending on a view’s content or complex constraint sets relating to many physically smaller views (the constraints simply become an absolute nightmare to <em>physically</em> click on and manage in the xib without screwing something else up).</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/02/09/one-week-with-a-standing-desk/">One Week With a Standing Desk</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-09T19:30:00-06:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>As a full-time software engineer, having my legs do nothing all day but atrophy has not been helping my legs’ health - namely my knees’ health. So this week I spent big money ($6) at the local hardware store on 4 cinder-blocks. I converted my normal desk into a standing-desk to see if I liked it at all. I’ve heard differing opinions on the standing desk ranging from “foot fatigue” to “hated it”. If you’re thinking about a standing desk, hopefully this will server as another datapoint in your research.</p>
+
+<h2 id="macgyver">MacGyver</h2>
+<p>The first part was actually converting my desk into a standing desk. One of my coworkers on the project I’m currently working on had already converted his normal desk to a standing desk using cinder blocks, but I never really wanted to touch his desk for fear of it falling over. I can happily say that I trust my desk just as much sitting on top of four stone blocks as I do sitting on the floor. No issues with stability and the height is perfect.
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2013/02/09/one-week-with-a-standing-desk/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/27/2013-personal-achievements/">Personal Achievements</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-01-27T16:20:00-06:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Everyone makes at least some attempt at resolutions each new year - even if they say they “don’t make resolutions”. How can you go through life without goals to better yourself as a person? Based on my past, though, we very often do not write them down or forget about them entirely before the end of January.</p>
+
+<p>The problem with goals of mine in the past have always been that they are very generic and/or very difficult to satisfy. I have made a deliberate effort to make my goals for this year both small and specific. This will make it much more difficult to justify my way out of satisfying my goals for this year and much easier to satisfy more goals is they are more achievable.</p>
+
+<h2 id="achievement-unlocked">Achievement Unlocked</h2>
+<p>So, in the spirit of both personal growth and gamification, I bring you <a href="/blog/Achievements/index.html">a new page</a> with my personal list<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> of “achievements” for 2013 that look like this:</p>
+
+<div class="achievement">
+  <div>
+    <img class="achievement-image" src="/images/achievements/book-lines-2.png" />
+  </div>
+  <div class="achievement-contents">
+      <h2>Read three non-technical books</h2>
+      <div>I don&#8217;t read enough. I read plenty of technical content, but not near enough book-books (some rare individuals call this &#8220;fun&#8221; reading).
+        <ol>
+          <li><a href="http://www.amazon.com/Traffic-Drive-What-Says-About/dp/0307277194">Traffic: Why We Drive the Way We Do (and What It Says About Us)</a> - Tom Vanderbilt</li>
+        </ol>
+      </div>
+      <div class="progressbar">
+        <div id="three-non-technical"></div>
+      </div>
+  </div>
+</div>
+
+<p>Achievements must be:</p>
+
+<ol>
+  <li><strong>Specific</strong> - Specific goals have less room to be “justified” by you as “technically” completed. Examples include “Learn C”, “Run More”, etc.</li>
+  <li><strong>Quantifiable</strong> - This goes with being specific. This makes it very clear as to the completion of your achievement. Did you <code>&lt;insert achievement title&gt;</code>? Yes? Achievement unlocked. Easy.</li>
+  <li><strong>Achievable</strong> - If you’re a brand new engineer now, your goal should <em>not</em> be to become director of your department this year.</li>
+</ol>
+
+<h2 id="what-about-you">What About You?</h2>
+<p>So what are <em>your</em> 2013 achievements? Feel free to steal mine <a href="/blog/Achievements/index.html">here</a> if you so choose.</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>I’ve obviously omitted the truly personal achievements about my life like friends, family, etc. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -108,7 +286,9 @@
   </header>
 
 
-  <div class="entry-content"><p><em>Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
+  <div class="entry-content"><p><em>Update 4-15-2013: Updated for changes that came with v0.18.x and v0.17 since this page is now linked to on <a href="http://docs.cocoapods.org/guides/index.html">cocoapods.org</a>.</em></p>
+
+<p><em>Note: Cocoapods is all very new and in rapid development (currently v0.18.1 as of this update), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
 
 <p><img class="left" src="/images/posts/cocoapods/cocoapods_logo.png" width="200" height="200" />If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
 
@@ -187,172 +367,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">LARSAdController 3.0 RC</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-15T15:25:00-06:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
-
-<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
-
-<p>Let’s take a look at what’s changed:</p>
-
-<h2 id="a-new-class-prefix">A New Class Prefix</h2>
-<p>I’ve been using the class prefix <code>LARS</code> for all of my open-source classes. While this really is short and unique, it’s always felt pretty egotistical to have my name plastered all over my classes. This is just how I feel from this side of the keyboard. Does it look the same from the user’s end? Let me know what you think.</p>
-
-<p>Anyway, I’ve migrated new classes to the new <code>TOL</code> prefix, for <a href="https://twitter.com/theonlylars">@<strong>T</strong>he<strong>O</strong>nly<strong>L</strong>ars</a>. This feels more anonymous and I haven’t seen the prefix used by anyone else before, yet. I’d love to know if someone well known <em>is</em> using the <code>TOL</code> class prefix. If I feel like I like this prefix better, I may just start using it for everything.</p>
-
-<p>I also like that it sounds like “toll”. I have grand visions of having some cool project named <code>TOLBooth</code>, <code>TOLRoad</code>, or <code>TOLHouse</code>. I can’t think of practical project ideas to put those names on, however.</p>
-
-<h2 id="modular-ad-networks">Modular Ad Networks</h2>
-<p>The big new feature for this release is modular ad networks. Ad junkies will know this as ad mediation. AdMob has an ad mediation framework, so does AdWhirl, MobClix, and others. This is my implementation. The actual mediation logic is in a single .h/.m file pair. The other files support the ad networks. I feel this is a very lightweight implementation compared to other company’s mediation platforms, not to mention it’s open source so you can peek under the hood to see how another developer has solved a problem.</p>
-
-<p>Right now I’ve built ad network adapters for iAds and AdMob ads. These are the only two ad networks that I use in Droid Light, so I don’t know much about others, and these two seem to be the most popular for banner ads on iOS.</p>
-
-<h3 id="house-ads">House Ads</h3>
-<p>A third planned adapter I’m particularly excited about is an adapter for “house” ads, <em>but I have not started on it as of yet</em>. House ads would basically amount to an image and a tap destination that you supply yourself. It’s an ad for yourself. </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/15/larsadcontroller-3-dot-0-rc/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/12/10/dont-forget-the-c-in-objective-c/">Don&#8217;t Forget the &#8220;C&#8221; in Objective-C: C Declarations</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-12-10T00:00:00-06:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>It’s been awhile. I blame my bike and the Thanksgiving Steam sale. If you’re seriously reading this, then it is statistically likely your productivity was at some point affected by Steam’s Thanksgiving sale.</p>
-
-<p>This post is going to primarily serve for my personal purposes to bookmark some articles and blog posts I’ve been referencing to remind myself some of the basics of C declarations while working in, as well as how they relate to Objective-C. This is going to be one of those posts that I’m probably going to add to as time goes on. This is also kind of a prelude to a future similarly-themed bookmarking post for myself on ARC.</p>
-
-<p>Note also that while using very specific type and storage qualifiers can be unnecessary for most Objective-C development, Apple pretty much threw everyone into the fray when they introduced such common identifiers such as <code>__block</code> with Grand Central Dispatch. It got even better when ARC was introduced. You’ll see…</p>
-
-<h2 id="variable-declaration">Variable Declaration</h2>
-
-<h3 id="the-problem">The Problem</h3>
-<p>This is something that was either not immediately obvious to me when writing software, or I simply was never formally shown this. I’m not entirely sure how I never picked up on this in all my years of writing software (even informally), but here it is:</p>
-
-<p>This: <code>const NSString * myString</code> is totally not the same as this: <code>NSString * const myString</code>.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2012/12/10/dont-forget-the-c-in-objective-c/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2012/09/29/ios-6-app-banners/">iOS 6 &#8220;Smart&#8221; App Banners</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2012-09-29T21:34:00-05:00" pubdate data-updated="true"></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app that users could directly download on the app store from your webpage.  After the keynote, I forgot to investigate the documentation about it all through the iOS 6 Beta and never really heard much about it until the GM release of iOS 6.  So I went to check out how to do this thinking it was going to be super-involved, at least html-wise.</p>
-
-<p>Are you ready?</p>
-
-<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
-</pre></td><td class="code"><pre><code class="html"><span class="line"><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;apple-itunes-app&quot;</span> <span class="na">content=</span><span class="s">&quot;app-id=379660205&quot;</span><span class="nt">/&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
-
-<p>That’s it.  Add this meta tag to the <code>&lt;head&gt;</code> section of your website template. Then, replace your app ID with the one iTunes Connect displays for your app in the app details.</p>
-
-<p>If you’re on an iOS 6 device, then you will see this at the top of this webpage:</p>
-
-<p><img class="center" src="/images/posts/smartbanners/droidlightbanner.png" /></p>
-
-<p>When the user taps on the banner, iOS will take the user to the app store to complete the transaction.  When the user returns to your website, a progress indicator will display showing the progress of the app install.  After the download and installation is complete, the banner’s action will launch the app.</p>
-
-<p>You can even go one or two steps further and pass in affiliate link information when your app gets downloaded or have information passed to your app on first launch in the app’s url handling delegate method.  More detail can be found in the documentation on <a href="http://developer.apple.com/library/ios/#Documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html">Apple’s website</a>.</p>
-
-<p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
-
-<p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3">&larr; Older</a>
@@ -377,19 +391,19 @@
       </li>
     
       <li class="post">
+        <a href="/blog/2013/07/01/rapid-development-with-placekit/">Rapid Content Prototyping With PlaceKit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/mmprogresshud/">MMProgressHUD</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/14/rebuilding-twitter-number-musics-eq-slider/">Building Twitter #music&#8217;s EQ Slider</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience/">Abandoning the Consumer: Ignoring User Experience</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/">Autolayout: To NIB or not to NIB</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/02/09/one-week-with-a-standing-desk/">One week with a standing desk</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2013/01/27/2013-personal-achievements/">Personal Achievements</a>
       </li>
     
   </ul>

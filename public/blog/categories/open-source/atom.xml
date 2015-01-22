@@ -4,7 +4,7 @@
   <title><![CDATA[Category: open-source | theonlylars]]></title>
   <link href="http://theonlylars.com/blog/categories/open-source/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T13:20:33-06:00</updated>
+  <updated>2015-01-22T14:12:15-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -14,17 +14,326 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Rapid Content Prototyping With PlaceKit]]></title>
+    <link href="http://theonlylars.com/blog/2013/07/01/rapid-development-with-placekit/"/>
+    <updated>2013-07-01T08:00:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2013/07/01/rapid-development-with-placekit</id>
+    <content type="html"><![CDATA[<p>Last week I open-sourced <a href="https://github.com/mutualmobile/MMProgressHUD">MMProgressHUD</a>, a small work-project that I’ve been working on for what seems like an eternity. I alluded in my last post that I was also releasing a personal project later in the week. I went ahead and open-sourced that project which I’ve been calling “<a href="https://github.com/larsacus/PlaceKit">PlaceKit</a>” for the Objective-C “<a href="https://objectivechackathon.appspot.com">Back On the Map</a>” hackathon this past Saturday.</p>
+
+<h2 id="what-is-placekit">What is PlaceKit?</h2>
+<p>Think of PlaceKit as a central, lightweight, dependency-less library for all of your content, placeholder, test data and random numerical needs that you might run into during prototyping or in the early phases of production development.</p>
+
+<p>Let’s go through a couple of scenarios that you might find yourself needing PlaceKit:</p>
+
+<ol>
+  <li>You want to try something out fast, but need some content to show how it might look with real text or images</li>
+  <li>You want to create a demo application for some particular widget you are working on, and need a set of fake data to display. Ditto for needing randomized data and geometry for creating random views or random offsets.</li>
+  <li>You are working on a production app, but the server API is not ready yet, so you now have to come up with a large dataset of fake data to populate a fake database that you can use in your application until it is ready.</li>
+</ol>
+
+<p>These are the primary scenarios I built PlaceKit to make easier. We all know about using lorem ipsum, but when we need it, we typically will open up our favorite browser, google “lorem ipsum generator” and then copy/paste the text into the appropriate place we would like it to show up. This is all well and great, but it really isn’t scalable, isn’t randomized and also won’t simulate fetching from the network. This scenario is also true for images.
+<!-- more --></p>
+
+<h2 id="what-does-it-do">What Does it Do?</h2>
+<p>It basically saves you time. If you don’t like to save time, then feel free to not use it. It will also add a little more life into your app in the early stages of development or when you’re just trying something new out and need some basic data to get you by. PlaceKit can also add a little variety into your placeholders - developers all get bored occasionally. If you want the generic grey image placeholders, PlaceKit has those. If you would to motivate your designers to get you assets with hideous images of meat- or kitten-based pixels, then PlaceKit also has that.</p>
+
+<p>My favorite features of PlaceKit are the geometrical and random numerical APIs: These APIs will give you easy access to random geometries like random rects, random points or a random point enclosed in a given rect. The numerical APIs will give you incredibly easy access to random numerical values such as random percentages, random float in a given range, or random phone numbers.</p>
+
+<p>If you have AFNetworking already integrated into your project, or simply want the ease of a built-in category on UIImageView, PlaceKit also has a wrapper around the UIImageView+AFNetworking category for the image APIs. This will enable you to easily and asynchronously request placeholder images of a given type without the need for the block-based APIs.</p>
+
+<h2 id="interested">Interested?</h2>
+<p>If you are interested in the above, have suggestions on how to improve PlaceKit or simply just want to peek under the hood, you can check out the source available on GitHub <a href="https://github.com/larsacus/PlaceKit">here</a>. Full information on what PlaceKit is capable of is fully documented in the header files <a href="https://github.com/larsacus/PlaceKit/blob/master/PlaceKit/PlaceKit.h">here</a>.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MMProgressHUD]]></title>
+    <link href="http://theonlylars.com/blog/2013/06/26/mmprogresshud/"/>
+    <updated>2013-06-26T21:22:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2013/06/26/mmprogresshud</id>
+    <content type="html"><![CDATA[<p>This morning I open-sourced a fun side-project I’ve been working on for the past (almost) two years - <a href="http://mutualmobile.github.io/blog/2013/06/20/mmprogresshud/">MMProgressHUD</a>. “Wow, that looks a lot like M<em>B</em>ProgressHUD!” Yes, astute pupil, not only is it in the same category of control, it shares 95% the same letters in the same order as MBProgressHUD. This was merely a coincidence since Mutual Mobile’s official Objective-C class prefix is <code>MM</code>:</p>
+
+<h2 id="from-the-ground-up">From the Ground Up</h2>
+<p>MMProgressHUD was built from the ground up with a primary focus on animation, presentation and to cover the status bar. I also wanted a framework to easily add new animations and secondarily accept extremely basic user input. </p>
+
+<h3 id="check-it-out">Check It Out</h3>
+<p>If you’re looking for a new HUD interface, just curious or merely want to check out the bits and peek under the hood, feel free to check out the repository on <a href="https://github.com/mutualmobile/MMProgressHUD">GitHub</a>. As always, if you find a bug or would like a new feature, feel free to fork the repo and submit a pull request!</p>
+
+<h2 id="ios-7">iOS 7</h2>
+<p>I’ve also got some fun things planned for MMProgressHUD and iOS 7 that I can’t yet share publicly, but it will play <em>very</em> nicely and fit right in with the new styling iOS 7 will bring. I can’t wait.</p>
+
+<h2 id="up-next">Up Next</h2>
+<p>This is one of two things I’ve been working to open-source recently. If I weren’t on vacation right now, I’d be working on releasing the other. If you’ve ever been working on an early or prototype version of an app and needed to fill it with content, you’ll really be excited about the next project I’ll be releasing. It’s nothing <em>too</em> too exciting, but I hope others besides me find it really useful.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Building Twitter #music's EQ Slider]]></title>
+    <link href="http://theonlylars.com/blog/2013/05/14/rebuilding-twitter-number-musics-eq-slider/"/>
+    <updated>2013-05-14T20:55:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2013/05/14/rebuilding-twitter-number-musics-eq-slider</id>
+    <content type="html"><![CDATA[<p>Semi-recently, Twitter came out with a cool new music app to discovery new music on (get ready for it) Twitter. They aptly named their new chicklet “#music”. Visually, <a href="https://itunes.apple.com/us/app/twitter-music/id625541612?mt=8">#music</a> is a very, <em>very</em> cool app. Everything is custom: transitions, collection views, collection view selection animations, media player controls, and one very cool volume slider. If you don’t have an Rdio or Spotify subscription, you probably don’t see anything cool about the media player’s volume slider, but when you have one of the aforementioned subscriptions, the slider turns into a full-on 2-channel equalizer. It’s <em>very</em> cool.</p>
+
+<p>So I had to build it - and now I’m going to show you how I built it so you can build something similar. This <em>isn’t</em> a full-on tutorial, but some generics behind building it with some code samples.</p>
+
+<h2 id="larsbar">LARSBar</h2>
+<p>The final product I’ve created is available as <a href="https://github.com/larsacus/LARSBar"><code>LARSBar</code> on GitHub</a> under the MIT license. Ignore the name. Seriously, despite trying to move away from my name as a prefix, my friends at work penned the name for this control when I showed it to them, and I couldn’t come up with anything better.</p>
+
+<h2 id="design">Design</h2>
+<p>When I first start a new UI component. I take a step back and look at the big picture of what it is I’m going to be building. This is what we’re going to be building if you haven’t seen the app:</p>
+
+<p>A Screenshot of Twitter’s EQ Volume Slider:</p>
+
+<p><img class="center" src="/images/larsbar/colored.png"></p>
+
+<p>Before I begin, I ask myself a couple of questions to help me plan and not waste time (note this is just implementation, designing a component involves a whole different set of usability questions):
+<!-- more --></p>
+
+<h3 id="questions">Questions</h3>
+<ol>
+  <li>What is this piece of UI doing?</li>
+  <li>How is this UI going to be used?</li>
+  <li>Does this control look like anything that has been done before?</li>
+  <li>If yes, can you use that thing to make your life easier?</li>
+</ol>
+
+<p>In our case, this particular piece of UI is going to be both accepting values for the volume from the user (and be able to be set programmatically) and accepting values for the EQ level for two channels. Also, this control looks strikingly similar to your standard <code>UISlider</code> that Apple has already built and extensively tested. So we’re going to try and reuse <code>UISlider</code> in order to make our lives a little easier.</p>
+
+<p>If you look closely at Twitter’s version, I don’t think they are using a <code>UISlider</code> subclass. You can test this by grabbing the slider thumb grabber and moving it slowly back and forth. You’ll notice the slider thumb stutter even when you move it slowly. <code>UISlider</code> does not do that, so we’re going to be using <code>UISlider</code> as our base. <code>UISlider</code> also easily supports customization via <code>UIAppearance</code>. Double-win.</p>
+
+<p>We also don’t need the slider EQ lights to respond to touch, so we are going to use the lightweight <code>CALayer</code> for each of the lights.</p>
+
+<h3 id="construction-plan">Construction Plan</h3>
+<p>In order to build this tool, there are some basic steps that need to happen in order to make this turn out the way we both functionally and visually want:</p>
+
+<ol>
+  <li>Layout two rows of discrete lights</li>
+  <li>Update each individual light based on a “level” property</li>
+  <li>Have different “levels” light up each light at a different color</li>
+</ol>
+
+<h2 id="positioning-the-lights">Positioning the Lights</h2>
+<p>Our first step is to simply layout two rows of lights above and below the slider track. We’ll also need some way to store the layers being used for the lights themselves. We’ll create two storage arrays in order to store our created layers:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">leftChannelLightLayers</span><span class="p">;</span>
+</span><span class='line'><span class="k">@property</span> <span class="p">(</span><span class="k">nonatomic</span><span class="p">,</span> <span class="k">strong</span><span class="p">)</span> <span class="bp">NSMutableArray</span> <span class="o">*</span><span class="n">rightChannelLightLayers</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>In order to populate and layout our layers, we’ll need to find a mechanism that will allow us to update our layout based on changes of the size of the control. <code>layoutSubviews</code> sounds like a perfect candidate for laying out our lights.</p>
+
+<p>We first need to calculate how many lights that are going to fit horizontally in our layout. To do this, we’ll define a base size for our light layers, then take the width of the control and divide to get how many we need to layout:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="n">NSInteger</span> <span class="n">numberOfLights</span> <span class="o">=</span> <span class="n">floorf</span><span class="p">((</span><span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">bounds</span><span class="p">)</span><span class="o">-</span><span class="n">TOLTargetLightPadding</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">TOLLightLayerSize</span><span class="p">.</span><span class="n">width</span> <span class="o">+</span> <span class="n">TOLTargetLightPadding</span><span class="p">));</span>
+</span><span class='line'><span class="n">CGFloat</span> <span class="n">totalWidth</span> <span class="o">=</span> <span class="n">CGRectGetWidth</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">bounds</span><span class="p">);</span>
+</span><span class='line'><span class="n">CGFloat</span> <span class="n">lightWidth</span> <span class="o">=</span> <span class="n">TOLLightLayerSize</span><span class="p">.</span><span class="n">width</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">CGFloat</span> <span class="n">actualPadding</span> <span class="o">=</span> <span class="n">roundf</span><span class="p">((</span><span class="n">totalWidth</span> <span class="o">-</span> <span class="n">numberOfLights</span><span class="o">*</span><span class="n">lightWidth</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">numberOfLights</span><span class="o">+</span><span class="mi">1</span><span class="p">));</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The <code>TOL</code> prefixed variable are constants I have defined to customize the appearance of the control.</p>
+
+<p>This gives us 1. the number of lights being laid out and 2. the actual padding that needs to exist between them. From here we can assign each layer the appropriate frame based on the above information (in this case we’re calculating the center point for each layer):</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">for</span> <span class="p">(</span><span class="bp">NSUInteger</span> <span class="n">lightNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">lightNum</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="n">numberOfLights</span><span class="p">;</span> <span class="n">lightNum</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="n">CGFloat</span> <span class="n">x</span> <span class="o">=</span> <span class="n">actualPadding</span><span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lightNum</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">lightWidth</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;</span><span class="n">lightNum</span> <span class="o">+</span> <span class="p">(</span><span class="n">lightWidth</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">CGFloat</span> <span class="n">centerLineHeight</span> <span class="o">=</span> <span class="n">CGRectGetHeight</span><span class="p">(</span><span class="nb">self</span><span class="p">.</span><span class="n">bounds</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>    <span class="n">CGFloat</span> <span class="n">yOffset</span> <span class="o">=</span> <span class="mf">2.f</span> <span class="o">+</span> <span class="n">TOLLightLayerSize</span><span class="p">.</span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span><span class='line'>    <span class="bp">CGPoint</span> <span class="n">topCenter</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centerLineHeight</span> <span class="o">-</span> <span class="n">yOffset</span><span class="p">);</span>
+</span><span class='line'>    <span class="bp">CGPoint</span> <span class="n">bottomCenter</span> <span class="o">=</span> <span class="n">CGPointMake</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">centerLineHeight</span> <span class="o">+</span> <span class="n">yOffset</span><span class="p">);</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="p">[</span><span class="nb">self</span> <span class="nl">layoutLightNumber</span><span class="p">:</span><span class="n">lightNum</span>
+</span><span class='line'>                 <span class="nl">center</span><span class="p">:</span><span class="n">topCenter</span>
+</span><span class='line'>           <span class="nl">storageArray</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">leftChannelLightLayers</span>
+</span><span class='line'>            <span class="nl">totalLights</span><span class="p">:</span><span class="n">numberOfLights</span><span class="p">];</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">/** layout bottom lights in the same way */</span> <span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+</code></pre>
+
+<p>The method in this code block sets some properties on the layer based on its position in the array. The only thing it does here for positioning is set the layer’s <code>position</code> property to the <code>center</code> variable fed into the method. Much of what is going on inside <code>layoutLightNumber:center:storageArray:totalLights</code> are performance optimizations that you can check out in the full source if you’re interested.</p>
+
+<h2 id="building-a-light">Building a Light</h2>
+<p><img class="right" src="/images/larsbar/zoomed.png">
+<img class="right" src="/images/larsbar/zoomed-inactive.png">
+We have some more requirements for the light itself than we did for the layout. Each light needs to have a different glow color depending on where it is in the x-direction, so it needs to be dynamic. I would also like for the light to animate the change in light color when its state is changed. If you look at the Twitter #music app, you’ll also notice that the base color of the light when it is off is two different colors depending on if it is in front of or behind the slider thumb grabber.</p>
+
+<p>A Screenshot of Twitter’s EQ Slider in the Inactive State:
+<img class="center" src="/images/larsbar/darkened.png"></p>
+
+<p>This would be very difficult and time-consuming to do with assets. So we’re going to build it using CoreGraphics.</p>
+
+<h3 id="coregraphics">CoreGraphics!?</h3>
+<p>Yes, CoreGraphics. Seriously, don’t run off - it’s going to be fine. Truth be told, I kind of cheated and used PaintCode for my initial graphics code. If you have never heard of <a href="http://www.paintcodeapp.com">PaintCode</a>, go to their site right now and download it. You can get a free trial that will let you use it for a limited time each session, but you can really learn a lot about CoreGraphics just by using the app.</p>
+
+<p>In order to use CoreGraphics with our <code>CALayer</code> light, we’ll be overriding the <code>drawInContext:</code> method. It works exactly like <code>drawRect:</code> with one caveat if you would like to use UIKit methods to draw: you need to manually push the graphics context using <code>UIGraphicsPushContext(ctx)</code>.</p>
+
+<p>The light itself consists of three distinct features:</p>
+
+<ol>
+  <li>The inactive light frame</li>
+  <li>The inactive light’s base shadow (a 1/2-point down shadow)</li>
+  <li>The glow of the light</li>
+</ol>
+
+<p>Each section is neatly commented and laid out for easy consumption:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="cm">/** Color Declarations &lt;em&gt;/</span>
+</span><span class='line'><span class="cm">UIColor&lt;/em&gt; activeOffFill = nil;</span>
+</span><span class='line'><span class="cm">if (self.lightState) {</span>
+</span><span class='line'><span class="cm">    activeOffFill = self.glowColor;</span>
+</span><span class='line'><span class="cm">}</span>
+</span><span class='line'><span class="cm">else if(self.isActive){</span>
+</span><span class='line'><span class="cm">    activeOffFill = self.activeColor;</span>
+</span><span class='line'><span class="cm">}</span>
+</span><span class='line'><span class="cm">else{</span>
+</span><span class='line'><span class="cm">    activeOffFill = self.inactiveColor;</span>
+</span><span class='line'><span class="cm">}&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">&lt;p&gt;/** Shadow Declarations &lt;em&gt;/</span>
+</span><span class='line'><span class="cm">UIColor&lt;/em&gt; underStroke = underStrokeColor;</span>
+</span><span class='line'><span class="cm">CGSize underStrokeOffset = CGSizeMake(0.f, 1.f/scale);</span>
+</span><span class='line'><span class="cm">CGFloat underStrokeBlurRadius = 0;&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">&lt;p&gt;/** Light Frame Drawing &lt;em&gt;/</span>
+</span><span class='line'><span class="cm">UIBezierPath&lt;/em&gt; lightFramePath = [UIBezierPath bezierPathWithOvalInRect:lightRect];</span>
+</span><span class='line'><span class="cm">CGContextSaveGState(context);</span>
+</span><span class='line'><span class="cm">CGContextSetShadowWithColor(context, underStrokeOffset, underStrokeBlurRadius, underStroke.CGColor);</span>
+</span><span class='line'><span class="cm">[activeOffFill setFill];</span>
+</span><span class='line'><span class="cm">[lightFramePath fill];</span>
+</span><span class='line'><span class="cm">CGContextRestoreGState(context);&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">&lt;p&gt;[strokeColor setStroke];</span>
+</span><span class='line'><span class="cm">lightFramePath.lineWidth = 1.f/scale;</span>
+</span><span class='line'><span class="cm">[lightFramePath stroke];&lt;/p&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="cm">&lt;p&gt;/** Light Glow Drawing */</span>
+</span><span class='line'><span class="n">CGFloat</span> <span class="n">endRadius</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">lightState</span> <span class="o">?</span> <span class="n">MAX</span><span class="p">(</span><span class="n">floorf</span><span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="mf">2.f</span><span class="p">),</span> <span class="n">floorf</span><span class="p">(</span><span class="n">height</span><span class="o">/</span><span class="mf">2.f</span><span class="p">))</span> <span class="o">:</span> <span class="mf">0.f</span><span class="p">;</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">CGContextDrawRadialGradient</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">lightGlowGradient</span><span class="p">,</span>
+</span><span class='line'>                            <span class="n">CGPointMake</span><span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="mf">2.f</span><span class="p">,</span> <span class="n">height</span><span class="o">/</span><span class="mf">2.f</span><span class="p">),</span> <span class="mf">0.f</span><span class="p">,</span>
+</span><span class='line'>                            <span class="n">CGPointMake</span><span class="p">(</span><span class="n">width</span><span class="o">/</span><span class="mf">2.f</span><span class="p">,</span> <span class="n">height</span><span class="o">/</span><span class="mf">2.f</span><span class="p">),</span> <span class="n">endRadius</span><span class="p">,</span>
+</span><span class='line'>                            <span class="n">kCGGradientDrawsBeforeStartLocation</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>A bonus for using CoreGraphics in this way with properties on the layer is that CoreAnimation will implicitly animate the change in state (you will most notice this with the glow color of the light). Whenever you change a property that is used to draw the state of the light in the above code, simply call <code>setNeedsDisplay</code> in order to redraw the content.</p>
+
+<h2 id="remaining-details">Remaining Details</h2>
+<p>This will get you started on implementing a custom EQ slider on your own. The remaining details to make this look like Twitter’s version include changing the color of each light depending on its horizontal position, determining which lights are active based on the position of the slider and optimizing the drawing to only redraw lights that have changed state. I’ll leave this as an exercise to the reader, or you can check out the final product that I implemented with all of the optimizations.</p>
+
+<p>If you’re using <code>LARSBar</code> in an app, drop me a message <a href="https://twitter.com/theonlylars">on Twitter</a> and I’ll add it to the GitHub readme.</p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Cocoapods: Creating a Pod Spec]]></title>
     <link href="http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec/"/>
     <updated>2013-01-20T14:58:00-06:00</updated>
     <id>http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec</id>
-    <content type="html"><![CDATA[<p><em>Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
+    <content type="html"><![CDATA[<p><em>Update 4-15-2013: Updated for changes that came with v0.18.x and v0.17 since this page is now linked to on <a href="http://docs.cocoapods.org/guides/index.html">cocoapods.org</a>.</em></p>
+
+<p><em>Note: Cocoapods is all very new and in rapid development (currently v0.18.1 as of this update), if you are in the know and any of the below is wrong or incorrect, please let me know and I’ll change it.</em></p>
 
 <p><img class="left" src="/images/posts/cocoapods/cocoapods_logo.png" width="200" height="200">If you’re reading this there is a good chance you have at least heard of <a href="http://cocoapods.org">Cocoapods</a>. For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community’s “<a href="http://gembundler.com">rubygem bundler</a>”. Each “pod” has a “spec” that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I’ll be referring to these from here on out as either a “podspec” or more simply - a “spec”.</p>
 
 <p>Since I’ve had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.<!-- more --></p>
 
 <p>I’m assuming that you already have cocoapods installed, and that you are looking to build and test a new <code>.podspec</code> file for a component.</p>
+
+<p>Let’s get started!</p>
+
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul id="markdown-toc">
+  <li><a href="#table-of-contents">Table of Contents</a></li>
+  <li><a href="#what-is-a-spec">What is a Spec?</a></li>
+  <li><a href="#basic-requirements">Basic Requirements</a>    <ul>
+      <li><a href="#semantic-versioning">Semantic Versioning</a></li>
+      <li><a href="#dependencies">Dependencies</a></li>
+      <li><a href="#frameworks">Frameworks</a></li>
+    </ul>
+  </li>
+  <li><a href="#construction">Construction</a>    <ul>
+      <li><a href="#hashes">Hashes</a></li>
+      <li><a href="#tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
+      <li><a href="#version-simplification">Version Simplification</a></li>
+    </ul>
+  </li>
+  <li><a href="#completing-your-spec">Completing Your Spec</a>    <ul>
+      <li><a href="#help">Help</a></li>
+      <li><a href="#learn-by-example">Learn By Example</a></li>
+    </ul>
+  </li>
+  <li><a href="#testing">Testing</a></li>
+  <li><a href="#spec-lint">Spec Lint</a></li>
+  <li><a href="#in-project-functional-testing">In-Project (Functional) Testing</a></li>
+  <li><a href="#subspecs">Subspecs</a>    <ul>
+      <li><a href="#defining-a-subspec">Defining a Subspec</a></li>
+      <li><a href="#final-product">Final Product</a></li>
+      <li><a href="#depending-on-a-subspec">Depending on a Subspec</a></li>
+    </ul>
+  </li>
+  <li><a href="#releasing">Releasing</a>    <ul>
+      <li><a href="#forkingcloning">Forking/Cloning</a></li>
+      <li><a href="#pull-request">Pull Request</a></li>
+    </ul>
+  </li>
+</ul>
 
 <h2 id="what-is-a-spec">What is a Spec?</h2>
 <p>The basis behind how cocoapods is able to function is on a project’s “podspec”. Podspecs are created by maintainers of a project (or sometimes just other developers who want to use a component as a pod) and submitted to a public repository of specs in an organized git repository on github.</p>
@@ -49,7 +358,7 @@
 </ul>
 
 <h3 id="semantic-versioning">Semantic Versioning</h3>
-<p>Cocoapods <a href="https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo"><em>highly</em> suggests</a> using (as in - don’t <em>not</em> do it) <a href="http://semver.org">semantic versioning</a> to version your cocoapods. Without semantic versioning, it becomes much more difficult if not impossible to resolve some cross-dependencies between similar pod dependencies in your project, if any exist. All that was very complicated to say - use semantic versioning (v1.1.0). Tag your code in your repository with a tag corresponding to the version number of your component (for v3.0.0 of your component, tag your code <code>3.0.0</code>).</p>
+<p>Cocoapods <a href="https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo"><em>highly</em> suggests</a> using (as in - don’t <em>not</em> do it) <a href="http://semver.org">semantic versioning</a> to version your cocoapods. Without semantic versioning, it becomes much more difficult if not impossible to resolve some cross-dependencies between similar pod dependencies in your project, if any exist. All that was very complicated to say - use semantic versioning (e.g. “v1.1.0”). Tag your code in your repository with a tag corresponding to the version number of your component (for v3.0.0 of your component, tag your code <code>3.0.0</code>).</p>
 
 <h3 id="dependencies">Dependencies</h3>
 <p>The dependency line is technically optional if your component does not rely on any external pod.</p>
@@ -114,6 +423,8 @@
 <h3 id="tags-and-unversioned-repositories">Tags and Unversioned Repositories</h3>
 <p>There are other methods of specifying the location of source code instead of tags, but you should really be using tags to mark your code commit for your spec. If you are not the owner of the repository you are creating a spec for, <a href="https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo">file an issue with the repository</a> to request that a tag be made. If this doesn’t work, then you should specify the version of your podspec to begin at <code>0.0.1</code> to indicate that this pod’s spec is unmanaged. Should the owner finally get a tag, then you can update the podspec with the correct version with little fear of conflicting with your previously unmanaged podspec’s version.</p>
 
+<p><em>Update 4-15-2013: You now cannot submit a pod to the podspec repository referencing a specific commit - you must specify a tag.</em></p>
+
 <h3 id="version-simplification">Version Simplification</h3>
 <p>Since this is just a ruby file, you can use all of the ruby tricks on any string in this file. To simplify our podspec for revving our version later, you can tell our <code>source</code> hash to use the podspec’s version as the repository’s tag to use using the <code>to_s</code> helper:</p>
 
@@ -139,7 +450,9 @@
 <p>This is where writing a podspec gets a little complicated. The general example specs from the wiki are just fine, but when you start customizing your spec to the specific needs of your component or library, you can easily find yourself running to google with few available resources.</p>
 
 <h3 id="help">Help</h3>
-<p>For the majority of the issues you will run into when creating your podspec, the <a href="https://github.com/CocoaPods/CocoaPods/wiki/">cocoapods wiki</a> will have a page that will answer your question. Almost every issue I was having, I eventually found the answer to in the wiki. It could be a little better organized, because I really can’t complain too much since I haven’t submitted a pull request to fix it myself.</p>
+<p>For the majority of the issues you will run into when creating your podspec, the <a href="https://github.com/CocoaPods/CocoaPods/wiki/">cocoapods wiki</a> will have a page that will answer your question. Almost every issue I was having, I eventually found the answer to in the wiki. It could be a little better organized, but I really can’t complain too much since I haven’t submitted a pull request to fix it myself.</p>
+
+<p>Since this original writing, a new sister project of CocoaPods  <a href="http://cocoadocs.org">cocoadocs.org</a> has been released that has a wealth of well-organized information available as well as documentation on every appledoc-documented Pod.</p>
 
 <p>If you simply cannot find an answer anywhere, submit an issue on the <a href="https://github.com/CocoaPods/Specs/issues">Cocoapods/Specs</a> repository (not the Cocoapods/Cocoapods repo) and someone is usually knowledgable enough to figure out what you’re doing wrong or help you file a bug to fix the issue.</p>
 
@@ -158,7 +471,9 @@
 </pre></td><td class='code'><pre><code class='bash'><span class='line'>pod spec lint “&lt;spec <span class="nv">location</span><span class="o">=</span><span class="s2">&quot;&quot;</span>&gt;/SpecName.podspec<span class="err">&quot;</span>
 </span></code></pre></td></tr></table></div></figure></spec></p>
 
-<p>If anything is syntactically wrong with your spec, it will show up here after running lint. Refer to the <a href="https://github.com/CocoaPods/CocoaPods/wiki">cocoapods wiki</a> if any errors or warnings come up.</p>
+<p>If anything is <em>syntactically</em> wrong with your spec, it will show up here after running lint. Refer to the <a href="https://github.com/CocoaPods/CocoaPods/wiki">cocoapods wiki</a> if any errors or warnings come up.</p>
+
+<p>As of CocoaPods v0.17, you can no longer submit pod specs to the spec repo when lint reports warnings.</p>
 
 <h2 id="in-project-functional-testing">In-Project (Functional) Testing</h2>
 <p>It’s <em>very</em> important to actually test your pod in a <em>fresh</em> project without any other configuration. Don’t be the guy that creates a spec, submits it, then you get a bunch of complaints because your spec doesn’t actually install properly when it’s installed. It’s also annoying to find a spec you can use, put it as a dependency on your project, only to find out it’s not configured properly. It looks bad on the cocoapods community when this happens.</p>
@@ -175,7 +490,7 @@
 <p>This is where I had a huge issue testing my podspec. The trick I learned is to <a href="https://github.com/CocoaPods/CocoaPods/wiki/Dependency-declaration-options">specify a local file path</a> for your Podfile to look for your new podspec:</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span><span class="p">,</span> <span class="ss">:local</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="o">~</span><span class="sr">/Specs/</span><span class="no">LARSAdController</span><span class="err">’</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">pod</span> <span class="err">‘</span><span class="no">LARSAdController</span><span class="err">’</span><span class="p">,</span> <span class="err">‘</span><span class="mi">3</span><span class="o">.</span><span class="mi">0</span><span class="err">’</span><span class="p">,</span> <span class="ss">:path</span> <span class="o">=&amp;</span><span class="n">gt</span><span class="p">;</span> <span class="err">‘</span><span class="o">~</span><span class="sr">/Specs/</span><span class="no">LARSAdController</span><span class="err">’</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
 <p>Now you can install and test your pod:</p>
@@ -192,7 +507,7 @@
 </ol>
 
 <h2 id="subspecs">Subspecs</h2>
-<p>A cool feature of cocoapods is it’s ability for you to specify sub-components of your component to include. This will enable other developers to be able to a-la-carte choose which sub-components of your library to include in their project. This reduces the bloat, especially when only some parts of your project have dependencies on other large components.</p>
+<p>A cool feature of cocoapods is its ability for you to specify sub-components of your component to include. This will enable other developers to be able to a-la-carte choose which sub-components of your library to include in their project. This reduces the bloat, especially when only some parts of your project have dependencies on other large components.</p>
 
 <p>Subspecs are totally optional in your podspec.</p>
 
@@ -221,7 +536,29 @@
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure></p>
 
-<p>Give your subspec a descriptive name, specify the source files to use, etc. In the above example, I have named this subspec ‘iAds’ since this will be including iAd functionality in with my pod. You’ll continue to customize the subspec in the same way that you customized your parent spec object. Note that the subspec will inherit all of the base properties of the parent spec, so there is no need to repeat them in your subspec.</p>
+<p>Give your subspec a descriptive name, specify the source files to use, etc. In the above example, I have named this subspec ‘iAds’ since this will be including iAd functionality in with my pod. You’ll continue to customize the subspec in the same way that you customized your parent spec object.</p>
+
+<p>As of CocoaPods v0.17, subspecs will <a href="https://github.com/CocoaPods/CocoaPods/blob/master/CHANGELOG.md#breaking">no longer inherit source files from the parent spec</a>. In order to retain the same functionality, simply add a new “base” subspec called “Core” that includes all of the base files for your implementation. If your “Core” files are the <em>only</em> files that you would like installed when users <em>do not</em> specify a subspec, you will need to add a <code>default_subspec</code> property on your podspec and specify your “Core” subspec:</p>
+
+<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">Pod</span><span class="o">::</span><span class="no">Spec</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">default_subspec</span> <span class="o">=</span> <span class="err">‘</span><span class="no">Core</span><span class="err">’</span>
+</span><span class='line'>  <span class="o">.</span><span class="n">.</span>
+</span><span class='line'>  <span class="n">s</span><span class="o">.</span><span class="n">subspec</span> <span class="err">‘</span><span class="n">iAds</span><span class="err">’</span> <span class="k">do</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span>
+</span><span class='line'>    <span class="c1"># define subspec here</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>  <span class="err">…</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></p>
+
+<p>The above code block will <em>only</em> install the <code>Core</code> subspec when your pod is called out as a dependency when the user does not specify a subspec in their podfile. If you did not include the <code>default_subspec</code> property, then all subspecs would be installed by default.</p>
 
 <p>There are some properties that are not allowed to be defined on a subspec and can only be defined on the parent spec. These “Top level attributes” are outlined on the <a href="https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format">podspec page</a> on the Cocoapods wiki.</p>
 
@@ -453,166 +790,6 @@
     </li>
   </ol>
 </div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LARSAdController 3.0 RC]]></title>
-    <link href="http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc/"/>
-    <updated>2012-12-15T15:25:00-06:00</updated>
-    <id>http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc</id>
-    <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
-
-<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
-
-<p>Let’s take a look at what’s changed:</p>
-
-<h2 id="a-new-class-prefix">A New Class Prefix</h2>
-<p>I’ve been using the class prefix <code>LARS</code> for all of my open-source classes. While this really is short and unique, it’s always felt pretty egotistical to have my name plastered all over my classes. This is just how I feel from this side of the keyboard. Does it look the same from the user’s end? Let me know what you think.</p>
-
-<p>Anyway, I’ve migrated new classes to the new <code>TOL</code> prefix, for <a href="https://twitter.com/theonlylars">@<strong>T</strong>he<strong>O</strong>nly<strong>L</strong>ars</a>. This feels more anonymous and I haven’t seen the prefix used by anyone else before, yet. I’d love to know if someone well known <em>is</em> using the <code>TOL</code> class prefix. If I feel like I like this prefix better, I may just start using it for everything.</p>
-
-<p>I also like that it sounds like “toll”. I have grand visions of having some cool project named <code>TOLBooth</code>, <code>TOLRoad</code>, or <code>TOLHouse</code>. I can’t think of practical project ideas to put those names on, however.</p>
-
-<h2 id="modular-ad-networks">Modular Ad Networks</h2>
-<p>The big new feature for this release is modular ad networks. Ad junkies will know this as ad mediation. AdMob has an ad mediation framework, so does AdWhirl, MobClix, and others. This is my implementation. The actual mediation logic is in a single .h/.m file pair. The other files support the ad networks. I feel this is a very lightweight implementation compared to other company’s mediation platforms, not to mention it’s open source so you can peek under the hood to see how another developer has solved a problem.</p>
-
-<p>Right now I’ve built ad network adapters for iAds and AdMob ads. These are the only two ad networks that I use in Droid Light, so I don’t know much about others, and these two seem to be the most popular for banner ads on iOS.</p>
-
-<h3 id="house-ads">House Ads</h3>
-<p>A third planned adapter I’m particularly excited about is an adapter for “house” ads, <em>but I have not started on it as of yet</em>. House ads would basically amount to an image and a tap destination that you supply yourself. It’s an ad for yourself. <!-- more -->This will ideally be loaded dynamically from a remote server somewhere so you won’t have to upload a new binary to the app store every time you want to change the ads.</p>
-
-<p>You could have this house ad link to another page in your app, have it load a remote URL for another app you have in the app store, or even let users know a new version is available. This would be able to be mediated in just like any other ad network.</p>
-
-<p>This is not necessarily part of this release, but is something that is going to be at least started by then.</p>
-
-<h3 id="additional-ad-networks">Additional Ad Networks</h3>
-<p>Additional ad networks can be easily created by conforming your <code>NSObject</code> subclass to the <code>TOLAdAdapter</code> protocol. As long as you have logging enabled, I feel the warnings and assertions, as well as the header documentation have been well-built enough to make this a pretty painless process.</p>
-
-<h3 id="priority">Priority</h3>
-<p>You can now prioritize which ad network you would like to have highest priority. Version 2.0 and prior had their priority fixed to have iAds serve first and have AdMob ads slaved to display when there was no available iAd inventory to display.</p>
-
-<p>This worked for the first couple years of iAd as the eCPM and fill rate was so much better than anything else. Since iAds are basically paying out on par or worse than AdMob ads with way worse fill rates, you may not want to have iAds be your highest priority network. This is now possible.</p>
-
-<h2 id="arc">ARC</h2>
-<p><code>LARSAdController</code> 3.0 is now ARC-enabled. You’re welcome.</p>
-
-<h2 id="presentation-types--pinning-location">Presentation Types &amp; Pinning Location</h2>
-<p>In 2.0 and prior versions, you were limited to only displaying the ad at the bottom of your view and having it slide from the bottom as your animation. Two new properties have been added on <code>LARSAdController</code>: <code>presentationType</code> and <code>pinningLocation</code>.</p>
-
-<h3 id="presentationtype">presentationType</h3>
-<p>You now have the option to change the animation sliding direction of your ads when a new ad is loaded and animated on screen. You can have it slide in from any edge. I thought about adding different transition types (flip, etc.), but thought it really unnecessary unless this is something other’s think they want.</p>
-
-<h3 id="pinninglocation">pinningLocation</h3>
-<p>You also now have the option to change the physical location that the ad container lives on screen. In addition to the good ol’ bottom of your view, you can pin the ad to the top of the view. This is not revolutionary.</p>
-
-<h2 id="a-view-controller-subclass">A View Controller Subclass</h2>
-<p>I’ve created a new view controller subclass that is the <em>easiest</em> method to integrating ads into your view controller’s view. For simple configurations, simply having your view controller inherit from <code>TOLAdViewController</code> will display an ad on <code>viewDidLoad:</code>, just like is suggested in the setup instructions. Literally no other work is needed from you in the simplest case.</p>
-
-<h3 id="conditionally-display-ads">Conditionally Display Ads</h3>
-<p>If you need to conditionally display ads while using the view controller subclass, overriding <code>shouldDisplayAds</code> will enable you to add some logic to determine if the subclass should add the ad container to your view or not. If you return <code>NO</code>, then nothing else is performed and no ad is added to your view hierarchy. The base implementation always returns <code>YES</code>.</p>
-
-<p>I am dogfooding this view controller to myself in Droid Light, so it works for more than just the trivial implementations.</p>
-
-<h2 id="debug-logging">Debug Logging</h2>
-<p>I’ve added pretty extensive debug logging for what’s currently constructed. If something goes wrong, you should be able to tell <em>what</em> is going on and on what line in what file. Runtime warnings are unconditionally displayed regardless of debug log state and should probably be taken care of.</p>
-
-<p>To enable logs, simple define the <code>LARSADCONTROLLER_DEBUG</code> macro somewhere.</p>
-
-<h2 id="help">Help?</h2>
-<p>I primarily created <code>LARSAdController</code> because I was unsatisfied with the big ad mediation networks. They also felt pretty heavyweight and a lot of overhead to simply run two mediated ad networks on my low-traffic app<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>. This is my simple solution to theirs.</p>
-
-<p>This post is primarily asking for a handful of people to clone, implement, and just see if they see anything awry with their particular implementation needs. Detailed code samples and changes are on the README on the project repo’s <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">tag</a>.</p>
-
-<p>You can find the <a href="https://github.com/larsacus/LARSAdController/tree/3.0.0">3.0 tag here</a> and file <a href="https://github.com/larsacus/LARSAdController/issues">issues here</a>. Don’t be shy about issues. If it’s not a bug, but simply something you didn’t expect and want clarification, file an issue.</p>
-
-<p>If you’re so inclined, let me know what you think: <a href="https://twitter.com/theonlylars">@theonlylars</a></p>
-
-<hr />
-<div class="footnotes">
-  <ol>
-    <li id="fn:1">
-      <p>That and I <em>hate</em> when 3rd party libraries make me use the <code>-all_load</code> compiler flag <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
-    </li>
-  </ol>
-</div>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Easily Integrate Your iOS App with iAd and AdMob]]></title>
-    <link href="http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad/"/>
-    <updated>2012-04-27T21:30:00-05:00</updated>
-    <id>http://theonlylars.com/blog/2012/04/27/integrating-google-ads-with-iad</id>
-    <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController has been updated to v3.0</a>. A lot of the material below may be outdated. If you need to use v2.x as is demonstrated below, you can still access it using <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">one of the tagged v2.x versions on github</a>.</em></p>
-
-<p>I think Apple’s iAds had great potential.  But let’s face it.  They really aren’t pulling the weight they should.  When they do have inventory, however, they often make much more than any other ad service.  Let me show you how to not only quickly integrate iAds into your app, but do it properly all while using Google’s AdMob service as a backup.</p>
-
-<p>If you watch Apple’s WWDC video on proper integration of iAd or read the iAd implementation documentation, you will see that they want you to use a single shared instance of your ads in all of your view controllers.  Since I also wanted that instance to be backed by Google ads when there was no iAd inventory, the best solution I could think of was the singleton.  This lead me to:</p>
-
-<h2 id="introducing-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Introducing <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
-<p>I built <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in order to be a one-stop, single line integration of iAds (and later AdMob ads) into a <code>UIView</code>. I initially only supported iPods/iPhones in portrait orientation. It now has support for both iPods/iPhones as well as iPads in <em>any</em> orientation.</p>
-
-<h2 id="integrating-larsadcontrollerhttplarsacusgithubcomlarsadcontroller">Integrating <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a></h2>
-<ol>
-  <li>
-    <p>First, you will need to clone the source from <a href="http://larsacus.github.com/LARSAdController">Github</a>:</p>
-
-    <p><code>$ git clone git@github.com:larsacus/LARSAdController.git</code></p>
-
-    <p>or add it as a git submodule:</p>
-
-    <p><code>$ git submodule add git@github.com:larsacus/LARSAdController.git Vendor/LARSAdController</code></p>
-  </li>
-  <li>Add folder or <code>LARSAdController.m/h</code> to your project</li>
-  <li>Download and copy the <a href="https://developers.google.com/mobile-ads-sdk/download#downloadios">Google ad SDK</a> into your project and go ahead and sign up for a Google publisher account at <a href="https://admob.com">AdMob.com</a> if you haven’t already</li>
-  <li>Ensure the proper frameworks have been added to your application in order for iAds and AdMob ads to compile properly:
-    <ol>
-      <li>iAd.framework</li>
-      <li>AudioToolbox.framework</li>
-      <li>MessageUI.framework</li>
-      <li>SystemConfiguration.framework</li>
-    </ol>
-
-    <p>You can add additional frameworks to your project in Xcode 4 by clicking on your project file in the project navigator on the left and going to <code>Build Phases &gt; Link Binary With Libraries &gt; Click + Symbol</code></p>
-
-    <p>Whew! What a lot of stupid setup and we haven’t even written any code, yet! If you want to write code, you may be a little disappointed by this post, because there really isn’t any.</p>
-  </li>
-  <li>Now go to <code>Product &gt; Build</code> or type ‘⌘+B’ to build the project.  If your project builds without any errors, hurray! Skip to step 7.  If not, continue on…</li>
-  <li>Surround your pullquote like this {&#8221; text to be quoted &#8220;}</li>
-  <li><em>Now</em> we’re ready to write some code! Get your typing fingers ready, because text doesn’t just copy/paste itself! Add the following two lines of code to one of your view controller’s view lifecycle load or appear methods.  I’ve found that <code>viewWillAppear:</code> seems to be the best when pushing/popping view controllers with ads on them:</li>
-</ol>
-
-<p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='objc'><span class='line'>  <span class="o">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nl">viewWillAppear</span><span class="p">:(</span><span class="kt">BOOL</span><span class="p">)</span><span class="n">animated</span><span class="p">{</span>
-</span><span class='line'>      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">addAdContainerToView</span><span class="p">:</span><span class="nb">self</span><span class="p">.</span><span class="n">view</span> <span class="nl">withParentViewController</span><span class="p">:</span><span class="nb">self</span><span class="p">];</span>
-</span><span class='line'>      <span class="p">[[</span><span class="n">LARSAdController</span> <span class="n">sharedManager</span><span class="p">]</span> <span class="nl">setGoogleAdPublisherId</span><span class="p">:</span><span class="n">myPublisherId</span><span class="p">];</span>
-</span><span class='line'>  <span class="p">}</span>
-</span><span class='line'>
-</span></code></pre></td></tr></table></div></figure></p>
-
-<p>If you are only supporting a single orientation, or a single set of orientations (portrait/upside down portrait), then you’re basically done.  Just add the first single line of code to any view controller that you want to host ads in. Just be sure to call <code>setGoogleAdPublisherId:</code> the first time you add LARSAdController to a view. The ads will automatically be added to the bottom of the view and appear/hide whenever they have inventory available.</p>
-
-<h2 id="multiple-orientations">Multiple Orientations</h2>
-
-<p>If you would like to support multiple orientations, you will need to add the following line to the first call you make to add LARSAdController to a view:
-<figure class='code'><figcaption><span>lang: objc </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[[LARSAdController sharedManager] setShouldHandleOrientationChanges:YES];</span></code></pre></td></tr></table></div></figure></p>
-
-<p>This will automatically listen for orientation changes and adjust the ad accordingly! See how easy that was! I told you if you were looking to type code, you were going to be disappointed.</p>
-
-<p>Simply call the code in step 7 in any view you need the ad banner to be in, and it will automatically remove it from the old view and add it to the bottom of the new view.</p>
-
-<h2 id="in-conclusion">In Conclusion</h2>
-<p>I think this is an extremely easy, proper way just to implement iAds into your app, even if you aren’t using AdMob ads.  If you’re registered to use AdMob ads, then it’s an even <em>more</em> efficient method, as it’s only one line of code more in order to integrate and you will <em>always</em> have an ad displaying in your app.</p>
-
-<p>If you’re using <a href="http://larsacus.github.com/LARSAdController">LARSAdController</a> in your app, I’d love to know. You can send me an email if you can find it, <a href="http://github.com/larsacus/LARSAdController">fork the repo</a> and change the readme on GitHub, or even better, just send me a quick note at <a href="http://twitter.com/theonlylars">@theonlylars</a> and I’ll add it to the README file.</p>
-
 ]]></content>
   </entry>
   

@@ -5,7 +5,7 @@ date: 2015-01-22 11:36
 comments: true
 published: true
 categories: user-experience technology
-keywords: "HoloLens,Microsoft,technology,brett victor,worrydream,holographic,technology"
+keywords: "HoloLens,future,wearables,Microsoft,technology,brett victor,worrydream,holographic,technology"
 ---
 
 _Having not posted on here in over a year, it feels good to write again._

@@ -8,13 +8,21 @@ categories: ruby iOS development open-source cocoapods
 description: "Creating cocoapods specs can be difficult if you are new to cocoapods or haven't created a spec before. Here is a collection of documentation links, steps and tips for successfully creating a cocoapods pod spec file for your open source component."
 ---
 
-_Note: Cocoapods is all very new and in rapid development (currently v0.16.1 as of this writing), if you are in the know and any of the below is wrong or incorrect, please let me know and I'll change it._
+_Update 4-15-2013: Updated for changes that came with v0.18.x and v0.17 since this page is now linked to on [cocoapods.org](http://docs.cocoapods.org/guides/index.html)._
+
+_Note: Cocoapods is all very new and in rapid development (currently v0.18.1 as of this update), if you are in the know and any of the below is wrong or incorrect, please let me know and I'll change it._
 
 {% img left /images/posts/cocoapods/cocoapods_logo.png 200 200 %}If you're reading this there is a good chance you have at least heard of [Cocoapods](http://cocoapods.org). For the uninitiated, Cocoapods is a dependency manager for Mac and iOS projects built on Ruby and based on the Ruby community's "[rubygem bundler](http://gembundler.com)". Each "pod" has a "spec" that is utilized in order to know how to integrate a given component with your project and resolve any dependencies your project may have with other libraries. I'll be referring to these from here on out as either a "podspec" or more simply - a "spec".
 
 Since I've had some trouble easily writing my podspecs in the past (and have run into poorly-tested specs in the specs repository), I have put together a collection of knowledge on the things I have learned while building and testing my podspecs.<!-- more -->
 
 I'm assuming that you already have cocoapods installed, and that you are looking to build and test a new `.podspec` file for a component.
+
+Let's get started!
+
+##Table of Contents
+* list element with functor item
+{:toc}
 
 ##What is a Spec?
 The basis behind how cocoapods is able to function is on a project's "podspec". Podspecs are created by maintainers of a project (or sometimes just other developers who want to use a component as a pod) and submitted to a public repository of specs in an organized git repository on github.
@@ -37,7 +45,7 @@ At a minimum, your spec needs to have the following attributes defined in order 
 - Required apple frameworks*
 
 ###Semantic Versioning
-Cocoapods [_highly_ suggests](https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo) using (as in - don't _not_ do it) [semantic versioning](http://semver.org) to version your cocoapods. Without semantic versioning, it becomes much more difficult if not impossible to resolve some cross-dependencies between similar pod dependencies in your project, if any exist. All that was very complicated to say - use semantic versioning (v1.1.0). Tag your code in your repository with a tag corresponding to the version number of your component (for v3.0.0 of your component, tag your code `3.0.0`).
+Cocoapods [_highly_ suggests](https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo) using (as in - don't _not_ do it) [semantic versioning](http://semver.org) to version your cocoapods. Without semantic versioning, it becomes much more difficult if not impossible to resolve some cross-dependencies between similar pod dependencies in your project, if any exist. All that was very complicated to say - use semantic versioning (e.g. "v1.1.0"). Tag your code in your repository with a tag corresponding to the version number of your component (for v3.0.0 of your component, tag your code `3.0.0`).
 
 ###Dependencies
 The dependency line is technically optional if your component does not rely on any external pod.
@@ -85,6 +93,8 @@ For the `source` hash, the colon (`:`) before the key name is important. This [d
 ###Tags and Unversioned Repositories
 There are other methods of specifying the location of source code instead of tags, but you should really be using tags to mark your code commit for your spec. If you are not the owner of the repository you are creating a spec for, [file an issue with the repository](https://github.com/CocoaPods/CocoaPods/wiki/Contributing-to-the-master-repo) to request that a tag be made. If this doesn't work, then you should specify the version of your podspec to begin at `0.0.1` to indicate that this pod's spec is unmanaged. Should the owner finally get a tag, then you can update the podspec with the correct version with little fear of conflicting with your previously unmanaged podspec's version.
 
+_Update 4-15-2013: You now cannot submit a pod to the podspec repository referencing a specific commit - you must specify a tag._
+
 ###Version Simplification
 Since this is just a ruby file, you can use all of the ruby tricks on any string in this file. To simplify our podspec for revving our version later, you can tell our `source` hash to use the podspec's version as the repository's tag to use using the `to_s` helper:
 
@@ -103,7 +113,9 @@ end
 This is where writing a podspec gets a little complicated. The general example specs from the wiki are just fine, but when you start customizing your spec to the specific needs of your component or library, you can easily find yourself running to google with few available resources.
 
 ###Help
-For the majority of the issues you will run into when creating your podspec, the [cocoapods wiki](https://github.com/CocoaPods/CocoaPods/wiki/) will have a page that will answer your question. Almost every issue I was having, I eventually found the answer to in the wiki. It could be a little better organized, because I really can't complain too much since I haven't submitted a pull request to fix it myself.
+For the majority of the issues you will run into when creating your podspec, the [cocoapods wiki](https://github.com/CocoaPods/CocoaPods/wiki/) will have a page that will answer your question. Almost every issue I was having, I eventually found the answer to in the wiki. It could be a little better organized, but I really can't complain too much since I haven't submitted a pull request to fix it myself.
+
+Since this original writing, a new sister project of CocoaPods  [cocoadocs.org](http://cocoadocs.org) has been released that has a wealth of well-organized information available as well as documentation on every appledoc-documented Pod.
 
 If you simply cannot find an answer anywhere, submit an issue on the [Cocoapods/Specs](https://github.com/CocoaPods/Specs/issues) repository (not the Cocoapods/Cocoapods repo) and someone is usually knowledgable enough to figure out what you're doing wrong or help you file a bug to fix the issue.
 
@@ -122,7 +134,9 @@ The first step to testing your spec is to use cocoapods' built-in "lint" tool to
 pod spec lint "<spec location>/SpecName.podspec"
 {% endcodeblock%}
 
-If anything is syntactically wrong with your spec, it will show up here after running lint. Refer to the [cocoapods wiki](https://github.com/CocoaPods/CocoaPods/wiki) if any errors or warnings come up.
+If anything is _syntactically_ wrong with your spec, it will show up here after running lint. Refer to the [cocoapods wiki](https://github.com/CocoaPods/CocoaPods/wiki) if any errors or warnings come up.
+
+As of CocoaPods v0.17, you can no longer submit pod specs to the spec repo when lint reports warnings.
 
 ##In-Project (Functional) Testing
 It's _very_ important to actually test your pod in a _fresh_ project without any other configuration. Don't be the guy that creates a spec, submits it, then you get a bunch of complaints because your spec doesn't actually install properly when it's installed. It's also annoying to find a spec you can use, put it as a dependency on your project, only to find out it's not configured properly. It looks bad on the cocoapods community when this happens.
@@ -137,7 +151,7 @@ Please functionally test your specs before submitting them:
 This is where I had a huge issue testing my podspec. The trick I learned is to [specify a local file path](https://github.com/CocoaPods/CocoaPods/wiki/Dependency-declaration-options) for your Podfile to look for your new podspec:
   
 {% codeblock lang:ruby %}
-pod 'LARSAdController', '3.0', :local => '~/Specs/LARSAdController'
+pod 'LARSAdController', '3.0', :path => '~/Specs/LARSAdController'
 {% endcodeblock%}
 
 Now you can install and test your pod:
@@ -149,7 +163,7 @@ Now you can install and test your pod:
 6. Rinse, repeat until component installs correctly
 
 ##Subspecs
-A cool feature of cocoapods is it's ability for you to specify sub-components of your component to include. This will enable other developers to be able to a-la-carte choose which sub-components of your library to include in their project. This reduces the bloat, especially when only some parts of your project have dependencies on other large components.
+A cool feature of cocoapods is its ability for you to specify sub-components of your component to include. This will enable other developers to be able to a-la-carte choose which sub-components of your library to include in their project. This reduces the bloat, especially when only some parts of your project have dependencies on other large components.
 
 Subspecs are totally optional in your podspec.
 
@@ -169,7 +183,22 @@ Pod::Spec.new do |s|
 end
 {% endcodeblock%}
 
-Give your subspec a descriptive name, specify the source files to use, etc. In the above example, I have named this subspec 'iAds' since this will be including iAd functionality in with my pod. You'll continue to customize the subspec in the same way that you customized your parent spec object. Note that the subspec will inherit all of the base properties of the parent spec, so there is no need to repeat them in your subspec.
+Give your subspec a descriptive name, specify the source files to use, etc. In the above example, I have named this subspec 'iAds' since this will be including iAd functionality in with my pod. You'll continue to customize the subspec in the same way that you customized your parent spec object.
+
+As of CocoaPods v0.17, subspecs will [no longer inherit source files from the parent spec](https://github.com/CocoaPods/CocoaPods/blob/master/CHANGELOG.md#breaking). In order to retain the same functionality, simply add a new "base" subspec called "Core" that includes all of the base files for your implementation. If your "Core" files are the _only_ files that you would like installed when users _do not_ specify a subspec, you will need to add a `default_subspec` property on your podspec and specify your "Core" subspec:
+
+{% codeblock lang:ruby %}
+Pod::Spec.new do |s|
+  s.default_subspec = 'Core'
+  ..
+  s.subspec 'iAds' do |a|
+    # define subspec here
+  end
+  ...
+end
+{% endcodeblock %}
+
+The above code block will _only_ install the `Core` subspec when your pod is called out as a dependency when the user does not specify a subspec in their podfile. If you did not include the `default_subspec` property, then all subspecs would be installed by default.
 
 There are some properties that are not allowed to be defined on a subspec and can only be defined on the parent spec. These "Top level attributes" are outlined on the [podspec page](https://github.com/CocoaPods/CocoaPods/wiki/The-podspec-format) on the Cocoapods wiki.
 
