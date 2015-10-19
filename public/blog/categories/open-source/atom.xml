@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: open-source | theonlylars]]></title>
+  <title><![CDATA[Category: open-source | The Only Lars]]></title>
   <link href="http://theonlylars.com/blog/categories/open-source/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T14:20:28-06:00</updated>
+  <updated>2015-10-18T22:46:27-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -54,7 +54,7 @@
     <content type="html"><![CDATA[<p>This morning I open-sourced a fun side-project I’ve been working on for the past (almost) two years - <a href="http://mutualmobile.github.io/blog/2013/06/20/mmprogresshud/">MMProgressHUD</a>. “Wow, that looks a lot like M<em>B</em>ProgressHUD!” Yes, astute pupil, not only is it in the same category of control, it shares 95% the same letters in the same order as MBProgressHUD. This was merely a coincidence since Mutual Mobile’s official Objective-C class prefix is <code>MM</code>:</p>
 
 <h2 id="from-the-ground-up">From the Ground Up</h2>
-<p>MMProgressHUD was built from the ground up with a primary focus on animation, presentation and to cover the status bar. I also wanted a framework to easily add new animations and secondarily accept extremely basic user input. </p>
+<p>MMProgressHUD was built from the ground up with a primary focus on animation, presentation and to cover the status bar. I also wanted a framework to easily add new animations and secondarily accept extremely basic user input.</p>
 
 <h3 id="check-it-out">Check It Out</h3>
 <p>If you’re looking for a new HUD interface, just curious or merely want to check out the bits and peek under the hood, feel free to check out the repository on <a href="https://github.com/mutualmobile/MMProgressHUD">GitHub</a>. As always, if you find a bug or would like a new feature, feel free to fork the repo and submit a pull request!</p>
@@ -300,37 +300,37 @@ We have some more requirements for the light itself than we did for the layout. 
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul id="markdown-toc">
-  <li><a href="#table-of-contents">Table of Contents</a></li>
-  <li><a href="#what-is-a-spec">What is a Spec?</a></li>
-  <li><a href="#basic-requirements">Basic Requirements</a>    <ul>
-      <li><a href="#semantic-versioning">Semantic Versioning</a></li>
-      <li><a href="#dependencies">Dependencies</a></li>
-      <li><a href="#frameworks">Frameworks</a></li>
+  <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
+  <li><a href="#what-is-a-spec" id="markdown-toc-what-is-a-spec">What is a Spec?</a></li>
+  <li><a href="#basic-requirements" id="markdown-toc-basic-requirements">Basic Requirements</a>    <ul>
+      <li><a href="#semantic-versioning" id="markdown-toc-semantic-versioning">Semantic Versioning</a></li>
+      <li><a href="#dependencies" id="markdown-toc-dependencies">Dependencies</a></li>
+      <li><a href="#frameworks" id="markdown-toc-frameworks">Frameworks</a></li>
     </ul>
   </li>
-  <li><a href="#construction">Construction</a>    <ul>
-      <li><a href="#hashes">Hashes</a></li>
-      <li><a href="#tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
-      <li><a href="#version-simplification">Version Simplification</a></li>
+  <li><a href="#construction" id="markdown-toc-construction">Construction</a>    <ul>
+      <li><a href="#hashes" id="markdown-toc-hashes">Hashes</a></li>
+      <li><a href="#tags-and-unversioned-repositories" id="markdown-toc-tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
+      <li><a href="#version-simplification" id="markdown-toc-version-simplification">Version Simplification</a></li>
     </ul>
   </li>
-  <li><a href="#completing-your-spec">Completing Your Spec</a>    <ul>
-      <li><a href="#help">Help</a></li>
-      <li><a href="#learn-by-example">Learn By Example</a></li>
+  <li><a href="#completing-your-spec" id="markdown-toc-completing-your-spec">Completing Your Spec</a>    <ul>
+      <li><a href="#help" id="markdown-toc-help">Help</a></li>
+      <li><a href="#learn-by-example" id="markdown-toc-learn-by-example">Learn By Example</a></li>
     </ul>
   </li>
-  <li><a href="#testing">Testing</a></li>
-  <li><a href="#spec-lint">Spec Lint</a></li>
-  <li><a href="#in-project-functional-testing">In-Project (Functional) Testing</a></li>
-  <li><a href="#subspecs">Subspecs</a>    <ul>
-      <li><a href="#defining-a-subspec">Defining a Subspec</a></li>
-      <li><a href="#final-product">Final Product</a></li>
-      <li><a href="#depending-on-a-subspec">Depending on a Subspec</a></li>
+  <li><a href="#testing" id="markdown-toc-testing">Testing</a></li>
+  <li><a href="#spec-lint" id="markdown-toc-spec-lint">Spec Lint</a></li>
+  <li><a href="#in-project-functional-testing" id="markdown-toc-in-project-functional-testing">In-Project (Functional) Testing</a></li>
+  <li><a href="#subspecs" id="markdown-toc-subspecs">Subspecs</a>    <ul>
+      <li><a href="#defining-a-subspec" id="markdown-toc-defining-a-subspec">Defining a Subspec</a></li>
+      <li><a href="#final-product" id="markdown-toc-final-product">Final Product</a></li>
+      <li><a href="#depending-on-a-subspec" id="markdown-toc-depending-on-a-subspec">Depending on a Subspec</a></li>
     </ul>
   </li>
-  <li><a href="#releasing">Releasing</a>    <ul>
-      <li><a href="#forkingcloning">Forking/Cloning</a></li>
-      <li><a href="#pull-request">Pull Request</a></li>
+  <li><a href="#releasing" id="markdown-toc-releasing">Releasing</a>    <ul>
+      <li><a href="#forkingcloning" id="markdown-toc-forkingcloning">Forking/Cloning</a></li>
+      <li><a href="#pull-request" id="markdown-toc-pull-request">Pull Request</a></li>
     </ul>
   </li>
 </ul>
@@ -783,7 +783,7 @@ We have some more requirements for the light itself than we did for the layout. 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk.  <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
       <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>

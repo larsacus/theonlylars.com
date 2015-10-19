@@ -3,11 +3,11 @@
 # ----------------------- #
 
 url: http://theonlylars.com
-title: theonlylars
-subtitle: have you ever met another?
+title: "The Only Lars"
+subtitle: Byte-sized adventures in iOS software development
 author: Lars Anderson
 simple_search: http://google.com/search
-description: 
+description: "Helpful information on iOS development in Swift and Objective-C."
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -55,7 +55,7 @@ default_asides: [asides/about.html, asides/recent_posts.html, asides/twitter.htm
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
-# blog_index_asides:
+# blog_index_asides: 
 # post_asides:
 # page_asides:
 
@@ -71,7 +71,7 @@ github_skip_forks: true
 
 # Twitter
 twitter_user: theonlylars
-twitter_tweet_count: 7
+twitter_tweet_count: 0
 twitter_show_replies: false
 twitter_follow_button: true
 twitter_show_follower_count: false

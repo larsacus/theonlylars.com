@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: larsadcontroller | theonlylars]]></title>
+  <title><![CDATA[Category: larsadcontroller | The Only Lars]]></title>
   <link href="http://theonlylars.com/blog/categories/larsadcontroller/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T14:20:28-06:00</updated>
+  <updated>2015-10-18T22:46:27-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -191,7 +191,7 @@
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk.  <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
       <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
@@ -208,7 +208,7 @@
     <id>http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc</id>
     <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
 
-<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
+<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch.</p>
 
 <p>Let’s take a look at what’s changed:</p>
 

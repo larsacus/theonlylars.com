@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: advanced ios | theonlylars]]></title>
+  <title><![CDATA[Category: advanced ios | The Only Lars]]></title>
   <link href="http://theonlylars.com/blog/categories/advanced-ios/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T14:20:28-06:00</updated>
+  <updated>2015-10-18T22:46:27-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -113,7 +113,7 @@
 
 <p>Because of this, the dreaded retain cycle would rear it’s ugly head and engineers would end up scratching their heads if they even noticed it was happening. “Why is my view controller not being released when nothing else has a reference to it!” So you go and watch the WWDC videos on the introduction to blocks and GCD, and you discover the solution: <a href="http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW6"><code>__block</code></a>. Simply declaring your variables as <code>__block</code> will magically make “weak” references to your objects to use inside your blocks.</p>
 
-<p>So we’d end up with this: </p>
+<p>So we’d end up with this:</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">__block</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
@@ -271,7 +271,7 @@
 
 <p><strong>Helpfulness</strong>: 6/10 - Really depends on what you need help with<br />
 <strong>Performance</strong>: 5/10<br />
-<strong>Ease of Use</strong>: 6/10  </p>
+<strong>Ease of Use</strong>: 6/10</p>
 
 <h3 id="eclogging">ECLogging</h3>
 <p><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
@@ -378,7 +378,7 @@
 <p>If you’re new to iOS, you may want to sit this one out until you get annoyed by <code>NSLog</code> - then come back here and read this.</p>
 
 <h2 id="i-use-nslog-and-i-think-its-awesome-isnt-that-enough">I Use NSLog and I think it’s awesome. Isn’t that enough?</h2>
-<p>Umm… Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he’s that guy on a Friday afternoon at the bank who’s exchanging three years worth of saved coins and asking about the interest rates on free checking accounts. I hate that guy. </p>
+<p>Umm… Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he’s that guy on a Friday afternoon at the bank who’s exchanging three years worth of saved coins and asking about the interest rates on free checking accounts. I hate that guy.</p>
 
 <p>There are more forces at work than you might think operating behind the scenes in order to get your log messages to both the console and into Xcode console log. Let’s go over some of the issues I have with <code>NSLog</code>:</p>
 
@@ -452,7 +452,7 @@ This is the most basic type of logging, and one which you’re probably most fam
 <hr />
 
 <p><em>Disclaimer:</em>
-<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em>  </p>
+<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em></p>
 ]]></content>
   </entry>
   

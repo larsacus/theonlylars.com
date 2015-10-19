@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Cocoapods: Creating a Pod Spec - theonlylars</title>
+  <title>Cocoapods: Creating a Pod Spec - The Only Lars</title>
   <meta name="author" content="Lars Anderson">
 
   
@@ -26,7 +26,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="theonlylars" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="The Only Lars" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -49,9 +49,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">theonlylars</a></h1>
+  <h1><a href="/">The Only Lars</a></h1>
   
-    <h2>have you ever met another?</h2>
+    <h2>Byte-sized adventures in iOS software development</h2>
   
 </hgroup>
 
@@ -71,7 +71,6 @@
 <ul class="main-navigation">
   <li><a class="nav-item" href="/">Blog</a></li>
   <li><a class="nav-item" href="/blog/archives">Archives</a></li>
-  <li><a class="nav-item" href="/blog/Achievements">Personal Achievements</a></li>
 </ul>
 
 </nav>
@@ -119,37 +118,37 @@
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul id="markdown-toc">
-  <li><a href="#table-of-contents">Table of Contents</a></li>
-  <li><a href="#what-is-a-spec">What is a Spec?</a></li>
-  <li><a href="#basic-requirements">Basic Requirements</a>    <ul>
-      <li><a href="#semantic-versioning">Semantic Versioning</a></li>
-      <li><a href="#dependencies">Dependencies</a></li>
-      <li><a href="#frameworks">Frameworks</a></li>
+  <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
+  <li><a href="#what-is-a-spec" id="markdown-toc-what-is-a-spec">What is a Spec?</a></li>
+  <li><a href="#basic-requirements" id="markdown-toc-basic-requirements">Basic Requirements</a>    <ul>
+      <li><a href="#semantic-versioning" id="markdown-toc-semantic-versioning">Semantic Versioning</a></li>
+      <li><a href="#dependencies" id="markdown-toc-dependencies">Dependencies</a></li>
+      <li><a href="#frameworks" id="markdown-toc-frameworks">Frameworks</a></li>
     </ul>
   </li>
-  <li><a href="#construction">Construction</a>    <ul>
-      <li><a href="#hashes">Hashes</a></li>
-      <li><a href="#tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
-      <li><a href="#version-simplification">Version Simplification</a></li>
+  <li><a href="#construction" id="markdown-toc-construction">Construction</a>    <ul>
+      <li><a href="#hashes" id="markdown-toc-hashes">Hashes</a></li>
+      <li><a href="#tags-and-unversioned-repositories" id="markdown-toc-tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
+      <li><a href="#version-simplification" id="markdown-toc-version-simplification">Version Simplification</a></li>
     </ul>
   </li>
-  <li><a href="#completing-your-spec">Completing Your Spec</a>    <ul>
-      <li><a href="#help">Help</a></li>
-      <li><a href="#learn-by-example">Learn By Example</a></li>
+  <li><a href="#completing-your-spec" id="markdown-toc-completing-your-spec">Completing Your Spec</a>    <ul>
+      <li><a href="#help" id="markdown-toc-help">Help</a></li>
+      <li><a href="#learn-by-example" id="markdown-toc-learn-by-example">Learn By Example</a></li>
     </ul>
   </li>
-  <li><a href="#testing">Testing</a></li>
-  <li><a href="#spec-lint">Spec Lint</a></li>
-  <li><a href="#in-project-functional-testing">In-Project (Functional) Testing</a></li>
-  <li><a href="#subspecs">Subspecs</a>    <ul>
-      <li><a href="#defining-a-subspec">Defining a Subspec</a></li>
-      <li><a href="#final-product">Final Product</a></li>
-      <li><a href="#depending-on-a-subspec">Depending on a Subspec</a></li>
+  <li><a href="#testing" id="markdown-toc-testing">Testing</a></li>
+  <li><a href="#spec-lint" id="markdown-toc-spec-lint">Spec Lint</a></li>
+  <li><a href="#in-project-functional-testing" id="markdown-toc-in-project-functional-testing">In-Project (Functional) Testing</a></li>
+  <li><a href="#subspecs" id="markdown-toc-subspecs">Subspecs</a>    <ul>
+      <li><a href="#defining-a-subspec" id="markdown-toc-defining-a-subspec">Defining a Subspec</a></li>
+      <li><a href="#final-product" id="markdown-toc-final-product">Final Product</a></li>
+      <li><a href="#depending-on-a-subspec" id="markdown-toc-depending-on-a-subspec">Depending on a Subspec</a></li>
     </ul>
   </li>
-  <li><a href="#releasing">Releasing</a>    <ul>
-      <li><a href="#forkingcloning">Forking/Cloning</a></li>
-      <li><a href="#pull-request">Pull Request</a></li>
+  <li><a href="#releasing" id="markdown-toc-releasing">Releasing</a>    <ul>
+      <li><a href="#forkingcloning" id="markdown-toc-forkingcloning">Forking/Cloning</a></li>
+      <li><a href="#pull-request" id="markdown-toc-pull-request">Pull Request</a></li>
     </ul>
   </li>
 </ul>
@@ -518,7 +517,7 @@
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
-      getTwitterFeed("theonlylars", 7, false);
+      getTwitterFeed("theonlylars", 0, false);
     });
   </script>
   <script src="/javascripts/twitter.js" type="text/javascript"> </script>

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Don&#8217;t Forget the &#8220;C&#8221; in Objective-C: C Declarations - theonlylars</title>
+  <title>Don&#8217;t Forget the &#8220;C&#8221; in Objective-C: C Declarations - The Only Lars</title>
   <meta name="author" content="Lars Anderson">
 
   
@@ -26,7 +26,7 @@
   <script src="/javascripts/modernizr-2.0.js"></script>
   <script src="/javascripts/ender.js"></script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="/atom.xml" rel="alternate" title="theonlylars" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="The Only Lars" type="application/atom+xml">
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -49,9 +49,9 @@
 
 <body   >
   <header role="banner"><hgroup>
-  <h1><a href="/">theonlylars</a></h1>
+  <h1><a href="/">The Only Lars</a></h1>
   
-    <h2>have you ever met another?</h2>
+    <h2>Byte-sized adventures in iOS software development</h2>
   
 </hgroup>
 
@@ -71,7 +71,6 @@
 <ul class="main-navigation">
   <li><a class="nav-item" href="/">Blog</a></li>
   <li><a class="nav-item" href="/blog/archives">Archives</a></li>
-  <li><a class="nav-item" href="/blog/Achievements">Personal Achievements</a></li>
 </ul>
 
 </nav>
@@ -200,7 +199,7 @@
 
 <p>Because of this, the dreaded retain cycle would rear it’s ugly head and engineers would end up scratching their heads if they even noticed it was happening. “Why is my view controller not being released when nothing else has a reference to it!” So you go and watch the WWDC videos on the introduction to blocks and GCD, and you discover the solution: <a href="http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW6"><code>__block</code></a>. Simply declaring your variables as <code>__block</code> will magically make “weak” references to your objects to use inside your blocks.</p>
 
-<p>So we’d end up with this: </p>
+<p>So we’d end up with this:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">__block</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
@@ -389,7 +388,7 @@
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
-      getTwitterFeed("theonlylars", 7, false);
+      getTwitterFeed("theonlylars", 0, false);
     });
   </script>
   <script src="/javascripts/twitter.js" type="text/javascript"> </script>

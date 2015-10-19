@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[theonlylars]]></title>
+  <title><![CDATA[The Only Lars]]></title>
   <link href="http://theonlylars.com/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T14:20:28-06:00</updated>
+  <updated>2015-10-18T22:46:27-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -111,7 +111,7 @@ With all this said, does this mean that Microsoft will be helping to lead techno
     <content type="html"><![CDATA[<p>This morning I open-sourced a fun side-project I’ve been working on for the past (almost) two years - <a href="http://mutualmobile.github.io/blog/2013/06/20/mmprogresshud/">MMProgressHUD</a>. “Wow, that looks a lot like M<em>B</em>ProgressHUD!” Yes, astute pupil, not only is it in the same category of control, it shares 95% the same letters in the same order as MBProgressHUD. This was merely a coincidence since Mutual Mobile’s official Objective-C class prefix is <code>MM</code>:</p>
 
 <h2 id="from-the-ground-up">From the Ground Up</h2>
-<p>MMProgressHUD was built from the ground up with a primary focus on animation, presentation and to cover the status bar. I also wanted a framework to easily add new animations and secondarily accept extremely basic user input. </p>
+<p>MMProgressHUD was built from the ground up with a primary focus on animation, presentation and to cover the status bar. I also wanted a framework to easily add new animations and secondarily accept extremely basic user input.</p>
 
 <h3 id="check-it-out">Check It Out</h3>
 <p>If you’re looking for a new HUD interface, just curious or merely want to check out the bits and peek under the hood, feel free to check out the repository on <a href="https://github.com/mutualmobile/MMProgressHUD">GitHub</a>. As always, if you find a bug or would like a new feature, feel free to fork the repo and submit a pull request!</p>
@@ -590,37 +590,37 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul id="markdown-toc">
-  <li><a href="#table-of-contents">Table of Contents</a></li>
-  <li><a href="#what-is-a-spec">What is a Spec?</a></li>
-  <li><a href="#basic-requirements">Basic Requirements</a>    <ul>
-      <li><a href="#semantic-versioning">Semantic Versioning</a></li>
-      <li><a href="#dependencies">Dependencies</a></li>
-      <li><a href="#frameworks">Frameworks</a></li>
+  <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
+  <li><a href="#what-is-a-spec" id="markdown-toc-what-is-a-spec">What is a Spec?</a></li>
+  <li><a href="#basic-requirements" id="markdown-toc-basic-requirements">Basic Requirements</a>    <ul>
+      <li><a href="#semantic-versioning" id="markdown-toc-semantic-versioning">Semantic Versioning</a></li>
+      <li><a href="#dependencies" id="markdown-toc-dependencies">Dependencies</a></li>
+      <li><a href="#frameworks" id="markdown-toc-frameworks">Frameworks</a></li>
     </ul>
   </li>
-  <li><a href="#construction">Construction</a>    <ul>
-      <li><a href="#hashes">Hashes</a></li>
-      <li><a href="#tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
-      <li><a href="#version-simplification">Version Simplification</a></li>
+  <li><a href="#construction" id="markdown-toc-construction">Construction</a>    <ul>
+      <li><a href="#hashes" id="markdown-toc-hashes">Hashes</a></li>
+      <li><a href="#tags-and-unversioned-repositories" id="markdown-toc-tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
+      <li><a href="#version-simplification" id="markdown-toc-version-simplification">Version Simplification</a></li>
     </ul>
   </li>
-  <li><a href="#completing-your-spec">Completing Your Spec</a>    <ul>
-      <li><a href="#help">Help</a></li>
-      <li><a href="#learn-by-example">Learn By Example</a></li>
+  <li><a href="#completing-your-spec" id="markdown-toc-completing-your-spec">Completing Your Spec</a>    <ul>
+      <li><a href="#help" id="markdown-toc-help">Help</a></li>
+      <li><a href="#learn-by-example" id="markdown-toc-learn-by-example">Learn By Example</a></li>
     </ul>
   </li>
-  <li><a href="#testing">Testing</a></li>
-  <li><a href="#spec-lint">Spec Lint</a></li>
-  <li><a href="#in-project-functional-testing">In-Project (Functional) Testing</a></li>
-  <li><a href="#subspecs">Subspecs</a>    <ul>
-      <li><a href="#defining-a-subspec">Defining a Subspec</a></li>
-      <li><a href="#final-product">Final Product</a></li>
-      <li><a href="#depending-on-a-subspec">Depending on a Subspec</a></li>
+  <li><a href="#testing" id="markdown-toc-testing">Testing</a></li>
+  <li><a href="#spec-lint" id="markdown-toc-spec-lint">Spec Lint</a></li>
+  <li><a href="#in-project-functional-testing" id="markdown-toc-in-project-functional-testing">In-Project (Functional) Testing</a></li>
+  <li><a href="#subspecs" id="markdown-toc-subspecs">Subspecs</a>    <ul>
+      <li><a href="#defining-a-subspec" id="markdown-toc-defining-a-subspec">Defining a Subspec</a></li>
+      <li><a href="#final-product" id="markdown-toc-final-product">Final Product</a></li>
+      <li><a href="#depending-on-a-subspec" id="markdown-toc-depending-on-a-subspec">Depending on a Subspec</a></li>
     </ul>
   </li>
-  <li><a href="#releasing">Releasing</a>    <ul>
-      <li><a href="#forkingcloning">Forking/Cloning</a></li>
-      <li><a href="#pull-request">Pull Request</a></li>
+  <li><a href="#releasing" id="markdown-toc-releasing">Releasing</a>    <ul>
+      <li><a href="#forkingcloning" id="markdown-toc-forkingcloning">Forking/Cloning</a></li>
+      <li><a href="#pull-request" id="markdown-toc-pull-request">Pull Request</a></li>
     </ul>
   </li>
 </ul>
@@ -948,14 +948,14 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>This will install the latest v3 code including every minor revision until v4.0 (3.1, 3.2, etc)<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>.</p>
 
-<p>Your podfile should now look like this:<br />
-&lt;div class=&#8217;bogus-wrapper&#8217;&gt;<notextile><figure class="code">&lt;div class=&#8221;highlight&#8221;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#8221;gutter&#8221;&gt;&lt;pre class=&#8221;line-numbers&#8221;&gt;<span class="line-number">1</span>
+<p>Your podfile should now look like this:</p>
+<div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 <span class="line-number">2</span>
 <span class="line-number">3</span>
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217;&gt;&lt;pre&gt;<code class="objc"><span class="line"><span class="nl">platform</span> <span class="p">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">&#39;</span><span class="mf">5.0</span><span class="err">&#39;</span>
+</pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="nl">platform</span> <span class="p">:</span><span class="n">ios</span><span class="p">,</span> <span class="err">&#39;</span><span class="mf">5.0</span><span class="err">&#39;</span>
 </span><span class="line">
 </span><span class="line"><span class="n">pod</span> <span class="err">&#39;</span><span class="n">LARSAdController</span><span class="err">&#39;</span><span class="p">,</span> <span class="err">&#39;</span><span class="o">~&gt;</span><span class="mf">3.0</span><span class="err">&#39;</span>
-</span></code>&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</figure></notextile>&lt;/div&gt;</p>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 <p>This will setup your project for both Google ads and iAds.</p>
 
@@ -1073,7 +1073,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk.  <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
       <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
@@ -1090,7 +1090,7 @@ Standing while working is definitely odd at first. It took me a little while to 
     <id>http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc</id>
     <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
 
-<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch. </p>
+<p>I’ve been working hard on refactoring <a href="https://github.com/larsacus/LARSAdController/tree/2.1.1">LARSAdController 2.0</a> into a more modular and maintainable state over the past few months. I think it’s finally in a place that could warrant some final testing from other developers before being merged into the master branch.</p>
 
 <p>Let’s take a look at what’s changed:</p>
 
@@ -1266,7 +1266,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>Because of this, the dreaded retain cycle would rear it’s ugly head and engineers would end up scratching their heads if they even noticed it was happening. “Why is my view controller not being released when nothing else has a reference to it!” So you go and watch the WWDC videos on the introduction to blocks and GCD, and you discover the solution: <a href="http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW6"><code>__block</code></a>. Simply declaring your variables as <code>__block</code> will magically make “weak” references to your objects to use inside your blocks.</p>
 
-<p>So we’d end up with this: </p>
+<p>So we’d end up with this:</p>
 
 <div class="bogus-wrapper"><notextile><figure class="code"><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class="line-number">1</span>
 </pre></td><td class="code"><pre><code class="objc"><span class="line"><span class="k">__block</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
@@ -1384,7 +1384,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p>You can even go one or two steps further and pass in affiliate link information when your app gets downloaded or have information passed to your app on first launch in the app’s url handling delegate method.  More detail can be found in the documentation on <a href="http://developer.apple.com/library/ios/#Documentation/AppleApplications/Reference/SafariWebContent/PromotingAppswithAppBanners/PromotingAppswithAppBanners.html">Apple’s website</a>.</p>
 
-<p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags. </p>
+<p>If you’re running an <a href="http://octopress.org">Octopress</a> blog and aren’t sure where to make this change to include it in your blog, mosey on over to <code>source\_includes\head.html</code> and add it in with the rest of the <code>&lt;meta</code> tags.</p>
 
 <p>I’ve installed it on my blog with a link to <a href="http://itunes.apple.com/us/app/droid-light-customizable-flashlight/id379660205?ls=1&amp;mt=8">Droid Light</a>, since that’s the only personal app I have that actually moves any units on the app store.</p>
 ]]></content>
@@ -1468,7 +1468,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <p><strong>Helpfulness</strong>: 6/10 - Really depends on what you need help with<br />
 <strong>Performance</strong>: 5/10<br />
-<strong>Ease of Use</strong>: 6/10  </p>
+<strong>Ease of Use</strong>: 6/10</p>
 
 <h3 id="eclogging">ECLogging</h3>
 <p><a href="https://github.com/elegantchaos/ECLogging">ECLogging</a> appears to be a rival (in my mind) of Cocoa Lumberjack (more on Lumberjack later). The basis behind ECLogging are “channels”, “handling”, and a boilerplate UI for both Mac and iOS apps to modify logging settings without having to build any of it yourself.</p>
@@ -1567,7 +1567,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <p>If you’re new to iOS, you may want to sit this one out until you get annoyed by <code>NSLog</code> - then come back here and read this.</p>
 
 <h2 id="i-use-nslog-and-i-think-its-awesome-isnt-that-enough">I Use NSLog and I think it’s awesome. Isn’t that enough?</h2>
-<p>Umm… Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he’s that guy on a Friday afternoon at the bank who’s exchanging three years worth of saved coins and asking about the interest rates on free checking accounts. I hate that guy. </p>
+<p>Umm… Let me count the ways. You may think of <code>NSLog</code> as your awesome friend with the boat who lets you join him on the weekends, but in reality he’s that guy on a Friday afternoon at the bank who’s exchanging three years worth of saved coins and asking about the interest rates on free checking accounts. I hate that guy.</p>
 
 <p>There are more forces at work than you might think operating behind the scenes in order to get your log messages to both the console and into Xcode console log. Let’s go over some of the issues I have with <code>NSLog</code>:</p>
 
@@ -1641,7 +1641,7 @@ This is the most basic type of logging, and one which you’re probably most fam
 <hr />
 
 <p><em>Disclaimer:</em>
-<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em>  </p>
+<em>I don’t pretend to know every nook and cranny about the topics I discuss.  I find teaching others is the best learning tool - and I like to learn.  As a result, you may disagree or *gasp* find errors.  If you disagree with any of this, write me a note at <a href="https://twitter.com/theonlylars">@theonlylars</a> and let me know. I’ll either correct it or simply agree to disagree.</em></p>
 ]]></content>
   </entry>
   

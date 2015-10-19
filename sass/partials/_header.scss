@@ -1,8 +1,12 @@
 body > header {
   background: $header-bg;
   h1 {
+    font-size: 1.3em;
+    font-family: "Impact", sans-serif;
+    letter-spacing: 1px;
     display: inline-block;
     margin: 0;
+    text-color: #efefef;
     a, a:visited, a:hover {
       color: $title_color;
       text-decoration: none;
@@ -10,8 +14,8 @@ body > header {
   }
   h2 {
     margin: .2em 0 0;
-    @extend .sans;
-    font-size: 1em;
+    font-size: 0.7em;
+    font-family: "Source Code Pro", "Courier", "Menlo", monospace;
     color: $subtitle-color;
     font-weight: normal;
   }

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: cocoapods | theonlylars]]></title>
+  <title><![CDATA[Category: cocoapods | The Only Lars]]></title>
   <link href="http://theonlylars.com/blog/categories/cocoapods/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T14:20:28-06:00</updated>
+  <updated>2015-10-18T22:46:27-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -32,37 +32,37 @@
 
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul id="markdown-toc">
-  <li><a href="#table-of-contents">Table of Contents</a></li>
-  <li><a href="#what-is-a-spec">What is a Spec?</a></li>
-  <li><a href="#basic-requirements">Basic Requirements</a>    <ul>
-      <li><a href="#semantic-versioning">Semantic Versioning</a></li>
-      <li><a href="#dependencies">Dependencies</a></li>
-      <li><a href="#frameworks">Frameworks</a></li>
+  <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
+  <li><a href="#what-is-a-spec" id="markdown-toc-what-is-a-spec">What is a Spec?</a></li>
+  <li><a href="#basic-requirements" id="markdown-toc-basic-requirements">Basic Requirements</a>    <ul>
+      <li><a href="#semantic-versioning" id="markdown-toc-semantic-versioning">Semantic Versioning</a></li>
+      <li><a href="#dependencies" id="markdown-toc-dependencies">Dependencies</a></li>
+      <li><a href="#frameworks" id="markdown-toc-frameworks">Frameworks</a></li>
     </ul>
   </li>
-  <li><a href="#construction">Construction</a>    <ul>
-      <li><a href="#hashes">Hashes</a></li>
-      <li><a href="#tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
-      <li><a href="#version-simplification">Version Simplification</a></li>
+  <li><a href="#construction" id="markdown-toc-construction">Construction</a>    <ul>
+      <li><a href="#hashes" id="markdown-toc-hashes">Hashes</a></li>
+      <li><a href="#tags-and-unversioned-repositories" id="markdown-toc-tags-and-unversioned-repositories">Tags and Unversioned Repositories</a></li>
+      <li><a href="#version-simplification" id="markdown-toc-version-simplification">Version Simplification</a></li>
     </ul>
   </li>
-  <li><a href="#completing-your-spec">Completing Your Spec</a>    <ul>
-      <li><a href="#help">Help</a></li>
-      <li><a href="#learn-by-example">Learn By Example</a></li>
+  <li><a href="#completing-your-spec" id="markdown-toc-completing-your-spec">Completing Your Spec</a>    <ul>
+      <li><a href="#help" id="markdown-toc-help">Help</a></li>
+      <li><a href="#learn-by-example" id="markdown-toc-learn-by-example">Learn By Example</a></li>
     </ul>
   </li>
-  <li><a href="#testing">Testing</a></li>
-  <li><a href="#spec-lint">Spec Lint</a></li>
-  <li><a href="#in-project-functional-testing">In-Project (Functional) Testing</a></li>
-  <li><a href="#subspecs">Subspecs</a>    <ul>
-      <li><a href="#defining-a-subspec">Defining a Subspec</a></li>
-      <li><a href="#final-product">Final Product</a></li>
-      <li><a href="#depending-on-a-subspec">Depending on a Subspec</a></li>
+  <li><a href="#testing" id="markdown-toc-testing">Testing</a></li>
+  <li><a href="#spec-lint" id="markdown-toc-spec-lint">Spec Lint</a></li>
+  <li><a href="#in-project-functional-testing" id="markdown-toc-in-project-functional-testing">In-Project (Functional) Testing</a></li>
+  <li><a href="#subspecs" id="markdown-toc-subspecs">Subspecs</a>    <ul>
+      <li><a href="#defining-a-subspec" id="markdown-toc-defining-a-subspec">Defining a Subspec</a></li>
+      <li><a href="#final-product" id="markdown-toc-final-product">Final Product</a></li>
+      <li><a href="#depending-on-a-subspec" id="markdown-toc-depending-on-a-subspec">Depending on a Subspec</a></li>
     </ul>
   </li>
-  <li><a href="#releasing">Releasing</a>    <ul>
-      <li><a href="#forkingcloning">Forking/Cloning</a></li>
-      <li><a href="#pull-request">Pull Request</a></li>
+  <li><a href="#releasing" id="markdown-toc-releasing">Releasing</a>    <ul>
+      <li><a href="#forkingcloning" id="markdown-toc-forkingcloning">Forking/Cloning</a></li>
+      <li><a href="#pull-request" id="markdown-toc-pull-request">Pull Request</a></li>
     </ul>
   </li>
 </ul>

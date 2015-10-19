@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: best-practices | theonlylars]]></title>
+  <title><![CDATA[Category: best-practices | The Only Lars]]></title>
   <link href="http://theonlylars.com/blog/categories/best-practices/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-01-22T14:20:28-06:00</updated>
+  <updated>2015-10-18T22:46:27-05:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -113,7 +113,7 @@
 
 <p>Because of this, the dreaded retain cycle would rear it’s ugly head and engineers would end up scratching their heads if they even noticed it was happening. “Why is my view controller not being released when nothing else has a reference to it!” So you go and watch the WWDC videos on the introduction to blocks and GCD, and you discover the solution: <a href="http://developer.apple.com/library/ios/#documentation/cocoa/Conceptual/Blocks/Articles/bxVariables.html#//apple_ref/doc/uid/TP40007502-CH6-SW6"><code>__block</code></a>. Simply declaring your variables as <code>__block</code> will magically make “weak” references to your objects to use inside your blocks.</p>
 
-<p>So we’d end up with this: </p>
+<p>So we’d end up with this:</p>
 
 <p><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='objc'><span class='line'><span class="k">__block</span> <span class="k">typeof</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span> <span class="n">myself</span> <span class="o">=</span> <span class="nb">self</span><span class="p">;</span>
