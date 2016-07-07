@@ -9,7 +9,7 @@ keywords: "NSLog,logging,iOS,development"
 ---
 
 ##In Review
-In [Part I of Ditching `NSLog`](/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/), we introduced our good friend `NSLog` and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how `NSLog`, in general, cannot satisfy these requirements.
+In [Part I of Ditching `NSLog`](/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/), we introduced our good friend `NSLog` and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how `NSLog`, in general, cannot satisfy these requirements.
 
 In this post, we'll go over some of the options you have available in your developer tool-belt to make your tasks easier to tackle. I always tell myself that good tools (or even _the_ proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you'll be more likely to produce a solid product.
 
