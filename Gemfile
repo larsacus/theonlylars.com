@@ -1,8 +1,8 @@
 source "https://rubygems.org"
-ruby '1.9.3'
+ruby '2.2.0'
 
 group :development do
-  gem 'rake', '~> 10.0'
+  gem 'rake', '~> 12.0'
   gem 'jekyll', '~> 2.0'
   gem 'octopress-hooks', '~> 2.2'
   gem 'octopress-date-format', '~> 2.0'

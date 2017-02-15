@@ -4,7 +4,7 @@
   <title><![CDATA[Category: debugging | The Only Lars]]></title>
   <link href="http://theonlylars.com/blog/categories/debugging/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2015-10-18T23:13:22-05:00</updated>
+  <updated>2017-02-15T00:42:28-06:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -19,7 +19,7 @@
     <updated>2012-07-29T22:09:00-05:00</updated>
     <id>http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2</id>
     <content type="html"><![CDATA[<h2 id="in-review">In Review</h2>
-<p>In <a href="/blog/2012/07/02/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
+<p>In <a href="/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
 
 <p>In this post, we’ll go over some of the options you have available in your developer tool-belt to make your tasks easier to tackle. I always tell myself that good tools (or even <em>the</em> proper tool) make building things much easier.  The same is true for building an app as it is for building my new bike I have sitting in pieces in the garage. Obtain and use the correct tools, and you’ll be more likely to produce a solid product.</p>
 

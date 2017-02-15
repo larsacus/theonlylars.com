@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: swift | The Only Lars]]></title>
+  <link href="http://theonlylars.com/blog/categories/swift/atom.xml" rel="self"/>
+  <link href="http://theonlylars.com/"/>
+  <updated>2017-02-15T00:42:28-06:00</updated>
+  <id>http://theonlylars.com/</id>
+  <author>
+    <name><![CDATA[Lars Anderson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Swift's Yolo Operator]]></title>
+    <link href="http://theonlylars.com/blog/2017/02/14/swifts-yolo-operator/"/>
+    <updated>2017-02-14T23:59:38-06:00</updated>
+    <id>http://theonlylars.com/blog/2017/02/14/swifts-yolo-operator</id>
+    <content type="html"><![CDATA[<p>I bought the domain and launched <a href="http://swiftyolo.com">swiftyolo.com</a> sort of as a joke maybe 6 months ago, but I still think it’s both funny and informative. It started as an office joke by me among the developers I worked with at Mutual Mobile, but it was really natural for people to reference the force-unwrapping pattern as a social anti-pattern. Half of me still thinks the name is stupid, but if it gets people to understand optionals and force-unwrapping, I’m all for perpetuating it. I was really just trying to drive home a “best-practice” (really just <em>a</em> practice) use of optionals and show how abused force-unwrapping had become.</p>
+
+<p>As one of my co-workers, Eric Miller (<a href="https://twitter.com/Xephos13">@Xephos13</a>), said: “It took all of like 9 seconds for most [everyone at work] to start saying it too”.</p>
+
+<p><img class="center" src="/images/posts/swiftyolo/yolo-endorsement.png"></p>
+
+<p>It’s like an infomercial for what I have seen in my past couple of years working with Swift (just picture half of the site in your head in black and white while reading it). Most people see optionals as a barrier to development, but once you truly think of them as an integral part of your development and architecture, you will write the safest code you’ve ever written. Just remember, this is just one guy’s opinion. Let me know what you think.</p>
+
+<p>Please. Think of the kittens. <a href="http://swiftyolo.com">Practice safe yolo</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
