@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: misc | theonlylars]]></title>
+  <link href="http://theonlylars.com/blog/categories/misc/atom.xml" rel="self"/>
+  <link href="http://theonlylars.com/"/>
+  <updated>2017-02-15T00:33:17-06:00</updated>
+  <id>http://theonlylars.com/</id>
+  <author>
+    <name><![CDATA[Lars Anderson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Go Forth And Build]]></title>
+    <link href="http://theonlylars.com/blog/2012/09/03/go-forth-and-build/"/>
+    <updated>2012-09-03T16:13:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/09/03/go-forth-and-build</id>
+    <content type="html"><![CDATA[<p>In the US today, it is what our government has deemed “Labor Day”.  This holiday is marked (at least from what I see here in Texas) by beer, boats, and barbecue. If you live here in Austin - it also means you better not expect to get in your car and get anywhere anytime soon. If you work at any retail establishment, it means you’re being paid 1.5x today and will have the busiest day second only to black friday (according to <a href="http://en.wikipedia.org/wiki/Labor_Day#Retail_Sale_Day">Wikipedia</a>).</p>
+
+<p>I, however, simply enjoyed family, food, and taking my bike to the park to get dirty on the trails. Still really out of shape, but that’s kind of to be expected when you spend 8-12 hours a day hunched in front of a computer 5-6 days out of the week.</p>
+
+<p>So now that I’ve had my rest, I’m going to get back to doing what I do best - building.</p>
+
+<p>Now go forth and build - I don’t care what it is. Bonus points for being the one who broke it to begin with.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: house | theonlylars]]></title>
+  <link href="http://theonlylars.com/blog/categories/house/atom.xml" rel="self"/>
+  <link href="http://theonlylars.com/"/>
+  <updated>2017-02-15T00:33:17-06:00</updated>
+  <id>http://theonlylars.com/</id>
+  <author>
+    <name><![CDATA[Lars Anderson]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[House Status]]></title>
+    <link href="http://theonlylars.com/blog/2012/06/03/house-status/"/>
+    <updated>2012-06-03T23:12:00-05:00</updated>
+    <id>http://theonlylars.com/blog/2012/06/03/house-status</id>
+    <content type="html"><![CDATA[<p>Just put up a new page that will be home to the status of all house gadgets that can have a status. Some things I’d eventually like to have in it are things like NAS status, A/C temperatures, ambient temperatures, light levels, computer status, electrical power consumption, etc. For now, all you’re gonna get is a rant about how hot my apartment is.</p>
+
+<p>Edit: We’ve moved - so I’ve dismantled the arduino temperature monitors and taken down the page.</p>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,345 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Autolayout: To NIB or not to NIB - theonlylars</title>
+  <meta name="author" content="Lars Anderson">
+
+  
+  <meta name="description" content="A coworker recently asked me at the end of last week what I thought, based on my experience on my last iOS 6-only project, would be the best approach &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-itunes-app" content="app-id=379660205"/>
+
+  
+  <link rel="canonical" href="http://theonlylars.com/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/achievements/achievements.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="theonlylars" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-29343433-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">theonlylars</a></h1>
+  
+    <h2>have you ever met another?</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:theonlylars.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a class="nav-item" href="/">Blog</a></li>
+  <li><a class="nav-item" href="/blog/archives">Archives</a></li>
+  <li><a class="nav-item" href="/blog/Achievements">Personal Achievements</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Autolayout: To NIB or Not to NIB</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-11T19:39:00-06:00" pubdate data-updated="true"></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>A coworker recently asked me at the end of last week what I thought, based on my experience on my last iOS 6-only project, would be the best approach to starting to learn and work with autolayout. He was specifically asking if he should bother working with xib files, or simply layout everything in code. He then asked that if he were to go with a xib file, what the best approach would be to balance the time/effort workflow for autolayout.</p>
+
+<p>All of the below is 100% based on my experience on my last project that was iOS 6-only, where autolayout was extensively utilized.</p>
+
+<h2 id="autolayout-layout-construction-priority">Autolayout Layout Construction Priority</h2>
+<p>Apple states in all of their documentation the following order you should begin implementing autolayout:</p>
+
+<ol>
+  <li>Nib file</li>
+  <li>Visual formatting language</li>
+  <li>Individual constraints</li>
+</ol>
+
+<h2 id="to-nib">To NIB</h2>
+<p>The priority above is, in my opinion, very dependent on what you are working on. If you have a pretty trivial layout that is simply being constrained based on something simple like an orientation change, then a xib file will probably be your best bet for a rapid layout that is unambiguous and doesn’t give you any issue during maintenance with very little effort.</p>
+
+<p>Another very helpful feature of autolayout’s constraints is the fact that you can create an outlet to a single constraint. You can use this outlet to easily animate a change, change the constraints constant, or remove a constraint altogether without much additional effort. To animation a constraint change, simply update your constraint(s), call <code>-setNeedsLayout</code>, then call <code>-layoutIfNeeded</code> in an animation block. Very quick and easy.</p>
+
+<h3 id="no-touching">No Touching</h3>
+<p><a href="/images/no_touching.gif"><img class="right" src="/images/no_touching_static.jpg" width="300" /></a> However, using xibs for autolayout starts to break down and become more time than it’s worth when you get into complex layouts that depend on cross-view constraints, constraints depending on a view’s content or complex constraint sets relating to many physically smaller views (the constraints simply become an absolute nightmare to <em>physically</em> click on and manage in the xib without screwing something else up).<!--more--> Couple this with the fact that a “feature” of auto layout nibs is to avoid ambiguous layouts. This means that Xcode will actually <em>add</em> constraints it “feels” are necessary for your layout despite you knowing better based on your semantic knowledge of the layout you’re trying to build. These constraints are <em>not</em> removable and thus, a huge nuisance.</p>
+
+<p>Even if you do end up successfully laying out your complex auto-layout layout in a nib and get it to behave the way you want, it’s best to treat your xib file like George Bluth in prison and <em>never</em> touch that nib again. Any constraint that is touched could potentially be changed by Xcode because it thinks it knows better than you. You’ll then be back at square one trying to figure out which constraints’ priorities to change back to 1 to get your layout to behave the way you want. I hope you committed that xib into source control just now.</p>
+
+<h2 id="not-to-nib">Not to NIB</h2>
+<p>It’s at this point that writing your layouts using the visual formatting language<sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup> becomes quicker and less error-prone, even at the expense of having to do it in code. A layout you build in code is the same layout <em>every</em> time the code is run. It’s like this because you built it. Only you know the semantics of the layout you are trying to construct. The code is not going to do anything you don’t tell it to - you just need to practice and learn to get better at telling it what to do. Use the visual formatting language and you’ll eventually make it out alive with a rock-solid layout that is much easier to maintain than the same complex layout in you would have had in your nib file.</p>
+
+<h2 id="so-what-should-i-use">So What Should I Use?</h2>
+<p>Some general thoughts to consider when learning to work with autolayout:</p>
+
+<h3 id="always-use-nibs-when-possible">Always Use NIBs When Possible</h3>
+<p>Don’t let interface builder get the best of you. At the first sign of interface builder throwing a fit with your layout and changing things from under your feet - switch to code. Autolayout really is hard, but interface builder sometimes makes it unnecessarily so. Always use a xib when you can. Even if you can only use the nib for a part of the layout, do the complex layout in code and leave the simple layout to the xib if you so choose. The xib is supposed to make your life easier, not more difficult.</p>
+
+<h3 id="use-the-vfl">Use the VFL</h3>
+<p>Use autolayout’s visual formatting language at the first sign of complexity or resistance from interface builder that is impeding your productivity.</p>
+
+<h3 id="hybrid-approach">Hybrid Approach</h3>
+<p>For complex layouts, simply omit that view heirarchy from the nib if it’s only a subset of the nib.</p>
+
+<h3 id="dont-use-autolayout">Don’t Use Autolayout</h3>
+<p>Sometimes you really may not need autolayout. Sometimes the simplest approach is the correct one.</p>
+
+<h3 id="autolayout-is-hard">Autolayout is Hard</h3>
+<p>Yes, autolayout is hard. You’ll often find me comparing the shape of autolayout’s learning curve to that of the face of a cliff. I took it on myself to try and learn as much as I could about autolayout when I got back from WWDC last year. I was then fortunate to be one of a few people to actually get to use iOS 6 APIs in a production environment with a project at Mutual Mobile before iOS 6 was even out of beta. It is still the number one thing people come to me asking questions about at work - for good reason.</p>
+
+<p>Many blog posts have been written by other developers on the nuances of autolayout. Bottom line - autolayout is really hard. It is the only API I can think of that is more closely related to an art than science. One that is only mastered with practice and many hours diagnosing ambiguous and over-constrained layouts in the debugger. The only true advice I could give another is this: “Autolayout is hard. Practice often if you care to learn it.”</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>This includes the <a href="https://developer.apple.com/library/mac/#documentation/AppKit/Reference/NSLayoutConstraint_Class/NSLayoutConstraint/NSLayoutConstraint.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:">individual constraint APIs</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lars Anderson</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-02-11T19:39:00-06:00" pubdate data-updated="true"></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/autolayout/'>autolayout</a>, <a class='category' href='/blog/categories/development/'>development</a>, <a class='category' href='/blog/categories/ios/'>ios</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://theonlylars.com/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/" data-via="theonlylars" data-counturl="http://theonlylars.com/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/02/09/one-week-with-a-standing-desk/" title="Previous Post: One week with a standing desk">&laquo; One week with a standing desk</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience/" title="Next Post: Abandoning the Consumer: Ignoring User Experience">Abandoning the Consumer: Ignoring User Experience &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section class="well">
+  <h1>About me</h1>
+  <p>iOS engineer at <a href="https://twitter.com/mutualmobile">@mutualmobile</a>. Builder of bits and cool animations.</p>
+</section><section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2017/02/14/swifts-yolo-operator/">Swift&#8217;s Yolo Operator</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/">Microsoft HoloLens and Your Everyday Future</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/01/rapid-development-with-placekit/">Rapid Content Prototyping With PlaceKit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/06/26/mmprogresshud/">MMProgressHUD</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/05/14/rebuilding-twitter-number-musics-eq-slider/">Building Twitter #music&#8217;s EQ Slider</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("theonlylars", 7, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/theonlylars" class="twitter-follow-button" data-show-count="false">Follow @theonlylars</a>
+  
+</section>
+
+
+<section>
+  <h1>GitHub Repos</h1>
+  <ul id="gh_repos">
+    <li class="loading">Status updating&#8230;</li>
+  </ul>
+  
+  <a href="https://github.com/larsacus">@larsacus</a> on GitHub
+  
+  <script type="text/javascript">
+    $.domReady(function(){
+        if (!window.jXHR){
+            var jxhr = document.createElement('script');
+            jxhr.type = 'text/javascript';
+            jxhr.src = '/javascripts/libs/jXHR.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(jxhr, s);
+        }
+
+        github.showRepos({
+            user: 'larsacus',
+            count: 4,
+            skip_forks: true,
+            target: '#gh_repos'
+        });
+    });
+  </script>
+  <script src="/javascripts/github.js" type="text/javascript"> </script>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2017 - Lars Anderson -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
