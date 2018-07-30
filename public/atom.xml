@@ -4,7 +4,7 @@
   <title><![CDATA[The Only Lars]]></title>
   <link href="http://theonlylars.com/atom.xml" rel="self"/>
   <link href="http://theonlylars.com/"/>
-  <updated>2017-02-15T00:42:28-06:00</updated>
+  <updated>2018-07-30T19:51:25-04:00</updated>
   <id>http://theonlylars.com/</id>
   <author>
     <name><![CDATA[Lars Anderson]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Swift's Yolo Operator]]></title>
-    <link href="http://theonlylars.com/blog/2017/02/14/swifts-yolo-operator/"/>
-    <updated>2017-02-14T23:59:38-06:00</updated>
-    <id>http://theonlylars.com/blog/2017/02/14/swifts-yolo-operator</id>
+    <link href="http://theonlylars.com/blog/2017/02/15/swifts-yolo-operator/"/>
+    <updated>2017-02-15T00:59:38-05:00</updated>
+    <id>http://theonlylars.com/blog/2017/02/15/swifts-yolo-operator</id>
     <content type="html"><![CDATA[<p>I bought the domain and launched <a href="http://swiftyolo.com">swiftyolo.com</a> sort of as a joke maybe 6 months ago, but I still think it’s both funny and informative. It started as an office joke by me among the developers I worked with at Mutual Mobile, but it was really natural for people to reference the force-unwrapping pattern as a social anti-pattern. Half of me still thinks the name is stupid, but if it gets people to understand optionals and force-unwrapping, I’m all for perpetuating it. I was really just trying to drive home a “best-practice” (really just <em>a</em> practice) use of optionals and show how abused force-unwrapping had become.</p>
 
 <p>As one of my co-workers, Eric Miller (<a href="https://twitter.com/Xephos13">@Xephos13</a>), said: “It took all of like 9 seconds for most [everyone at work] to start saying it too”.</p>
@@ -33,7 +33,7 @@
   <entry>
     <title type="html"><![CDATA[Microsoft HoloLens and Your Everyday Future]]></title>
     <link href="http://theonlylars.com/blog/2015/01/22/microsoft-hololens-and-your-everyday-future/"/>
-    <updated>2015-01-22T11:36:00-06:00</updated>
+    <updated>2015-01-22T11:36:00-05:00</updated>
     <id>http://theonlylars.com/blog/2015/01/22/microsoft-hololens-and-your-everyday-future</id>
     <content type="html"><![CDATA[<p><em>Having not posted on here in over a year, it feels good to write again.</em></p>
 
@@ -90,7 +90,7 @@ With all this said, does this mean that Microsoft will be helping to lead techno
   <entry>
     <title type="html"><![CDATA[Rapid Content Prototyping With PlaceKit]]></title>
     <link href="http://theonlylars.com/blog/2013/07/01/rapid-development-with-placekit/"/>
-    <updated>2013-07-01T08:00:00-05:00</updated>
+    <updated>2013-07-01T08:00:00-04:00</updated>
     <id>http://theonlylars.com/blog/2013/07/01/rapid-development-with-placekit</id>
     <content type="html"><![CDATA[<p>Last week I open-sourced <a href="https://github.com/mutualmobile/MMProgressHUD">MMProgressHUD</a>, a small work-project that I’ve been working on for what seems like an eternity. I alluded in my last post that I was also releasing a personal project later in the week. I went ahead and open-sourced that project which I’ve been calling “<a href="https://github.com/larsacus/PlaceKit">PlaceKit</a>” for the Objective-C “<a href="https://objectivechackathon.appspot.com">Back On the Map</a>” hackathon this past Saturday.</p>
 
@@ -123,7 +123,7 @@ With all this said, does this mean that Microsoft will be helping to lead techno
   <entry>
     <title type="html"><![CDATA[MMProgressHUD]]></title>
     <link href="http://theonlylars.com/blog/2013/06/26/mmprogresshud/"/>
-    <updated>2013-06-26T21:22:00-05:00</updated>
+    <updated>2013-06-26T21:22:00-04:00</updated>
     <id>http://theonlylars.com/blog/2013/06/26/mmprogresshud</id>
     <content type="html"><![CDATA[<p>This morning I open-sourced a fun side-project I’ve been working on for the past (almost) two years - <a href="http://mutualmobile.github.io/blog/2013/06/20/mmprogresshud/">MMProgressHUD</a>. “Wow, that looks a lot like M<em>B</em>ProgressHUD!” Yes, astute pupil, not only is it in the same category of control, it shares 95% the same letters in the same order as MBProgressHUD. This was merely a coincidence since Mutual Mobile’s official Objective-C class prefix is <code>MM</code>:</p>
 
@@ -145,7 +145,7 @@ With all this said, does this mean that Microsoft will be helping to lead techno
   <entry>
     <title type="html"><![CDATA[Building Twitter #music's EQ Slider]]></title>
     <link href="http://theonlylars.com/blog/2013/05/14/rebuilding-twitter-number-musics-eq-slider/"/>
-    <updated>2013-05-14T20:55:00-05:00</updated>
+    <updated>2013-05-14T20:55:00-04:00</updated>
     <id>http://theonlylars.com/blog/2013/05/14/rebuilding-twitter-number-musics-eq-slider</id>
     <content type="html"><![CDATA[<p>Semi-recently, Twitter came out with a cool new music app to discovery new music on (get ready for it) Twitter. They aptly named their new chicklet “#music”. Visually, <a href="https://itunes.apple.com/us/app/twitter-music/id625541612?mt=8">#music</a> is a very, <em>very</em> cool app. Everything is custom: transitions, collection views, collection view selection animations, media player controls, and one very cool volume slider. If you don’t have an Rdio or Spotify subscription, you probably don’t see anything cool about the media player’s volume slider, but when you have one of the aforementioned subscriptions, the slider turns into a full-on 2-channel equalizer. It’s <em>very</em> cool.</p>
 
@@ -359,7 +359,7 @@ We have some more requirements for the light itself than we did for the layout. 
   <entry>
     <title type="html"><![CDATA[Abandoning the Consumer: Ignoring User Experience]]></title>
     <link href="http://theonlylars.com/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience/"/>
-    <updated>2013-03-11T16:36:00-05:00</updated>
+    <updated>2013-03-11T16:36:00-04:00</updated>
     <id>http://theonlylars.com/blog/2013/03/11/abandoning-the-consumer-ignoring-user-experience</id>
     <content type="html"><![CDATA[<p><em>Fair Warning: This post is relatively <a href="https://www.google.com/search?hl=en&amp;tbm=nws&amp;q=simcity">SimCity</a>-centric.</em></p>
 
@@ -449,7 +449,7 @@ We have some more requirements for the light itself than we did for the layout. 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Other industries do this, too, don’t get me wrong <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>Other industries do this, too, don’t get me wrong <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -459,7 +459,7 @@ We have some more requirements for the light itself than we did for the layout. 
   <entry>
     <title type="html"><![CDATA[Autolayout: To NIB or not to NIB]]></title>
     <link href="http://theonlylars.com/blog/2013/02/11/autolayout-to-nib-or-not-to-nib/"/>
-    <updated>2013-02-11T19:39:00-06:00</updated>
+    <updated>2013-02-11T19:39:00-05:00</updated>
     <id>http://theonlylars.com/blog/2013/02/11/autolayout-to-nib-or-not-to-nib</id>
     <content type="html"><![CDATA[<p>A coworker recently asked me at the end of last week what I thought, based on my experience on my last iOS 6-only project, would be the best approach to starting to learn and work with autolayout. He was specifically asking if he should bother working with xib files, or simply layout everything in code. He then asked that if he were to go with a xib file, what the best approach would be to balance the time/effort workflow for autolayout.</p>
 
@@ -510,7 +510,7 @@ We have some more requirements for the light itself than we did for the layout. 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>This includes the <a href="https://developer.apple.com/library/mac/#documentation/AppKit/Reference/NSLayoutConstraint_Class/NSLayoutConstraint/NSLayoutConstraint.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:">individual constraint APIs</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>This includes the <a href="https://developer.apple.com/library/mac/#documentation/AppKit/Reference/NSLayoutConstraint_Class/NSLayoutConstraint/NSLayoutConstraint.html#//apple_ref/occ/clm/NSLayoutConstraint/constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:">individual constraint APIs</a> <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -520,7 +520,7 @@ We have some more requirements for the light itself than we did for the layout. 
   <entry>
     <title type="html"><![CDATA[One week with a standing desk]]></title>
     <link href="http://theonlylars.com/blog/2013/02/09/one-week-with-a-standing-desk/"/>
-    <updated>2013-02-09T19:30:00-06:00</updated>
+    <updated>2013-02-09T19:30:00-05:00</updated>
     <id>http://theonlylars.com/blog/2013/02/09/one-week-with-a-standing-desk</id>
     <content type="html"><![CDATA[<p>As a full-time software engineer, having my legs do nothing all day but atrophy has not been helping my legs’ health - namely my knees’ health. So this week I spent big money ($6) at the local hardware store on 4 cinder-blocks. I converted my normal desk into a standing-desk to see if I liked it at all. I’ve heard differing opinions on the standing desk ranging from “foot fatigue” to “hated it”. If you’re thinking about a standing desk, hopefully this will server as another datapoint in your research.</p>
 
@@ -541,7 +541,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[Personal Achievements]]></title>
     <link href="http://theonlylars.com/blog/2013/01/27/2013-personal-achievements/"/>
-    <updated>2013-01-27T16:20:00-06:00</updated>
+    <updated>2013-01-27T16:20:00-05:00</updated>
     <id>http://theonlylars.com/blog/2013/01/27/2013-personal-achievements</id>
     <content type="html"><![CDATA[<p>Everyone makes at least some attempt at resolutions each new year - even if they say they “don’t make resolutions”. How can you go through life without goals to better yourself as a person? Based on my past, though, we very often do not write them down or forget about them entirely before the end of January.</p>
 
@@ -581,7 +581,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I’ve obviously omitted the truly personal achievements about my life like friends, family, etc. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>I’ve obviously omitted the truly personal achievements about my life like friends, family, etc. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -591,7 +591,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[Cocoapods: Creating a Pod Spec]]></title>
     <link href="http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec/"/>
-    <updated>2013-01-20T14:58:00-06:00</updated>
+    <updated>2013-01-20T14:58:00-05:00</updated>
     <id>http://theonlylars.com/blog/2013/01/20/cocoapods-creating-a-pod-spec</id>
     <content type="html"><![CDATA[<p><em>Update 4-15-2013: Updated for changes that came with v0.18.x and v0.17 since this page is now linked to on <a href="http://docs.cocoapods.org/guides/index.html">cocoapods.org</a>.</em></p>
 
@@ -804,11 +804,8 @@ Standing while working is definitely odd at first. It took me a little while to 
 
 <ol>
   <li>Install pod
-    <ul>
-      <li><code>pod install</code> (initial install)</li>
-      <li><code>pod update</code> (subsequent installs)</li>
-    </ul>
-  </li>
+  - <code>pod install</code> (initial install)
+  - <code>pod update</code> (subsequent installs)</li>
   <li>Test to ensure your component works</li>
   <li>Rinse, repeat until component installs correctly</li>
 </ol>
@@ -915,7 +912,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[Stupid Easy iOS Ad Mediation with LARSAdController 3.0]]></title>
     <link href="http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/"/>
-    <updated>2013-01-10T20:10:00-06:00</updated>
+    <updated>2013-01-10T20:10:00-05:00</updated>
     <id>http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0</id>
     <content type="html"><![CDATA[<h2 id="roots">Roots</h2>
 <p>When I originally built LARSAdController, I was building it to fulfill a very specific purpose for my first app (Droid Light): leverage a singleton to serve a single ad instance for iAds using best practices, and serve AdMob ads as a backup when iAds (stellar) inventory ran dry. Since then, I’ve expanded it to support multiple devices, as well as multiple orientations, all while being super-easy to integrate.</p>
@@ -1090,10 +1087,10 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>I take no responsibility for the actual rupturing of the cranium, inter-cranial blood vessels, or ocular regions as a result of reading this. Any reading from this point on is purely at your own risk. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+      <p>Since cocoapods takes largely from the ruby community, the <code>~&gt;</code> operator will function exactly like it does there. You can read more about this “pessimistic operator” on the <a href="http://docs.rubygems.org/read/chapter/16#page74">rubygems site here</a>. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -1103,7 +1100,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[LARSAdController 3.0 RC]]></title>
     <link href="http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc/"/>
-    <updated>2012-12-15T15:25:00-06:00</updated>
+    <updated>2012-12-15T15:25:00-05:00</updated>
     <id>http://theonlylars.com/blog/2012/12/15/larsadcontroller-3-dot-0-rc</id>
     <content type="html"><![CDATA[<p><em>Edit Jan 10, 2013: Since publishing this post, <a href="http://theonlylars.com/blog/2013/01/10/stupid-easy-ads-with-larsadcontroller-3-dot-0/">LARSAdController v3.0 has been pushed to the master branch</a> on <a href="https://github.com/larsacus/LARSAdController/">github</a>!</em></p>
 
@@ -1176,7 +1173,7 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>That and I <em>hate</em> when 3rd party libraries make me use the <code>-all_load</code> compiler flag <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>That and I <em>hate</em> when 3rd party libraries make me use the <code>-all_load</code> compiler flag <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -1186,7 +1183,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[Don't Forget the "C" in Objective-C: C Declarations]]></title>
     <link href="http://theonlylars.com/blog/2012/12/10/dont-forget-the-c-in-objective-c/"/>
-    <updated>2012-12-10T00:00:00-06:00</updated>
+    <updated>2012-12-10T00:00:00-05:00</updated>
     <id>http://theonlylars.com/blog/2012/12/10/dont-forget-the-c-in-objective-c</id>
     <content type="html"><![CDATA[<p>It’s been awhile. I blame my bike and the Thanksgiving Steam sale. If you’re seriously reading this, then it is statistically likely your productivity was at some point affected by Steam’s Thanksgiving sale.</p>
 
@@ -1365,13 +1362,13 @@ Standing while working is definitely odd at first. It took me a little while to 
 <div class="footnotes">
   <ol>
     <li id="fn:2">
-      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+      <p>I’ve actually never seen <code>volatile</code> or <code>register</code> used anywhere in Objective-C <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+      <p>I don’t know many real-time systems that require constant volatile pointers compiled in Objective-C <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:1">
-      <p>This is my opinion <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>This is my opinion <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
@@ -1381,7 +1378,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[iOS 6 "Smart" App Banners]]></title>
     <link href="http://theonlylars.com/blog/2012/09/29/ios-6-app-banners/"/>
-    <updated>2012-09-29T21:34:00-05:00</updated>
+    <updated>2012-09-29T21:34:00-04:00</updated>
     <id>http://theonlylars.com/blog/2012/09/29/ios-6-app-banners</id>
     <content type="html"><![CDATA[<p>When iOS 6 was announced, one of the lesser features was a “Smart” App Banner that displayed unobtrusively over your webpage and displayed an app that users could directly download on the app store from your webpage.  After the keynote, I forgot to investigate the documentation about it all through the iOS 6 Beta and never really heard much about it until the GM release of iOS 6.  So I went to check out how to do this thinking it was going to be super-involved, at least html-wise.</p>
 
@@ -1410,7 +1407,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[Go Forth And Build]]></title>
     <link href="http://theonlylars.com/blog/2012/09/03/go-forth-and-build/"/>
-    <updated>2012-09-03T16:13:00-05:00</updated>
+    <updated>2012-09-03T16:13:00-04:00</updated>
     <id>http://theonlylars.com/blog/2012/09/03/go-forth-and-build</id>
     <content type="html"><![CDATA[<p>In the US today, it is what our government has deemed “Labor Day”.  This holiday is marked (at least from what I see here in Texas) by beer, boats, and barbecue. If you live here in Austin - it also means you better not expect to get in your car and get anywhere anytime soon. If you work at any retail establishment, it means you’re being paid 1.5x today and will have the busiest day second only to black friday (according to <a href="http://en.wikipedia.org/wiki/Labor_Day#Retail_Sale_Day">Wikipedia</a>).</p>
 
@@ -1425,7 +1422,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[Ditching NSLog, Part II: Good Tools Make Work Easy]]></title>
     <link href="http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2/"/>
-    <updated>2012-07-29T22:09:00-05:00</updated>
+    <updated>2012-07-29T22:09:00-04:00</updated>
     <id>http://theonlylars.com/blog/2012/07/29/ditching-nslog-advanced-ios-logging-part-2</id>
     <content type="html"><![CDATA[<h2 id="in-review">In Review</h2>
 <p>In <a href="http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/">Part I of Ditching <code>NSLog</code></a>, we introduced our good friend <code>NSLog</code> and why there is a time and a place for him, but that those are few and far between.  We also discussed the different types of logging, and why you might want to use them, as well as how <code>NSLog</code>, in general, cannot satisfy these requirements.</p>
@@ -1577,7 +1574,7 @@ Standing while working is definitely odd at first. It took me a little while to 
   <entry>
     <title type="html"><![CDATA[Ditching NSLog, Part I: You Deserve Better]]></title>
     <link href="http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1/"/>
-    <updated>2012-07-03T21:33:00-05:00</updated>
+    <updated>2012-07-03T21:33:00-04:00</updated>
     <id>http://theonlylars.com/blog/2012/07/03/ditching-nslog-advanced-ios-logging-part-1</id>
     <content type="html"><![CDATA[<p>Every iOS developer has used <code>NSLog</code>. We use it as a debugging tool to see the what data the system sees at a particular time while the application is running, or even to track the path our data takes when moving through our applications. But <code>NSLog</code> is not the be-all, end-all logging mechanism many of you think it is.</p>
 
@@ -1665,7 +1662,7 @@ This is the most basic type of logging, and one which you’re probably most fam
   <entry>
     <title type="html"><![CDATA[Post-WWDC]]></title>
     <link href="http://theonlylars.com/blog/2012/06/27/post-wwdc/"/>
-    <updated>2012-06-27T23:34:00-05:00</updated>
+    <updated>2012-06-27T23:34:00-04:00</updated>
     <id>http://theonlylars.com/blog/2012/06/27/post-wwdc</id>
     <content type="html"><![CDATA[<p>WWDC was a ton of fun.  One of my coworkers equated it to drinking from a fire-hose all week, and that’s exactly what it was like - hardly any time to process any of what you’re taught all week. The sessions were really good, being surrounded by others who do what you do was inspiring, and the labs gave me access to Apple engineers to ask them whatever I wanted.  I got some really good feedback on my <a href="http://larsacus.github.com/LARSAdController">iOS ad integration class</a>, as well as some help integrating auto layout with some existing projects. There is a ton of material that is not mentioned in the videos (and sometimes even in the documentation) about how a class functions or was built. This is when access to the engineers that actually build the API is infinitely useful.  I’ll definitely be more prepared next year.</p>
 
@@ -1678,7 +1675,7 @@ This is the most basic type of logging, and one which you’re probably most fam
   <entry>
     <title type="html"><![CDATA[Minty Boost! DubDub Edition]]></title>
     <link href="http://theonlylars.com/blog/2012/06/04/minty-boost-dubdub-edition/"/>
-    <updated>2012-06-04T23:46:00-05:00</updated>
+    <updated>2012-06-04T23:46:00-04:00</updated>
     <id>http://theonlylars.com/blog/2012/06/04/minty-boost-dubdub-edition</id>
     <content type="html"><![CDATA[<p>Of all of the lists I have read about what to bring with you to WWDC, or suggestions on what veterans say you should do, the most consistent and unanimously present suggestion from all sources is that you will need to extend the battery life of your mobile device.  In the case of WWDC, there is a 99.99 (repeating, of course)% chance that it will be an iPhone. Being a procrastinator, I did not order one online like I should have from monoprice or similar.  Being a cheap, stingy software engineer, I refused to pay between $60-$100 for similar Li-Ion battery packs that carry anywhere from 3000-6500mAh of power. Being an electrical engineer by schooling, you tend to have <a href="http://www.ladyada.net/make/mintyboost/">stuff like this lying around the house</a>. Specifically, I had the minty boost powering an Arduino/Xbee assembly that is feeding temperature data from my HVAC exaust to Cosm.  You can read all about <em>that</em> <a href="http://theonlylars.com/homedata">here</a>. It ultimately didn’t work for this application due to it’s limited supply time (only lasted about 6 hours at a time).</p>
 
@@ -1704,7 +1701,7 @@ This Eclipse mints container works perfectly for the Minty Boost, even if I did 
   <entry>
     <title type="html"><![CDATA[House Status]]></title>
     <link href="http://theonlylars.com/blog/2012/06/03/house-status/"/>
-    <updated>2012-06-03T23:12:00-05:00</updated>
+    <updated>2012-06-03T23:12:00-04:00</updated>
     <id>http://theonlylars.com/blog/2012/06/03/house-status</id>
     <content type="html"><![CDATA[<p>Just put up a new page that will be home to the status of all house gadgets that can have a status. Some things I’d eventually like to have in it are things like NAS status, A/C temperatures, ambient temperatures, light levels, computer status, electrical power consumption, etc. For now, all you’re gonna get is a rant about how hot my apartment is.</p>
 

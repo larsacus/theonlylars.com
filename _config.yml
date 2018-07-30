@@ -4,10 +4,10 @@
 
 url: http://theonlylars.com
 title: "The Only Lars"
-subtitle: Byte-sized adventures in iOS software development
+subtitle: Byte-sized adventures in software engineering
 author: Lars Anderson
 simple_search: http://google.com/search
-description: "Helpful information on iOS development in Swift and Objective-C."
+description: "Helpful information on software engineering, iOS development, Swift, and Objective-C."
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
@@ -16,7 +16,7 @@ description: "Helpful information on iOS development in Swift and Objective-C."
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /atom.xml
+subscribe_rss: blog/atom.xml
 subscribe_email:
 # RSS feeds can list your email address if you like
 email:
@@ -26,10 +26,11 @@ email:
 # ----------------------- #
 
 # If publishing to a subdirectory as in http://site.com/project set 'root: /project'
-root: /
+url: https://theonlylars.com/blog
+root: /blog
 permalink: /blog/:year/:month/:day/:title/
 source: source
-destination: public
+destination: public/blog
 plugins: plugins
 code_dir: downloads/code
 category_dir: blog/categories
@@ -51,11 +52,11 @@ titlecase: true       # Converts page and post titles to titlecase
 
 # list each of the sidebar modules you want to include, in the order you want them to appear.
 # To add custom asides, create files in /source/_includes/custom/asides/ and add them to the list like 'custom/asides/custom_aside_name.html'
-default_asides: [asides/about.html, asides/recent_posts.html, asides/twitter.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+default_asides: [asides/about.html, asides/recent_posts.html, asides/github.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
 
 # Each layout uses the default asides, but they can have their own asides instead. Simply uncomment the lines below
 # and add an array with the asides you want to use.
-# blog_index_asides: 
+# blog_index_asides:
 # post_asides:
 # page_asides:
 
@@ -70,12 +71,12 @@ github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user: theonlylars
-twitter_tweet_count: 0
-twitter_show_replies: false
-twitter_follow_button: true
-twitter_show_follower_count: false
-twitter_tweet_button: true
+# twitter_user: theonlylars
+# twitter_tweet_count: 0
+# twitter_show_replies: false
+# twitter_follow_button: true
+# twitter_show_follower_count: false
+# twitter_tweet_button: true
 
 # Google +1
 # google_plus_one: false
@@ -102,4 +103,4 @@ twitter_tweet_button: true
 google_analytics_tracking_id: UA-29343433-1
 
 # Facebook Like
-facebook_like: true
+# facebook_like: true
