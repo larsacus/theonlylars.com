@@ -16,7 +16,7 @@ deploy_branch  = "gh-pages"
 
 ## -- Misc Configs -- ##
 
-public_dir      = "public/blog"    # compiled site directory
+public_dir      = "public/blog-archive"    # compiled site directory
 source_dir      = "source"    # source file directory
 blog_index_dir  = 'source'    # directory for your blog's index page (if you put your index in source/blog/index.html, set this to 'source/blog')
 deploy_dir      = "_deploy"   # deploy directory (for Github pages deployment)
@@ -391,9 +391,9 @@ end
 def blog_url(user, project, source_dir)
   cname = "#{source_dir}/CNAME"
   url = if File.exists?(cname)
-    "http://#{IO.read(cname).strip}"
+    "https://#{IO.read(cname).strip}"
   else
-    "http://#{user.downcase}.github.io"
+    "https://#{user.downcase}.github.io"
   end
   url += "/#{project}" unless project == ''
   url
